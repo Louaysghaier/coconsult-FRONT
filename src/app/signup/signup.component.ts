@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
               console.log('User registered successfully!');
               
               alert('check your mail account for verification !');
-              this.router.navigate(['/']); 
+              this.router.navigate(['/verification']); 
 
             },
             (error) => {

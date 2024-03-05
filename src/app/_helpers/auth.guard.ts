@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
         private accountService: AccountService
     ) {}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+   /* canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.accountService.userValue;
         if (user) {
             const requiredRole = route.data.requiredRole;
@@ -23,6 +23,19 @@ export class AuthGuard implements CanActivate {
         // not logged in so redirect to login page with the return url
         this.router.navigate(['/account/login'], { queryParams: { returnUrl: state.url }});
         return false;
+    }*/
+    canActivate() {
+        const user = this.accountService.userValue;
+        if (user) {
+           
+            return true;
+        }
+        else{
+            // not logged in so redirect to login page with the return url
+        this.router.navigate(['/account/login']);
+        return false;
+        }
+        
     }
    
 }

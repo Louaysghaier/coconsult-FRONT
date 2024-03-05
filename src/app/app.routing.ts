@@ -11,18 +11,19 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { ValidationComponent } from './validation/validation.component';
 import { AboutusComponent } from './shared/aboutus/aboutus.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { AuthGuard } from './_helpers';
 const routes: Routes = [
   {
     path: '',
     
-      loadChildren: () => import('./admin/admin-layout.module').then(m => m.AdminLayoutModule),
+      loadChildren: () => import('./admin/admin-layout.module').then(m => m.AdminLayoutModule)
 
   }, 
  
   
   {
     path: '',
-    loadChildren: () => import('./user_dashboard/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () => import('./user_dashboard/dashboard.module').then(m => m.DashboardModule),canActivate:[ AuthGuard]
 
   }, 
   
@@ -44,6 +45,6 @@ const routes: Routes = [
       useHash: true,
     }),
   ],
-  exports: [RouterModule], // Export RouterModule for use in other modules
+  exports: [RouterModule], 
 })
 export class AppRoutingModule {}

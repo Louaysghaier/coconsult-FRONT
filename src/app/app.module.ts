@@ -27,6 +27,7 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutDirective } from './shared/aboutus/about.directive';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
     AboutusComponent,
     ContactComponent,
     AboutDirective,
+    
   
     
   ],
@@ -58,7 +60,7 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
     CarouselModule.forRoot(),
     FontAwesomeModule,
     AdminLayoutModule,
-    DashboardModule,
+    DashboardModule
     
 
   ],

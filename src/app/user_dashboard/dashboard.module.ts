@@ -19,6 +19,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { CardComponent } from './solution/card/card.component';
+import { ActivitySalesTeamComponent } from './activity-sales-team/activity-sales-team.component';
+//import { ContractComponent } from './contract/contract.component';
+import { ProspectComponent } from './prospect/prospect.component';
+import { PayementComponent } from './payement/payement.component';
+import { RepertoireComponent } from './repertoire/repertoire.component';
+import { ContractComponent } from './contract/contract.component';
+import { UpdateContractComponent } from './update-contract/update-contract.component';
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard',
   component: DashboardComponent,
@@ -28,6 +35,14 @@ const dashboardRoutes: Routes = [
     { path: 'vertical-nav-bar', component: VerticalNavBarComponent },
     {path: 'settings',component:SettingsComponent},
     {path:'solutions', component:SolutionComponent},
+    {path:'repertoire', component:RepertoireComponent},
+    {path:'prospect', component:ProspectComponent},
+    {path:'contract', component:ContractComponent},
+    {path:'activity-sales-team', component:ActivitySalesTeamComponent},
+    {path:'payement', component:PayementComponent},
+    
+
+
   ],
   },
   ];
@@ -43,6 +58,12 @@ const dashboardRoutes: Routes = [
       VerticalNavBarComponent,
       MonprofilComponent,
       CardComponent,
+      ActivitySalesTeamComponent,
+      ContractComponent,
+      ProspectComponent,
+      PayementComponent,
+      RepertoireComponent,
+      UpdateContractComponent,
     ],
     imports: [
       

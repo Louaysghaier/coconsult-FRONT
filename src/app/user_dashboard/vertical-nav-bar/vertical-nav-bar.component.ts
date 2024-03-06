@@ -18,6 +18,15 @@ export const ROUTES: RouteInfo[] = [
     { path: '/user_dashboard/monprofil', title: 'mon-profile',  icon: 'person', class: '' },
     { path: '/user_dashboard/solutions', title: 'solutions',  icon:'dashboard', class: '' },
     { path: '/user_dashboard/settings', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
+    { path: '/user_dashboard/repertoire', title: 'Repertoires',  icon: 'person', class: '' },
+    { path: '/user_dashboard/prospect', title: 'Prospect',  icon: 'person', class: '' },
+    { path: '/user_dashboard/contract', title: 'Contracts',  icon: 'person', class: '' },
+    { path: '/user_dashboard/activity-sales-team', title: 'Activity',  icon: 'person', class: '' },
+    { path: '/user_dashboard/payement', title: 'Sales Dashboard',  icon: 'person', class: '' },
+
+
+
+
 ];
 
 @Component({

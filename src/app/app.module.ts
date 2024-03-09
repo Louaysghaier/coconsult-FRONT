@@ -27,6 +27,13 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutDirective } from './shared/aboutus/about.directive';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
+import { ForgetpassComponent } from './forgetpass/forgetpass.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CapatchaComponent } from './forgetpass/capatcha/capatcha.component';
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,14 +47,19 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
     AboutusComponent,
     ContactComponent,
     AboutDirective,
-  
+    ForgetpassComponent,
+    CapatchaComponent,
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
   imports: [
-    NgOtpInputModule,
-    BrowserModule,
+    ReactiveFormsModule,
+    NgxCaptchaModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    
+        BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,
@@ -63,6 +75,13 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
 
   ],
   providers: [
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+        size: 'normal' 
+      } as RecaptchaSettings,
+    },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

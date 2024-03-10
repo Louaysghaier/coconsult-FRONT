@@ -1,4 +1,4 @@
-//import { NgModule } from '@angular/core';
+// import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
@@ -14,25 +14,30 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import {MatRippleModule} from '@angular/material/core';
+import {MAT_DATE_LOCALE, MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+
 import { CardComponent } from './solution/card/card.component';
 import { ActivitySalesTeamComponent } from './activity-sales-team/activity-sales-team.component';
-//import { ContractComponent } from './contract/contract.component';
+import { ContractComponent } from './contract/contract.component';
 import { ProspectComponent } from './prospect/prospect.component';
 import { PayementComponent } from './payement/payement.component';
 import { RepertoireComponent } from './repertoire/repertoire.component';
-import { ContractComponent } from './contract/contract.component';
-import { UpdateContractComponent } from './update-contract/update-contract.component';
+
+import { AddUpdateContractComponent } from './add-update-contract/add-update-contract.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard',
   component: DashboardComponent,
   children: [
     {path:'monprofil',component:MonprofilComponent},
     {path:'header', component:HeaderComponent},
-    { path: 'vertical-nav-bar', component: VerticalNavBarComponent },
+    {path: 'vertical-nav-bar', component: VerticalNavBarComponent },
     {path: 'settings',component:SettingsComponent},
     {path:'solutions', component:SolutionComponent},
     {path:'repertoire', component:RepertoireComponent},
@@ -58,12 +63,13 @@ const dashboardRoutes: Routes = [
       VerticalNavBarComponent,
       MonprofilComponent,
       CardComponent,
-      ActivitySalesTeamComponent,
       ContractComponent,
       ProspectComponent,
       PayementComponent,
       RepertoireComponent,
-      UpdateContractComponent,
+      ActivitySalesTeamComponent,
+      AddUpdateContractComponent,
+      
     ],
     imports: [
       
@@ -76,15 +82,21 @@ const dashboardRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-      CommonModule,
-      FontAwesomeModule,
-      // Import other modules you need
+    CommonModule,
+    FontAwesomeModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatTableModule,
+    //MatButtonModule,
 
-      // Configure child routes
+      
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-    providers: [],
+    providers: [
+      { provide: MAT_DATE_LOCALE, useValue: 'en-US' } ,
+
+    ],
     exports: [RouterModule]
   })
   export class DashboardModule { }

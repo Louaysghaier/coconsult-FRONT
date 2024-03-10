@@ -1,35 +1,80 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-10">
-        <h2 class="mb-4">Contracts Table</h2>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Deal</th>
-              <th scope="col">Date Contract</th>
-              <th scope="col">Valeur du Contract </th>
-              <th scope="col">Nbre Tranche</th>
-              <th scope="col">Etape</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let contract of contracts">
-              <td>{{ contract.idContract }}</td>
-              <td>{{ contract.description }}</td>
-              <td>{{ contract.dateContract | date: 'shortDate' }}</td>
-              <td>{{ contract.montant | currency: 'USD':'symbol' }}</td>
-              <td>{{ contract.nbreTranche }}</td>
-              <td>{{ contract.etape }}</td>
-              <td>
-                <button class="btn btn-warning" (click)="updateContract(contract.idContract!)">Update</button>
-                <button class="btn btn-danger ml-2" (click)="removeContract(contract.idContract!)">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<!-- Adapted from app.component.html -->
+<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <span>Contract Management</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button (click)="openAddUpdateContractForm()">
+      ADD CONTRACT
+    </button>
+</mat-toolbar>
+  
+  <div class="main-body">
+  
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search by description" #input>
+    </mat-form-field>
+  
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort>
+  
+        <!-- Adjust columns based on your contract model -->
+        <ng-container matColumnDef="idContract">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.idContract}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <td mat-cell *matCellDef="let row"> {{row.description}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateContract">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> dateContract </th>
+          <td mat-cell *matCellDef="let row"> {{row.dateContract}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="montant">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> montant </th>
+          <td mat-cell *matCellDef="let row"> {{row.montant}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nbreTranche">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> nbreTranche </th>
+          <td mat-cell *matCellDef="let row"> {{row.nbreTranche}}</td>
+        </ng-container> 
+
+        <ng-container matColumnDef="etape">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> etape </th>
+          <td mat-cell *matCellDef="let row"> {{row.etape}}</td>
+        </ng-container>
+
+  
+        <!-- Add other columns based on your contract model -->
+  
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="openEditForm(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="deleteContract(row.idContract)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of contracts"></mat-paginator>
     </div>
   </div>
   

@@ -27,6 +27,7 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutDirective } from './shared/aboutus/about.directive';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
     AboutusComponent,
     ContactComponent,
     AboutDirective,
+    
     
   
     
@@ -67,6 +69,9 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-US' } ,
+
+  
 
   ],
   bootstrap: [AppComponent]

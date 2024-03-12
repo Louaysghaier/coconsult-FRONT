@@ -1,0 +1,18 @@
+<div class="quiz-form">
+    <h2>Ajouter un Quiz</h2>
+    <form (ngSubmit)="ajouterquiz()">
+      <div class="form-group">
+        <label for="titre">Titre :</label>
+        <input type="text" class="form-control" id="titre" [(ngModel)]="quiz.titre" name="titre" required>
+      </div>
+      <div class="form-group">
+        <label for="dateQuiz">Date du Quiz :</label>
+        <input type="date" class="form-control" id="dateQuiz" [(ngModel)]="quiz.dateQuiz" name="dateQuiz" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description :</label>
+        <textarea class="form-control" id="description" [(ngModel)]="quiz.description" name="description" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>

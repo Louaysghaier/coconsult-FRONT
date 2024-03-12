@@ -1,0 +1,21 @@
+<div class="quiz-card" *ngIf="currentQuestionIndex < questions.length" (contextmenu)="onRightClick($event)">
+  <h2>{{ quizTitle }}</h2>
+  <h3>{{ questions[currentQuestionIndex].content }}</h3>
+  <p>Remaining time: {{ remainingTime }} seconds</p>
+  <ul>
+    <li *ngFor="let option of [questions[currentQuestionIndex].option1, questions[currentQuestionIndex].option2, questions[currentQuestionIndex].option3, questions[currentQuestionIndex].option4]">
+      <label>
+        <input type="radio" [value]="option" [(ngModel)]="questions[currentQuestionIndex].selected_answer">
+        {{ option }}
+      </label>
+    </li>
+  </ul>
+  <button (click)="submitAnswer(questions[currentQuestionIndex].selected_answer)">Submit Answer</button>
+  <button (click)="confirmRetourQuestion()">Revenir en arrière</button>
+</div>
+
+<div class="quiz-card" *ngIf="currentQuestionIndex >= questions.length">
+  <p>End of the quiz</p>
+  <button (click)="finishQuiz()">Terminé</button>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>            
+</div>

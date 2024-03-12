@@ -59,13 +59,15 @@ export class AppComponent implements OnInit {
           
               this.router.events.subscribe((event: RouterEvent) => {
                 if (event instanceof NavigationEnd) {
-                  this.isDashboardRoute = event.url.includes('admin')|| event.url.includes('user') || event.url.includes('verification')||event.url.includes('calcul')||event.url.includes('contact')||event.url.includes('aboutus');
+                  this.isDashboardRoute = event.url.includes('admin')|| event.url.includes('user') || event.url.includes('verification')||event.url.includes('myquiz')||event.url.includes('contact')
+                  ||event.url.includes('aboutus')||event.url.includes('candidature')||event.url.includes('Affichagequestion')||event.url.includes('myquiz');
                 }
               });
             
               this.router.events.subscribe((event: RouterEvent) => {
                 if (event instanceof NavigationEnd) {
-                  this.iscalcul = event.url.includes('admin')|| event.url.includes('user') || event.url.includes('verification')||event.url.includes('aboutus');
+                  this.iscalcul = event.url.includes('admin')|| event.url.includes('user') || event.url.includes('verification')||event.url.includes('aboutus')
+                  ;
                 }
               });
           

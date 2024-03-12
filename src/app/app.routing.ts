@@ -11,6 +11,10 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { ValidationComponent } from './validation/validation.component';
 import { AboutusComponent } from './shared/aboutus/aboutus.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { CandidatComponent } from './candidat/candidat.component';
+import { QuestionComponent } from './question/question.component';
+import { MyquizComponent } from './myquiz/myquiz.component';
+import { AffichagequestionComponent } from './affichagequestion/affichagequestion.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,14 +29,24 @@ const routes: Routes = [
     loadChildren: () => import('./user_dashboard/dashboard.module').then(m => m.DashboardModule),
 
   }, 
-  
+  { path:'myquiz',component:MyquizComponent },
+  { path: 'Affichagequestion/:quizId/:mailcandidat', component: AffichagequestionComponent },
+
   { path: 'signin', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   { path: 'signupentrprise', component: SignupEntrpriseComponent },
   { path: 'verification', component: ValidationComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
-  { path: '**', redirectTo: '',component: LandingComponent},
+  { path: 'ajoutq', component: QuestionComponent },
+ 
+  
+
+
+
+
+{ path:'candidature',component:CandidatComponent },
+ { path: '**', redirectTo: '',component: LandingComponent}
 
 ];
 

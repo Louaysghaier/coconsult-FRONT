@@ -1,0 +1,17 @@
+<div class="container" class="body">
+    <div *ngFor="let quiz of quizzes" class="panel" [class.disabled]="quizInProgress" (click)="viewQuestions(quiz.id_quiz)">
+      <div class="ring">
+        <div class="card card1"></div>
+        <div class="border">
+          <p class="title">{{ quiz.titre }}</p>
+          <div class="slide">
+            <h6 class="para">{{ quiz.description }}</h6>
+            <div class="line">
+              <h6 class="para">Date: {{ quiz.dateQuiz }}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

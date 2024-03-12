@@ -1,0 +1,73 @@
+
+
+
+
+<div>
+  <section class="bg">
+    <div class="container ">
+      <div class="row row-grid align-items-left">
+        <div class="col-md-6">
+          <div class="card bgo shadow border-0 p-2 g-col-6">
+            <div >
+              <ngb-carousel >
+                <ng-template ngbSlide>
+                  <div class="picsum-img-wrapper">
+                    <img src="./assets/images/offre1.jpg" alt="Random first slide" class="carousel-img" />
+                  </div>
+                  <div class="carousel-caption">
+                    <p>votre opportunité pour s'améliorer</p>
+                  </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                  <div class="picsum-img-wrapper">
+                    <img src="./assets/images/offre2.jpg" alt="Random second slide" class="carousel-img" />
+                  </div>
+                  <div class="carousel-caption">
+                    <p>Qu-attendez vous pour reagir comme étand un entreprise innovante de ce domaine.</p>
+                  </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                  <div class="picsum-img-wrapper">
+                    <img src="./assets/images/offre3.jpg" alt="Random third slide" class="carousel-img"  />
+                  </div>
+                  <div class="carousel-caption">
+                    <p>Agir maintenant pour un avenir euphorique .</p>
+                  </div>
+                </ng-template>
+                
+              </ngb-carousel>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <div class="pl-md-5">
+            
+            <h4 class="display-3 font-weight-bold text-black shadow-text  ">Etes-vous un ingenieur IT ? </h4>
+            <p class="lead text-black shadow-text  ">“Le principe de l'évolution est beaucoup plus rapide en informatique que chez le bipède.” </p>
+            <form [formGroup]="candidatForm" (ngSubmit)="ajoutercandidat()">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <!-- Affichez le message d'erreur si l'email est invalide -->
+                <div *ngIf="candidatForm.get('email').errors && candidatForm.get('email').touched" class="text-danger">
+                  <div *ngIf="candidatForm.get('email').errors.required">L'email est requis.</div>
+                  <div *ngIf="candidatForm.get('email').errors.email">L'email doit être valide.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="niveau">Niveau:</label>
+                <select class="form-control" id="niveau" formControlName="niveau">
+                  <option value="">Sélectionnez un niveau</option>
+                  <option value="Senior">Senior</option>
+                  <option value="Jenior">Jenior</option>
+                </select>
+                <!-- Affichez le message d'erreur si le niveau n'est pas sélectionné -->
+                <div *ngIf="candidatForm.get('niveau').errors && candidatForm.get('niveau').touched" class="text-danger">
+                  <div *ngIf="candidatForm.get('niveau').errors.required">Le niveau est requis.</div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Postuler</button>
+            </form>
+            
+          
+</div>

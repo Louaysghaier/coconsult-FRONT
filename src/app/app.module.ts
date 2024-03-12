@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -27,6 +27,11 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutDirective } from './shared/aboutus/about.directive';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
+import { CandidatComponent } from './candidat/candidat.component';
+import { AffichagequestionComponent } from './affichagequestion/affichagequestion.component';
+import { QuestionComponent } from './question/question.component';
+import { MyquizComponent } from './myquiz/myquiz.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +44,12 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
     ValidationComponent,
     AboutusComponent,
     ContactComponent,
+CandidatComponent,
+AffichagequestionComponent,
+
+QuestionComponent,
     AboutDirective,
+    MyquizComponent,
   
     
   ],
@@ -54,11 +64,11 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    
+    MatDialogModule,
     CarouselModule.forRoot(),
     FontAwesomeModule,
-    AdminLayoutModule,
     DashboardModule,
+    ReactiveFormsModule,
     
 
   ],

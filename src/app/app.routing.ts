@@ -13,6 +13,7 @@ import { AboutusComponent } from './shared/aboutus/aboutus.component';
 import { ContactComponent } from './shared/contact/contact.component';
 import { AuthGuard } from './_helpers';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
+import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 const routes: Routes = [
   {
     path: '',
@@ -34,8 +35,9 @@ const routes: Routes = [
   { path: 'verification', component: ValidationComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'forgetpassword', component: ForgetpassComponent },
-
+  { path: 'resetpassword', component:     ForgetpassComponent
+},
+{ path: 'forgetpassword', component: LoginforgetpasswordComponent},
   { path: '**', redirectTo: '',component: LandingComponent},
 
 ];

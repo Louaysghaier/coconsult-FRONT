@@ -33,6 +33,7 @@ export class AccountService {
                 // localStorage.setItem('access_token', token);
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
+               // sessionStorage.setItem('userid',user);
                 console.error(user);
                 this.userSubject.next(user);
                 this.isconn=true;
@@ -61,12 +62,14 @@ export class AccountService {
     getById(id: string) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
     }
-
+    getCurrentUser(): Observable<User | null> {
+        return this.user;
+    }
     update(id: string, params: any) {
         return this.http.put(`${environment.apiUrl}/users/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
-                if (id == this.userValue?.id) {
+                if (id.toString() === this.userValue?.id?.toString()) {
                     // update local storage
                     const user = { ...this.userValue, ...params };
                     localStorage.setItem('user', JSON.stringify(user));
@@ -82,7 +85,7 @@ export class AccountService {
         return this.http.delete(`${environment.apiUrl}/users/${id}`)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
-                if (id == this.userValue?.id) {
+                if (id.toString() === this.userValue?.id?.toString()) {
                     this.logout();
                 }
                 return x;
@@ -93,5 +96,14 @@ export class AccountService {
         console.log('SERVICE token is' + token)
 
         return token || 'EMPTY';
+    }
+    forgetPassword(username: String, resetPass: any) {
+        return this.http.put(`${environment.apiUrl}/api/user/forgetpass/${username}`, resetPass);
+    }
+    userForgetPassword(email: String) {
+        return this.http.post(`${environment.apiUrl}/api/user/forgetpassword/${email}`, null);
+    }
+    forgetPasswordbyemail(email: String, resetPass: any) {
+        return this.http.put(`${environment.apiUrl}/api/user/forgetpassbyemail/${email}`, resetPass);
     }
 }

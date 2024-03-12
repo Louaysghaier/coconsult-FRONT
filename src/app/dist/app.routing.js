@@ -20,6 +20,7 @@ var aboutus_component_1 = require("./shared/aboutus/aboutus.component");
 var contact_component_1 = require("./shared/contact/contact.component");
 var _helpers_1 = require("./_helpers");
 var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
+var loginforgetpassword_component_1 = require("./loginforgetpassword/loginforgetpassword.component");
 var routes = [
     {
         path: '',
@@ -36,7 +37,9 @@ var routes = [
     { path: 'verification', component: validation_component_1.ValidationComponent },
     { path: 'aboutus', component: aboutus_component_1.AboutusComponent },
     { path: 'contact', component: contact_component_1.ContactComponent },
-    { path: 'forgetpassword', component: forgetpass_component_1.ForgetpassComponent },
+    { path: 'resetpassword', component: forgetpass_component_1.ForgetpassComponent
+    },
+    { path: 'forgetpassword', component: loginforgetpassword_component_1.LoginforgetpasswordComponent },
     { path: '**', redirectTo: '', component: landing_component_1.LandingComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {

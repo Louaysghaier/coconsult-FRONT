@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
               this.router.events.subscribe((event: RouterEvent) => {
                 if (event instanceof NavigationEnd) {
                   this.isDashboardRoute = event.url.includes('admin')|| event.url.includes('user') || event.url.includes('verification')||event.url.includes('calcul')||event.url.includes('contact')||event.url.includes('aboutus')
-                  ||event.url.includes('forgetpassword');
+                  ||event.url.includes('password');
                 }
               });
             

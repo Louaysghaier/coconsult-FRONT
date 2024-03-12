@@ -60,7 +60,7 @@ var AppComponent = /** @class */ (function () {
         this.router.events.subscribe(function (event) {
             if (event instanceof router_1.NavigationEnd) {
                 _this.isDashboardRoute = event.url.includes('admin') || event.url.includes('user') || event.url.includes('verification') || event.url.includes('calcul') || event.url.includes('contact') || event.url.includes('aboutus')
-                    || event.url.includes('forgetpassword');
+                    || event.url.includes('password');
             }
         });
         this.router.events.subscribe(function (event) {

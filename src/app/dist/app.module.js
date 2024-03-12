@@ -31,12 +31,12 @@ var aboutus_component_1 = require("./shared/aboutus/aboutus.component");
 var contact_component_1 = require("./shared/contact/contact.component");
 var about_directive_1 = require("./shared/aboutus/about.directive");
 var _helpers_1 = require("./_helpers");
-var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
 var ngx_captcha_1 = require("ngx-captcha");
 var forms_2 = require("@angular/forms");
-var capatcha_component_1 = require("./forgetpass/capatcha/capatcha.component");
 var ng_recaptcha_1 = require("ng-recaptcha");
 var environment_1 = require("src/environments/environment");
+var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
+var loginforgetpassword_component_1 = require("./loginforgetpassword/loginforgetpassword.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -55,7 +55,7 @@ var AppModule = /** @class */ (function () {
                 contact_component_1.ContactComponent,
                 about_directive_1.AboutDirective,
                 forgetpass_component_1.ForgetpassComponent,
-                capatcha_component_1.CapatchaComponent,
+                loginforgetpassword_component_1.LoginforgetpasswordComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [

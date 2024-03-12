@@ -2,7 +2,7 @@ import { Etape } from "./EtapeContract";
 
 export class Contract {
     idContract!: number;
-    description!: string;
+    description!: String;
     dateContract!: Date; 
     montant!: number;
     nbreTranche!: number;

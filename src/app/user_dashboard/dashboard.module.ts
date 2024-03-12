@@ -30,6 +30,7 @@ import { RepertoireComponent } from './repertoire/repertoire.component';
 import { AddUpdateContractComponent } from './add-update-contract/add-update-contract.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AddUpdateRepertoiresComponent } from './add-update-repertoires/add-update-repertoires.component';
 
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard',
@@ -69,6 +70,7 @@ const dashboardRoutes: Routes = [
       RepertoireComponent,
       ActivitySalesTeamComponent,
       AddUpdateContractComponent,
+      AddUpdateRepertoiresComponent,
       
     ],
     imports: [

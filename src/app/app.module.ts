@@ -32,6 +32,7 @@ import { AffichagequestionComponent } from './affichagequestion/affichagequestio
 import { QuestionComponent } from './question/question.component';
 import { MyquizComponent } from './myquiz/myquiz.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ AffichagequestionComponent,
 QuestionComponent,
     AboutDirective,
     MyquizComponent,
+
   
     
   ],

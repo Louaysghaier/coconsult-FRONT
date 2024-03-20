@@ -13,6 +13,17 @@ export class CandidatService {
   apiUrl = 'http://localhost:8082/candidat/';
 apiurl1='http://localhost:8082/quizzes/verifyexistedmail/'
 
+private baseUrl = 'http://localhost:8082'; // Mettez l'URL de votre API Spring Boot
+
+
+
+uploadFile(file: File) {
+  const formData: FormData = new FormData();
+  formData.append('file', file);
+
+  return this.http.post<string>(`${this.baseUrl}/upload`, formData);
+}
+
 
 
 

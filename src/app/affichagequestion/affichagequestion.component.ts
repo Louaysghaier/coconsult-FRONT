@@ -84,20 +84,23 @@ openRulesDialog(): void {
 
 
   submitAnswer(option: string): void {
+   
     if (option !== undefined && this.currentQuestionIndex < this.questions.length) {
      
-      // Call the evaluateQuiz method for the current question
+     
+        // Call the evaluateQuiz method for the current question
       this.quizService.evaluateQuiz(this.questions[this.currentQuestionIndex].idQuest, option, this.mailcandidat).subscribe(
-        (response) => {
+      (response) => {
           console.log('Quiz evaluated successfully:', response);
           // Handle the response as needed
         },
         (error) => {
           console.error('Error occurred while evaluating quiz:', error);
+      
           // Handle errors
         }
       );
-
+    
       // Move to the next question if available
       this.currentQuestionIndex++;
       window.history.pushState(null, null, window.location.href);
@@ -175,5 +178,3 @@ onRightClick(event) {
 event.preventDefault();
 }
 }
-
-

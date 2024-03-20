@@ -15,6 +15,7 @@ import { CandidatComponent } from './candidat/candidat.component';
 import { QuestionComponent } from './question/question.component';
 import { MyquizComponent } from './myquiz/myquiz.component';
 import { AffichagequestionComponent } from './affichagequestion/affichagequestion.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'ajoutq', component: QuestionComponent },
+
  
   
 

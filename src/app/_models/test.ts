@@ -9,6 +9,7 @@ id_test?:number;
 question!:Question;
 quiz!:Quiz;
 candidat!:Candidat;
+finalmark!:number;
 
 
 }

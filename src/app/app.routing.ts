@@ -14,6 +14,7 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { AuthGuard } from './_helpers';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 const routes: Routes = [
   {
     path: '',
@@ -38,7 +39,8 @@ const routes: Routes = [
   { path: 'resetpassword', component:     ForgetpassComponent
 },
 { path: 'forgetpassword', component: LoginforgetpasswordComponent},
-  { path: '**', redirectTo: '',component: LandingComponent},
+{path:'chatroom',component:ChatRoomComponent },
+{ path: '**', redirectTo: '',component: LandingComponent},
 
 ];
 

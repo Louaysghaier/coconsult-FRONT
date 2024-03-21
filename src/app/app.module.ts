@@ -33,6 +33,7 @@ import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSet
 import { environment } from 'src/environments/environment';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetp
     AboutDirective,
     ForgetpassComponent,
     LoginforgetpasswordComponent,
+    ChatRoomComponent,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

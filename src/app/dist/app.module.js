@@ -37,6 +37,7 @@ var ng_recaptcha_1 = require("ng-recaptcha");
 var environment_1 = require("src/environments/environment");
 var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
 var loginforgetpassword_component_1 = require("./loginforgetpassword/loginforgetpassword.component");
+var chat_room_component_1 = require("./chat-room/chat-room.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -56,6 +57,7 @@ var AppModule = /** @class */ (function () {
                 about_directive_1.AboutDirective,
                 forgetpass_component_1.ForgetpassComponent,
                 loginforgetpassword_component_1.LoginforgetpasswordComponent,
+                chat_room_component_1.ChatRoomComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
             imports: [

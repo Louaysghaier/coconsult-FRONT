@@ -59,6 +59,11 @@ var AccountService = /** @class */ (function () {
     AccountService.prototype.logout = function () {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('refreshToken');
+        // Alternatively, you can use localStorage:
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
         this.userSubject.next(null);
         this.router.navigate(['/account/login']);
     };
@@ -115,6 +120,16 @@ var AccountService = /** @class */ (function () {
     };
     AccountService.prototype.forgetPasswordbyemail = function (email, resetPass) {
         return this.http.put(environment_1.environment.apiUrl + "/api/user/forgetpassbyemail/" + email, resetPass);
+    };
+    AccountService.prototype.getAccessToken = function () {
+        return localStorage.getItem('accessToken');
+    };
+    AccountService.prototype.getrefresgtoken = function () {
+        return localStorage.getItem('refreshToken');
+    };
+    AccountService.prototype.refreshToken = function () {
+        // Implement logic to call the token refresh API
+        return this.http.post('/api/auth/refreshToken', { refreshToken: localStorage.getItem('refreshToken') });
     };
     AccountService = __decorate([
         core_1.Injectable({ providedIn: 'root' })

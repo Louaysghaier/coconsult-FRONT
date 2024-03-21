@@ -47,6 +47,11 @@ export class AccountService {
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('refreshToken');
+        // Alternatively, you can use localStorage:
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
         this.userSubject.next(null);
         this.router.navigate(['/account/login']);
     }
@@ -106,4 +111,14 @@ export class AccountService {
     forgetPasswordbyemail(email: String, resetPass: any) {
         return this.http.put(`${environment.apiUrl}/api/user/forgetpassbyemail/${email}`, resetPass);
     }
+    getAccessToken(): string {
+        return localStorage.getItem('accessToken');
+      }
+    getrefresgtoken():string{
+        return localStorage.getItem('refreshToken');}
+
+      refreshToken(): Observable<any> {
+        // Implement logic to call the token refresh API
+        return this.http.post<any>('/api/auth/refreshToken', { refreshToken: localStorage.getItem('refreshToken') });
+      }
 }

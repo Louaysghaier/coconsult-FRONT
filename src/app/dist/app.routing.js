@@ -21,6 +21,7 @@ var contact_component_1 = require("./shared/contact/contact.component");
 var _helpers_1 = require("./_helpers");
 var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
 var loginforgetpassword_component_1 = require("./loginforgetpassword/loginforgetpassword.component");
+var chat_room_component_1 = require("./chat-room/chat-room.component");
 var routes = [
     {
         path: '',
@@ -40,6 +41,7 @@ var routes = [
     { path: 'resetpassword', component: forgetpass_component_1.ForgetpassComponent
     },
     { path: 'forgetpassword', component: loginforgetpassword_component_1.LoginforgetpasswordComponent },
+    { path: 'chatroom', component: chat_room_component_1.ChatRoomComponent },
     { path: '**', redirectTo: '', component: landing_component_1.LandingComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {

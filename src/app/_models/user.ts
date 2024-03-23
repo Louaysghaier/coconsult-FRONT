@@ -7,7 +7,7 @@
     blocked?: boolean;
     Role?: string;
     token?: string;
-    adress?: string;
+    address?: string;
     valid?: boolean;
     bannedchatGP?: boolean;
     number?: number;

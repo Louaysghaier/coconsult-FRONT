@@ -14,7 +14,15 @@ var TableListComponent = /** @class */ (function () {
     }
     TableListComponent.prototype.ngOnInit = function () {
         //this.getUser();
-        this.getEmlpoyes();
+        // this.getEmlpoyes();
+        // this.getEntreprise();
+        this.getAllUsers();
+    };
+    TableListComponent.prototype.getAllUsers = function () {
+        var _this = this;
+        this.UserlistService.getUserList().subscribe(function (data) {
+            _this.users = data;
+        });
     };
     TableListComponent.prototype.getUser = function () {
         var _this = this;
@@ -28,9 +36,9 @@ var TableListComponent = /** @class */ (function () {
             _this.emlpoyes = data;
         });
     };
-    TableListComponent.prototype.getAdmins = function () {
+    TableListComponent.prototype.getEntreprise = function () {
         var _this = this;
-        this.UserlistService.getUserByRoles('ROLE_ADMIN').subscribe(function (data) {
+        this.UserlistService.getUserByRoles('ROLE_Entreprise').subscribe(function (data) {
             _this.admins = data;
         });
     };

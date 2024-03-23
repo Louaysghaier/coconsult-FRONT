@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from './user';
 
 
 import { UserlistService } from './userlist.service';
+import { User } from 'src/app/_models';
 
 @Component({
   selector: 'app-table-list',
@@ -19,10 +19,15 @@ export class TableListComponent implements OnInit {
 
     ngOnInit(): void {
       //this.getUser();
-      this.getEmlpoyes();
-      this.getAdmins();
+     // this.getEmlpoyes();
+     // this.getEntreprise();
+      this.getAllUsers();
       }
-
+      public  getAllUsers(){
+        this.UserlistService.getUserList().subscribe(data => {
+        this.users = data;
+        });
+        }
       private getUser(){
       this.UserlistService.getUserList().subscribe(data => {
       this.users = data;
@@ -34,7 +39,7 @@ export class TableListComponent implements OnInit {
         });
         }
 
-        private getAdmins(){
+        private getEntreprise(){
           this.UserlistService.getUserByRoles('ROLE_Entreprise').subscribe(data => {
           this.admins = data;
           });

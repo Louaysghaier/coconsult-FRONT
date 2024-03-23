@@ -37,13 +37,17 @@ export class LoginComponent implements OnInit {
         (response) => {      
           console.log('User logged in successfully!');
           const accessToken = response.accessToken;
-        const   refreshToken = response.refreshToken;
+          const   refreshToken = response.refreshToken;
           
           // Check if rememberMe is true, then store tokens in localStorage
         if (this.rememberMe === true) {
+          localStorage.setItem('user', JSON.stringify(response));
+
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', refreshToken);
         } else {
+          sessionStorage.setItem('user', JSON.stringify(response));
+
           // Otherwise, store tokens in sessionStorage
           sessionStorage.setItem('accessToken', accessToken);
           sessionStorage.setItem('refreshToken', refreshToken);

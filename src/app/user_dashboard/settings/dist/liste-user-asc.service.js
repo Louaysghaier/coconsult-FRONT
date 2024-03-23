@@ -6,25 +6,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.notificationService = void 0;
+exports.ListeUserAscService = void 0;
 var core_1 = require("@angular/core");
-var notificationService = /** @class */ (function () {
-    function notificationService(httpClient) {
-        this.httpClient = httpClient;
-        this.baseURL = "http://localhost:8082/Msg/getAll";
-        this.env = "http://localhost:8082/Msg/sendNotification";
+var ListeUserAscService = /** @class */ (function () {
+    function ListeUserAscService(http) {
+        this.http = http;
+        this.baseUserRole = "http://localhost:8081/api/user/by-role/asc/{roleName}";
     }
-    notificationService.prototype.sendNotification = function (message) {
-        return this.httpClient.post(this.env, message);
+    ListeUserAscService.prototype.getListUserAsc = function () {
+        return this.http.get("http://localhost:8081/api/user/list-Userco2/ASC");
     };
-    notificationService.prototype.getListMessage = function () {
-        return this.httpClient.get(this.baseURL);
+    ListeUserAscService.prototype.getUserByRoles = function (RolesName) {
+        var url = "" + this.baseUserRole + RolesName;
+        return this.http.get(url);
     };
-    notificationService = __decorate([
+    ListeUserAscService = __decorate([
         core_1.Injectable({
             providedIn: 'root'
         })
-    ], notificationService);
-    return notificationService;
+    ], ListeUserAscService);
+    return ListeUserAscService;
 }());
-exports.notificationService = notificationService;
+exports.ListeUserAscService = ListeUserAscService;

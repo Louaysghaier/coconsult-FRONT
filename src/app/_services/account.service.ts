@@ -32,9 +32,8 @@ export class AccountService {
                 //        if (rememberMe) {
                 // localStorage.setItem('access_token', token);
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
                // sessionStorage.setItem('userid',user);
-                console.error(user);
+                console.info(user);
                 this.userSubject.next(user);
                 this.isconn=true;
 

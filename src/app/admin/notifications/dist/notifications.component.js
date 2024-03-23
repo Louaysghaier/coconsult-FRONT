@@ -15,9 +15,10 @@ var NotificationsComponent = /** @class */ (function () {
     NotificationsComponent.prototype.showNotification = function (from, align) {
         var type = ['', 'info', 'success', 'warning', 'danger'];
         var color = Math.floor((Math.random() * 4) + 1);
+        var mg = this.getMessage;
         $.notify({
             icon: "notifications",
-            message: "Welcome to <b>Material Dashboard</b> - a beautiful freebie for every web developer."
+            message: this.message
         }, {
             type: type[color],
             timer: 4000,
@@ -45,6 +46,14 @@ var NotificationsComponent = /** @class */ (function () {
         this.notificationService.getListMessage().subscribe(function (data) {
             _this.message = data;
         });
+    };
+    NotificationsComponent.prototype.sendnotif = function (Message) {
+        var _this = this;
+        this.notificationService.sendNotification(Message).subscribe(function (data) {
+            console.log(data);
+            alert("message sent successfully");
+            _this.getMessage();
+        }, function (error) { return console.log(error); });
     };
     NotificationsComponent = __decorate([
         core_1.Component({

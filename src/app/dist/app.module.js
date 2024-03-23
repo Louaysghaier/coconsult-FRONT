@@ -27,6 +27,7 @@ var admin_layout_module_1 = require("./admin/admin-layout.module");
 var signupentreprise_component_1 = require("./signupentreprise/signupentreprise.component");
 var app_routing_1 = require("./app.routing");
 var validation_component_1 = require("./validation/validation.component");
+var ng_otp_input_1 = require("ng-otp-input");
 var aboutus_component_1 = require("./shared/aboutus/aboutus.component");
 var contact_component_1 = require("./shared/contact/contact.component");
 var about_directive_1 = require("./shared/aboutus/about.directive");
@@ -65,6 +66,7 @@ var AppModule = /** @class */ (function () {
                 ngx_captcha_1.NgxCaptchaModule,
                 ng_recaptcha_1.RecaptchaModule,
                 ng_recaptcha_1.RecaptchaFormsModule,
+                ng_otp_input_1.NgOtpInputModule,
                 platform_browser_1.BrowserModule,
                 animations_1.BrowserAnimationsModule,
                 ng_bootstrap_1.NgbModule,

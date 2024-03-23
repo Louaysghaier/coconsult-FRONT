@@ -11,10 +11,10 @@ var core_1 = require("@angular/core");
 var UserlistService = /** @class */ (function () {
     function UserlistService(httpClient) {
         this.httpClient = httpClient;
-        this.baseURL = "http://localhost:8081/api/user/list-user";
-        this.baseURLactive = "http://localhost:8081/api/user/validate-user/";
-        this.baseUserRole = "http://localhost:8081/api/user/list-RolesName/";
-        this.baseBlockedUser = "http://localhost:8081/api/user/bloque-user/";
+        this.baseURL = "http://localhost:8082/api/user/list-user";
+        this.baseURLactive = "http://localhost:8082/api/user/validate-user/";
+        this.baseUserRole = "http://localhost:8082/api/user/list-RolesName/";
+        this.baseBlockedUser = "http://localhost:8082/api/user/bloque-user/";
     }
     UserlistService.prototype.getUserList = function () {
         return this.httpClient.get(this.baseURL);

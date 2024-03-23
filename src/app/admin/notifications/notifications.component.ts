@@ -10,7 +10,6 @@ declare var $: any;
 })
 export class NotificationsComponent implements OnInit {
   message:Message[];
-  
   constructor(private notificationService :notificationService ) { }
 
   showNotification(from, align){
@@ -50,5 +49,12 @@ const mg=this.getMessage;
     this.message = data;
     });
     }
-
+    public sendnotif(Message: Message){
+      this.notificationService.sendNotification(Message).subscribe( data =>{
+        console.log(data);
+        alert("message sent successfully");
+        this.getMessage();
+      },
+      error => console.log(error));
+    }
 }

@@ -6,25 +6,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.notificationService = void 0;
+exports.MsgService = void 0;
 var core_1 = require("@angular/core");
-var notificationService = /** @class */ (function () {
-    function notificationService(httpClient) {
+var message_1 = require("src/app/admin/notifications/message");
+var MsgService = /** @class */ (function () {
+    function MsgService(httpClient, authService) {
         this.httpClient = httpClient;
-        this.baseURL = "http://localhost:8082/Msg/getAll";
-        this.env = "http://localhost:8082/Msg/sendNotification";
+        this.authService = authService;
+        this.baseURL = "http://localhost:8082/Msg/create";
+        this.message = new message_1.Message();
     }
-    notificationService.prototype.sendNotification = function (message) {
-        return this.httpClient.post(this.env, message);
+    MsgService.prototype.createMessage = function (message) {
+        //const token = this.authService.getAuthToken();
+        return this.httpClient.post(this.baseURL, message);
     };
-    notificationService.prototype.getListMessage = function () {
-        return this.httpClient.get(this.baseURL);
-    };
-    notificationService = __decorate([
+    MsgService = __decorate([
         core_1.Injectable({
             providedIn: 'root'
         })
-    ], notificationService);
-    return notificationService;
+    ], MsgService);
+    return MsgService;
 }());
-exports.notificationService = notificationService;
+exports.MsgService = MsgService;

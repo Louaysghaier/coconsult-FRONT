@@ -60,8 +60,8 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
     NgxCaptchaModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    
-        BrowserModule,
+    NgOtpInputModule,
+    BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,

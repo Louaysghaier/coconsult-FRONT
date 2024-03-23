@@ -45,9 +45,8 @@ var AccountService = /** @class */ (function () {
             //        if (rememberMe) {
             // localStorage.setItem('access_token', token);
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
             // sessionStorage.setItem('userid',user);
-            console.error(user);
+            console.info(user);
             _this.userSubject.next(user);
             _this.isconn = true;
             return user;

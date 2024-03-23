@@ -26,8 +26,9 @@ export class SignupComponent implements OnInit {
         username: '',
         email: '',
         password: '',
-        adress: '',
+        address: '',
         Role: '',
+        number:0,
       };
     }
     user: User= {
@@ -35,8 +36,10 @@ export class SignupComponent implements OnInit {
       username: '',
       email: '',
       password: '',
-      adress: '',
-      Role: '',};
+      address: '',
+      Role: '',
+      number:0,
+    };
     onSubmit(signupForm: NgForm) {
         if (signupForm.valid && this.agreePrivacy) {
           const user :User = {
@@ -44,8 +47,8 @@ export class SignupComponent implements OnInit {
             username: this.user.username, 
             email: this.user.email,
             password: this.user.password,
-            adress: this.user.adress, 
-            
+            address: this.user.address, 
+            number: this.user.number,
           };
           const roleName = this.user.Role; 
 

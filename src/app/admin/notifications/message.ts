@@ -1,9 +1,10 @@
 export class Message{
 
-    id:string;
-    nom:string;
-    email:string;
-    msg :String;
-   
+    id?: number;
+    nom!: string;
+    email!: string;
+    message!: String;
+    tel!: string;
+    date?: Date | undefined;
 
 }

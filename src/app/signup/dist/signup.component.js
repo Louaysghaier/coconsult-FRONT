@@ -23,8 +23,9 @@ var SignupComponent = /** @class */ (function () {
             username: '',
             email: '',
             password: '',
-            adress: '',
-            Role: ''
+            address: '',
+            Role: '',
+            number: 0
         };
     }
     SignupComponent.prototype.ngOnInit = function () {
@@ -33,8 +34,9 @@ var SignupComponent = /** @class */ (function () {
             username: '',
             email: '',
             password: '',
-            adress: '',
-            Role: ''
+            address: '',
+            Role: '',
+            number: 0
         };
     };
     SignupComponent.prototype.onSubmit = function (signupForm) {
@@ -45,7 +47,8 @@ var SignupComponent = /** @class */ (function () {
                 username: this.user.username,
                 email: this.user.email,
                 password: this.user.password,
-                adress: this.user.adress
+                address: this.user.address,
+                number: this.user.number
             };
             var roleName = this.user.Role;
             this.authService.register(user, roleName).subscribe(function (response) {

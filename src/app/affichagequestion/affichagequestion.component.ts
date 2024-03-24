@@ -11,6 +11,7 @@ import { CandidatService } from '../_services/candidat.service';
 import { QuizService } from '../_services/quiz.service';
 import { MatDialog } from '@angular/material/dialog';
 import { QuizRulesDialogComponent } from '../quiz-rules-dialog/quiz-rules-dialog.component';
+import { SpeechServiceService } from '../speech-service.service';
 
 @Component({
   selector: 'app-affichagequestion',
@@ -26,12 +27,12 @@ export class AffichagequestionComponent {
   mailcandidat: any = sessionStorage.getItem('email');
   currentQuestionIndex: number = 0;
   listofcurrentQuest: any[] = [];
-  remainingTime: number = 1000; // Set the initial time for each question (in seconds)
+  remainingTime: number = 10; // Set the initial time for each question (in seconds)
   timer: any; 
   id_candidat: any;
   warningCount=0;
-
-  constructor(private router: Router, private questionService: QuestionService, private quizService: QuizService, private route: ActivatedRoute,private candidatservice:CandidatService ,private dialog: MatDialog// Assurez-vous que MatDialog est correctement injecté
+  readingQuestion: boolean = false; 
+  constructor(private router: Router, private questionService: QuestionService, private quizService: QuizService, private route: ActivatedRoute,private candidatservice:CandidatService ,private dialog: MatDialog  ,private speechService: SpeechServiceService// Assurez-vous que MatDialog est correctement injecté
   ) { }
 
  ngOnInit(): void {
@@ -112,7 +113,8 @@ openRulesDialog(): void {
     }
 }
 moveToNextQuestion(): void {
-  clearInterval(this.timer); // Stop the timer
+  clearInterval(this.timer); 
+  this.saveResponse(null); /// Stop the timer
   this.currentQuestionIndex++;
   this.remainingTime = 10; // Reset the timer for the next question
   if (this.currentQuestionIndex < this.questions.length) {
@@ -134,20 +136,18 @@ deleteCandidat(id: number): void {
   );
 }
 finishQuiz(): void {
-  console.log('Quiz finished.');
-
-  // Appeler la méthode notifyCandidatesWithScoreGreaterThan5() du service
-  this.candidatservice.notifyCandidatesWithScoreGreaterThan5().subscribe(
+  this.candidatservice.notifyCandidateByEmail(this.mailcandidat).subscribe(
     () => {
-      console.log('Notification envoyée avec succès.');
-      // Ici, vous pouvez effectuer des actions supplémentaires si nécessaire
+      console.log('Quiz finished successfully.');
+      // Ajoutez ici le code à exécuter après avoir terminé le quiz
     },
     (error) => {
-      console.error('Erreur lors de l\'envoi de la notification:', error);
-      // Gérer les erreurs
+      console.error('Error occurred while finishing quiz:', error);
+      // Gérer les erreurs ici
     }
   );
 }
+
 
 
 
@@ -177,4 +177,40 @@ onRightClick(event) {
   }
 event.preventDefault();
 }
+
+
+
+readQuestion(): void {
+  this.readingQuestion = true; // Indique que la question est en train d'être lue
+  const currentQuestion = this.questions[this.currentQuestionIndex];
+  if (currentQuestion) {
+    this.speechService.speak(currentQuestion.content); // Lecture de la question à haute voix
+  }
+  setTimeout(() => {
+    this.readingQuestion = false; // Réinitialise l'indicateur après un court délai
+  }, 1000); // Vous pouvez ajuster ce délai selon vos besoins
 }
+
+
+saveResponse(option: string | null): void {
+  // Vérifier si une question existe à l'index actuel
+  if (this.currentQuestionIndex < this.questions.length) {
+    // Appeler le service pour enregistrer la réponse
+    this.quizService.evaluateQuiz(
+      this.questions[this.currentQuestionIndex].idQuest,
+      option,
+      this.mailcandidat
+    ).subscribe(
+      (response) => {
+        console.log('Réponse enregistrée avec succès:', response);
+        // Traiter la réponse comme nécessaire
+      },
+      (error) => {
+        console.error('Erreur lors de l\'enregistrement de la réponse:', error);
+        // Gérer les erreurs
+      }
+    );
+  }
+}
+}
+

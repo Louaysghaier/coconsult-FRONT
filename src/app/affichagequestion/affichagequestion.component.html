@@ -1,21 +1,47 @@
-<div class="quiz-card" *ngIf="currentQuestionIndex < questions.length" (contextmenu)="onRightClick($event)">
-  <h2>{{ quizTitle }}</h2>
-  <h3>{{ questions[currentQuestionIndex].content }}</h3>
-  <p>Remaining time: {{ remainingTime }} seconds</p>
-  <ul>
-    <li *ngFor="let option of [questions[currentQuestionIndex].option1, questions[currentQuestionIndex].option2, questions[currentQuestionIndex].option3, questions[currentQuestionIndex].option4]">
-      <label>
-        <input type="radio" [value]="option" [(ngModel)]="questions[currentQuestionIndex].selected_answer">
-        {{ option }}
-      </label>
-    </li>
-  </ul>
-  <button (click)="submitAnswer(questions[currentQuestionIndex].selected_answer)">Submit Answer</button>
-  <button (click)="confirmRetourQuestion()">Revenir en arrière</button>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+
+</head>
+<body>
+
+<div class="container">
+ 
+  <div class="quiz-card" *ngIf="currentQuestionIndex < questions.length" (contextmenu)="onRightClick($event)">
+    <span (click)="readQuestion()">
+      <!-- Insérez ici votre code SVG de l'icône de microphone -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="microphone-icon">
+        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3s-3 1.34-3 3v6c0 1.66 1.34 3 3 3zm6-4c0 3.31-2.69 6-6 6s-6-2.69-6-6H1c0 4.97 4.03 9 9 9s9-4.03 9-9h-3z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </svg>
+      <p *ngIf="readingQuestion">Reading question...</p> 
+    </span>
+    <h2>{{ quizTitle }}</h2>
+    <h3>{{ questions[currentQuestionIndex].content }}</h3>
+   
+   
+    <p>Remaining time: {{ remainingTime }} seconds</p>
+    <ul>
+      <li *ngFor="let option of [questions[currentQuestionIndex].option1, questions[currentQuestionIndex].option2, questions[currentQuestionIndex].option3, questions[currentQuestionIndex].option4]">
+        <label>
+          <input type="radio" [value]="option" [(ngModel)]="questions[currentQuestionIndex].selected_answer">
+          {{ option }}
+        </label>
+      </li>
+    </ul>
+    <button (click)="submitAnswer(questions[currentQuestionIndex].selected_answer)">Submit Answer</button>
+    <button (click)="confirmRetourQuestion()">Revenir en arrière</button>
+  </div>
+
+  <div class="quiz-card" *ngIf="currentQuestionIndex >= questions.length">
+    <p>End of the quiz</p>
+    <button (click)="finishQuiz()">Terminé</button>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </div>
 </div>
 
-<div class="quiz-card" *ngIf="currentQuestionIndex >= questions.length">
-  <p>End of the quiz</p>
-  <button (click)="finishQuiz()">Terminé</button>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>            
-</div>
+</body>
+</html>

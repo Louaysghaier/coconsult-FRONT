@@ -1,0 +1,10 @@
+<ul>
+  <li *ngFor="let job of jobOpports$ | async">
+    ID: {{ job.id_offre }}<br>
+    Mots1: {{ job.mots1 }}<br>
+    Mots2: {{ job.mots2 }}<br>
+    Qualifications: {{ job.qualifications }}<br>
+    Lieu: {{ job.lieu }}<br>
+    Date Limite: {{ job.dateLimite | date }}<br><br>
+  </li>
+</ul>

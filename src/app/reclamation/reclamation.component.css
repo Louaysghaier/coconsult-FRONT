@@ -1,0 +1,21 @@
+/* Style pour les icônes */
+.icon {
+    font-size: 24px; /* Taille de la police de l'icône */
+    margin-right: 8px; /* Marge à droite pour l'espacement */
+  }
+  
+  /* Style pour les boutons */
+  .button {
+    padding: 8px 16px; /* Remplissage du bouton */
+    border: none; /* Supprimer la bordure */
+    cursor: pointer; /* Curseur pointeur au survol */
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    border-radius: 4px; /* Bordure arrondie */
+    transition: background-color 0.3s; /* Transition de couleur de fond */
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Couleur de fond du bouton au survol */
+  }
+  

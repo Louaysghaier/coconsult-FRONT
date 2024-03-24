@@ -10,19 +10,34 @@ export class CandidatService {
 
   constructor(private http: HttpClient) { }
 
-  apiUrl = 'http://localhost:8082/candidat/';
+  apiUrl = 'http://localhost:8082/candidat';
 apiurl1='http://localhost:8082/quizzes/verifyexistedmail/'
 
-private baseUrl = 'http://localhost:8082'; // Mettez l'URL de votre API Spring Boot
+ baseUrl = 'http://localhost:8082'; // Mettez l'URL de votre API Spring Boot
+
+ notifyCandidateByEmail(email: string): Observable<string> {
+  // Construisez l'URL en incluant l'e-mail du candidat correctement
+  const notifyUrl = `${this.apiUrl}/${email}/notify`;
+  return this.http.get<string>(notifyUrl);
+}
 
 
+ ajouterCandidatAOffre(idCandidat: number, idOffre: number): Observable<any> {
+  const url = `${this.baseUrl}/ajouterCandidatAOffre?idCandidat=${idCandidat}&idOffre=${idOffre}`;
+  return this.http.post<any>(url, {});
+}
 
-uploadFile(file: File) {
+uploadAndExtract(file: File, email: string): Promise<string> {
   const formData: FormData = new FormData();
   formData.append('file', file);
+  formData.append('jobOpportId', '2'); // Modifier l'ID de l'opportunité d'emploi si nécessaire
+  formData.append('email', email);
 
-  return this.http.post<string>(`${this.baseUrl}/upload`, formData);
+  return this.http.post<string>(`${this.baseUrl}/uploadAndExtract`, formData).toPromise();
 }
+
+
+
 
 
 

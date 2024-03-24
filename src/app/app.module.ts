@@ -32,6 +32,9 @@ import { AffichagequestionComponent } from './affichagequestion/affichagequestio
 import { QuestionComponent } from './question/question.component';
 import { MyquizComponent } from './myquiz/myquiz.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { JobOpportComponent } from './job-opport/job-opport.component';
+import { CandidatemailComponent } from './candidatemail/candidatemail.component';
+import { ReclamationComponent } from './reclamation/reclamation.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ AffichagequestionComponent,
 QuestionComponent,
     AboutDirective,
     MyquizComponent,
+    JobOpportComponent,
+    CandidatemailComponent,
+    ReclamationComponent,
 
   
     
@@ -71,9 +77,11 @@ QuestionComponent,
     FontAwesomeModule,
     DashboardModule,
     ReactiveFormsModule,
+   
     
 
   ],
+  exports: [CandidatemailComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

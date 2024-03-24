@@ -25,6 +25,10 @@
               "ng2-nouislider",
               "jquery",
               "chartist"
+              
+              
+
+              
 
             ],
             "assets": [
@@ -35,6 +39,8 @@
               "src/styles.css",
               "src/assets/scss/argon.scss",
               "src/assets/scss/material-dashboard.scss",
+              
+               
               
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
 
@@ -200,4 +206,5 @@
 
     "analytics": false
   }
+  
 }

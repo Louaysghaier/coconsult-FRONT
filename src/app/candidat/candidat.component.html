@@ -39,33 +39,23 @@
           </div>
           </div>
         </div>
-        <div class="col-md-6 ">
-          <div class="pl-md-5">
-            
-            <h4 class="display-3 font-weight-bold text-black shadow-text  ">Etes-vous un ingenieur IT ? </h4>
-            <p class="lead text-black shadow-text  ">“Le principe de l'évolution est beaucoup plus rapide en informatique que chez le bipède.” </p>
-            <form [formGroup]="candidatForm" (ngSubmit)="ajoutercandidat()">
-              <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" formControlName="email">
-                <!-- Affichez le message d'erreur si l'email est invalide -->
-                <div *ngIf="candidatForm.get('email').errors && candidatForm.get('email').touched" class="text-danger">
-                  <div *ngIf="candidatForm.get('email').errors.required">L'email est requis.</div>
-                  <div *ngIf="candidatForm.get('email').errors.email">L'email doit être valide.</div>
-                </div>
-              </div>
-              <label for="file">Upload PDF:</label>
-              <!-- Ajoutez formControlName pour lier le champ de fichier au formulaire -->
-              <input type="file" class="form-control-file" id="file" formControlName="pdfFile" (change)="onFileSelected($event)">
-              <small class="form-text text-muted">Select a PDF file to upload.</small>
-              <!-- Affichez un message d'erreur si le formulaire est invalide ou aucun fichier n'est sélectionné -->
-              <div *ngIf="candidatForm.invalid && candidatForm.get('pdfFile').touched" class="text-danger">
-                <div *ngIf="candidatForm.get('pdfFile').errors.required">Un fichier PDF est requis.</div>
-              </div>
-        
-            
-              <button type="submit" class="btn btn-primary">Postuler</button>
-            </form>
-            
+        <!-- candidat.component.html -->
+
+        <div>
+          <h2>Ajouter un Candidat</h2>
+          <form (submit)="onSubmit()">
+            <div>
+              <label for="email">Email :</label>
+              <input type="email" id="email" name="email" [(ngModel)]="email" required>
+            </div>
+            <div>
+              <label for="pdfFile">Fichier PDF :</label>
+              <input type="file" id="pdfFile" name="pdfFile" (change)="onFileSelected($event)" accept=".pdf" required>
+            </div>
+            <button type="submit">Ajouter Candidat</button>
+          </form>
+        </div>
+</div>
+
           
 </div>

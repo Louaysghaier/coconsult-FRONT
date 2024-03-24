@@ -10,13 +10,13 @@ export class UploadService {
 
   constructor(private http: HttpClient) { }
 
-  uploadFile(candidatId: number, file: File): Observable<string> {
+  upload(file: File): Observable<string> {
     const formData: FormData = new FormData();
     formData.append('file', file);
 
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
 
-    return this.http.post<string>(`${this.baseUrl}/uploadpdf/${candidatId}`, formData, { headers });
+    return this.http.post<string>(`${this.baseUrl}/upload/`, formData, { headers });
   }
 }

@@ -15,6 +15,9 @@ import { CandidatComponent } from './candidat/candidat.component';
 import { QuestionComponent } from './question/question.component';
 import { MyquizComponent } from './myquiz/myquiz.component';
 import { AffichagequestionComponent } from './affichagequestion/affichagequestion.component';
+import { JobOpportComponent } from './job-opport/job-opport.component';
+import { CandidatemailComponent } from './candidatemail/candidatemail.component';
+import { ReclamationComponent } from './reclamation/reclamation.component';
 
 const routes: Routes = [
   {
@@ -40,7 +43,9 @@ const routes: Routes = [
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'ajoutq', component: QuestionComponent },
-
+  { path: 'job', component: JobOpportComponent },
+  { path: 'email', component: CandidatemailComponent },
+  { path: 'reclamation', component: ReclamationComponent },
  
   
 

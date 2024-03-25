@@ -67,8 +67,8 @@
                                           {{user.blocked}}
                                       </td>
                                         <td>
-                                          <button *ngIf="!user.valid"(click)="activateUser(user)" type="button" class="btn btn-danger" >Active</button>
-                                          <button *ngIf="user.valid"(click)="bloqueUser(user)" type="button" class="btn btn-primary">Bloque</button>
+                                          <button *ngIf="user.blocked"(click)="activateUser(user)" type="button" class="btn btn-danger" >Active</button>
+                                          <button *ngIf="!user.blocked"(click)="bloqueUser(user)" type="button" class="btn btn-primary">Bloque</button>
                                         </td>
                                      
                                     </tr>

@@ -19,21 +19,39 @@ var ErrorInterceptor = /** @class */ (function () {
         var _this = this;
         return next.handle(request).pipe(operators_1.catchError(function (err) {
             if (err instanceof http_1.HttpErrorResponse && (err.status === 401 || err.status === 403)) {
+                console.error('ErrorInterceptor', err);
                 // Check if the error response indicates an expired token
-                if (err.error && err.error.message === 'Token expired') {
+                if (err.error && err.error.message === 'Token expired' || 'Unauthorized') {
                     // Call refreshToken method
-                    return _this.accountService.refreshToken().pipe(operators_1.switchMap(function () {
+                    return _this.accountService.refreshToken().pipe(operators_1.switchMap(function (res) {
+                        console.info('Token refreshed', res);
+                        var user = _this.accountService.userValue;
+                        // Update the user object with new tokens
+                        user.token = res.newAccessToken;
+                        user.refreshToken = res.refreshToken;
+                        request = request.clone({
+                            setHeaders: {
+                                'Content-Type': 'application/json',
+                                Authorization: "access " + user.token,
+                                'RefreshToken': user.refreshToken
+                            }
+                        });
+                        _this.accountService.userSubject.next(user);
+                        //localStorage.setItem('user', JSON.stringify(user));
                         // Retry the original request with the new token
                         return next.handle(request);
                     }), operators_1.catchError(function () {
                         // Logout if refreshToken fails
+                        console.error('Token refresh failed');
+                        alert('You session is expired on  this page (Token refresh failed)');
                         _this.accountService.logout();
                         return rxjs_1.throwError(function () { return 'Token refresh failed'; });
                     }));
                 }
                 else {
                     // Logout user for other 401 or 403 errors
-                    _this.accountService.logout();
+                    alert('You session is expired on  this page');
+                    //  this.accountService.logout();
                 }
             }
             // Pass the error through if it's not a 401 or 403 error

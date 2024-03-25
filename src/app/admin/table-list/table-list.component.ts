@@ -47,12 +47,12 @@ export class TableListComponent implements OnInit {
      
       
         activateUser(user: User): void {
-          this.UserlistService.activateUser(user.id).subscribe(
+          this.UserlistService.activateUser(user.iduser).subscribe(
             () => {
 
               console.log('Utilisateur activé avec succès.');
-             // window.location.reload();
-              user.valid=true;
+              this.getAllUsers();
+             // user.valid=true;
               // Faire quelque chose après l'activation réussie
             },
             (error) => {
@@ -63,12 +63,12 @@ export class TableListComponent implements OnInit {
         }
            
         bloqueUser(user: User): void {
-          this.UserlistService.bloquerUser(user.id).subscribe(
+          this.UserlistService.bloquerUser(user.iduser).subscribe(
             () => {
 
               console.log('Utilisateur activé avec succès.');
-             // window.location.reload();
-              user.valid=true;
+              this.getAllUsers();
+             // user.valid=true;
               // Faire quelque chose après l'activation réussie
             },
             (error) => {

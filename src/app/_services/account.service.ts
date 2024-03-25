@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-    private userSubject: BehaviorSubject<User | null>;
+    public userSubject: BehaviorSubject<User | null>;
     public user: Observable<User | null>;
     isconn: any=false;
 
@@ -17,14 +17,14 @@ export class AccountService {
         private router: Router,
         private http: HttpClient
     ) {
-        this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
+        this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')!));
         this.user = this.userSubject.asObservable();
     }
 
     public get userValue() {
         return this.userSubject.value;
     }
-
+    
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/api/auth/signIn`, { email, password })
             .pipe(map(user => {
@@ -46,6 +46,8 @@ export class AccountService {
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
+        sessionStorage.removeItem('user');
+
         sessionStorage.removeItem('accessToken');
         sessionStorage.removeItem('refreshToken');
         // Alternatively, you can use localStorage:
@@ -73,7 +75,7 @@ export class AccountService {
         return this.http.put(`${environment.apiUrl}/users/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
-                if (id.toString() === this.userValue?.id?.toString()) {
+                if (id.toString() === this.userValue?.iduser?.toString()) {
                     // update local storage
                     const user = { ...this.userValue, ...params };
                     localStorage.setItem('user', JSON.stringify(user));
@@ -89,7 +91,7 @@ export class AccountService {
         return this.http.delete(`${environment.apiUrl}/users/${id}`)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
-                if (id.toString() === this.userValue?.id?.toString()) {
+                if (id.toString() === this.userValue?.iduser?.toString()) {
                     this.logout();
                 }
                 return x;
@@ -118,6 +120,6 @@ export class AccountService {
 
       refreshToken(): Observable<any> {
         // Implement logic to call the token refresh API
-        return this.http.post<any>('/api/auth/refreshToken', { refreshToken: localStorage.getItem('refreshToken') });
+        return this.http.post<any>(`${environment.apiUrl}/api/auth/refreshToken`, { refreshToken: localStorage.getItem('refreshToken') });
       }
 }

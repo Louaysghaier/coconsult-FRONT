@@ -27,7 +27,7 @@ var AccountService = /** @class */ (function () {
         this.router = router;
         this.http = http;
         this.isconn = false;
-        this.userSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('user')));
+        this.userSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
     }
     Object.defineProperty(AccountService.prototype, "userValue", {
@@ -58,6 +58,7 @@ var AccountService = /** @class */ (function () {
     AccountService.prototype.logout = function () {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
+        sessionStorage.removeItem('user');
         sessionStorage.removeItem('accessToken');
         sessionStorage.removeItem('refreshToken');
         // Alternatively, you can use localStorage:
@@ -84,7 +85,7 @@ var AccountService = /** @class */ (function () {
             .pipe(operators_1.map(function (x) {
             var _a, _b;
             // update stored user if the logged in user updated their own record
-            if (id.toString() === ((_b = (_a = _this.userValue) === null || _a === void 0 ? void 0 : _a.id) === null || _b === void 0 ? void 0 : _b.toString())) {
+            if (id.toString() === ((_b = (_a = _this.userValue) === null || _a === void 0 ? void 0 : _a.iduser) === null || _b === void 0 ? void 0 : _b.toString())) {
                 // update local storage
                 var user = __assign(__assign({}, _this.userValue), params);
                 localStorage.setItem('user', JSON.stringify(user));
@@ -100,7 +101,7 @@ var AccountService = /** @class */ (function () {
             .pipe(operators_1.map(function (x) {
             var _a, _b;
             // auto logout if the logged in user deleted their own record
-            if (id.toString() === ((_b = (_a = _this.userValue) === null || _a === void 0 ? void 0 : _a.id) === null || _b === void 0 ? void 0 : _b.toString())) {
+            if (id.toString() === ((_b = (_a = _this.userValue) === null || _a === void 0 ? void 0 : _a.iduser) === null || _b === void 0 ? void 0 : _b.toString())) {
                 _this.logout();
             }
             return x;
@@ -128,7 +129,7 @@ var AccountService = /** @class */ (function () {
     };
     AccountService.prototype.refreshToken = function () {
         // Implement logic to call the token refresh API
-        return this.http.post('/api/auth/refreshToken', { refreshToken: localStorage.getItem('refreshToken') });
+        return this.http.post(environment_1.environment.apiUrl + "/api/auth/refreshToken", { refreshToken: localStorage.getItem('refreshToken') });
     };
     AccountService = __decorate([
         core_1.Injectable({ providedIn: 'root' })

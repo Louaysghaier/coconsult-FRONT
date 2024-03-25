@@ -12,23 +12,44 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
             if (err instanceof HttpErrorResponse && (err.status === 401 || err.status === 403)) {
+                console.error('ErrorInterceptor',err);
                 // Check if the error response indicates an expired token
-                if (err.error && err.error.message === 'Token expired') {
+                if (err.error && err.error.message === 'Token expired'||'Unauthorized') {
                     // Call refreshToken method
                     return this.accountService.refreshToken().pipe(
-                        switchMap(() => {
+                        switchMap((res) => {
+                            console.info('Token refreshed',res);
+                            const user = this.accountService.userValue;
+                            // Update the user object with new tokens
+                            user.token = res.newAccessToken;
+                            user.refreshToken = res.refreshToken;
+                            request = request.clone({
+                                setHeaders: {
+                                    'Content-Type': 'application/json',
+                                    Authorization: `access ${user.token}`,
+                                    'RefreshToken': user.refreshToken 
+                                }
+                            });
+                            this.accountService.userSubject.next(user);
+                            //localStorage.setItem('user', JSON.stringify(user));
+
                             // Retry the original request with the new token
                             return next.handle(request);
                         }),
-                        catchError(() => {
-                            // Logout if refreshToken fails
+                        catchError(() => {         
+                           // Logout if refreshToken fails
+
+                            console.error('Token refresh failed');
+                            alert('You session is expired on  this page (Token refresh failed)');
+
                             this.accountService.logout();
                             return throwError(() => 'Token refresh failed');
                         })
                     );
                 } else {
                     // Logout user for other 401 or 403 errors
-                    this.accountService.logout();
+                    alert('You session is expired on  this page');
+                  //  this.accountService.logout();
                 }
             }
 

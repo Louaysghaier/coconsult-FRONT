@@ -1,5 +1,5 @@
 ﻿export class User {
-    id?: number;
+    iduser?: number;
     name?: string;
     email?: string;
     username?: string;
@@ -7,6 +7,8 @@
     blocked?: boolean;
     Role?: string;
     token?: string;
+    refreshToken?: string;
+
     address?: string;
     valid?: boolean;
     bannedchatGP?: boolean;

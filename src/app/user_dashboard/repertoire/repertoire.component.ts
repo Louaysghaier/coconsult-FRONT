@@ -15,7 +15,7 @@ import { AddUpdateRepertoiresComponent } from '../add-update-repertoires/add-upd
 })
 export class RepertoireComponent implements OnInit {
   
-  displayedColumns: string[] = ["idRepertoire","Contact","Numtel","email","typeContact","priorite","action"] 
+  displayedColumns: string[] = [/*"idRepertoire",*/"contact","numTel","email","typeContact","priorite","action"] 
 
   dataSource!: MatTableDataSource<Repertoire>; 
 
@@ -31,11 +31,13 @@ export class RepertoireComponent implements OnInit {
   }
   
   GetAllRepertoires() {
-    this._repertoireService.GetAllRepertoire().subscribe((data:Repertoire[])=>{
-      console.log(data);
-      this.dataSource = new MatTableDataSource(data);
+    this._repertoireService.GetAllRepertoire().subscribe((data: Repertoire[]) => {
+        console.log(data); // Check the entire data array
+        this.dataSource = new MatTableDataSource(data);
     });
 }
+
+
 
  
   applyFilter(event: Event) {
@@ -73,7 +75,7 @@ export class RepertoireComponent implements OnInit {
     });
   } 
 
-  deleteContract(idRepertoire: number) {
+  deleteRepertoire(idRepertoire: number) {
     this._repertoireService.RemoveRepertoire(idRepertoire).subscribe({
       next: (res) => {
         //this._coreService.openSnackBar('Contract deleted successfully');

@@ -10,7 +10,7 @@ import { Repertoire } from 'src/app/_models/Repertoire';
 @Component({
   selector: 'app-add-update-repertoires',
   templateUrl: './add-update-repertoires.component.html',
-  styleUrls: ['./add-update-repertoires.component.css']
+  styleUrls: ['./add-update-repertoires.component.scss']
 })
 export class AddUpdateRepertoiresComponent implements OnInit {
   repertoireForm: FormGroup;
@@ -26,8 +26,8 @@ export class AddUpdateRepertoiresComponent implements OnInit {
   ) {
     this.repertoireForm = this._fb.group({
       idRepertoire: '',
-      Contact: '',
-      Numtel: '',
+      contact: '',
+      numTel: '',
       email: '',
       typeContact: '',
       priorite: ''
@@ -47,7 +47,7 @@ export class AddUpdateRepertoiresComponent implements OnInit {
         formData.idRepertoire = this.data.idRepertoire;
         this._repertoireService.updateRepertoire(formData).subscribe({
           next: () => {
-            this._coreService.openSnackBar('Repertoire detail updated!');
+            //this._coreService.openSnackBar('Repertoire detail updated!');
             this._dialogRef.close(true);
           },
           error: (err: any) => {
@@ -57,7 +57,7 @@ export class AddUpdateRepertoiresComponent implements OnInit {
       } else {
         this._repertoireService.addRepertoire(formData).subscribe({
           next: () => {
-            this._coreService.openSnackBar('Repertoire added successfully');
+            //this._coreService.openSnackBar('Repertoire added successfully');
             this._dialogRef.close(true);
           },
           error: (err: any) => {

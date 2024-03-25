@@ -16,20 +16,21 @@
     <div class="table-container">
         <table mat-table [dataSource]="dataSource" matSort>
             
-            <ng-container matColumnDef="idRepertoire">
+           <!-- <ng-container matColumnDef="idRepertoire">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
                 <td mat-cell *matCellDef="let row"> {{row.idRepertoire}} </td>
-            </ng-container>
+            </ng-container>-->
 
-            <ng-container matColumnDef="Contact">
+            <ng-container matColumnDef="contact">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact </th>
-                <td mat-cell *matCellDef="let row"> {{row.Contact}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.contact}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="Numtel">
+            <ng-container matColumnDef="numTel">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Numtel </th>
-                <td mat-cell *matCellDef="let row"> {{row.Numtel}} </td> <!--num us not displayed -->
+                <td mat-cell *matCellDef="let row"> {{row.numTel}} </td>
             </ng-container>
+                       
 
             <ng-container matColumnDef="email">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>

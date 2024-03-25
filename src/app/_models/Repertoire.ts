@@ -4,10 +4,10 @@ import { TypeContact } from "./typeContact";
 export class Repertoire {
 
     idRepertoire !: number ; 
-    Contact !: String ; 
-    Numtel !: String ; 
+    contact !: String ; 
+    numTel !: String ; 
     email !: String ;
-    TypeContact !: String  ;
-    Priorite !: String ; 
+    TypeContact !: TypeContact  ;
+    Priorite !: priorite ; 
 
 }

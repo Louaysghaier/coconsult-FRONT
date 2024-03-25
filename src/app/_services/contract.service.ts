@@ -27,8 +27,9 @@ export class ContractService {
 
   updateContract(updatedContract: Contract): Observable<Contract> {
     const id = updatedContract.idContract; // Assuming idContract is the correct property name
-    return this.http.put<Contract>(`${this.baseUrl}/updateContract/{id}`, updatedContract);
+    return this.http.put<Contract>(`${this.baseUrl}/updateContract/${id}`, updatedContract);
   }
+  
 
 
   removeContract(id: number): Observable<void> {

@@ -31,16 +31,24 @@ export class CandidatComponent {
       return;
     }
 
+    // Récupérer l'ID de l'opportunité d'emploi à partir de la session
+    const jobOpportIdFromSession = sessionStorage.getItem('jobOpportId');
+    if (!jobOpportIdFromSession) {
+      Swal.fire('Erreur', 'Impossible de récupérer l\'ID de l\'opportunité d\'emploi à partir de la session.', 'error');
+      return;
+    }
+
+    const jobOpportId = +jobOpportIdFromSession; // Convertir en nombre
+
     // Ajouter l'email à la liste des emails soumis
     this.submittedEmails.push(this.email);
   
-    this.candidatService.uploadAndExtract(this.selectedFile, this.email)
-      .then(response => {
+    this.candidatService.uploadAndExtract(jobOpportId, this.selectedFile, this.email)
+      .subscribe(response => {
         Swal.fire('Réponse du réseau', response, 'success');
         this.router.navigateByUrl('/myquiz');
-      })
-      .catch(response => {
-        Swal.fire('Votre demande est en cours de verification , merci de verifier votre mail pour plus de detail ');
+      }, error => {
+        Swal.fire('Erreur', 'Votre demande est en cours de vérification. Veuillez vérifier votre mail pour plus de détails.', 'error');
       });
   }
 

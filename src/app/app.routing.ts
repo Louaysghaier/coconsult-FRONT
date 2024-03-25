@@ -42,10 +42,11 @@ const routes: Routes = [
   { path: 'verification', component: ValidationComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'ajoutq', component: QuestionComponent },
+
   { path: 'job', component: JobOpportComponent },
   { path: 'email', component: CandidatemailComponent },
   { path: 'reclamation', component: ReclamationComponent },
+  { path: 'question', component: QuestionComponent },
  
   
 

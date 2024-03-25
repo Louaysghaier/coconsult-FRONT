@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Candidat } from '../_models/candidat';
@@ -13,7 +13,26 @@ export class CandidatService {
   apiUrl = 'http://localhost:8082/candidat';
 apiurl1='http://localhost:8082/quizzes/verifyexistedmail/'
 
- baseUrl = 'http://localhost:8082'; // Mettez l'URL de votre API Spring Boot
+ baseUrl = 'http://localhost:8082'; 
+ 
+ 
+ 
+ uploadAndExtract(jobOpportId: number, file: File, email: string): Observable<string> {
+  // Construire les données à envoyer
+  const formData = new FormData();
+  formData.append('jobOpportId', jobOpportId.toString());
+  formData.append('file', file);
+  formData.append('email', email);
+
+  // Définir les en-têtes pour la requête multipart/form-data
+  const headers = new HttpHeaders();
+  // Pas besoin de spécifier le Content-Type, car le navigateur le fera automatiquement pour FormData
+
+  // Envoyer la requête POST au backend
+  return this.http.post<string>('http://localhost:8082/uploadAndExtract', formData, { headers });
+}
+
+
 
  notifyCandidateByEmail(email: string): Observable<string> {
   // Construisez l'URL en incluant l'e-mail du candidat correctement
@@ -27,14 +46,8 @@ apiurl1='http://localhost:8082/quizzes/verifyexistedmail/'
   return this.http.post<any>(url, {});
 }
 
-uploadAndExtract(file: File, email: string): Promise<string> {
-  const formData: FormData = new FormData();
-  formData.append('file', file);
-  formData.append('jobOpportId', '2'); // Modifier l'ID de l'opportunité d'emploi si nécessaire
-  formData.append('email', email);
 
-  return this.http.post<string>(`${this.baseUrl}/uploadAndExtract`, formData).toPromise();
-}
+
 
 
 

@@ -1,7 +1,7 @@
 export class JobOpport{
       id_offre!:number;
- mots1!: String;
-      mots2!:String;
+      titre!: String;
+      description!:String;
     qualifications!: String;
     lieu!: String ;
      dateLimite!: Date;}

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Question } from '../_models/question';
@@ -17,8 +17,12 @@ export class QuestionService {
   }
   ajouterQuestionEtReponseEtAffecterQuestionQuiz(question: Question, idQuiz: number): Observable<Question> {
     const url = `${this.apiUrl}affecterquaqui/${idQuiz}`;
-    return this.http.post<Question>(url, question);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json' // Spécifier le type de contenu JSON
+    });
+    return this.http.post<Question>(url, question, { headers: headers });
   }
+  
 
   ajouterquestion(question: Question): Observable<Question> {
     return this.http.post<Question>(this.apiUrl + 'createquestion', question);

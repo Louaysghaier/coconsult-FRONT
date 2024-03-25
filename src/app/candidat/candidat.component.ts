@@ -24,22 +24,22 @@ export class CandidatComponent {
       Swal.fire('Erreur', 'Veuillez sélectionner un fichier et saisir votre e-mail.', 'error');
       return;
     }
-
+  
     // Vérifier si l'email a déjà été soumis
     if (this.submittedEmails.includes(this.email)) {
       Swal.fire('Erreur', 'Cet email a déjà été soumis.', 'error');
       return;
     }
-
+  
     // Récupérer l'ID de l'opportunité d'emploi à partir de la session
     const jobOpportIdFromSession = sessionStorage.getItem('jobOpportId');
     if (!jobOpportIdFromSession) {
       Swal.fire('Erreur', 'Impossible de récupérer l\'ID de l\'opportunité d\'emploi à partir de la session.', 'error');
       return;
     }
-
+  
     const jobOpportId = +jobOpportIdFromSession; // Convertir en nombre
-
+  
     // Ajouter l'email à la liste des emails soumis
     this.submittedEmails.push(this.email);
   
@@ -47,11 +47,10 @@ export class CandidatComponent {
       .subscribe(response => {
         Swal.fire('Réponse du réseau', response, 'success');
         this.router.navigateByUrl('/myquiz');
-      }, error => {
-        Swal.fire('Erreur', 'Votre demande est en cours de vérification. Veuillez vérifier votre mail pour plus de détails.', 'error');
+      }, response => {
+        Swal.fire('Merci', 'Votre demande est en cours de vérification. Veuillez vérifier votre mail pour plus de détails.');
       });
   }
-
   onFileSelected(event): void {
     this.selectedFile = event.target.files[0];
   }

@@ -1,7 +1,25 @@
 
 
 
-
+<section class="section section-shaped section-lg">
+  <div class="shape shape-style-1 bg-gradient-default">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 <div>
   <section class="bg">
     <div class="container ">
@@ -41,20 +59,23 @@
         </div>
         <!-- candidat.component.html -->
 
-        <div>
-          <h2>Ajouter un Candidat</h2>
-          <form (submit)="onSubmit()">
-            <div>
-              <label for="email">Email :</label>
-              <input type="email" id="email" name="email" [(ngModel)]="email" required>
-            </div>
-            <div>
-              <label for="pdfFile">Fichier PDF :</label>
-              <input type="file" id="pdfFile" name="pdfFile" (change)="onFileSelected($event)" accept=".pdf" required>
-            </div>
-            <button type="submit">Ajouter Candidat</button>
-          </form>
+        <div class="card1">
+          <div class="card-body">
+            <h2 class="card-title">Ajouter un Candidat</h2>
+            <form (submit)="onSubmit()">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email :</label>
+                <input type="email" id="email" name="email" [(ngModel)]="email" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="pdfFile" class="form-label">Fichier PDF :</label>
+                <input type="file" id="pdfFile" name="pdfFile" (change)="onFileSelected($event)" class="form-control" accept=".pdf" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Ajouter Candidat</button>
+            </form>
+          </div>
         </div>
+        
 </div>
 
           

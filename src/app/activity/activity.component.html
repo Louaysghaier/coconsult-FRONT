@@ -1,0 +1,26 @@
+<p>activity works!</p>
+<app-navbar></app-navbar>
+<h1>Listes des activites</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>idActivity</th>
+            <th>Nombre de tâches</th>
+            <th>Type de tâche</th>
+            <th>Actions</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let activity of activities">
+            <td>{{activity.idActivity}}</td>
+            <td>{{activity.nbreOfTask}}</td>
+            <td>{{activity.taskType}}</td>  
+            <td>
+                <button (click)="editActivity(activity.idActivity)" class="btn btn-primary">Editer</button>
+                <button (click)="deleteActivity(activity.idActivity)" class="btn btn-danger delete-button">Supprimer</button>
+
+            </td> 
+        </tr>
+    </tbody>
+</table>
+<button routerLink="/admin/addactivity">Ajouter une activité</button>

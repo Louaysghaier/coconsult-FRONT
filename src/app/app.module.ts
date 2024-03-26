@@ -5,6 +5,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -27,6 +29,7 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutDirective } from './shared/aboutus/about.directive';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +57,9 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+
+    
     
     CarouselModule.forRoot(),
     FontAwesomeModule,

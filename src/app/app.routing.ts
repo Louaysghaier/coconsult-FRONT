@@ -11,6 +11,7 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { ValidationComponent } from './validation/validation.component';
 import { AboutusComponent } from './shared/aboutus/aboutus.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { ActivityComponent } from './activity/activity.component';
 const routes: Routes = [
   {
     path: '',
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: '**', redirectTo: '',component: LandingComponent},
+  { path: 'activities', component: ActivityComponent },
 
 ];
 

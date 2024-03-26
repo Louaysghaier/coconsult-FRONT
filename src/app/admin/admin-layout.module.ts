@@ -18,6 +18,9 @@ import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { ActivityComponent } from '../activity/activity.component';
+import { AddactivityComponent } from '../addactivity/addactivity.component';
+import { EditActivityComponent } from '../edit-activity/edit-activity.component';
 const AdminLayoutRoutes: Routes = [
   {path:'admin',
 component:AdminLayoutComponent,
@@ -26,8 +29,13 @@ children: [
    { path: 'user-profile',   component: UserProfileComponent },
    { path: 'table-list',     component: TableListComponent },
    { path: 'notifications',  component: NotificationsComponent },
+   { path: 'addactivity',  component: AddactivityComponent },
+   { path: 'edit/:id', component: EditActivityComponent } ,
+   { path: 'activity',  component: ActivityComponent },
    { path: 'navbar',  component: NavbarComponent },
    { path: 'sidenavbar',  component: SidebarComponent },
+
+
 
 ]},
   
@@ -53,6 +61,9 @@ children: [
     NavbarComponent,
     SidebarComponent,
     NotificationsComponent,
+    ActivityComponent,
+    AddactivityComponent,
+    EditActivityComponent
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

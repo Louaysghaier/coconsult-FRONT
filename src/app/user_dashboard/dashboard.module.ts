@@ -19,6 +19,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { CardComponent } from './solution/card/card.component';
+
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard',
   component: DashboardComponent,
@@ -57,6 +58,7 @@ const dashboardRoutes: Routes = [
     MatTooltipModule,
       CommonModule,
       FontAwesomeModule,
+      
       // Import other modules you need
 
       // Configure child routes

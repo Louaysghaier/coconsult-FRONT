@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CoreService } from 'src/app/user_dashboard/core.service';
 import { Contract } from 'src/app/_models/Contract';
 import { AddUpdateContractComponent } from '../add-update-contract/add-update-contract.component';
+import { UploadService } from 'src/app/upload.service';
 
 @Component({
   selector: 'app-contract',
@@ -23,6 +24,8 @@ export class ContractComponent implements OnInit {
   constructor(
     private _dialog: MatDialog,
     private _contractService: ContractService,
+    private fileUploadService: UploadService,
+
     private _coreService: CoreService
   ) {}
 
@@ -41,6 +44,20 @@ export class ContractComponent implements OnInit {
       },
     });
   }
+
+  openPdf(description: string): void {
+    this.fileUploadService.getPdf(description).subscribe(
+      (pdfData) => {
+        const blob = new Blob([pdfData], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        window.open(url, '_blank'); // Open a new tab with the PDF content
+      },
+      (error) => {
+        console.error('Failed to fetch PDF:', error);
+      }
+    );
+  }
+  
   
 
   getContractList() {

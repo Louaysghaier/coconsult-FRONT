@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, NgForm, AbstractControl, ValidationErrors } from '@angular/forms';
 import { code } from 'ionicons/icons';
 import { OTPSERVICE } from '../_services/OTP.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-loginforgetpassword',
   templateUrl: './loginforgetpassword.component.html',
@@ -47,10 +48,19 @@ if(this.fg.valid){
   this.acountservice.userForgetPassword(this.fg.value.email).subscribe( (response) => 
   { 
     this.showResetPasswordCard = true;
-    alert ("code sent successfully to your mail")
+    Swal.fire({
+      title: "Chek your mail",
+      text: "code sent successfully to your mail",
+      icon: "success"
+    });
+    //alert ("code sent successfully to your mail")
 
   },
-  (error) => alert ("code invalide resend it "))
+  (error) => Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "Mail not found!",
+  }));
 
 }}
 public submitfgreset(): void {
@@ -61,16 +71,29 @@ if(this.fgreset.valid){
         code: this.fgreset.value.code,
       };
       this.acountservice.forgetPasswordbyemail(this.fg.value.email, formData).subscribe( (response) => {
-        alert ("password changed successfully")
+        Swal.fire({
+          //title: "The Internet?",
+          text: "password changed successfully",
+          icon: "success"
+        });
+       // alert ("password changed successfully")
         this.router.navigate(['/signin']);
       },
      
-      error => alert ("error while changing password"))
+      error => Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Try later!",
+      }));
 
       
 }
 else{
-  alert("form invalid");
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "Form inputs invalide!",
+  });
 
 }
 

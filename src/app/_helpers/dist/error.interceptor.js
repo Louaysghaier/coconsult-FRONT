@@ -11,6 +11,7 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
+var sweetalert2_1 = require("sweetalert2");
 var ErrorInterceptor = /** @class */ (function () {
     function ErrorInterceptor(accountService) {
         this.accountService = accountService;
@@ -43,15 +44,24 @@ var ErrorInterceptor = /** @class */ (function () {
                     }), operators_1.catchError(function () {
                         // Logout if refreshToken fails
                         console.error('Token refresh failed');
-                        alert('You session is expired on  this page (Token refresh failed)');
+                        sweetalert2_1["default"].fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "You session is expired on  this page (Token refresh failed)!"
+                        });
                         _this.accountService.logout();
                         return rxjs_1.throwError(function () { return 'Token refresh failed'; });
                     }));
                 }
                 else {
+                    sweetalert2_1["default"].fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "You session is expired on  this page!"
+                    });
                     // Logout user for other 401 or 403 errors
-                    alert('You session is expired on  this page');
-                    //  this.accountService.logout();
+                    //alert('You session is expired on  this page');
+                    _this.accountService.logout();
                 }
             }
             // Pass the error through if it's not a 401 or 403 error

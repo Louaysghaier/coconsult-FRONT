@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 import { AccountService } from '../_services/account.service';
-
+import Swal from 'sweetalert2';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(private accountService: AccountService) {}
@@ -40,16 +40,26 @@ export class ErrorInterceptor implements HttpInterceptor {
                            // Logout if refreshToken fails
 
                             console.error('Token refresh failed');
-                            alert('You session is expired on  this page (Token refresh failed)');
-
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "You session is expired on  this page (Token refresh failed)!",
+                               // footer: '<a href="#">Why do I have this issue?</a>'
+                              });
                             this.accountService.logout();
                             return throwError(() => 'Token refresh failed');
                         })
                     );
                 } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "You session is expired on  this page!",
+                       // footer: '<a href="#">Why do I have this issue?</a>'
+                      });
                     // Logout user for other 401 or 403 errors
-                    alert('You session is expired on  this page');
-                  //  this.accountService.logout();
+                    //alert('You session is expired on  this page');
+                    this.accountService.logout();
                 }
             }
 

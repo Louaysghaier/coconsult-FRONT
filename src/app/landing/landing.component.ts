@@ -3,6 +3,7 @@ import{MsgService}from'./msg.service'
 import { Message } from '../admin/notifications/message';
 import { AccountService } from '../_services';
 import { User } from '../_models';
+import Swal from 'sweetalert2';
 @Component({
     selector: 'app-landing',
     templateUrl: './landing.component.html',
@@ -40,8 +41,13 @@ export class LandingComponent implements OnInit {
   saveMessage(){
     this.MsgService.createMessage(this.Message).subscribe( data =>{
     console.log(data);
-    alert("message sent successfully");
-    this.Message={
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your Message has been Sent",
+      showConfirmButton: false,
+      timer: 1500
+    });    this.Message={
       nom:"",
       email:"",
       message:"",

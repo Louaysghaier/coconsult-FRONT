@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.LandingComponent = void 0;
 var core_1 = require("@angular/core");
+var sweetalert2_1 = require("sweetalert2");
 var LandingComponent = /** @class */ (function () {
     function LandingComponent(MsgService, authService) {
         this.MsgService = MsgService;
@@ -30,7 +31,13 @@ var LandingComponent = /** @class */ (function () {
         var _this = this;
         this.MsgService.createMessage(this.Message).subscribe(function (data) {
             console.log(data);
-            alert("message sent successfully");
+            sweetalert2_1["default"].fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your Message has been Sent",
+                showConfirmButton: false,
+                timer: 1500
+            });
             _this.Message = {
                 nom: "",
                 email: "",

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SignupComponent } from '../signup/signup.component';
 import { AccountService } from '../_services';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -78,8 +79,12 @@ export class LoginComponent implements OnInit {
 
         },
         (error) => {
-          console.error('Invalid email or password. Please try again.');
-          this.loginError = 'Invalid email or password. Please try again.';
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+             this.loginError = 'Invalid email or password. Please try again.';
         }
       );
     } else {

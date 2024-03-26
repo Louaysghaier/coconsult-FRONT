@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.LoginComponent = void 0;
 var core_1 = require("@angular/core");
+var sweetalert2_1 = require("sweetalert2");
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(authService, router) {
         this.authService = authService;
@@ -74,7 +75,11 @@ var LoginComponent = /** @class */ (function () {
                     _this.router.navigate(['admin']);
                 }
             }, function (error) {
-                console.error('Invalid email or password. Please try again.');
+                sweetalert2_1["default"].fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!"
+                });
                 _this.loginError = 'Invalid email or password. Please try again.';
             });
         }

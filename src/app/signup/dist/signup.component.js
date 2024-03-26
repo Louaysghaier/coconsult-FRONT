@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.SignupComponent = void 0;
 var core_1 = require("@angular/core");
+var sweetalert2_1 = require("sweetalert2");
 var SignupComponent = /** @class */ (function () {
     function SignupComponent(authService, router) {
         this.authService = authService;
@@ -53,11 +54,20 @@ var SignupComponent = /** @class */ (function () {
             var roleName = this.user.Role;
             this.authService.register(user, roleName).subscribe(function (response) {
                 console.log('User registered successfully!');
-                alert('check your mail account for verification !');
+                sweetalert2_1["default"].fire({
+                    title: "Open Your mail?",
+                    text: "check your mail account for verification !",
+                    icon: "success"
+                });
+                //alert('check your mail account for verification !');
                 _this.router.navigate(['/verification']);
             }, function (error) {
                 console.error('Error during registration.', error);
-                alert('Error during registration. Please try again!');
+                sweetalert2_1["default"].fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong! "
+                });
                 _this.signupError = 'Error during registration. Please try again.';
                 // window.location.reload();
             });

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AccountService } from '../_services';
 import { User } from '../_models/user';
 import { Location } from '@angular/common';
+import Swal from 'sweetalert2';
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
@@ -55,14 +56,23 @@ export class SignupComponent implements OnInit {
           this.authService.register(user, roleName).subscribe(
             (response) => {
               console.log('User registered successfully!');
-              
-              alert('check your mail account for verification !');
+              Swal.fire({
+                title: "Open Your mail?",
+                text: "check your mail account for verification !",
+                icon: "success"
+              });
+              //alert('check your mail account for verification !');
               this.router.navigate(['/verification']); 
 
             },
             (error) => {
               console.error('Error during registration.', error);
-              alert('Error during registration. Please try again!');
+
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong! ",
+              });
               this.signupError = 'Error during registration. Please try again.';
              // window.location.reload();
 

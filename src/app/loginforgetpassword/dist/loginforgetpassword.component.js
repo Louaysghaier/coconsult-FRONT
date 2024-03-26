@@ -9,6 +9,7 @@ exports.__esModule = true;
 exports.LoginforgetpasswordComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
+var sweetalert2_1 = require("sweetalert2");
 var LoginforgetpasswordComponent = /** @class */ (function () {
     function LoginforgetpasswordComponent(acountservice, router, otpservice) {
         this.acountservice = acountservice;
@@ -41,8 +42,17 @@ var LoginforgetpasswordComponent = /** @class */ (function () {
         if (this.fg.valid) {
             this.acountservice.userForgetPassword(this.fg.value.email).subscribe(function (response) {
                 _this.showResetPasswordCard = true;
-                alert("code sent successfully to your mail");
-            }, function (error) { return alert("code invalide resend it "); });
+                sweetalert2_1["default"].fire({
+                    title: "Chek your mail",
+                    text: "code sent successfully to your mail",
+                    icon: "success"
+                });
+                //alert ("code sent successfully to your mail")
+            }, function (error) { return sweetalert2_1["default"].fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Mail not found!"
+            }); });
         }
     };
     LoginforgetpasswordComponent.prototype.submitfgreset = function () {
@@ -53,12 +63,25 @@ var LoginforgetpasswordComponent = /** @class */ (function () {
                 code: this.fgreset.value.code
             };
             this.acountservice.forgetPasswordbyemail(this.fg.value.email, formData).subscribe(function (response) {
-                alert("password changed successfully");
+                sweetalert2_1["default"].fire({
+                    //title: "The Internet?",
+                    text: "password changed successfully",
+                    icon: "success"
+                });
+                // alert ("password changed successfully")
                 _this.router.navigate(['/signin']);
-            }, function (error) { return alert("error while changing password"); });
+            }, function (error) { return sweetalert2_1["default"].fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Try later!"
+            }); });
         }
         else {
-            alert("form invalid");
+            sweetalert2_1["default"].fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Form inputs invalide!"
+            });
         }
     };
     LoginforgetpasswordComponent.prototype.resendcode = function ($event) {

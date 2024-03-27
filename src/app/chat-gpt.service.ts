@@ -23,7 +23,8 @@ export class ChatGptService {
     "who are you": "my name is testcode ai",
     "what is angular": "angular is the best framework",
     "tell me about job opportunities": "Here are some available job opportunities:",
-    "job opportunities": "Here are some available job opportunities:"
+    "job opportunities": "Here are some available job opportunities:",
+    "job": "Here are some available job opportunities:"
   };
 
   async getBostAnswer(msg: string): Promise<void> {
@@ -40,7 +41,7 @@ export class ChatGptService {
   private async getBotMessage(question: string): Promise<string> {
     let answer = this.messageMap[question];
     if (!answer) {
-      if (question.toLowerCase().includes('job opportunities')) {
+      if (question.toLowerCase().includes('job opportunities')||question.toLowerCase().includes('job ')) {
         try {
           const jobOpportunities = await this.getAllJobOpports().toPromise();
           answer = this.formatJobOpportunities(jobOpportunities);

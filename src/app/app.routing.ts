@@ -12,12 +12,13 @@ import { ValidationComponent } from './validation/validation.component';
 import { AboutusComponent } from './shared/aboutus/aboutus.component';
 import { ContactComponent } from './shared/contact/contact.component';
 import { CandidatComponent } from './candidat/candidat.component';
-import { QuestionComponent } from './question/question.component';
+
 import { MyquizComponent } from './myquiz/myquiz.component';
 import { AffichagequestionComponent } from './affichagequestion/affichagequestion.component';
 import { JobOpportComponent } from './job-opport/job-opport.component';
 import { CandidatemailComponent } from './candidatemail/candidatemail.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
+import { TESTComponent } from './test/test.component';
 
 const routes: Routes = [
   {
@@ -46,11 +47,12 @@ const routes: Routes = [
   { path: 'job', component: JobOpportComponent },
   { path: 'email', component: CandidatemailComponent },
   { path: 'reclamation', component: ReclamationComponent },
-  { path: 'question', component: QuestionComponent },
+
  
   
 
 
+  { path:'chat',component:TESTComponent },
 
 
 { path:'candidature',component:CandidatComponent },

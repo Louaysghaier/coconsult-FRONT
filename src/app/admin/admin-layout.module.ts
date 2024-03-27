@@ -19,6 +19,8 @@ import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { QuestionComponent } from './admindashboard/question/question.component';
+
 const AdminLayoutRoutes: Routes = [
   {path:'admin',
 component:AdminLayoutComponent,
@@ -30,6 +32,7 @@ children: [
    { path: 'navbar',  component: NavbarComponent },
    { path: 'sidenavbar',  component: SidebarComponent },
    { path: 'ajouterquiz',  component: QuizComponent },
+   { path: 'question',  component: QuestionComponent },
 
 
 
@@ -59,6 +62,7 @@ children: [
     NavbarComponent,
     SidebarComponent,
     NotificationsComponent,
+    QuestionComponent
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

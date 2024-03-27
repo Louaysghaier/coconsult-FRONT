@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Question } from 'src/app/_models/question';
+import { Quiz } from 'src/app/_models/quiz';
+import { QuestionService } from 'src/app/_services/question.service';
+import { QuizService } from 'src/app/_services/quiz.service';
 
 
-import { QuestionService } from '../_services/question.service';
-import { Quiz } from '../_models/quiz';
-import { QuizService } from '../_services/quiz.service';
-import { Question } from '../_models/question';
+
 
 
 @Component({

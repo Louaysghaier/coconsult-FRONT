@@ -29,12 +29,13 @@ import { AboutDirective } from './shared/aboutus/about.directive';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
 import { CandidatComponent } from './candidat/candidat.component';
 import { AffichagequestionComponent } from './affichagequestion/affichagequestion.component';
-import { QuestionComponent } from './question/question.component';
+
 import { MyquizComponent } from './myquiz/myquiz.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { JobOpportComponent } from './job-opport/job-opport.component';
 import { CandidatemailComponent } from './candidatemail/candidatemail.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
+import { TESTComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -51,12 +52,13 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 CandidatComponent,
 AffichagequestionComponent,
 
-QuestionComponent,
+
     AboutDirective,
     MyquizComponent,
     JobOpportComponent,
     CandidatemailComponent,
     ReclamationComponent,
+    TESTComponent,
 
   
     

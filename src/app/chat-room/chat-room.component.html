@@ -36,29 +36,28 @@
     }
 </style>
 
-<div class="chat-room ">
+<div class="chat-room">
     <div class="chat-header">
-        <h2>Chat Room</h2>
+      <h2>Chat Room</h2>
     </div>
-
+  
     <div class="chat-messages">
-        <!-- Example of a message -->
-        <div class="media">
-            <div class="user-icon">
-                <span id="userInitial">A</span>
-            </div>
-            <div class="media-body">
-                <h5 class="mt-0" id="username">Username</h5>
-                <p>Message content...</p>
-            </div>
+      <div *ngFor="let message of messages" class="media">
+        <div class="user-icon">
+          <span id="userInitial">U</span>
         </div>
-        <!-- Messages will be displayed here -->
+        <div class="media-body">
+          <h5 class="mt-0">User</h5>
+          <p>{{ message.content }}</p>
+        </div>
+      </div>
     </div>
-
+  
     <div class="chat-input">
-        <form id="messageForm" class="form-inline">
-            <input type="text" id="messageInput" class="form-control mr-2" placeholder="Type a message...">
-            <button type="submit" class="btn btn-primary">Send</button>
-        </form>
+      <form (submit)="sendMessage()">
+        <input type="text" [(ngModel)]="messageInput" class="form-control mr-2" placeholder="Type a message...">
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
     </div>
-</div>
+  </div>
+  

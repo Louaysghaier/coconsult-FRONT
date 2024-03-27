@@ -18,6 +18,7 @@ import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { GroupChatComponent } from './group-chat/group-chat.component';
 const AdminLayoutRoutes: Routes = [
   {path:'admin',
 component:AdminLayoutComponent,
@@ -28,7 +29,7 @@ children: [
    { path: 'notifications',  component: NotificationsComponent },
    { path: 'navbar',  component: NavbarComponent },
    { path: 'sidenavbar',  component: SidebarComponent },
-
+    { path: 'ChatRooms',  component: GroupChatComponent },
 ]},
   
 ];
@@ -53,6 +54,7 @@ children: [
     NavbarComponent,
     SidebarComponent,
     NotificationsComponent,
+    GroupChatComponent,
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

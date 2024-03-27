@@ -9,8 +9,25 @@ exports.__esModule = true;
 exports.ChatRoomComponent = void 0;
 var core_1 = require("@angular/core");
 var ChatRoomComponent = /** @class */ (function () {
-    function ChatRoomComponent() {
+    function ChatRoomComponent(webSocketService) {
+        this.webSocketService = webSocketService;
+        this.messages = [];
+        this.messageInput = '';
     }
+    ChatRoomComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.webSocketService.getMessage().subscribe(function (message) {
+            _this.messages.push(message);
+        }, function (error) {
+            console.error('WebSocket error:', error);
+        });
+    };
+    ChatRoomComponent.prototype.sendMessage = function () {
+        if (this.messageInput.trim() !== '') {
+            this.webSocketService.sendMessage({ content: this.messageInput });
+            this.messageInput = ''; // Clear input field after sending message
+        }
+    };
     ChatRoomComponent = __decorate([
         core_1.Component({
             selector: 'app-chat-room',

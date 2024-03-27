@@ -68,7 +68,7 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    
+
     CarouselModule.forRoot(),
     FontAwesomeModule,
     AdminLayoutModule,

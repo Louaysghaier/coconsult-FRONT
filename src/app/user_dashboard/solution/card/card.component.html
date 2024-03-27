@@ -1,7 +1,7 @@
-<div [ngClass]="'parent card' + (cardTitle === 'food' ? '1' : cardTitle === 'work' ? '2' : cardTitle === 'transport' ? '3' : '4')">
-    <div class="card">
+<div [ngClass]="'parent card' + determineCardClass()">
+  <div class="card">
       <div class="content-box">
-        <h1 class="card-title">ECOtalan team vous informe :</h1>
+        <h1 class="card-title">COCONSULT team vous informe :</h1>
         <p class="card-content">{{ cardContent }}</p>
       </div>
       <span class="see-more">See More</span>

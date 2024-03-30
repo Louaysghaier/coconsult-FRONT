@@ -1,6 +1,10 @@
-export interface Prospect {
-    idProspect ?: number ; 
-    Entreprise ?: String ; 
-    email ?: String ; 
-    Numtel ?: String ; 
+import { ProspectStatus } from "./ProspectStatus";
+
+export class Prospect {
+    idProspect !: number ; 
+    
+    name!: String ;  
+    email !: String ; 
+    Numtel !: String ;  
+    status !: ProspectStatus ; 
 }

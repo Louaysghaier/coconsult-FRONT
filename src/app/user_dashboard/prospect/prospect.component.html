@@ -1,1 +1,67 @@
-<p>prospect works!</p>
+<mat-toolbar color="primary">
+    <span>Prospect Management</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="warn" (click)="openAddUpdateProspectForm()">
+      ADD PROSPECT
+    </button>
+</mat-toolbar>
+
+<div class="main-body">
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search by Prospect" #input>
+    </mat-form-field>
+
+    <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                <td mat-cell *matCellDef="let row"> {{ row.title }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let row"> {{ row.email }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="numTel">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Numtel </th>
+                <td mat-cell *matCellDef="let row"> {{ row.numTel }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let row"> {{ row.status }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-raised-button color="primary" (click)="openEditForm(row)" class="edit-button">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-raised-button color="warn" (click)="deleteProspect(row.idProspect)" class="delete-button">
+                        <mat-icon>delete</mat-icon>
+                    </button> 
+                    <button mat-raised-button color="primary" (click)="createRepertoireFromProspect(row)">Create Repertoire</button>
+
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="{{ displayedColumns.length }}">No data matching the filter "{{ input.value }}"</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of prospects"></mat-paginator>
+    </div>
+</div>

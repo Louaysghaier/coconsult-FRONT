@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Repertoire } from '../_models/Repertoire';
+import { Prospect } from '../_models/Prospect';
 
 
 @Injectable({
@@ -35,5 +36,10 @@ export class RepertoireService {
 
   RemoveRepertoire(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/RemoveRepertoire/${id}`);
+  }
+
+
+  createRepertoireFromProspect(prospect: Prospect): Observable<Repertoire> {
+    return this.http.post<Repertoire>(`${this.baseUrl}/createRepertoireFromProspect`, prospect);
   }
 }

@@ -1,27 +1,69 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
+/* Redimensionner la barre d'outils */
+.contract-text {
+  margin-left: 40px; /* Ajustez la marge entre le texte et la barre */
+  font-family: 'VotrePolice', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 600px;
   
-  .main-body {
-    padding-top: 20px;
-    margin: 0 auto;
-    max-width: 1348px;
-  
-    mat-form-field {
-      width: 100%;
-    }
-  }
-  
-  .action {
-    display: flex;
-    gap: 5px;
-  }
-/* Global styles */
+}
 
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-toolbar {
+  margin-bottom: 60px; /* Déplacer la barre d'outils vers le bas */
   
+}
 
-  
+.background-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7px; /* Ajuster la hauteur de la barre */
+  background-color: #ff4081; /* Couleur de la barre */
+  z-index: -1; /* Pour placer la barre en arrière-plan */
+}
+
+/* Espacement autour du tableau */
+.main-body {
+  padding-top: 10px; /* Espacement en haut du tableau */
+  margin: 50px auto 0; /* Ajustement des marges */
+  max-width: 1200px; /* Réduire la largeur maximale du tableau */
+}
+
+/* Styles pour le reste du contenu */
+.mat-form-field {
+  width: 100%; /* Ajuster la largeur des champs de formulaire */
+}
+
+.table-container {
+  max-height: 300px; /* Réduire la hauteur maximale du tableau */
+}
+
+.mat-row,
+.mat-header-row {
+  min-height: 30px; /* Ajuster la hauteur des lignes du tableau */
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+tr.mat-mdc-footer-row td {
+  font-weight: bold;
+}

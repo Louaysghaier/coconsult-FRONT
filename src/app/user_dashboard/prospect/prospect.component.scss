@@ -1,0 +1,34 @@
+.contract-text {
+    margin-left: 40px; /* Ajustez la marge entre le texte et la barre */
+    font-family: 'VotrePolice', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 600px;
+    
+  }
+  
+  .mat-toolbar {
+    margin-bottom: 60px; /* Déplacer la barre d'outils vers le bas */
+    
+  }
+  
+  
+  .main-body {
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 1200px; // Réduire la largeur maximale du tableau
+  }
+  
+  .mat-form-field {
+    width: 100%; // Ajuster la largeur des champs de formulaire
+  }
+  
+  .table-container {
+    max-height: 300px; // Réduire la hauteur maximale du tableau
+  }
+  
+  .mat-row,
+  .mat-header-row {
+    min-height: 30px; // Ajuster la hauteur des lignes du tableau
+  }
+  

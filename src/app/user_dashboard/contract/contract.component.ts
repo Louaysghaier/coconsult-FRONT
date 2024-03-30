@@ -9,17 +9,25 @@ import { Contract } from 'src/app/_models/Contract';
 import { AddUpdateContractComponent } from '../add-update-contract/add-update-contract.component';
 import { UploadService } from 'src/app/upload.service';
 
+interface Transaction {
+  repertoire: string;
+  montant: number;
+} 
 @Component({
   selector: 'app-contract',
   templateUrl: './contract.component.html',
   styleUrls: ['./contract.component.scss'],
 })
+
+
 export class ContractComponent implements OnInit {
   displayedColumns: string[] = [/*'idContract',*/ 'repertoire', 'description' , 'dateContract' ,'montant' , 'nbreTrnache','etape', 'action']; 
   dataSource!: MatTableDataSource<any>;
+  footerColumns: string[] = ['repertoire', 'montant'];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private _dialog: MatDialog,
@@ -101,5 +109,11 @@ export class ContractComponent implements OnInit {
       },
       error: console.error,
     });
+  } 
+
+  getTotalMontant() {
+    if (!this.dataSource) return 0;
+    return this.dataSource.data.map((contract: Contract) => contract.montant).reduce((acc, value) => acc + value, 0);
   }
+
 }

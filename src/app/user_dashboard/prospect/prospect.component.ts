@@ -117,5 +117,20 @@ export class ProspectComponent implements OnInit {
     });
   }
   
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this._prospectService.uploadProspectsData(file).subscribe(
+        response => {
+          console.log('Prospects data uploaded successfully:', response);
+          // Handle success message or any other action
+        },
+        error => {
+          console.error('Error uploading prospects data:', error);
+          // Handle error message or any other action
+        }
+      );
+    }
+  }
   
 }

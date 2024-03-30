@@ -4,6 +4,10 @@
     <button mat-raised-button color="warn" (click)="openAddUpdateProspectForm()">
       ADD PROSPECT
     </button>
+    <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+    <button mat-raised-button color="accent" (click)="fileInput.click()">
+      IMPORT PROSPECTS
+    </button>
 </mat-toolbar>
 
 <div class="main-body">

@@ -31,5 +31,10 @@ export class ProspectService {
   removeProspect(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/RemoveProspect/${id}`);
   }
+
+  uploadProspectsData(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    return this.http.post<any>(`${this.baseUrl}/upload-prospects-data`, formData);
+  }
 }
- 

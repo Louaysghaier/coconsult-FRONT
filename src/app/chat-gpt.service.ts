@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Quiz } from './_models/quiz';
 
 export class Message {
   constructor(public author: string, public content: string) {}
@@ -24,7 +25,9 @@ export class ChatGptService {
     "what is angular": "angular is the best framework",
     "tell me about job opportunities": "Here are some available job opportunities:",
     "job opportunities": "Here are some available job opportunities:",
-    "job": "Here are some available job opportunities:"
+    "job": "Here are some available job opportunities:",
+    "quiz":"Here Some quiz that we have ",
+    "je t'aime":"jaime que dorra"
   };
 
   async getBostAnswer(msg: string): Promise<void> {
@@ -49,12 +52,31 @@ export class ChatGptService {
           console.error("Error fetching job opportunities:", error);
           answer = "Sorry, there was an error fetching job opportunities.";
         }
+      } else if(question.toLowerCase().includes('quiz')) {
+        try{
+          const quiz=await this.getAllQuizzes().toPromise();
+          answer = this.formatquiz(quiz);
+        } catch (error) {
+          console.error("Error fetching job opportunities:", error);
+          answer = "Sorry, there was an error fetching job opportunities.";
+        }
+ 
       } else {
         answer = "Sorry, I didn't understand that.";
       }
     }
     return answer;
   }
+private formatquiz (quiz:any[]):string{
+  let formattedString = "Here Some quiz that we have:\n";
+  quiz.forEach(opport => {
+    formattedString += `Title: ${opport.titre}\n`;
+    formattedString += `dateQuiz: ${opport.dateQuiz}\n`;
+    formattedString += `description: ${opport.description}\n`;
+  
+  });
+  return formattedString;
+}
 
   private formatJobOpportunities(jobOpportunities: any[]): string {
     let formattedString = "Here are some available job opportunities:\n";
@@ -75,4 +97,10 @@ export class ChatGptService {
       })
     );
   }
+  apiUrl = 'http://localhost:8082/quizzes/'; 
+
+  getAllQuizzes(): Observable<Quiz[]> {
+    return this.http.get<Quiz[]>(this.apiUrl + 'getallquizzes');
+  }
+
 }

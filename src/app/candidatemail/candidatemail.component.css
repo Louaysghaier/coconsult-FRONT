@@ -1,0 +1,44 @@
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Couleur de fond de la section */
+  }
+  
+  /* Style de la carte */
+  .card1 {
+    background-color: #fff; /* Couleur de fond de la carte */
+    padding: 20px; /* Espacement intérieur de la carte */
+    border-radius: 8px; /* Bord arrondi de la carte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre de la carte */
+    text-align: center; /* Centrer le contenu de la carte */
+  }
+  
+  /* Style de l'entrée email */
+  .card1 input[type="email"] {
+    width: 100%; /* Largeur de l'entrée email */
+    padding: 10px; /* Espacement interne de l'entrée email */
+    margin-bottom: 10px; /* Marge inférieure de l'entrée email */
+    border: 1px solid #ccc; /* Bordure de l'entrée email */
+    border-radius: 4px; /* Bord arrondi de l'entrée email */
+    font-size: 16px; /* Taille de la police de l'entrée email */
+  }
+  
+  /* Style du bouton */
+  .card1 button {
+    padding: 10px 20px; /* Espacement interne du bouton */
+    border: none; /* Suppression de la bordure du bouton */
+    border-radius: 4px; /* Bord arrondi du bouton */
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    font-size: 16px; /* Taille de la police du bouton */
+    cursor: pointer; /* Curseur pointeur au survol */
+    transition: background-color 0.3s; /* Transition de la couleur de fond du bouton */
+  }
+  
+  /* Style du bouton au survol */
+  .card1 button:hover {
+    background-color: #0056b3; /* Couleur de fond du bouton au survol */
+  }

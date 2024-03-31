@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Question } from 'src/app/_models/question';
 import { Quiz } from 'src/app/_models/quiz';
 import { QuestionService } from 'src/app/_services/question.service';
 import { QuizService } from 'src/app/_services/quiz.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -20,13 +22,15 @@ export class QuestionComponent {
   quizzes: Quiz[] = [];
   selectedQuiz: Quiz | undefined;
 
-  constructor(private questionService: QuestionService, private quizService: QuizService) {}
+  constructor(private questionService: QuestionService, private quizService: QuizService,public dialogRef: MatDialogRef<QuestionComponent>) {}
 
   ngOnInit() {
     // Charger la liste des quizzes au démarrage du composant
     this.loadQuizzes();
   }
-
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
   loadQuizzes() {
     
     this.quizService.getAllQuizzes().subscribe(
@@ -53,6 +57,8 @@ export class QuestionComponent {
           console.log('Question ajoutée et affectée avec succès :', response);
           // Réinitialiser le formulaire ou effectuer d'autres actions nécessaires après l'ajout et l'affectation
           this.newQuestion = new Question();
+          Swal.fire('Question Aded ');
+          this.dialogRef.close();
         },
         (error) => {
           console.error('Erreur lors de l\'ajout et l\'affectation de la question :', error);

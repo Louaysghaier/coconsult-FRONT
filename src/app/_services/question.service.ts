@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { Question } from '../_models/question';
 
 
@@ -14,6 +14,24 @@ export class QuestionService {
 
   constructor(private http: HttpClient) {
       
+  }
+  deleteQuestion(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}deletequestion/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+
+  updateQuestion(id: number, question: Question): Observable<Question> {
+    return this.http.put<Question>(`${this.apiUrl}updatequestion/${id}`, question)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  private handleError(error: any) {
+    console.error('An error occurred:', error);
+    return throwError(error);
   }
   ajouterQuestionEtReponseEtAffecterQuestionQuiz(question: Question, idQuiz: number): Observable<Question> {
     const url = `${this.apiUrl}affecterquaqui/${idQuiz}`;

@@ -77,6 +77,10 @@ p {
 .card > * {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
+  .card {
+    width: calc(33.33% - 20px); /* Pour afficher 3 cartes par ligne */
+    /* Autres styles de la carte */
+  }
 }
 
 .card__background {
@@ -203,5 +207,14 @@ p {
     transition: opacity 500ms ease-in, transform 500ms ease-in;
     transition-delay: 500ms;
   }
+
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacement entre les cartes */
+  }
+  
+ 
 }
 

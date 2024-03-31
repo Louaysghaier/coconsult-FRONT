@@ -3,6 +3,7 @@ import { JobOpport } from '../_models/jobopport';
 import { JobopportService } from '../_services/jobopport.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -12,8 +13,9 @@ import { Router } from '@angular/router';
 })
 export class JobOpportComponent implements OnInit {
   jobOpports$: Observable<JobOpport[]>;
+  
 
-  constructor(private jobOpportService: JobopportService,private router:Router) { }
+  constructor(private jobOpportService: JobopportService,private router:Router,private dialogRef: MatDialogRef<JobOpportComponent>)  { }
   ngOnInit(): void {
     this.jobOpports$ = this.getAllJobOpports();
   }
@@ -26,6 +28,7 @@ export class JobOpportComponent implements OnInit {
     sessionStorage.setItem('jobOpportId', id.toString());
     // Rediriger vers la page de candidature
     this.router.navigateByUrl('/candidature');
+    this.dialogRef.close();
   }
 }
 

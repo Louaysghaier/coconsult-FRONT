@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { JobOpport } from '../_models/jobopport';
 
 @Injectable({
@@ -17,12 +17,41 @@ export class JobopportService {
     return this.http.get<JobOpport[]>(`${this.baseUrl}/getalljob`);
   }
   
-
+  createJobOpport(jobOpport: JobOpport): Observable<JobOpport> {
+    return this.http.post<JobOpport>(`${this.baseUrl}/createjobopoort`, jobOpport)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
  
 
   getJobOpportById(id: number): Observable<JobOpport> {
     return this.http.get<JobOpport>(`${this.baseUrl}`);
   }
+
+  updateJob(id: number, jobOpport: JobOpport): Observable<JobOpport> {
+    return this.http.put<JobOpport>(`${this.baseUrl}/${id}`, jobOpport)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: any) {
+    console.error('An error occurred:', error);
+    return throwError(error);
+  }
+
+  
+  deleteJob(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  
 }
+
+
 

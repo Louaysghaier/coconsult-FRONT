@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { Question } from '../_models/question';
 import { Quiz } from '../_models/quiz';
 
@@ -13,19 +13,28 @@ export class QuizService {
   constructor(private http: HttpClient) {
     
   }
+  getAllQuizzes(): Observable<Quiz[]> {
+    return this.http.get<Quiz[]>(this.apiUrl + 'getallquizzes');
+  }
+  getQuizzesForJobOpport(jobIdOpport: number): Observable<Quiz[]> {
+    return this.http.get<Quiz[]>(`${this.apiUrl}jobopport/${jobIdOpport}/quiz`);
+  }
+
+  ajouterQuizAJobOpport(quiz: Quiz): Observable<any> {
+    const url = `${this.apiUrl}jobopport/${quiz.id_jobopport}/quiz`;
+    return this.http.post<any>(url, quiz, { headers: { 'Content-Type': 'application/json' } });
+  }
+  
+ 
 
     ajouterquiz(quiz: Quiz): Observable<Quiz> {
       return this.http.post<Quiz>(this.apiUrl + 'createquiz', quiz);
       
     
   }
-  getAllQuizzes(): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(this.apiUrl + 'getallquizzes');
-  }
-  updateQuiz(quiz: Quiz): Observable<Quiz> {
-    const url = `${this.apiUrl}updateQuiz/${quiz.id_quiz}`; // Utilisation de l'interpolation de chaîne
-    return this.http.put<Quiz>(url, quiz);
-  }
+
+
+ 
   getQuestionsForQuiz(quizId: number): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.apiUrl}questionsbyid/${quizId}`);
   }
@@ -33,7 +42,13 @@ export class QuizService {
     
     return this.http.put<any>(`${this.apiUrl1}${question}/${option}/${mailcandidat}`,null);
   }
-
+  updateQuiz(id: number, quiz: Quiz): Observable<Quiz> {
+    return this.http.put<Quiz>(`${this.apiUrl}updatequiz/${id}`, quiz);
+  }
+  
+  deleteQuiz(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}deletequiz/${id}`);
+  }
   
 }
 

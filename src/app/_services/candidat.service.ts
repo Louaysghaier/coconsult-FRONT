@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Candidat } from '../_models/candidat';
+import { CandidatDetailsDTO } from '../_models/candidatDetail';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,11 @@ apiurl1='http://localhost:8082/quizzes/verifyexistedmail/'
 
  baseUrl = 'http://localhost:8082'; 
  
- 
+ getCandidatDetails(): Observable<CandidatDetailsDTO[]> {
+  return this.http.get<CandidatDetailsDTO[]>(`${this.apiUrl}/candidat-details`);
+}
+
+
  
  uploadAndExtract(jobOpportId: number, file: File, email: string): Observable<string> {
   // Construire les données à envoyer

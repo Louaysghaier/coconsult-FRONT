@@ -1,0 +1,56 @@
+<div class="table-container">
+    <button mat-raised-button color="primary" (click)="
+    ouvrirPopupAjoutQuestion()">Add Jobs</button>
+    <table mat-table [dataSource]="jobs" matSort>
+  
+      
+  
+      <ng-container matColumnDef="titre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>titre</th>
+        <td mat-cell *matCellDef="let jobs">{{ jobs.titre }}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>description</th>
+        <td mat-cell *matCellDef="let jobs">{{ jobs.description }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="qualifications">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>qualifications</th>
+        <td mat-cell *matCellDef="let jobs">{{ jobs.qualifications }}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="lieu">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>lieu</th>
+        <td mat-cell *matCellDef="let jobs">{{ jobs.lieu }}</td>
+      </ng-container>
+      <ng-container matColumnDef="dateLimite">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>dateLimite</th>
+        <td mat-cell *matCellDef="let jobs">{{ jobs.dateLimite }}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let jobs">
+          <button mat-icon-button (click)="openUpdateDialog(jobs)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="openDeleteConfirmation(jobs)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+  
+      <!-- Define additional columns for options if needed -->
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let jobs; columns: displayedColumns;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="5">No data</td>
+      </tr>
+    </table>
+
+  

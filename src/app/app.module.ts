@@ -36,6 +36,7 @@ import { JobOpportComponent } from './job-opport/job-opport.component';
 import { CandidatemailComponent } from './candidatemail/candidatemail.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { TESTComponent } from './test/test.component';
+import { NavbardorraComponent } from './navbardorra/navbardorra.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ AffichagequestionComponent,
     CandidatemailComponent,
     ReclamationComponent,
     TESTComponent,
+    NavbardorraComponent,
 
   
     

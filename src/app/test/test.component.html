@@ -1,12 +1,78 @@
-<div class="chat-container">
-  <div class="chat-box" *ngFor="let message of messages">
-    <div class="message" [ngClass]="{'user-message': message.author === 'user', 'bot-message': message.author === 'bot'}">
-      {{ message.content }}
-    </div>
+<main>
+  <section class="section section-shaped section-lg">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
-</div>
 
-<div class="input-container">
-  <input type="text" [(ngModel)]="inputValue" (keyup.enter)="sendMessage()" placeholder="Type a message...">
-  <button (click)="sendMessage()">Send</button>
-</div>
+
+
+
+    <section class="section section-shaped section-lg">
+      <!-- Votre contenu existant ici -->
+      <div class="container">
+        <button (click)="openJobOpportModal()">Voir tous les emplois</button>
+        <div class="card">
+          <div class="chat-container">
+            <div class="chat-box" *ngFor="let message of messages">
+              <div class="message" [ngClass]="{'user-message': message.author === 'user', 'bot-message': message.author === 'bot'}">
+                {{ message.content }}
+              </div>
+            </div>
+          </div>
+  
+          <div class="input-container">
+            <input type="text" [(ngModel)]="inputValue" (keyup.enter)="sendMessage()" placeholder="Type a message...">
+            <button (click)="sendMessage()">Send</button>
+          </div>
+        </div>
+      </div>
+ 
+
+  
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+
+
+</section>

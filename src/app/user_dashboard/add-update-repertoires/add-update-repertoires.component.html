@@ -22,14 +22,19 @@
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Type of Contact</mat-label>
                 <mat-select formControlName="typeContact" placeholder="Select type of contact">
-                    <mat-option *ngFor="let type of step" [value]="type">{{ type }}</mat-option>
+                    <mat-option value="FORNISSEUR">FORNISSEUR</mat-option>
+                    <mat-option value="CLIENT">CLIENT</mat-option>
+                    <mat-option value="PARTENAIRE">PARTENAIRE</mat-option>
+                    <mat-option value="QUALIFIED_LEAD">QUALIFIED LEAD</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Priority</mat-label>
                 <mat-select formControlName="priorite" placeholder="Select priority">
-                    <mat-option *ngFor="let priority of steps" [value]="priority">{{ priority }}</mat-option>
+                    <mat-option value="FAIBLE">FAIBLE</mat-option>
+                    <mat-option value="MOYENNE">MOYENNE</mat-option>
+                    <mat-option value="ELEVEE">ELEVEE</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>

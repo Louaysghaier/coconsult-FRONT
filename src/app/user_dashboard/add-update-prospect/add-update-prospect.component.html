@@ -26,8 +26,14 @@
 
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Status</mat-label>
-                <input matInput formControlName="status" placeholder="Enter status">
+                <mat-select formControlName="status" placeholder="Select status">
+                    <mat-option value="NEW_PROSPECT">New Prospect</mat-option>
+                    <mat-option value="CONTACTED">Contacted</mat-option>
+                    <mat-option value="QUALIFIED">Qualified</mat-option>
+                    <mat-option value="UNQUALIFIED">Unqualified</mat-option>
+                </mat-select>
             </mat-form-field>
+            
         </div>
     </div>
     <div mat-dialog-actions class="action">

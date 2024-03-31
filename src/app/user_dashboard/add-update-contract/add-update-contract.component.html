@@ -1,75 +1,59 @@
 <div mat-dialog-title>
-  <h1 class="example-h1">Contract Form</h1>
+  <h1>Contract Form</h1>
 </div>
 <form [formGroup]="contractForm" (ngSubmit)="onFormSubmit()">
   <div mat-dialog-content class="content">
-    <div class="row">
-      <mat-form-field appearance="outline" class="example-form-field">
-        <mat-label>Repertoire</mat-label>
-        <mat-select formControlName="repertoireId" placeholder="Select repertoire">
-          <mat-option *ngFor="let repertoire of repertoires" [value]="repertoire.idRepertoire">{{ repertoire.contact }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Repertoire</mat-label>
+          <mat-select formControlName="repertoireId" placeholder="Select repertoire">
+              <mat-option *ngFor="let repertoire of repertoires" [value]="repertoire.idRepertoire">{{ repertoire.contact }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>description</mat-label>
+          <input matInput formControlName="description" type="file" id="description" (change)="onFileSelected($event)">
+          <mat-hint>Select a PDF file to upload.</mat-hint>
+          <!-- Affichez un message d'erreur si le formulaire est invalide ou aucun fichier n'est sélectionné -->
+          <mat-error *ngIf="contractForm.get('description').invalid && contractForm.get('description').touched">
+              Un fichier PDF est requis.
+          </mat-error>
+        </mat-form-field>
       
-      <mat-form-field appearance="outline" class="example-form-field">
-        <mat-label>Description</mat-label>
-        <input matInput formControlName="description" type="file" id="description" (change)="onFileSelected($event)">
-        <mat-hint>Select a PDF file to upload.</mat-hint>
-        <mat-error *ngIf="contractForm.get('description').invalid && contractForm.get('description').touched">
-          A PDF file is required.
-        </mat-error>
-      </mat-form-field>
 
-      <mat-form-field appearance="outline" class="example-form-field">
-        <mat-label>Date of Contract</mat-label>
-        <input matInput formControlName="dateContract" type="date" id="dateContract" placeholder="MM/DD/YYYY">
-      </mat-form-field>
+          <label for="dateContract">Date of Contract</label>
+          <input type="date" id="dateContract" name="dateContract" placeholder="MM/DD/YYYY" formControlName="dateContract">
 
-      <mat-form-field appearance="outline" class="example-form-field">
-        <mat-label>Montant</mat-label>
-        <input matInput formControlName="montant" type="number" placeholder="Enter montant">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="example-form-field">
-        <mat-label>Nombre de Tranche</mat-label>
-        <input matInput formControlName="nbreTranche" type="number" placeholder="Enter nbreTranche">
-      </mat-form-field>
-
-      <!--<section class="example-section">
-        <label class="example-margin">Align:</label>
-        <mat-radio-group [(ngModel)]="steps">
-          <mat-radio-button class="example-margin" value="NOUVEAU">NOUVEAU</mat-radio-button>
-          <mat-radio-button class="example-margin" value="DECOUVERTE">DECOUVERTE</mat-radio-button>
-          <mat-radio-button class="example-margin" value="PROPOSITION">PROPOSITION</mat-radio-button>
-          <mat-radio-button class="example-margin" value="NEGOCIATION">NEGOCIATION</mat-radio-button>
-          <mat-radio-button class="example-margin" value="CONCLU">CONCLU</mat-radio-button>
-          <mat-radio-button class="example-margin" value="PERDU">PERDU</mat-radio-button>
-        </mat-radio-group>
-      </section>-->
-
-      <!--<mat-form-field appearance="outline">
-        <mat-label>Étape</mat-label>
-        <mat-select formControlName="etape" placeholder="Select étape">
-            <mat-option *ngFor="let step of steps" [value]="step">{{ step }}</mat-option>
-        </mat-select>
-      </mat-form-field> -->
-
-      <mat-form-field appearance="fill">
-        <mat-label>Étape</mat-label>
-        <mat-select>
-          <mat-option value="one">NOUVEAU</mat-option>
-          <mat-option value="two">DECOUVERTE</mat-option>
-          <mat-option value="three">PROPOSITION</mat-option>
-          <mat-option value="four">NEGOCIATION</mat-option>
-          <mat-option value="five">CONCLU</mat-option>
-          <mat-option value="six">PERDU</mat-option>
-        </mat-select>
-      </mat-form-field>
-      
-    </div>
+          <mat-form-field appearance="outline">
+              <mat-label>Montant</mat-label>
+              <input matInput formControlName="montant" type="number" placeholder="Enter montant">
+          </mat-form-field>
+        
+          <mat-form-field appearance="outline">
+              <mat-label>Nombre de Tranche</mat-label>
+              <input matInput formControlName="nbreTranche" type="number" placeholder="Enter nbreTranche">
+          </mat-form-field>
+        
+          <mat-form-field appearance="outline">
+            <mat-label>Étape</mat-label>
+            <mat-select formControlName="etape" placeholder="Select étape">
+                <mat-option value="NOUVEAU">NOUVEAU</mat-option>
+                <mat-option value="DECOUVERTE">DECOUVERTE</mat-option>
+                <mat-option value="PROPOSITION">PROPOSITION</mat-option>
+                <mat-option value="NEGOCIATION">NEGOCIATION</mat-option>
+                <mat-option value="CONCLU">CONCLU</mat-option>
+                <mat-option value="PERDU">PERDU</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        
+          
+        
+      </div>
   </div>
   <div mat-dialog-actions class="action">
-    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button> 
-    <button mat-raised-button color="primary" type="submit">{{ data ? 'Update' : 'Save' }}</button> 
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button> 
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button> 
   </div>
 </form>

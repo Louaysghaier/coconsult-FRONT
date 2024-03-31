@@ -57,4 +57,14 @@ const mg=this.getMessage;
       },
       error => console.log(error));
     }
+    formatDate(timestamp: number): string {
+      // Convert the Unix timestamp to a Date object
+      const date = new Date(timestamp);
+    
+      // Format the date as desired (e.g., "YYYY-MM-DD HH:mm:ss")
+      const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
+    
+      return formattedDate;
+    }
+    
 }

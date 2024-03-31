@@ -1,7 +1,7 @@
 ﻿import { Role } from "./Role";
 
 export class User {
-    id?: number;
+    iduser?: number;
     name?: string;
     email?: string;
     username?: string;
@@ -16,5 +16,4 @@ export class User {
     bannedchatGP?: boolean;
     number?: number;
     image?: string;
-    roles?:Role[]=[];
 }

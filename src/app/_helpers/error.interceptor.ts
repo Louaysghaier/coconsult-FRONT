@@ -14,7 +14,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (err instanceof HttpErrorResponse && (err.status === 401 || err.status === 403)) {
                 console.error('ErrorInterceptor',err);
                 // Check if the error response indicates an expired token
-                if (err.error && err.error.message === 'Token expired'||'Unauthorized') {
+                if (err.error && err.error.message === 'Token expired') {
                     // Call refreshToken method
                     return this.accountService.refreshToken().pipe(
                         switchMap((res) => {
@@ -59,7 +59,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                       });
                     // Logout user for other 401 or 403 errors
                     //alert('You session is expired on  this page');
-                    this.accountService.logout();
+                   // this.accountService.logout();
                 }
             }
 

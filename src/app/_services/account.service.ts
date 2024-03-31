@@ -71,7 +71,7 @@ export class AccountService {
     getCurrentUser(): Observable<User | null> {
         return this.user;
     }
-    update(id: string, params: any) {
+   /* update(id: string, params: any) {
         return this.http.put(`${environment.apiUrl}/users/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
@@ -85,9 +85,9 @@ export class AccountService {
                 }
                 return x;
             }));
-    }
+    }*/
 
-    delete(id: string) {
+  /*  delete(id: string) {
         return this.http.delete(`${environment.apiUrl}/users/${id}`)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
@@ -96,7 +96,7 @@ export class AccountService {
                 }
                 return x;
             }));
-    }
+    }*/
     getAuthToken(): string {
         const token = localStorage.getItem('access_token');
         console.log('SERVICE token is' + token)
@@ -116,7 +116,7 @@ export class AccountService {
         return localStorage.getItem('accessToken');
       }
     getrefresgtoken():string{
-        return localStorage.getItem('refreshToken');}
+        return localStorage.getItem('refreshToken')||sessionStorage.getItem('refreshToken')!;}
 
       refreshToken(): Observable<any> {
         // Implement logic to call the token refresh API

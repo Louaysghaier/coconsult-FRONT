@@ -18,6 +18,10 @@ import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { GroupChatComponent } from './group-chat/group-chat.component';
+import { CardGPCHATComponent } from './card-gpchat/card-gpchat.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UpdateDialogComponent } from './group-chat/update-dialog/update-dialog.component';
 const AdminLayoutRoutes: Routes = [
   {path:'admin',
 component:AdminLayoutComponent,
@@ -28,6 +32,7 @@ children: [
    { path: 'notifications',  component: NotificationsComponent },
    { path: 'navbar',  component: NavbarComponent },
    { path: 'sidenavbar',  component: SidebarComponent },
+   { path: 'ChatRooms',  component: GroupChatComponent },
 
 ]},
   
@@ -44,6 +49,8 @@ children: [
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatDialogModule,
+
   ],
   declarations: [
     AdminLayoutComponent,
@@ -53,6 +60,10 @@ children: [
     NavbarComponent,
     SidebarComponent,
     NotificationsComponent,
+    GroupChatComponent,
+    CardGPCHATComponent,
+    UpdateDialogComponent,
+
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

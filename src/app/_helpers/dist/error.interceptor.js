@@ -22,7 +22,7 @@ var ErrorInterceptor = /** @class */ (function () {
             if (err instanceof http_1.HttpErrorResponse && (err.status === 401 || err.status === 403)) {
                 console.error('ErrorInterceptor', err);
                 // Check if the error response indicates an expired token
-                if (err.error && err.error.message === 'Token expired' || 'Unauthorized') {
+                if (err.error && err.error.message === 'Token expired') {
                     // Call refreshToken method
                     return _this.accountService.refreshToken().pipe(operators_1.switchMap(function (res) {
                         console.info('Token refreshed', res);
@@ -61,7 +61,7 @@ var ErrorInterceptor = /** @class */ (function () {
                     });
                     // Logout user for other 401 or 403 errors
                     //alert('You session is expired on  this page');
-                    _this.accountService.logout();
+                    // this.accountService.logout();
                 }
             }
             // Pass the error through if it's not a 401 or 403 error

@@ -23,21 +23,24 @@
                                         Email
                                     </th>
                                     <th>
-                                       Phone Number
+                                       PhoneNumber
                                     </th>
                                   
                                     <th>
                                       localisation
                                     </th>
                                     <th>
-                                        Blocked From ChatRoom
+                                        Blocked From ChatRoom?
                                       </th>
                                     <th>
-                                      Blocked ?
+                                      Blocked?
                                     </th>
                                     <th>
-                                      active\decactive(user)
+                                      active\desactive(user)
                                   </th>
+                                  <th>
+                                    Ban from GPCHAT
+                                </th>
                                 </thead>
                                
                                 <tbody *ngFor="let user of users">
@@ -67,10 +70,13 @@
                                           {{user.blocked}}
                                       </td>
                                         <td>
-                                          <button *ngIf="user.blocked"(click)="activateUser(user)" type="button" class="btn btn-danger" >Active</button>
-                                          <button *ngIf="!user.blocked"(click)="bloqueUser(user)" type="button" class="btn btn-primary">Bloque</button>
+                                          <button *ngIf="user.blocked"(click)="activateUser(user)" type="button" class="btn btn-primary" >Active</button>
+                                          <button *ngIf="!user.blocked"(click)="bloqueUser(user)" type="button" class="btn btn-danger">Bloque</button>
                                         </td>
-                                     
+                                        <td>
+                                          <button *ngIf="user.bannedchatGP"(click)="removeBan(user)" type="button" class="btn btn-primary" >removeBan</button>
+                                          <button *ngIf="!user.bannedchatGP"(click)="Ban(user)" type="button" class="btn btn-danger">Ban</button>
+                                        </td>
                                     </tr>
                                
                                 </tbody>

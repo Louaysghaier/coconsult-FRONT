@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="cardo">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Liste empolyes</h4>
-                        <p class="card-category"> Tout liste des empolyes</p>
+                        <h4 class="card-title ">Liste Des Notification</h4>
+                        <p class="card-category"> Envoyez De puis le Forum contact us </p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -52,7 +52,10 @@
                                       <td>
                                           {{msg.message}}
                                       </td>
-                                     
+                                     <td>
+                                        {{ formatDate(msg.date) }}
+
+                                     </td>    
                                       
                                         
                                       <td>

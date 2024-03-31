@@ -12,5 +12,18 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ determineCardClass(): string {
+    if (this.cardTitle === 'HR') {
+      return '1';
+    } else if (this.cardTitle === 'PM') {
+      return '2';
+    } else if (this.cardTitle === 'Employee') {
+      return '3';
+    } else if (this.cardTitle === 'Manager') {
+      return '1';
+    }
+    else if (this.cardTitle === 'Consult') {
+      return '2';
+    }
+  }
 }

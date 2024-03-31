@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -79,34 +68,31 @@ var AccountService = /** @class */ (function () {
     AccountService.prototype.getCurrentUser = function () {
         return this.user;
     };
-    AccountService.prototype.update = function (id, params) {
-        var _this = this;
-        return this.http.put(environment_1.environment.apiUrl + "/users/" + id, params)
-            .pipe(operators_1.map(function (x) {
-            var _a, _b;
-            // update stored user if the logged in user updated their own record
-            if (id.toString() === ((_b = (_a = _this.userValue) === null || _a === void 0 ? void 0 : _a.iduser) === null || _b === void 0 ? void 0 : _b.toString())) {
-                // update local storage
-                var user = __assign(__assign({}, _this.userValue), params);
-                localStorage.setItem('user', JSON.stringify(user));
-                // publish updated user to subscribers
-                _this.userSubject.next(user);
-            }
-            return x;
-        }));
-    };
-    AccountService.prototype["delete"] = function (id) {
-        var _this = this;
-        return this.http["delete"](environment_1.environment.apiUrl + "/users/" + id)
-            .pipe(operators_1.map(function (x) {
-            var _a, _b;
-            // auto logout if the logged in user deleted their own record
-            if (id.toString() === ((_b = (_a = _this.userValue) === null || _a === void 0 ? void 0 : _a.iduser) === null || _b === void 0 ? void 0 : _b.toString())) {
-                _this.logout();
-            }
-            return x;
-        }));
-    };
+    /* update(id: string, params: any) {
+         return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+             .pipe(map(x => {
+                 // update stored user if the logged in user updated their own record
+                 if (id.toString() === this.userValue?.iduser?.toString()) {
+                     // update local storage
+                     const user = { ...this.userValue, ...params };
+                     localStorage.setItem('user', JSON.stringify(user));
+ 
+                     // publish updated user to subscribers
+                     this.userSubject.next(user);
+                 }
+                 return x;
+             }));
+     }*/
+    /*  delete(id: string) {
+          return this.http.delete(`${environment.apiUrl}/users/${id}`)
+              .pipe(map(x => {
+                  // auto logout if the logged in user deleted their own record
+                  if (id.toString() === this.userValue?.iduser?.toString()) {
+                      this.logout();
+                  }
+                  return x;
+              }));
+      }*/
     AccountService.prototype.getAuthToken = function () {
         var token = localStorage.getItem('access_token');
         console.log('SERVICE token is' + token);
@@ -125,7 +111,7 @@ var AccountService = /** @class */ (function () {
         return localStorage.getItem('accessToken');
     };
     AccountService.prototype.getrefresgtoken = function () {
-        return localStorage.getItem('refreshToken');
+        return localStorage.getItem('refreshToken') || sessionStorage.getItem('refreshToken');
     };
     AccountService.prototype.refreshToken = function () {
         // Implement logic to call the token refresh API

@@ -38,6 +38,7 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import { TESTComponent } from './test/test.component';
 import { NavbardorraComponent } from './navbardorra/navbardorra.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +62,7 @@ AffichagequestionComponent,
     ReclamationComponent,
     TESTComponent,
     NavbardorraComponent,
+
 
   
     

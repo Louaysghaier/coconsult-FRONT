@@ -20,6 +20,7 @@ import { CandidatemailComponent } from './candidatemail/candidatemail.component'
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { TESTComponent } from './test/test.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'job', component: JobOpportComponent },
   { path: 'email', component: CandidatemailComponent },
   { path: 'reclamation', component: ReclamationComponent },
+
 
  
   

@@ -33,7 +33,7 @@
 
 <div class="card1">
   <div class="card-body">
-    <h2 class="card-title">Ajouter un Candidat</h2>
+
  
   <div class="quiz-card" *ngIf="currentQuestionIndex < questions.length" (contextmenu)="onRightClick($event)">
     <span (click)="readQuestion()">
@@ -63,7 +63,7 @@
 
   <div class="quiz-card" *ngIf="currentQuestionIndex >= questions.length">
     <p>End of the quiz</p>
-    <button (click)="finishQuiz()">Terminé</button>
+    <button (click)="finishQuiz()">Envoyer ma note par mail</button>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </div>
 </div>

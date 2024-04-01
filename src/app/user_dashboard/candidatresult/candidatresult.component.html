@@ -1,7 +1,9 @@
-<div *ngFor="let candidat of candidatDetails">
+<mat-card *ngFor="let candidat of candidatDetails" class="candidat-card">
+  <mat-card-content>
+    <p><strong>Email:</strong> {{ candidat.candidatEmail }}</p>
+    <p><strong>Job Opportunity:</strong> {{ candidat.jobOpportTitle }}</p>
+    <p><strong>Final Mark:</strong> {{ candidat.finalMark }}</p>
   
-    <p>Email: {{ candidat.candidatEmail }}</p>
-    <p>Job Opportunity : {{ candidat.jobOpportTitle }}</p>
-    <p>Final Mark: {{ candidat.finalMark }}</p>
-  </div>
-  
+  </mat-card-content>
+</mat-card>
+

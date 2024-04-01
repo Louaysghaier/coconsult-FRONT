@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { Reclamation } from '../_models/reclamation';
 import { ReclamationService } from '../reclamation.service';
 import { CandidatemailComponent } from '../candidatemail/candidatemail.component';
+import Swal from 'sweetalert2';
 declare var webkitSpeechRecognition: any; 
 @Component({
   selector: 'app-reclamation',
@@ -65,6 +66,7 @@ export class ReclamationComponent implements OnInit {
       .subscribe(
         () => {
           console.log('Réclamation soumise avec succès');
+        
           this.contenuReclamation = '';
         },
         error => {

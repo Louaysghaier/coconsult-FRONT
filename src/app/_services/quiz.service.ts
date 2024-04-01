@@ -13,6 +13,9 @@ export class QuizService {
   constructor(private http: HttpClient) {
     
   }
+  getRandomQuiz(): Observable<Quiz> {
+    return this.http.get<Quiz>(`${this.apiUrl}random`);
+  }
   getAllQuizzes(): Observable<Quiz[]> {
     return this.http.get<Quiz[]>(this.apiUrl + 'getallquizzes');
   }
@@ -31,6 +34,10 @@ export class QuizService {
       return this.http.post<Quiz>(this.apiUrl + 'createquiz', quiz);
       
     
+  }
+
+  getQuizById(id: number): Observable<Quiz> {
+    return this.http.get<Quiz>(this.apiUrl + `getquizbyid/${id}`);
   }
 
 

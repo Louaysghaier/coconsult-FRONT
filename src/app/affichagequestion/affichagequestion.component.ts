@@ -139,11 +139,12 @@ finishQuiz(): void {
   this.candidatservice.notifyCandidateByEmail(this.mailcandidat).subscribe(
     () => {
       console.log('Quiz finished successfully.');
+      this.router.navigateByUrl('');
       // Ajoutez ici le code à exécuter après avoir terminé le quiz
     },
     (error) => {
       console.error('Error occurred while finishing quiz:', error);
-      // Gérer les erreurs ici
+      Swal.fire('Check your mail for details');
     }
   );
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { JobOpport } from 'src/app/_models/jobopport';
 import { JobopportService } from 'src/app/_services/jobopport.service';
@@ -13,8 +13,7 @@ import { AddjobsComponent } from '../addjobs/addjobs.component';
 })
 export class JobsComponent {
   jobs: JobOpport[] = [];
-  displayedColumns: string[] = ['titre', 'description', 'qualifications', 'lieu','dateLimite','actions'];  
- 
+
   
   constructor(private jobopportService: JobopportService,private dialog: MatDialog) {}
 

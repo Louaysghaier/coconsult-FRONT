@@ -4,5 +4,6 @@ export class CandidatDetailsDTO {
     candidatEmail: string;
     jobOpportTitle: string;
     finalMark: number;
+    pdfFile:string;
   }
     

@@ -3,6 +3,7 @@ import{MsgService}from'./msg.service'
 import { Message } from '../admin/notifications/message';
 import { AccountService } from '../_services';
 import { User } from '../_models';
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-landing',
     templateUrl: './landing.component.html',
@@ -18,7 +19,7 @@ export class LandingComponent implements OnInit {
   isconn:Boolean;
   user?: User | null;
 
-  constructor(private MsgService :MsgService,private authService  :AccountService) { 
+  constructor(private MsgService :MsgService,private authService  :AccountService,private router:Router) { 
     
 
 
@@ -38,5 +39,7 @@ export class LandingComponent implements OnInit {
     error => console.log(error));
 
     }
-
+    openJobOpportModal() {
+      this.router.navigate(['/chat']);
+}
 }

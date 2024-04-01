@@ -20,14 +20,16 @@ export class ChatGptService {
 
   messageMap = {
     "hi": "hello",
-    "Hi": "Hello",
+    "hello": "hi",
     "who are you": "my name is testcode ai",
     "what is angular": "angular is the best framework",
     "tell me about job opportunities": "Here are some available job opportunities:",
-    "job opportunities": "Here are some available job opportunities:",
+    "job opportunities": "you can just click on the button for detail Here are some available job opportunities:",
     "job": "Here are some available job opportunities:",
     "quiz":"Here Some quiz that we have ",
-    "je t'aime":"jaime que dorra"
+    "je t'aime":"jaime que dorra",
+    "can you help me ":"yes of course "
+
   };
 
   async getBostAnswer(msg: string): Promise<void> {
@@ -71,8 +73,8 @@ private formatquiz (quiz:any[]):string{
   let formattedString = "Here Some quiz that we have:\n";
   quiz.forEach(opport => {
     formattedString += `Title: ${opport.titre}\n`;
-    formattedString += `dateQuiz: ${opport.dateQuiz}\n`;
-    formattedString += `description: ${opport.description}\n`;
+    formattedString += `numberOfQuestions: ${opport.numberOfQuestions}\n`;
+   
   
   });
   return formattedString;

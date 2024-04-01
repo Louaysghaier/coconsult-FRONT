@@ -1,56 +1,31 @@
+<app-navbardorra></app-navbardorra>
+
 <main>
   <section class="section section-shaped section-lg">
-    <div class="shape shape-style-1 bg-gradient-default">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-
-  
-  <P style="text-align: center;">
-    <span style="font-size: 3rem; font-weight: bold; color: red; animation: moveText 2s infinite;">ARE</span>
-    <span style="font-size: 3rem; font-weight: bold; color: blue; animation: moveText 2s infinite;">YOU</span>
-    <span style="font-size: 3rem; font-weight: bold; color: green; animation: moveText 2s infinite;">READY</span>
-  </P>
-  
-  
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span><span></span>>
+<span></span>
+  </section>
 
   <div class="container">
-    <div *ngFor="let quiz of quizzes" class="card card-hover panel" [class.disabled]="quizInProgress" (click)="viewQuestions(quiz.id_quiz)">
-      <img class="card__background" src="https://play-lh.googleusercontent.com/wnMZo6A4XeIT0kvuSWDsQy2kY4zxVqqic0r9Fk6pm1HDrTX8mze9LG_xt-OBcZvRs3M" alt="Photo of Cartagena's cathedral at the background and some colonial style houses" width="1920" height="2193">
-      <div class="card__content">
-        <div class="card__content--container">
-          <h2 class="card__title">{{ quiz.titre }}</h2>
-          <p class="card__description">{{ quiz.description }}</p>
+    <div class="row">
+      <div class="card" *ngFor="let quiz of quizzes"style=" text-decoration: aliceblue;  background-color:rgb(196, 233, 48)">
+        <div class="image">
+          <img [src]="'assets/images/quiz.avif'" alt="Quiz Image">
         </div>
-        <a href="#" class="card__button">
-          <span>View Questions</span>
-          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-          </svg>
-        </a>
+          
+        <div class="content">
+          <p>le sujet de ce quiz est {{ quiz.titre }}</p>
+          <p> ce quiz contien {{ quiz.numberOfQuestions }} questions</p>
+    
+         
+            <button class="btn btn-primary" [disabled]="quizInProgress" (click)="viewQuestions(quiz.id_quiz)">View Questions</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>  
+  
 </main>

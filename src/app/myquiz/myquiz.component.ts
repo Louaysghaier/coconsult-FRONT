@@ -18,29 +18,33 @@ export class MyquizComponent {
  
 
   ngOnInit(): void {
-    this.loadQuizzes();
+    this.loadQuiz();
   }
 
-  loadQuizzes(): void {
-    this.quizService.getAllQuizzes()
+  loadQuiz(): void {
+    this.quizService.getRandomQuiz()
       .subscribe(
-        (quizzeslist) => {
-          this.quizzes = quizzeslist;
-          console.log('Quizzes are loaded'+quizzeslist);
+        (quiz: Quiz) => {
+          this.quizzes.push(quiz); // Utilisez push pour ajouter le quiz au tableau de quizzes
+          console.log('Random quiz loaded:', quiz);
         },
         (error) => {
-          console.error('Erreur lors du chargement des quizzes :', error);
+          console.error('Erreur lors du chargement du quiz aléatoire :', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Une erreur est survenue lors du chargement du quiz aléatoire. Veuillez réessayer plus tard.',
+          });
         }
       );
   }
-
   viewQuestions(quizId: number): void {
     if (this.quizInProgress) {
       // Afficher une alerte si un quiz est déjà en cours
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Vous avez déjà commencé un quiz!',
+        text: 'connecter vous svp!',
       });
     } else {
       // Marquer un quiz en cours et naviguer vers les questions du quiz

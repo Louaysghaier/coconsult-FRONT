@@ -24,4 +24,7 @@ export class CandidatresultComponent {
         console.error('Error fetching candidat details:', error);
       });
   }
+
+
+  
 }

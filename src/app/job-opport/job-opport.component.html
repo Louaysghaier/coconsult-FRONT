@@ -1,14 +1,23 @@
 
 
 
-<ul>
-  <li *ngFor="let job of jobOpports$ | async">
+  <div class="container">
    
-    Mots1: {{ job.mots1 }}<br>
-    Mots2: {{ job.mots2 }}<br>
-    Qualifications: {{ job.qualifications }}<br>
-    Lieu: {{ job.lieu }}<br>
-    Date Limite: {{ job.dateLimite | date }}<br><br>
-    <button (click)="postuler(job.id_offre)">Postuler</button>
-  </li>
-</ul>
+    <div class="card" *ngFor="let job of  jobOpports$ | async"style=" text-decoration: aliceblue; background-color:  rgb(82, 87, 92);">
+      <div class="image">
+        <img [src]="'assets/images/istockphoto-1173054931-612x612.jpg'" alt="Job Image">
+      </div>
+      <div class="content">
+        <h3>{{ job.titre }}</h3>
+        <p>L'offre de cette job ce concerne {{ job.description }} </p>
+        <p>et l'qualification de ce job est {{ job.qualifications }}</p>
+        <p>le lieu est {{ job.lieu }}</p>
+        <p>la date limite {{ job.dateLimite }}</p>
+        <button (click)="postuler(job.id_offre)"mat-raised-button type="submit" class="btn btn-danger mx-auto mt-3 text-white" style="width: 150px; text-decoration: rgb(251, 252, 253); font-size: 16px; background-color: rgb(104, 104, 151);">Postuler</button>
+       
+      </div>
+    
+    </div>
+  </div>
+  
+  

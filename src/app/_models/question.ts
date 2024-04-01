@@ -12,8 +12,8 @@ export class Question{
    option4!:string;
    answer?:string;
    selected_answer!:string;
-quiz?:Quiz;
-
+quiz:Quiz;
+id_quiz:number
 
 }
    

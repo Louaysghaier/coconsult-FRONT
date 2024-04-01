@@ -4,6 +4,8 @@ import { QuestionService } from 'src/app/_services/question.service';
 import { QuestionComponent } from '../question/question.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatequestionComponent } from '../updatequestion/updatequestion.component';
+import { Quiz } from 'src/app/_models/quiz';
+import { QuizService } from 'src/app/_services/quiz.service';
 
 @Component({
   selector: 'app-questions',
@@ -12,15 +14,29 @@ import { UpdatequestionComponent } from '../updatequestion/updatequestion.compon
 })
 export class QuestionsComponent {
   questions: Question[] = [];
-  displayedColumns: string[] = ['ponderation', 'type', 'content', 'answer','option1','option2','option3','option4','actions'];  
- 
+  displayedColumns: string[] = ['ponderation',  'content', 'answer','option1','option2','option3','option4','actions'];  
+  quizzes: Quiz[] = []; 
 
-  constructor(private questionService: QuestionService,private dialog: MatDialog) {}
+  constructor(private questionService: QuestionService,private dialog: MatDialog, private quizService:QuizService) {}
 
   ngOnInit(): void {
     this.fetchQuestions();
+    this.fetchQuizzes();
+ 
   }
+ 
+  
 
+  fetchQuizzes(): void {
+    this.quizService.getAllQuizzes().subscribe(
+      (quizzes: Quiz[]) => {
+        this.quizzes = quizzes;
+      },
+      (error) => {
+        console.error('Error fetching quizzes:', error);
+      }
+    );
+  }
   fetchQuestions(): void {
     this.questionService.getAllquestion().subscribe(
       (questions: Question[]) => {

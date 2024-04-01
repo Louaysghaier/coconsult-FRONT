@@ -5,3 +5,6 @@ export class JobOpport{
     qualifications!: String;
     lieu!: String ;
      dateLimite!: Date;}
+
+
+  

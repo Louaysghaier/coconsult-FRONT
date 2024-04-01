@@ -4,7 +4,7 @@ import { Question } from "./question";
 export class Quiz{   
 id_quiz!:number;
 titre?:string;
-dateQuiz?:Date;
+
 numberOfQuestions?:string;
  
 id_jobopport?: number; 

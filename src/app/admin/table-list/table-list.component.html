@@ -1,0 +1,158 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cardo">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Liste empolyes</h4>
+                        <p class="card-category"> Tout liste des empolyes</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+  
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        name
+                                    </th>
+                                    <th>
+                                        username
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                      number telephone
+                                    </th>
+                                  
+                                    <th>
+                                      Adress
+                                    </th>
+                                    <th>
+                                      Blocked ?
+                                    </th>
+                                    <th>
+                                      active\decactive(user)
+                                  </th>
+                                </thead>
+                               
+                                <tbody *ngFor="let user of emlpoyes">
+                                  <!-- *ngIf="user.roles.name=='ROLE_Employee'"  -->
+                                    <tr >
+                                        <td>
+                                            {{user.id}}
+                                        </td>
+                                        <td>
+                                          {{user.Name}}
+                                      </td>
+                                        <td>
+                                          {{user.username}}
+                                      </td>
+                                        <td>
+                                          {{user.email}}
+                                      </td>
+                                      <td>
+                                          {{user.number}}
+                                      </td>
+                                     
+                                      <td>
+                                          {{user.address}}
+                                      </td>
+                                      <td>
+                                          {{user.blocked}}
+                                      </td>
+                                        <td>
+                                          <button *ngIf="!user.valid"(click)="activateUser(user)" type="button" class="btn btn-danger" >Active</button>
+                                          <button *ngIf="user.valid"(click)="bloqueUser(user)" type="button" class="btn btn-primary">Bloque</button>
+                                        </td>
+                                     
+                                    </tr>
+                               
+                                </tbody>
+                             
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+              <div class="cardo card-plain">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title mt-0"> Liste des entreprise</h4>
+                      <p class="card-category"> Here is a subtitle for this table</p>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead class=" text-primary">
+  
+                                  <th>
+                                      ID
+                                  </th>
+                                  <th>
+                                      name
+                                  </th>
+                                  <th>
+                                      username
+                                  </th>
+                                  <th>
+                                      Email
+                                  </th>
+                                  <th>
+                                    number telephone
+                                  </th>
+                                
+                                  <th>
+                                    Adress
+                                  </th>
+                                  <th>
+                                    Blocked ?
+                                  </th>
+                                  <th>
+                                    active\decactive(user)
+                                </th>
+                              </thead>
+                              <tbody *ngFor="let user of admins">
+                                  <tr>
+                                      <td>
+                                          {{user.id}}
+                                      </td>
+                                      <td>
+                                        {{user.Name}}
+                                      </td>
+                                      <td>
+                                        {{user.username}}
+                                      </td>
+                                      <td>
+                                        {{user.email}}
+                                    </td>
+                                    <td>
+                                        {{user.number}}
+                                    </td>
+                                    <td>
+                                        {{user.address}}
+                                    </td>
+                                    <td>
+                                        {{user.blocked}}
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger">Active</button>
+                                        <button type="button" class="btn btn-primary">Deactive</button>
+                                    </td>
+                                  
+                                  </tr>
+                             
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  

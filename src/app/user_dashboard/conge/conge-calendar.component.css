@@ -1,0 +1,5 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+#calendar {
+    width: 70%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the calendar horizontally */
+}

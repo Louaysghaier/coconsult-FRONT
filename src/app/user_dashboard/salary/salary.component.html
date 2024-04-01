@@ -1,0 +1,61 @@
+<h2 class="add-salary-title">Add salary</h2>
+
+<div class="form-group">
+  <label for="selectedUser" class="form-label">Select User:</label>
+  <select id="selectedUser" [(ngModel)]="selectedUser" class="form-control">
+    <option *ngFor="let employee of employees" [ngValue]="employee">{{ employee.username }}</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="salaryInput" class="form-label">Enter Salary:</label>
+  <input type="number" id="salaryInput" [(ngModel)]="salary" class="form-control">
+</div>
+
+<div class="form-group">
+  <label for="impotInput" class="form-label">Enter Impot:</label>
+  <input type="number" id="impotInput" [(ngModel)]="impot" class="form-control">
+</div>
+
+<div class="form-group">
+  <label for="currencyInput" class="form-label">Select Currency:</label>
+  <select id="currencyInput" [(ngModel)]="currency" class="form-control">
+    <option value="TND">Tunisian Dinar (TND)</option>
+    <option value="USD">US Dollar (USD)</option>
+    <!-- Add more currency options as needed -->
+  </select>
+</div>
+
+<button (click)="addSalary()" class="btn btn-primary">Add Salary</button>
+
+<hr>
+
+<h2>Display Salaries</h2>
+
+<div class="form-group">
+  <label for="userSelect">Select User:</label>
+  <select id="userSelect" [(ngModel)]="selectedUserId" (change)="onUserSelect()" class="form-control">
+    <option *ngFor="let employee of employees" [ngValue]="employee.id">{{ employee.username }}</option>
+  </select>
+</div>
+<table *ngIf="selectedUserId && salaries" class="table">
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Impot</th>
+      <th>Currency</th>
+      <th>Date</th>
+      <!-- Add more salary details as needed -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let salary of salaries">
+      <td>{{ salary.salaire }}</td>
+      <td>{{ salary.impot }}</td>
+      <td>{{ salary.currency }}</td>
+      <td>{{ salary.date | date:'yyyy-MM-dd' }}</td>
+      <!-- Add more salary details as needed -->
+    </tr>
+  </tbody>
+</table>
+

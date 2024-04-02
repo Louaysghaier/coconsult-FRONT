@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/_models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserlistService {
-  private baseURL  ="http://localhost:8081/api/user/list-Userco2/ASC";
-  private baseURLactive  ="http://localhost:8081/api/user/validate-user/";
-  private baseUserRole  ="http://localhost:8081/api/user/list-RolesName/";
-  private baseBlockedUser="http://localhost:8081/api/user/bloque-user/"
+  private baseURL  ="http://localhost:8082/api/user/list-user";
+  private baseURLactive  ="http://localhost:8082/api/user/validate-user/";
+  private baseUserRole  ="http://localhost:8082/api/user/list-RolesName/";
+  private baseBlockedUser="http://localhost:8082/api/user/bloque-user/";
+  private baseGetUserById = "http://localhost:8082/api/user/getUserById/";
+
 
 
 
@@ -19,7 +21,9 @@ export class UserlistService {
   getUserList(): Observable<User[]>{
     return this.httpClient.get<User[]>(this.baseURL);
   }
-  
+  getUserById(id: number): Observable<User> {
+    return this.httpClient.get<User>(this.baseGetUserById + id);
+  }
   activateUser(id:Number): Observable<any> {
     return this.httpClient.put(this.baseURLactive+id, id);
     }

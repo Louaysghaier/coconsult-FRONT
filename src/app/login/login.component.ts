@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SignupComponent } from '../signup/signup.component';
 import { AccountService } from '../_services';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   focus;
   focus1;
   loginError: string = '';
-  rememberMe = false; 
+
+  rememberMe : boolean = false; 
    constructor(private authService: AccountService, private router: Router) { }
   
    user1: any;
@@ -24,6 +26,10 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
+  onRememberMeChange(): void {
+    // This method is called when the value of the "Remember me" checkbox changes
+    console.info('Remember me value changed:', this.rememberMe);
+  }
   onSubmit(loginForm: NgForm) {
     if (loginForm.valid) {
       const email = this.user.email;
@@ -31,13 +37,22 @@ export class LoginComponent implements OnInit {
       this.authService.login(email, password).subscribe(
         (response) => {      
           console.log('User logged in successfully!');
-          const token = response.accessToken;
-          if (this.rememberMe) {
-            localStorage.setItem('access_token', token);
-          } else {
-            console.log("token"+token)
-            sessionStorage.setItem('access_token', token);
-          }
+          const accessToken = response.accessToken;
+          const   refreshToken = response.refreshToken;
+          
+          // Check if rememberMe is true, then store tokens in localStorage
+        if (this.rememberMe === true) {
+          localStorage.setItem('user', JSON.stringify(response));
+
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('refreshToken', refreshToken);
+        } else {
+          sessionStorage.setItem('user', JSON.stringify(response));
+
+          // Otherwise, store tokens in sessionStorage
+          sessionStorage.setItem('accessToken', accessToken);
+          sessionStorage.setItem('refreshToken', refreshToken);
+        }
          
           const userAuthorities = response.authorities.map((authority) => authority.authority);
           
@@ -64,8 +79,12 @@ export class LoginComponent implements OnInit {
 
         },
         (error) => {
-          console.error('Invalid email or password. Please try again.');
-          this.loginError = 'Invalid email or password. Please try again.';
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
+             this.loginError = 'Invalid email or password. Please try again.';
         }
       );
     } else {

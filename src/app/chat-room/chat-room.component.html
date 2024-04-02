@@ -1,0 +1,64 @@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<style>
+    .chat-room {
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+    .chat-header {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+    }
+    .chat-messages {
+        height: 400px;
+        overflow-y: scroll;
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+    .chat-input {
+        padding: 10px;
+    }
+    .user-icon {
+        height: 50px;
+        width: 50px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+</style>
+
+<div class="chat-room ">
+    <div class="chat-header">
+        <h2>Chat Room</h2>
+    </div>
+
+    <div class="chat-messages">
+        <!-- Example of a message -->
+        <div class="media">
+            <div class="user-icon">
+                <span id="userInitial">A</span>
+            </div>
+            <div class="media-body">
+                <h5 class="mt-0" id="username">Username</h5>
+                <p>Message content...</p>
+            </div>
+        </div>
+        <!-- Messages will be displayed here -->
+    </div>
+
+    <div class="chat-input">
+        <form id="messageForm" class="form-inline">
+            <input type="text" id="messageInput" class="form-control mr-2" placeholder="Type a message...">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+</div>

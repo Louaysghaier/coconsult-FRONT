@@ -17,14 +17,15 @@ export class ActivityService {
     return this.httpClient.get<Activity[]>(`${this.baseUrl}/getAllActivities`);
   }
 
-  addActivity(activity: Activity): Observable<Activity> {
-    return this.httpClient.post<Activity>(`${this.baseUrl}/addActivity`, activity);
+  addActivity(activity: Activity, projectTitle: string): Observable<Activity> {
+    return this.httpClient.post<Activity>(`${this.baseUrl}/addActivity/${projectTitle}`, activity);
   }
+  
   editActivity(activityId: number, updatedActivity: Activity): Observable<Activity> {
     return this.httpClient.put<Activity>(`${this.baseUrl}/editActivityByID/${activityId}`, updatedActivity);
   }
-  getActivityBayID(activityId: number): Observable<Activity>{
-    return this.httpClient.get<Activity>(`${this.baseUrl}/addActivity`);
+  getActivityBayID(activityId: number): Observable<Activity> {
+    return this.httpClient.get<Activity>(`${this.baseUrl}/getActivityByID/${activityId}`);
   }
   deleteActivity(activityId: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.baseUrl}/DeleteActivityByID/${activityId}`);

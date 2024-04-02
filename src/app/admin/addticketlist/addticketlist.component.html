@@ -1,0 +1,47 @@
+<div class="popup-container">
+  <div class="popup-content container">
+    <h1>Ajouter un ticket</h1>
+    <form (ngSubmit)="addTicket()" [formGroup]="ticketForm">
+      <div class="form-group">
+        <label for="ticketPriority">Priorité du ticket:</label>
+        <select formControlName="ticketPriority" class="form-control">
+          <option *ngFor="let priority of ticketPriority" [value]="priority">{{ priority }}</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="ticketContent">Contenu du ticket:</label>
+        <input type="text" formControlName="ticketContent" class="form-control" placeholder="Saisissez le contenu du ticket">
+      </div>
+
+      <div class="form-group">
+        <label for="tickettitle">Titre du ticket:</label>
+        <textarea formControlName="tickettitle" class="form-control" placeholder="Saisissez le titre du ticket ici"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="dateAssigned">Date Assignée:</label>
+        <input type="datetime-local" formControlName="dateAssigned" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="ticketStatus">Statut du ticket:</label>
+        <select formControlName="ticketStatus" class="form-control">
+          <option *ngFor="let status of ticketStatus" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="username">Assigner à:</label>
+        <select formControlName="username" class="form-control">
+            <option *ngFor="let user of users" [value]="user.username">{{ user.username }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Annuler</button>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </div>
+    </form>
+  </div>
+</div>

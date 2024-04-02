@@ -1,10 +1,12 @@
-export class Activity {
-    idActivity! : number;
-    nbreOfTask! :number;
-    taskType! :ActivityType;
-    
+import { Projets } from "./project";
 
-}
+export class Activity {
+    idActivity!: number;
+    nbreOfTask!: number;
+    activityContent!: number;
+    taskType!: ActivityType;
+    projet!: Projets; // Mettez à jour pour inclure les détails du projet associé
+  }
 
 export enum ActivityType{
     Security = 'Security',

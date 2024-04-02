@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -29,6 +29,14 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutDirective } from './shared/aboutus/about.directive';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
+import { NgxCaptchaModule } from 'ngx-captcha';
+//import { ReactiveFormsModule } from '@angular/forms';
+import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
+import { ForgetpassComponent } from './forgetpass/forgetpass.component';
+import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -43,12 +51,19 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
     AboutusComponent,
     ContactComponent,
     AboutDirective,
-  
+    ForgetpassComponent,
+    LoginforgetpasswordComponent,
+    ChatRoomComponent,
     
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
   imports: [
+    ReactiveFormsModule,
+    NgxCaptchaModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     NgOtpInputModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -65,10 +80,16 @@ import { ErrorInterceptor, JwtInterceptor } from './_helpers';
     FontAwesomeModule,
     AdminLayoutModule,
     DashboardModule,
-    
 
   ],
   providers: [
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+        size: 'normal'
+      } as RecaptchaSettings,
+    },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

@@ -12,21 +12,16 @@ import { AuthService } from '../login/auth.service';
 export class MsgService {
 
   
-  private baseURL  ="http://localhost:8081/api/message/add-message";
+  private baseURL  ="http://localhost:8082/Msg/create";
 
   message: Message=new Message();
 
   constructor(private httpClient: HttpClient,private authService: AuthService) { }
  
   createMessage(message: Message): Observable<any>{
-    const token = this.authService.getAuthToken();
+    //const token = this.authService.getAuthToken();
 
-    var headers =new HttpHeaders({
-      Authorization: `access ${token}`
-      })
-      const httpOptions = {
-        headers: headers,
-      };
-      return this.httpClient.post(this.baseURL, message, httpOptions);
+   
+      return this.httpClient.post(this.baseURL, message);
     }
   }

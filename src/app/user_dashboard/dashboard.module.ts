@@ -11,7 +11,7 @@ import { AppRoutingModule } from '../app.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatRippleModule} from '@angular/material/core';
@@ -19,6 +19,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { CardComponent } from './solution/card/card.component';
+import { MatDialog } from '@angular/material/dialog';
+import { TicketComponent } from './ticket/ticket.component';
+import {  AddticketComponent } from './addticket/addticket.component';
 
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard',
@@ -29,6 +32,8 @@ const dashboardRoutes: Routes = [
     { path: 'vertical-nav-bar', component: VerticalNavBarComponent },
     {path: 'settings',component:SettingsComponent},
     {path:'solutions', component:SolutionComponent},
+    {path:'ticket', component:TicketComponent},
+
   ],
   },
   ];
@@ -44,6 +49,8 @@ const dashboardRoutes: Routes = [
       VerticalNavBarComponent,
       MonprofilComponent,
       CardComponent,
+      TicketComponent,
+      AddticketComponent
     ],
     imports: [
       
@@ -56,8 +63,9 @@ const dashboardRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-      CommonModule,
-      FontAwesomeModule,
+    CommonModule,
+    FontAwesomeModule,
+    
       
       // Import other modules you need
 

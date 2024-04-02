@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.LoginComponent = void 0;
 var core_1 = require("@angular/core");
+var sweetalert2_1 = require("sweetalert2");
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(authService, router) {
         this.authService = authService;
@@ -20,23 +21,65 @@ var LoginComponent = /** @class */ (function () {
         };
     }
     LoginComponent.prototype.ngOnInit = function () { };
+    LoginComponent.prototype.onRememberMeChange = function () {
+        // This method is called when the value of the "Remember me" checkbox changes
+        console.info('Remember me value changed:', this.rememberMe);
+    };
     LoginComponent.prototype.onSubmit = function (loginForm) {
         var _this = this;
         if (loginForm.valid) {
             var email = this.user.email;
             var password = this.user.password;
-            this.authService.login(email, password, this.rememberMe).subscribe(function (response) {
+            this.authService.login(email, password).subscribe(function (response) {
                 console.log('User logged in successfully!');
-                var token = response.jwtToken;
-                if (_this.rememberMe) {
-                    localStorage.setItem('access_token', token);
+                var accessToken = response.accessToken;
+                var refreshToken = response.refreshToken;
+                // Check if rememberMe is true, then store tokens in localStorage
+                if (_this.rememberMe === true) {
+                    localStorage.setItem('user', JSON.stringify(response));
+                    localStorage.setItem('accessToken', accessToken);
+                    localStorage.setItem('refreshToken', refreshToken);
                 }
                 else {
-                    sessionStorage.setItem('access_token', token);
+                    sessionStorage.setItem('user', JSON.stringify(response));
+                    // Otherwise, store tokens in sessionStorage
+                    sessionStorage.setItem('accessToken', accessToken);
+                    sessionStorage.setItem('refreshToken', refreshToken);
                 }
-                _this.router.navigate(['calcul/work']);
+                var userAuthorities = response.authorities.map(function (authority) { return authority.authority; });
+                if (userAuthorities.includes("Entreprise")) {
+                    _this.router.navigate(['entreprise_dashboard']);
+                }
+                else if (userAuthorities.includes("USER")) {
+                    _this.router.navigate(['user_dashboard']);
+                }
+                else if (userAuthorities.includes("Employee")) {
+                    _this.router.navigate(['user_dashboard']);
+                }
+                else if (userAuthorities.includes("Manager")) {
+                    _this.router.navigate(['user_dashboard']);
+                }
+                else if (userAuthorities.includes("HR")) {
+                    _this.router.navigate(['user_dashboard']);
+                }
+                else if (userAuthorities.includes("CRM")) {
+                    _this.router.navigate(['user_dashboard']);
+                }
+                else if (userAuthorities.includes("PM")) {
+                    _this.router.navigate(['user_dashboard']);
+                }
+                else if (userAuthorities.includes("Consult")) {
+                    _this.router.navigate(['user_dashboard']);
+                }
+                else if (userAuthorities.includes("ADMIN")) {
+                    _this.router.navigate(['admin']);
+                }
             }, function (error) {
-                console.error('Invalid email or password. Please try again.');
+                sweetalert2_1["default"].fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!"
+                });
                 _this.loginError = 'Invalid email or password. Please try again.';
             });
         }

@@ -10,5 +10,6 @@
       <option *ngFor="let type of taskTypes" [value]="type">{{type}}</option>
     </select>
   </div>
+  <button mat-button (click)="onCancel()">Annuler</button>
   <button type="submit">Modifier</button>
 </form>

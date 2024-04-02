@@ -11,8 +11,12 @@ var core_1 = require("@angular/core");
 var notificationService = /** @class */ (function () {
     function notificationService(httpClient) {
         this.httpClient = httpClient;
-        this.baseURL = "http://localhost:8081/api/message/list-message";
+        this.baseURL = "http://localhost:8082/Msg/getAll";
+        this.env = "http://localhost:8082/Msg/sendNotification";
     }
+    notificationService.prototype.sendNotification = function (message) {
+        return this.httpClient.post(this.env, message);
+    };
     notificationService.prototype.getListMessage = function () {
         return this.httpClient.get(this.baseURL);
     };

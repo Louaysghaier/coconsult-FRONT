@@ -10,7 +10,9 @@ export class WebSocketService {
     constructor() {
         this.socket$ = webSocket('ws://localhost:8082/ws');
     }
-
+    connect(): WebSocketSubject<any> {
+        return this.socket$;
+      }
     // Method to send messages over WebSocket
     sendMessage(message: any) {
         this.socket$.next(message);

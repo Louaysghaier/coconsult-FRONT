@@ -54,7 +54,10 @@ export class SignupComponent implements OnInit {
           const roleName = this.user.Role; 
 
           this.authService.register(user, roleName).subscribe(
+            
             (response) => {
+              localStorage.setItem('email', this.user.email);
+
               console.log('User registered successfully!');
               Swal.fire({
                 title: "Open Your mail?",

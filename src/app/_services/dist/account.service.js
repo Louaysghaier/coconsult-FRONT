@@ -46,6 +46,7 @@ var AccountService = /** @class */ (function () {
     };
     AccountService.prototype.logout = function () {
         // remove user from local storage and set current user to null
+        localStorage.removeItem('email');
         localStorage.removeItem('user');
         sessionStorage.removeItem('user');
         sessionStorage.removeItem('accessToken');

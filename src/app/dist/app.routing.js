@@ -35,13 +35,13 @@ var routes = [
     { path: 'signin', component: login_component_1.LoginComponent },
     { path: 'register', component: signup_component_1.SignupComponent },
     { path: 'signupentrprise', component: signupentreprise_component_1.SignupEntrpriseComponent },
-    { path: 'verification', component: validation_component_1.ValidationComponent },
     { path: 'aboutus', component: aboutus_component_1.AboutusComponent },
     { path: 'contact', component: contact_component_1.ContactComponent },
     { path: 'resetpassword', component: forgetpass_component_1.ForgetpassComponent
     },
     { path: 'forgetpassword', component: loginforgetpassword_component_1.LoginforgetpasswordComponent },
     { path: 'chatroom', component: chat_room_component_1.ChatRoomComponent },
+    { path: 'verification', component: validation_component_1.ValidationComponent },
     { path: '**', redirectTo: '', component: landing_component_1.LandingComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {

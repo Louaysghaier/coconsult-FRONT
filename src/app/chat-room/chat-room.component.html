@@ -38,17 +38,17 @@
 
 <div class="chat-room">
     <div class="chat-header">
-      <h2>Chat Room</h2>
+      <h2>Chat Room of {{GroupChatname}}</h2>
     </div>
   
     <div class="chat-messages">
       <div *ngFor="let message of messages" class="media">
         <div class="user-icon">
-            <span id="userInitial">{{currentuser.username.charAt(0)}}</span>
+            <span id="userInitial">{{message.sender.username.charAt(0)}}</span>
         </div>
         <div class="media-body">
-          <h5 class="mt-0">{{currentuser.username}}</h5>
-          <p>{{ message.content }}</p>
+          <h5 class="mt-0">{{message.sender.username}}</h5>
+          <p>{{ message.message }}</p>
         </div>
       </div>
     </div>

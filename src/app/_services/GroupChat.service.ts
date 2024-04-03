@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 @Injectable({ providedIn: 'root' })
 export class GroupChatservice {
     private apiUrl = 'http://localhost:8082/api/GroupChat'; // replace with your API URL
-
+    private apiurl1='http://localhost:8082/api/Chat';
     constructor(
         private router: Router,
         private http: HttpClient
@@ -26,7 +26,9 @@ export class GroupChatservice {
           );
         
     }
-
+    getchatpergroupchat(groupId: number): Observable<any[]> {
+        return this.http.get<any[]>(`${this.apiurl1}/getAllchatsPerGroup/${groupId}`);
+    }
     addUserToGroupChatByRole(IdGroupChat: number, IdUser: [number]) : Observable<void>{
         return this.http.put<void>(`${this.apiUrl}/addUserToGroupChatByRole/${IdGroupChat}/${IdUser}`, null);
     }
@@ -51,7 +53,10 @@ export class GroupChatservice {
     getGroupChatById(groupId: number): Observable<GroupChat>{
         return this.http.get<GroupChat>(`${this.apiUrl}/getGroupChatById/${groupId}`);
     }
-
+    getGroupChatByUser(userid: number): Observable<GroupChat>{
+        return this.http.get<GroupChat>(`${this.apiUrl}/getGroupChatByuser/${userid}`);
+    }
+    
     bannedUser(bannedUser: number): Observable<User>{
         return this.http.post<User>(`${this.apiUrl}/banneduser/${bannedUser}`, null);
     }

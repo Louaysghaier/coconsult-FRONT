@@ -8,6 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.ValidationComponent = void 0;
 var core_1 = require("@angular/core");
+var sweetalert2_1 = require("sweetalert2");
+//import { error } from 'console';
 /*@Component({
   selector: 'app-validation',
   templateUrl: './validation.component.html',
@@ -65,6 +67,7 @@ var ValidationComponent = /** @class */ (function () {
     function ValidationComponent(router, otpservice) {
         this.router = router;
         this.otpservice = otpservice;
+        this.email = localStorage.getItem('email') || '';
         this.test = new Date();
         this.title = 'otp-app';
         this.inputDigitLeft = "Verify code";
@@ -95,10 +98,14 @@ var ValidationComponent = /** @class */ (function () {
         }
         if (this.otp.length === this.configOptions.length) {
             this.otpservice.verifyOTP(this.otp).subscribe(function (result) {
-                if (result) {
-                    // Faire quelque chose si le résultat est vrai
-                    _this.inputDigitLeft = "Let's go!";
-                    _this.btnStatus = 'btn-primary';
+                if (result == true) {
+                    //console.log(result);
+                    _this.otpservice.userstatus(_this.email, result).subscribe(function (resp) {
+                        _this.inputDigitLeft = "Let's go!";
+                        _this.btnStatus = 'btn-primary';
+                    }, function (error) {
+                        console.error('Error while verifying OTP:', error);
+                    });
                 }
                 else {
                     // Faire quelque chose si le résultat est faux
@@ -113,6 +120,17 @@ var ValidationComponent = /** @class */ (function () {
             this.isButtonClicked = true;
             this.router.navigate(['/signin']);
         }
+    };
+    ValidationComponent.prototype.resend = function () {
+        var _this = this;
+        this.otpservice.resendOTP(this.email).subscribe(function (newotp) {
+            _this.newotp = newotp;
+            console.log('Generated OTP:', newotp.identification);
+            sweetalert2_1["default"].fire("check your mail again !");
+        }, function (error) {
+            console.error('Error while resending OTP:', error);
+            sweetalert2_1["default"].fire("An error occurred while resending OTP. Please try again later .");
+        });
     };
     ValidationComponent = __decorate([
         core_1.Component({

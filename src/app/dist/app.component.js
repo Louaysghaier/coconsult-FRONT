@@ -80,20 +80,23 @@ var AppComponent = /** @class */ (function () {
             }
         });
         // Select the navbar element using Renderer2
-        var navbar = this.renderer.selectRootElement('nav');
+        // const navbar = this.renderer.selectRootElement('nav');
         // Add event listener for scroll using Renderer2
         this.renderer.listen('window', 'scroll', function (event) {
             _this.hasScrolled(); // Call your hasScrolled method
             var number = window.scrollY;
             if (number > 150 || window.pageYOffset > 150) {
-                _this.renderer.addClass(navbar, 'headroom--not-top');
+                _this.renderer.addClass(_this.navbarComponent, 'headroom--not-top');
             }
             else {
-                _this.renderer.removeClass(navbar, 'headroom--not-top');
+                _this.renderer.removeClass(_this.navbarComponent, 'headroom--not-top');
             }
         });
         this.hasScrolled();
     };
+    __decorate([
+        core_1.ViewChild('myNavbar')
+    ], AppComponent.prototype, "navbarComponent");
     __decorate([
         core_1.HostListener('window:scroll', ['$event'])
     ], AppComponent.prototype, "hasScrolled");

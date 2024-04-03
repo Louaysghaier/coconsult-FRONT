@@ -19,19 +19,15 @@ export class OTPSERVICE {
         return this.http.post<OTP>(`${environment.apiUrl}/OTP/GenerateOTp`, {});
     }
     verifyOTP(identification: string): Observable<boolean> {
-        return this.http.post<boolean>(`${environment.apiUrl}/OTP/VerifOTP/${identification}`, {}).pipe(
-            map(response => {
-                if (response) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-        );
+        return this.http.post<boolean>(`${environment.apiUrl}/OTP/VerifOTP/${identification}`, {})
+        
     }
     getOTPbyId(){}
-    resendOTP(existingOTP: OTP): Observable<OTP> {
-        return this.http.post<OTP>(`${environment.apiUrl}/OTP/ResendOTP`, existingOTP);
+    resendOTP(email: string): Observable<OTP> {
+        return this.http.post<OTP>(`${environment.apiUrl}/OTP/ResendOTP/${email}`, null);
+    }
+    userstatus(email:string, result:boolean): Observable<void>{
+        return this.http.post<void>(`${environment.apiUrl}/OTP/userstatus/${email}/${result}`, null);
     }
 }
 

@@ -18,8 +18,8 @@ var NavbarComponent = /** @class */ (function () {
         this.authService = authService;
         this.isCollapsed = true;
         this.yScrollStack = [];
-        this.isconn = this.authService.getIsConnected();
-        console.error('isconnnnn' + this.isconn);
+        this.isconn = this.authService.getIsConnected() || false;
+        ///console.error('isconnnnn' +this.isconn)
         this.authService.user.subscribe(function (x) { return _this.user = x; });
     }
     NavbarComponent.prototype.ngOnInit = function () {

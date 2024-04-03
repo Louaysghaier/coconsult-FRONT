@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, NavigationEnd ,RouterEvent} from '@angular/rout
 import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { filter, Subscription } from 'rxjs';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 var didScroll;
 var lastScrollTop = 0;
@@ -15,6 +16,8 @@ var navbarHeight = 0;
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+    @ViewChild('myNavbar') navbarComponent: NavbarComponent; // Reference the navbar component
+
     private _router: Subscription;
     isDashboardRoute: boolean = false;
     iscalcul:boolean=false;
@@ -84,16 +87,16 @@ export class AppComponent implements OnInit {
         });
 
     // Select the navbar element using Renderer2
-    const navbar = this.renderer.selectRootElement('nav');
+   // const navbar = this.renderer.selectRootElement('nav');
 
     // Add event listener for scroll using Renderer2
     this.renderer.listen('window', 'scroll', (event) => {
         this.hasScrolled(); // Call your hasScrolled method
         const number = window.scrollY;
         if (number > 150 || window.pageYOffset > 150) {
-            this.renderer.addClass(navbar, 'headroom--not-top');
+            this.renderer.addClass(this.navbarComponent, 'headroom--not-top');
         } else {
-            this.renderer.removeClass(navbar, 'headroom--not-top');
+            this.renderer.removeClass(this.navbarComponent, 'headroom--not-top');
         }
     });
       this.hasScrolled();

@@ -45,6 +45,7 @@ export class AccountService {
     }
     logout() {
         // remove user from local storage and set current user to null
+        localStorage.removeItem('email');
         localStorage.removeItem('user');
         sessionStorage.removeItem('user');
 

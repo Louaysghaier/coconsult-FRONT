@@ -53,6 +53,7 @@ var SignupComponent = /** @class */ (function () {
             };
             var roleName = this.user.Role;
             this.authService.register(user, roleName).subscribe(function (response) {
+                localStorage.setItem('email', _this.user.email);
                 console.log('User registered successfully!');
                 sweetalert2_1["default"].fire({
                     title: "Open Your mail?",

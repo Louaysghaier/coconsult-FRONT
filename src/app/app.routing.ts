@@ -33,13 +33,14 @@ const routes: Routes = [
   { path: 'signin', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   { path: 'signupentrprise', component: SignupEntrpriseComponent },
-  { path: 'verification', component: ValidationComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'resetpassword', component:     ForgetpassComponent
 },
 { path: 'forgetpassword', component: LoginforgetpasswordComponent},
 {path:'chatroom',component:ChatRoomComponent },
+{ path: 'verification', component: ValidationComponent },
+
 { path: '**', redirectTo: '',component: LandingComponent},
 
 ];

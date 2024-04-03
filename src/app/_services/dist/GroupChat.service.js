@@ -15,6 +15,7 @@ var GroupChatservice = /** @class */ (function () {
         this.router = router;
         this.http = http;
         this.apiUrl = 'http://localhost:8082/api/GroupChat'; // replace with your API URL
+        this.apiurl1 = 'http://localhost:8082/api/Chat';
     }
     GroupChatservice.prototype.createGroupChat = function (groupChat) {
         return this.http.post(this.apiUrl + "/createGP", groupChat)
@@ -23,6 +24,9 @@ var GroupChatservice = /** @class */ (function () {
             sweetalert2_1["default"].fire({ icon: 'error', title: 'Oops...', text: errorMessage });
             return rxjs_1.throwError(errorMessage);
         }));
+    };
+    GroupChatservice.prototype.getchatpergroupchat = function (groupId) {
+        return this.http.get(this.apiurl1 + "/getAllchatsPerGroup/" + groupId);
     };
     GroupChatservice.prototype.addUserToGroupChatByRole = function (IdGroupChat, IdUser) {
         return this.http.put(this.apiUrl + "/addUserToGroupChatByRole/" + IdGroupChat + "/" + IdUser, null);
@@ -44,6 +48,9 @@ var GroupChatservice = /** @class */ (function () {
     };
     GroupChatservice.prototype.getGroupChatById = function (groupId) {
         return this.http.get(this.apiUrl + "/getGroupChatById/" + groupId);
+    };
+    GroupChatservice.prototype.getGroupChatByUser = function (userid) {
+        return this.http.get(this.apiUrl + "/getGroupChatByuser/" + userid);
     };
     GroupChatservice.prototype.bannedUser = function (bannedUser) {
         return this.http.post(this.apiUrl + "/banneduser/" + bannedUser, null);

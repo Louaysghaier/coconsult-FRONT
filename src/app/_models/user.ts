@@ -1,4 +1,5 @@
-﻿import { Role } from "./Role";
+﻿import { GroupChat } from "./GroupChat";
+import { Role } from "./Role";
 
 export class User {
     id?: number;
@@ -10,7 +11,7 @@ export class User {
     Role?: string;
     token?: string;
     refreshToken?: string;
-
+    groupChats?:GroupChat[]=[];
     address?: string;
     valid?: boolean;
     bannedchatGP?: boolean;

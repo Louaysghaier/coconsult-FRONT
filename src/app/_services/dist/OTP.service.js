@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.OTPSERVICE = void 0;
 var core_1 = require("@angular/core");
-var operators_1 = require("rxjs/operators");
 var environment_1 = require("src/environments/environment");
 var OTPSERVICE = /** @class */ (function () {
     function OTPSERVICE(router, http) {
@@ -19,18 +18,14 @@ var OTPSERVICE = /** @class */ (function () {
         return this.http.post(environment_1.environment.apiUrl + "/OTP/GenerateOTp", {});
     };
     OTPSERVICE.prototype.verifyOTP = function (identification) {
-        return this.http.post(environment_1.environment.apiUrl + "/OTP/VerifOTP/" + identification, {}).pipe(operators_1.map(function (response) {
-            if (response) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }));
+        return this.http.post(environment_1.environment.apiUrl + "/OTP/VerifOTP/" + identification, {});
     };
     OTPSERVICE.prototype.getOTPbyId = function () { };
-    OTPSERVICE.prototype.resendOTP = function (existingOTP) {
-        return this.http.post(environment_1.environment.apiUrl + "/OTP/ResendOTP", existingOTP);
+    OTPSERVICE.prototype.resendOTP = function (email) {
+        return this.http.post(environment_1.environment.apiUrl + "/OTP/ResendOTP/" + email, null);
+    };
+    OTPSERVICE.prototype.userstatus = function (email, result) {
+        return this.http.post(environment_1.environment.apiUrl + "/OTP/userstatus/" + email + "/" + result, null);
     };
     OTPSERVICE = __decorate([
         core_1.Injectable({ providedIn: 'root' })

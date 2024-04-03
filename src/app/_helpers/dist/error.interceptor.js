@@ -57,7 +57,7 @@ var ErrorInterceptor = /** @class */ (function () {
                     sweetalert2_1["default"].fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "You session is expired on  this page!"
+                        text: "You Have no right to do anything here please contact the supervisors !"
                     });
                     // Logout user for other 401 or 403 errors
                     //alert('You session is expired on  this page');

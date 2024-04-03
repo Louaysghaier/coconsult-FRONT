@@ -54,7 +54,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "You session is expired on  this page!",
+                        text: "You Have no right to do anything here please contact the supervisors !",
                        // footer: '<a href="#">Why do I have this issue?</a>'
                       });
                     // Logout user for other 401 or 403 errors

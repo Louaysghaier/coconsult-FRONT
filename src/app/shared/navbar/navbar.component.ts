@@ -20,13 +20,13 @@ export class NavbarComponent implements OnInit {
     constructor(public location: Location, private router: Router,private authService  :AccountService) {
     //    this.isconn= localStorage.getItem('conn')
     
-    this.isconn=this.authService.getIsConnected()
-    console.error('isconnnnn' +this.isconn)
+    this.isconn=this.authService.getIsConnected()||false;
+    ///console.error('isconnnnn' +this.isconn)
     this.authService.user.subscribe(x => this.user = x);
     }
 
     ngOnInit() {
-       
+        
       this.router.events.subscribe((event) => {
         this.isCollapsed = true;
         if (event instanceof NavigationStart) {

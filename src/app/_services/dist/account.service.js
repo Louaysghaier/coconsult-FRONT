@@ -63,8 +63,8 @@ var AccountService = /** @class */ (function () {
     AccountService.prototype.getAll = function () {
         return this.http.get(environment_1.environment.apiUrl + "/users");
     };
-    AccountService.prototype.getById = function (id) {
-        return this.http.get(environment_1.environment.apiUrl + "/users/" + id);
+    AccountService.prototype.getuserById = function (id) {
+        return this.http.get(environment_1.environment.apiUrl + "/api/user/getuserbyid/" + id);
     };
     AccountService.prototype.getCurrentUser = function () {
         return this.user;
@@ -109,7 +109,7 @@ var AccountService = /** @class */ (function () {
         return this.http.put(environment_1.environment.apiUrl + "/api/user/forgetpassbyemail/" + email, resetPass);
     };
     AccountService.prototype.getAccessToken = function () {
-        return localStorage.getItem('accessToken');
+        return localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
     };
     AccountService.prototype.getrefresgtoken = function () {
         return localStorage.getItem('refreshToken') || sessionStorage.getItem('refreshToken');

@@ -11,6 +11,7 @@ export class UserlistService {
   private baseURLactive  ="http://localhost:8082/api/user/validate-user/";
   private baseUserRole  ="http://localhost:8082/api/user/list-RolesName/";
   private baseBlockedUser="http://localhost:8082/api/user/bloque-user/"
+  private basedebloquerBlockedUser="http://localhost:8082/api/user/debloque-user/"
 
 
 
@@ -21,7 +22,7 @@ export class UserlistService {
   }
   
   activateUser(id:Number): Observable<any> {
-    return this.httpClient.put(this.baseURLactive+id, id);
+    return this.httpClient.put(this.basedebloquerBlockedUser+id, id);
     }
 
   getUserByRoles(RolesName:String):Observable<any>{
@@ -32,6 +33,7 @@ export class UserlistService {
   bloquerUser(id:Number):Observable<any>{
     return this.httpClient.put(this.baseBlockedUser+id, id);
   }
-
+  debloqueruser(id:Number):Observable<any>{
+    return this.httpClient.put(this.basedebloquerBlockedUser+id, id);}
 
 }

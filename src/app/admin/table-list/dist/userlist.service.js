@@ -15,12 +15,13 @@ var UserlistService = /** @class */ (function () {
         this.baseURLactive = "http://localhost:8082/api/user/validate-user/";
         this.baseUserRole = "http://localhost:8082/api/user/list-RolesName/";
         this.baseBlockedUser = "http://localhost:8082/api/user/bloque-user/";
+        this.basedebloquerBlockedUser = "http://localhost:8082/api/user/debloque-user/";
     }
     UserlistService.prototype.getUserList = function () {
         return this.httpClient.get(this.baseURL);
     };
     UserlistService.prototype.activateUser = function (id) {
-        return this.httpClient.put(this.baseURLactive + id, id);
+        return this.httpClient.put(this.basedebloquerBlockedUser + id, id);
     };
     UserlistService.prototype.getUserByRoles = function (RolesName) {
         var url = "" + this.baseUserRole + RolesName;
@@ -28,6 +29,9 @@ var UserlistService = /** @class */ (function () {
     };
     UserlistService.prototype.bloquerUser = function (id) {
         return this.httpClient.put(this.baseBlockedUser + id, id);
+    };
+    UserlistService.prototype.debloqueruser = function (id) {
+        return this.httpClient.put(this.basedebloquerBlockedUser + id, id);
     };
     UserlistService = __decorate([
         core_1.Injectable({

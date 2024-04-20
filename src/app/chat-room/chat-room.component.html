@@ -42,22 +42,28 @@
     </div>
   
     <div class="chat-messages">
-      <div *ngFor="let message of messages" class="media">
-        <div class="user-icon">
-            <span id="userInitial">{{message.sender.username.charAt(0)}}</span>
+      <div  class="media" *ngFor="let oldChats  of oldChats ">
+        <div class="user-icon" >
+            <span id="userInitial">{{oldChats.sender.username.charAt(0)}}</span>
         </div>
-        <div class="media-body">
-          <h5 class="mt-0">{{message.sender.username}}</h5>
-          <p>{{ message.message }}</p>
+        <div class="media-body" >
+          <h5 class="mt-0">{{oldChats.sender.username}}</h5>
+          <div >
+            <p >{{ oldChats.message }}</p>
+          <div *ngFor="let messageDisplay  of messageDisplay ">
+            <p >{{ messageDisplay }}</p>
+          </div>
         </div>
       </div>
     </div>
   
     <div class="chat-input">
-      <form (submit)="sendMessage()">
-        <input type="text" [(ngModel)]="messageInput" class="form-control mr-2" placeholder="Type a message...">
-        <button type="submit" class="btn btn-primary">Send</button>
+      <form >
+        <input type="text" [(ngModel)]="messageContent" class="form-control mr-2" placeholder="Type a message...">
+        <button (click)="sendMessage()" type="submit" class="btn btn-primary">Send</button>
       </form>
     </div>
   </div>
-  
+
+
+

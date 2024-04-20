@@ -3,7 +3,10 @@ import { User } from "./user";
 
 export enum MessageType {
     SENT = 'SENT',
-    RECEIVED = 'RECEIVED'
+    RECEIVED = 'RECEIVED',
+    CHAT= 'CHAT',
+    JOIN= 'JOIN',
+    LEAVE= 'LEAVE'
 }
 
 

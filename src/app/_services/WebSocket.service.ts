@@ -1,25 +1,93 @@
 import { Injectable } from '@angular/core';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { Chat } from '../_models/Chat';
+import { of, Subject,Observable } from 'rxjs';
+import { webSocket } from 'rxjs/webSocket';
+import { map, catchError } from 'rxjs/operators';
+import * as stomp from '@stomp/stompjs';
+import { Client, Message } from '@stomp/stompjs';
 
+import { HttpClient } from '@angular/common/http';
+import { GroupChat } from '../_models/GroupChat';
+import { User } from '../_models';
+import { GroupChatservice } from './GroupChat.service';
 @Injectable({
     providedIn: 'root'
 })
 export class WebSocketService {
-    private socket$: WebSocketSubject<any>;
-
-    constructor() {
-        this.socket$ = webSocket('ws://localhost:8082/ws');
+    public stompClient: any;
+    public messagesSubject = new Subject<any>();
+    messages$ = this.messagesSubject.asObservable();
+    GroupChat: GroupChat;
+    groupChatid: number=82;
+    currentuser: User;
+    constructor(private http: HttpClient,private GroupChatservice: GroupChatservice) { 
+      this.currentuser = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user') || '{}') as User;
+      
     }
-    connect(): WebSocketSubject<any> {
-        return this.socket$;
+    findgroupchat() {
+      this.GroupChatservice.getGroupChatByUser(this.currentuser.id).subscribe((data: GroupChat) => {
+        this.GroupChat = data;
+        this.groupChatid = data.id;
+       // console.log('groupchatid:', this.groupChatid);
+       
+       // console.log(data);
+      }, error => {
+        console.error('An error occurred while loading available users:', error);
+      });
+    }
+    connect(url: string): void {
+      this.stompClient = new Client({
+        webSocketFactory: () => new WebSocket(url)
+      });
+  
+      this.stompClient.onConnect = () => {
+        console.log('Connected to WebSocket server');
+        // Subscribe to your desired destination
+
+        this.stompClient.subscribe('/topic/groupChat/' + this.groupChatid, (message) => {
+          this.messagesSubject.next(message);
+        }
+      );
+      };
+  
+      this.stompClient.onStompError = (error) => {
+        console.error('STOMP protocol error:', error);
+      };
+  
+      this.stompClient.activate();
+    }
+    // Method to subscribe to the specified group chat topic
+subscribeToGroupChatMessages(groupChatId: number): void {
+ 
+    // Subscribe to the topic where group chat messages are being broadcasted
+    this.stompClient.subscribe('/topic/groupChat/' + groupChatId, (message: any) => { 
+      const receivedMessage = message.body;
+      // Handle the received message here, such as emitting it through an observable
+      this.messagesSubject.next(receivedMessage);
+    });
+  
+}
+     subscribeToTopic(groupChatid: number) {
+      this.stompClient.subscribe('/topic/groupChat/' + groupChatid, (message: any) => { 
+        const chatMessage = JSON.parse(message.body);
+        this.messagesSubject.next(chatMessage);
+      });
+    }
+  
+    sendMessage(destination: string, message: any): void {
+      if (this.stompClient && this.stompClient.connected) {
+        this.stompClient.publish({ destination, body: JSON.stringify(message) });
+      } else {
+        console.error('WebSocket connection not established.');
       }
-    // Method to send messages over WebSocket
-    sendMessage(message: any) {
-        this.socket$.next(message);
     }
-
-    // Method to listen for incoming messages
-    getMessage() {
-        return this.socket$.asObservable();
+    disconnect(): void {
+      if (this.stompClient && this.stompClient.connected) {
+        this.stompClient.deactivate();
+      }
+    }
+  
+    getMessages(): Observable<any> {
+      return this.messagesSubject.asObservable();
     }
 }

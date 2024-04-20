@@ -65,7 +65,7 @@ export class SignupComponent implements OnInit {
                 icon: "success"
               });
               //alert('check your mail account for verification !');
-              this.router.navigate(['/verification']); 
+              // this.router.navigate(['/verification']); 
 
             },
             (error) => {

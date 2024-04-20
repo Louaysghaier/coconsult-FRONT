@@ -39,6 +39,7 @@ var environment_1 = require("src/environments/environment");
 var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
 var loginforgetpassword_component_1 = require("./loginforgetpassword/loginforgetpassword.component");
 var chat_room_component_1 = require("./chat-room/chat-room.component");
+//const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }

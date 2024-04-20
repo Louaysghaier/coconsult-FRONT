@@ -66,8 +66,8 @@ export class AccountService {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
 
-    getById(id: string) {
-        return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+    getuserById(id: number) {
+        return this.http.get<User>(`${environment.apiUrl}/api/user/getuserbyid/${id}`);
     }
     getCurrentUser(): Observable<User | null> {
         return this.user;
@@ -114,7 +114,7 @@ export class AccountService {
         return this.http.put(`${environment.apiUrl}/api/user/forgetpassbyemail/${email}`, resetPass);
     }
     getAccessToken(): string {
-        return localStorage.getItem('accessToken');
+        return localStorage.getItem('accessToken')||sessionStorage.getItem('accessToken')!;
       }
     getrefresgtoken():string{
         return localStorage.getItem('refreshToken')||sessionStorage.getItem('refreshToken')!;}

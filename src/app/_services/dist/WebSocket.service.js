@@ -8,21 +8,77 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.WebSocketService = void 0;
 var core_1 = require("@angular/core");
-var webSocket_1 = require("rxjs/webSocket");
+var rxjs_1 = require("rxjs");
+var stompjs_1 = require("@stomp/stompjs");
 var WebSocketService = /** @class */ (function () {
-    function WebSocketService() {
-        this.socket$ = webSocket_1.webSocket('ws://localhost:8082/ws');
+    function WebSocketService(http, GroupChatservice) {
+        this.http = http;
+        this.GroupChatservice = GroupChatservice;
+        this.messagesSubject = new rxjs_1.Subject();
+        this.messages$ = this.messagesSubject.asObservable();
+        this.groupChatid = 82;
+        this.currentuser = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user') || '{}');
     }
-    WebSocketService.prototype.connect = function () {
-        return this.socket$;
+    WebSocketService.prototype.findgroupchat = function () {
+        var _this = this;
+        this.GroupChatservice.getGroupChatByUser(this.currentuser.id).subscribe(function (data) {
+            _this.GroupChat = data;
+            _this.groupChatid = data.id;
+            // console.log('groupchatid:', this.groupChatid);
+            // console.log(data);
+        }, function (error) {
+            console.error('An error occurred while loading available users:', error);
+        });
     };
-    // Method to send messages over WebSocket
-    WebSocketService.prototype.sendMessage = function (message) {
-        this.socket$.next(message);
+    WebSocketService.prototype.connect = function (url) {
+        var _this = this;
+        this.stompClient = new stompjs_1.Client({
+            webSocketFactory: function () { return new WebSocket(url); }
+        });
+        this.stompClient.onConnect = function () {
+            console.log('Connected to WebSocket server');
+            // Subscribe to your desired destination
+            _this.stompClient.subscribe('/topic/groupChat/' + _this.groupChatid, function (message) {
+                _this.messagesSubject.next(message);
+            });
+        };
+        this.stompClient.onStompError = function (error) {
+            console.error('STOMP protocol error:', error);
+        };
+        this.stompClient.activate();
     };
-    // Method to listen for incoming messages
-    WebSocketService.prototype.getMessage = function () {
-        return this.socket$.asObservable();
+    // Method to subscribe to the specified group chat topic
+    WebSocketService.prototype.subscribeToGroupChatMessages = function (groupChatId) {
+        var _this = this;
+        // Subscribe to the topic where group chat messages are being broadcasted
+        this.stompClient.subscribe('/topic/groupChat/' + groupChatId, function (message) {
+            var receivedMessage = message.body;
+            // Handle the received message here, such as emitting it through an observable
+            _this.messagesSubject.next(receivedMessage);
+        });
+    };
+    WebSocketService.prototype.subscribeToTopic = function (groupChatid) {
+        var _this = this;
+        this.stompClient.subscribe('/topic/groupChat/' + groupChatid, function (message) {
+            var chatMessage = JSON.parse(message.body);
+            _this.messagesSubject.next(chatMessage);
+        });
+    };
+    WebSocketService.prototype.sendMessage = function (destination, message) {
+        if (this.stompClient && this.stompClient.connected) {
+            this.stompClient.publish({ destination: destination, body: JSON.stringify(message) });
+        }
+        else {
+            console.error('WebSocket connection not established.');
+        }
+    };
+    WebSocketService.prototype.disconnect = function () {
+        if (this.stompClient && this.stompClient.connected) {
+            this.stompClient.deactivate();
+        }
+    };
+    WebSocketService.prototype.getMessages = function () {
+        return this.messagesSubject.asObservable();
     };
     WebSocketService = __decorate([
         core_1.Injectable({

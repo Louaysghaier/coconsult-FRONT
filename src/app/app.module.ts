@@ -34,7 +34,9 @@ import { environment } from 'src/environments/environment';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+//const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,11 +70,12 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    
+
     CarouselModule.forRoot(),
     FontAwesomeModule,
     AdminLayoutModule,
     DashboardModule,
+
 
   ],
   providers: [

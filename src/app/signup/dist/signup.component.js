@@ -61,7 +61,7 @@ var SignupComponent = /** @class */ (function () {
                     icon: "success"
                 });
                 //alert('check your mail account for verification !');
-                _this.router.navigate(['/verification']);
+                // this.router.navigate(['/verification']); 
             }, function (error) {
                 console.error('Error during registration.', error);
                 sweetalert2_1["default"].fire({

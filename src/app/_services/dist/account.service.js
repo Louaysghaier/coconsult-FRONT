@@ -18,10 +18,19 @@ var AccountService = /** @class */ (function () {
         this.isconn = false;
         this.userSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
+        this.CurrentUserInfoSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')));
+        this.CurrentUserInfo = this.CurrentUserInfoSubject.asObservable();
     }
     Object.defineProperty(AccountService.prototype, "userValue", {
         get: function () {
             return this.userSubject.value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(AccountService.prototype, "CurrentUserInfoValue", {
+        get: function () {
+            return this.CurrentUserInfoSubject.value;
         },
         enumerable: false,
         configurable: true
@@ -38,6 +47,9 @@ var AccountService = /** @class */ (function () {
             console.info(user);
             _this.userSubject.next(user);
             _this.isconn = true;
+            _this.getuserById(user.id).subscribe(function (data) {
+                _this.CurrentUserInfoSubject.next(data);
+            });
             return user;
         }));
     };

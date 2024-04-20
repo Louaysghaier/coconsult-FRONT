@@ -93,10 +93,10 @@ var ChatRoomComponent = /** @class */ (function () {
         // this.chatService.subscribeToGroupChatMessages(this.groupChatid);
         this.chatService.messages$.subscribe(function (result) {
             var messageContent = _this.extractMessageContent(result);
-            //console.log('Received message:', message);
+            //console.info('Received message:', messageContent);
             _this.messageDisplay.push(messageContent);
             _this.currentChat = result;
-            console.log('messageDisplay:', _this.messageDisplay);
+            console.info('messageDisplay:', _this.messageDisplay);
         }, function (error) {
             console.error('Error processing message:', error);
         });

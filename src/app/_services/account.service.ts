@@ -10,6 +10,9 @@ import { environment } from 'src/environments/environment';
 @Injectable({ providedIn: 'root' })
 export class AccountService {
     public userSubject: BehaviorSubject<User | null>;
+    public  CurrentUserInfo:Observable<User | null>;
+    public CurrentUserInfoSubject:BehaviorSubject<User | null>;
+    
     public user: Observable<User | null>;
     isconn: any=false;
 
@@ -19,12 +22,16 @@ export class AccountService {
     ) {
         this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')!));
         this.user = this.userSubject.asObservable();
+        this.CurrentUserInfoSubject=new BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')!));
+        this.CurrentUserInfo = this.CurrentUserInfoSubject.asObservable();
     }
 
     public get userValue() {
         return this.userSubject.value;
     }
-    
+    public get CurrentUserInfoValue() {
+        return this.CurrentUserInfoSubject.value;
+    }
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/api/auth/signIn`, { email, password })
             .pipe(map(user => {
@@ -36,7 +43,10 @@ export class AccountService {
                 console.info(user);
                 this.userSubject.next(user);
                 this.isconn=true;
-
+                this.getuserById(user.id).subscribe((data: User) => {
+                    this.CurrentUserInfoSubject.next(data);
+                    
+                });
                 return user;
             }));
     }

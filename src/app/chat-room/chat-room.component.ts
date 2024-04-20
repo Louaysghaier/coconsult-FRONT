@@ -104,10 +104,10 @@ displayMessages() {
 
     this.chatService.messages$.subscribe((result) => {
       const messageContent = this.extractMessageContent(result);
-      //console.log('Received message:', message);
+      //console.info('Received message:', messageContent);
       this.messageDisplay.push(messageContent);
       this.currentChat=result;
-      console.log('messageDisplay:', this.messageDisplay);
+      console.info('messageDisplay:', this.messageDisplay);
 
     }, (error) => {
       console.error('Error processing message:', error);

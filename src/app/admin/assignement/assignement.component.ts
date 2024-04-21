@@ -4,8 +4,8 @@ import {AssignementsService} from '../../_services/assignements.service';
 
 @Component({
   selector: 'app-assignements',
-  templateUrl: './assignements.component.html',
-  styleUrls: ['./assignements.component.css']
+  templateUrl: './assignement.component.html',
+  styleUrls: ['./assignement.component.css']
 })
 export class AssignementsComponent implements OnInit {
   assignementsList: Assignements[] = [];
@@ -62,4 +62,6 @@ export class AssignementsComponent implements OnInit {
         }
     );
   }
+
+    protected readonly Assignements = Assignements;
 }

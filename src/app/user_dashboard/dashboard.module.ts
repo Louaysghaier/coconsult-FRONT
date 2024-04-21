@@ -31,9 +31,7 @@ const dashboardRoutes: Routes = [
   ],
   },
   ];
-    
-  
-  
+
   @NgModule({
     declarations: [
       HeaderComponent,
@@ -67,4 +65,3 @@ const dashboardRoutes: Routes = [
     exports: [RouterModule]
   })
   export class DashboardModule { }
-  

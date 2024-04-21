@@ -22,6 +22,12 @@ import { GroupChatComponent } from './group-chat/group-chat.component';
 import { CardGPCHATComponent } from './card-gpchat/card-gpchat.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UpdateDialogComponent } from './group-chat/update-dialog/update-dialog.component';
+import { AssignementComponent } from './assignement/assignement.component';
+import { ExpansesComponent } from './expanses/expanses.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjFeedComponent } from './proj-feed/proj-feed.component';
+import { QuoteComponent } from './quote/quote.component';
+import { TimeRecordComponent } from './time-record/time-record.component';
 const AdminLayoutRoutes: Routes = [
   {path:'admin',
 component:AdminLayoutComponent,
@@ -63,6 +69,12 @@ children: [
     GroupChatComponent,
     CardGPCHATComponent,
     UpdateDialogComponent,
+    AssignementComponent,
+    ExpansesComponent,
+    ProjectsComponent,
+    ProjFeedComponent,
+    QuoteComponent,
+    TimeRecordComponent,
 
     
   ],

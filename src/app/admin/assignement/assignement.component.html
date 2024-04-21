@@ -1,0 +1,20 @@
+<div *ngFor="let assignement of Assignements">
+    <p>{{ assignement.title }}</p>
+    <p>{{ assignement.description }}</p>
+    <!-- Autres détails d'assignement à afficher -->
+    <button (click)="deleteAssignement(assignement.id)">Supprimer</button>
+</div>
+
+<form (ngSubmit)="addAssignement()">
+    <input type="text" [(ngModel)]="newAssignement.title" name="title" placeholder="Titre">
+    <textarea [(ngModel)]="newAssignement.description" name="description" placeholder="Description"></textarea>
+    <!-- Autres champs pour l'ajout d'assignement -->
+    <button type="submit">Ajouter</button>
+</form>
+
+<!-- Pagination ou autres fonctionnalités de navigation -->
+
+<!-- Gestion des erreurs -->
+<div *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+</div>

@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { GroupChat } from '../_models/GroupChat';
 import { User } from '../_models';
 import { GroupChatservice } from './GroupChat.service';
+import { AccountService } from './account.service';
 @Injectable({
     providedIn: 'root'
 })
@@ -18,13 +19,16 @@ export class WebSocketService {
     public messagesSubject = new Subject<any>();
     messages$ = this.messagesSubject.asObservable();
     GroupChat: GroupChat;
-    groupChatid: number=82;
+    groupChatid: number;
     currentuser: User;
-    constructor(private http: HttpClient,private GroupChatservice: GroupChatservice) { 
+    constructor(private http: HttpClient,private GroupChatservice: GroupChatservice,private accountservice:AccountService) { 
       this.currentuser = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user') || '{}') as User;
+      this.GroupChat = this.accountservice.getCurrentGroupChatValue() as GroupChat || JSON.parse(localStorage.getItem('currentGroupChat') )as GroupChat;
+      this.groupChatid = this.GroupChat.id;
+        console.info('groupchatid:', this.groupChatid);
       
     }
-    findgroupchat() {
+    /*findgroupchat() {
       this.GroupChatservice.getGroupChatByUser(this.currentuser.id).subscribe((data: GroupChat) => {
         this.GroupChat = data;
         this.groupChatid = data.id;
@@ -34,7 +38,7 @@ export class WebSocketService {
       }, error => {
         console.error('An error occurred while loading available users:', error);
       });
-    }
+    }*/
     connect(url: string): void {
       this.stompClient = new Client({
         webSocketFactory: () => new WebSocket(url)

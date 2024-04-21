@@ -54,17 +54,20 @@
           </div>
         </div>
       </div>
-      <div class="media" *ngFor="let messageDisplay  of messageDisplay">
+      <div class="media" *ngFor="let message of messages">
+
         <div class="user-icon" >
-            <span id="userInitial">{{myuser.username.charAt(0)}}</span>
+            <span id="userInitial">{{message.senderUsername.charAt(0)}}</span>
         </div>
         <div class="media-body" >
-          <h5 class="mt-0">{{myuser.username}}</h5>
+          <h5 class="mt-0">{{ message.senderUsername}}</h5>
           <div >
-            <p >{{ messageDisplay }}</p>
+            <p >{{ message.content }}</p>
           
           </div>
+        </div>
       </div>
+
     </div>
   
     <div class="chat-input">

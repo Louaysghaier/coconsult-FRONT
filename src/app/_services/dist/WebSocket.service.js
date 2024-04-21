@@ -11,25 +11,28 @@ var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
 var stompjs_1 = require("@stomp/stompjs");
 var WebSocketService = /** @class */ (function () {
-    function WebSocketService(http, GroupChatservice) {
+    function WebSocketService(http, GroupChatservice, accountservice) {
         this.http = http;
         this.GroupChatservice = GroupChatservice;
+        this.accountservice = accountservice;
         this.messagesSubject = new rxjs_1.Subject();
         this.messages$ = this.messagesSubject.asObservable();
-        this.groupChatid = 82;
         this.currentuser = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user') || '{}');
+        this.GroupChat = this.accountservice.getCurrentGroupChatValue() || JSON.parse(localStorage.getItem('currentGroupChat'));
+        this.groupChatid = this.GroupChat.id;
+        console.info('groupchatid:', this.groupChatid);
     }
-    WebSocketService.prototype.findgroupchat = function () {
-        var _this = this;
-        this.GroupChatservice.getGroupChatByUser(this.currentuser.id).subscribe(function (data) {
-            _this.GroupChat = data;
-            _this.groupChatid = data.id;
-            // console.log('groupchatid:', this.groupChatid);
-            // console.log(data);
-        }, function (error) {
-            console.error('An error occurred while loading available users:', error);
-        });
-    };
+    /*findgroupchat() {
+      this.GroupChatservice.getGroupChatByUser(this.currentuser.id).subscribe((data: GroupChat) => {
+        this.GroupChat = data;
+        this.groupChatid = data.id;
+       // console.log('groupchatid:', this.groupChatid);
+       
+       // console.log(data);
+      }, error => {
+        console.error('An error occurred while loading available users:', error);
+      });
+    }*/
     WebSocketService.prototype.connect = function (url) {
         var _this = this;
         this.stompClient = new stompjs_1.Client({

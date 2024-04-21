@@ -17,10 +17,13 @@ import { AccountService } from '../_services';
 export class ChatRoomComponent {
   chats: Chat[] = [];
   messageContent: string = '';
-  messageDisplay:  string[] = [];
+  messageDisplay:  string;
+  messages: { content: string, senderUsername: string }[] = [];
+
   oldChats: Chat [] = [];
   newChats: Chat [] = [];
   displayedMessages: Chat[] = [];
+  sendermessages:string;
   currentChat: Chat;
   socket: Socket; 
   messageInput: string = '';
@@ -87,14 +90,13 @@ extractMessageContent(message: any): string {
   } else {
     return 'test'; 
   }}
-  // Function to combine old and new messages and display them in the UI
-displayMessages() {
-  // Combine old and new messages
-  const allChats = [...this.oldChats, ...this.newChats];
-  // Sort the combined array by date or any other criteria if needed
-  // Display the combined messages in the UI
-  this.displayedMessages = allChats;
-}
+  extractusername(message: any): string {
+    if (message) {
+      return message.username.trim(); 
+    } else {
+      return 'test'; 
+    }}
+
   ngOnInit() {  
     
     this.findgroupchat();
@@ -103,10 +105,11 @@ displayMessages() {
    // this.chatService.subscribeToGroupChatMessages(this.groupChatid);
 
     this.chatService.messages$.subscribe((result) => {
-      const messageContent = this.extractMessageContent(result);
-      //console.info('Received message:', messageContent);
-      this.messageDisplay.push(messageContent);
-      this.currentChat=result;
+      const body=JSON.parse(result.body);
+      console.info('Received message:', body);
+      const content = body.content.trim();
+      const senderUsername = body.sender.trim();
+      this.messages.push({ content, senderUsername });
       console.info('messageDisplay:', this.messageDisplay);
 
     }, (error) => {

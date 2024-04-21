@@ -12,29 +12,18 @@ var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
 var environment_1 = require("src/environments/environment");
 var AccountService = /** @class */ (function () {
-    function AccountService(router, http) {
+    function AccountService(router, http, GroupChatservice) {
         this.router = router;
         this.http = http;
+        this.GroupChatservice = GroupChatservice;
         this.isconn = false;
         this.userSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
-        this.CurrentUserInfoSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')));
+        this.CurrentUserInfoSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('myuserinfo') || sessionStorage.getItem('myuserinfo')));
         this.CurrentUserInfo = this.CurrentUserInfoSubject.asObservable();
+        this.CurrentgroupchatSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('currentGroupChat') || 'null'));
+        this.CurrentGroupChat = this.CurrentgroupchatSubject.asObservable();
     }
-    Object.defineProperty(AccountService.prototype, "userValue", {
-        get: function () {
-            return this.userSubject.value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(AccountService.prototype, "CurrentUserInfoValue", {
-        get: function () {
-            return this.CurrentUserInfoSubject.value;
-        },
-        enumerable: false,
-        configurable: true
-    });
     AccountService.prototype.login = function (email, password) {
         var _this = this;
         return this.http.post(environment_1.environment.apiUrl + "/api/auth/signIn", { email: email, password: password })
@@ -48,16 +37,38 @@ var AccountService = /** @class */ (function () {
             _this.userSubject.next(user);
             _this.isconn = true;
             _this.getuserById(user.id).subscribe(function (data) {
+                localStorage.setItem('myuserinfo', JSON.stringify(data));
                 _this.CurrentUserInfoSubject.next(data);
+            });
+            _this.GroupChatservice.getGroupChatByUser(user.id).subscribe(function (data) {
+                localStorage.setItem('currentGroupChat', JSON.stringify(data));
+                _this.CurrentgroupchatSubject.next(data);
             });
             return user;
         }));
+    };
+    Object.defineProperty(AccountService.prototype, "userValue", {
+        get: function () {
+            return this.userSubject.value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    //est3mlouha bach tgetiw user info koll
+    AccountService.prototype.getCurrentUserInfoValue = function () {
+        return this.CurrentUserInfoSubject.value;
+    }; //emchiw li servicetkom w asn3ou pbjet currentuser:user; mb3d fi constructor a3mlou 
+    //this.currentuser=this.accountservice.getCurrentUserInfoValue() as User;
+    //e5dmou byh tw yjikom info kol 3lé user
+    AccountService.prototype.getCurrentGroupChatValue = function () {
+        return this.CurrentgroupchatSubject.value;
     };
     AccountService.prototype.getIsConnected = function () {
         return this.userValue != null;
     };
     AccountService.prototype.logout = function () {
         // remove user from local storage and set current user to null
+        localStorage.removeItem('myuserinfo');
         localStorage.removeItem('email');
         localStorage.removeItem('user');
         sessionStorage.removeItem('user');

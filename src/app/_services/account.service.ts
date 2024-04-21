@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../_models';
 import { environment } from 'src/environments/environment';
+import { GroupChatservice } from './GroupChat.service';
+import { GroupChat } from '../_models/GroupChat';
 
 
 @Injectable({ providedIn: 'root' })
@@ -12,26 +14,25 @@ export class AccountService {
     public userSubject: BehaviorSubject<User | null>;
     public  CurrentUserInfo:Observable<User | null>;
     public CurrentUserInfoSubject:BehaviorSubject<User | null>;
-    
+    public CurrentgroupchatSubject:BehaviorSubject<GroupChat|null>;
+    public CurrentGroupChat:Observable<GroupChat|null>;
     public user: Observable<User | null>;
     isconn: any=false;
 
     constructor(
         private router: Router,
-        private http: HttpClient
+        private http: HttpClient,
+        private GroupChatservice: GroupChatservice
     ) {
         this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')!));
         this.user = this.userSubject.asObservable();
-        this.CurrentUserInfoSubject=new BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')!));
+        this.CurrentUserInfoSubject=new BehaviorSubject(JSON.parse(localStorage.getItem('myuserinfo') || sessionStorage.getItem('myuserinfo')!));
         this.CurrentUserInfo = this.CurrentUserInfoSubject.asObservable();
+        this.CurrentgroupchatSubject=new BehaviorSubject<GroupChat | null>(JSON.parse(localStorage.getItem('currentGroupChat') || 'null'));
+        this.CurrentGroupChat=this.CurrentgroupchatSubject.asObservable();
     }
 
-    public get userValue() {
-        return this.userSubject.value;
-    }
-    public get CurrentUserInfoValue() {
-        return this.CurrentUserInfoSubject.value;
-    }
+   
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/api/auth/signIn`, { email, password })
             .pipe(map(user => {
@@ -44,17 +45,36 @@ export class AccountService {
                 this.userSubject.next(user);
                 this.isconn=true;
                 this.getuserById(user.id).subscribe((data: User) => {
+                    localStorage.setItem('myuserinfo', JSON.stringify(data));
                     this.CurrentUserInfoSubject.next(data);
                     
                 });
+                this.GroupChatservice.getGroupChatByUser(user.id).subscribe((data: GroupChat) => {
+                    localStorage.setItem('currentGroupChat', JSON.stringify(data));
+                    this.CurrentgroupchatSubject.next(data);
+                });
+                
                 return user;
             }));
+    }
+    public get userValue() {
+        return this.userSubject.value;
+    }
+    //est3mlouha bach tgetiw user info koll
+    public getCurrentUserInfoValue() {
+        return this.CurrentUserInfoSubject.value;
+    }//emchiw li servicetkom w asn3ou pbjet currentuser:user; mb3d fi constructor a3mlou 
+    //this.currentuser=this.accountservice.getCurrentUserInfoValue() as User;
+    //e5dmou byh tw yjikom info kol 3lé user
+    public getCurrentGroupChatValue() {
+        return this.CurrentgroupchatSubject.value;
     }
     getIsConnected() {
         return this.userValue != null ;
     }
     logout() {
         // remove user from local storage and set current user to null
+        localStorage.removeItem('myuserinfo');
         localStorage.removeItem('email');
         localStorage.removeItem('user');
         sessionStorage.removeItem('user');

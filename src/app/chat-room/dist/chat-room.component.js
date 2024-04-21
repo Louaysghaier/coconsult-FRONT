@@ -5,13 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
 exports.__esModule = true;
 exports.ChatRoomComponent = void 0;
 var core_1 = require("@angular/core");
@@ -24,7 +17,7 @@ var ChatRoomComponent = /** @class */ (function () {
         this.accountService = accountService;
         this.chats = [];
         this.messageContent = '';
-        this.messageDisplay = [];
+        this.messages = [];
         this.oldChats = [];
         this.newChats = [];
         this.displayedMessages = [];
@@ -78,13 +71,13 @@ var ChatRoomComponent = /** @class */ (function () {
             return 'test';
         }
     };
-    // Function to combine old and new messages and display them in the UI
-    ChatRoomComponent.prototype.displayMessages = function () {
-        // Combine old and new messages
-        var allChats = __spreadArrays(this.oldChats, this.newChats);
-        // Sort the combined array by date or any other criteria if needed
-        // Display the combined messages in the UI
-        this.displayedMessages = allChats;
+    ChatRoomComponent.prototype.extractusername = function (message) {
+        if (message) {
+            return message.username.trim();
+        }
+        else {
+            return 'test';
+        }
     };
     ChatRoomComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -92,10 +85,11 @@ var ChatRoomComponent = /** @class */ (function () {
         this.chatService.connect('ws://localhost:8082/ws');
         // this.chatService.subscribeToGroupChatMessages(this.groupChatid);
         this.chatService.messages$.subscribe(function (result) {
-            var messageContent = _this.extractMessageContent(result);
-            //console.info('Received message:', messageContent);
-            _this.messageDisplay.push(messageContent);
-            _this.currentChat = result;
+            var body = JSON.parse(result.body);
+            console.info('Received message:', body);
+            var content = body.content.trim();
+            var senderUsername = body.sender.trim();
+            _this.messages.push({ content: content, senderUsername: senderUsername });
             console.info('messageDisplay:', _this.messageDisplay);
         }, function (error) {
             console.error('Error processing message:', error);

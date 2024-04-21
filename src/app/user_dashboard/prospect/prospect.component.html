@@ -1,16 +1,23 @@
-<mat-toolbar color="primary">
-    <span>Prospect Management</span>
-    <span class="example-spacer"></span>
-    <button mat-raised-button color="warn" (click)="openAddUpdateProspectForm()">
-      ADD PROSPECT
-    </button>
-    <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
-    <button mat-raised-button color="accent" (click)="fileInput.click()">
-      IMPORT PROSPECTS
-    </button>
-</mat-toolbar>
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="cardo">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Liste des prospects</h4>
+              <p class="card-category">Tous les prospects</p>
+              <button mat-raised-button  (click)="openAddUpdateProspectForm()">
+                ADD PROSPECT
+            </button>
+            <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+            <button mat-raised-button (click)="fileInput.click()">
+                IMPORT PROSPECTS
+            </button>
+            </div>
+    
 
-<div class="main-body">
+
+<div class="mat-elevation-z8 custom-table">
     <mat-form-field>
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Search by Prospect" #input>
@@ -52,7 +59,7 @@
                     </button>
                     <button mat-raised-button color="warn" (click)="deleteProspect(row.idProspect)" class="delete-button">
                         <mat-icon>delete</mat-icon>
-                    </button> 
+                    </button>
                     <button mat-raised-button color="primary" (click)="createRepertoireFromProspect(row)">Create Repertoire</button>
 
                 </td>
@@ -66,6 +73,12 @@
             </tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of prospects"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of prospects" [pageSize]="5">
+        </mat-paginator>
     </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>

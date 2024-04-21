@@ -8,7 +8,7 @@ import { ProspectService } from 'src/app/_services/prospect.service';
 import { CoreService } from '../core.service';
 import { AddUpdateProspectComponent } from '../add-update-prospect/add-update-prospect.component';
 import { RepertoireService } from 'src/app/_services/repertoire.service';
-import { Repertoire  } from 'src/app/_models/Repertoire'; // Import necessary types
+import { Repertoire } from 'src/app/_models/Repertoire'; // Import necessary types
 import { priorite } from 'src/app/_models/priorite';
 import { TypeContact } from 'src/app/_models/typeContact';
 
@@ -34,15 +34,15 @@ export class ProspectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     this.getAllProspects();
   }
 
   getAllProspects() {
     this._prospectService.getAllProspects().subscribe((data: Prospect[]) => {
-        console.log(data);
-        this.dataSource.data = data; // Assign data directly to the dataSource
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+      console.log(data);
+      this.dataSource.data = data; // Assign data directly to the dataSource
     });
   }
 
@@ -104,7 +104,7 @@ export class ProspectComponent implements OnInit {
       Priorite: priorite.FAIBLE,
       idRepertoire: 0, // Assuming 0 as the default value for idRepertoire
     };
-  
+
     this._repertoireService.createRepertoireFromProspect(prospect).subscribe({
       next: () => {
         console.log('Repertoire created successfully from Prospect');
@@ -116,7 +116,7 @@ export class ProspectComponent implements OnInit {
       }
     });
   }
-  
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
@@ -132,5 +132,5 @@ export class ProspectComponent implements OnInit {
       );
     }
   }
-  
+
 }

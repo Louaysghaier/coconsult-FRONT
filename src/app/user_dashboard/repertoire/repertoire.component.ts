@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+//import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RepertoireService } from 'src/app/_services/repertoire.service';
 import { CoreService } from '../core.service';
@@ -11,16 +11,16 @@ import { AddUpdateRepertoiresComponent } from '../add-update-repertoires/add-upd
 @Component({
   selector: 'app-repertoire',
   templateUrl: './repertoire.component.html',
-  styleUrls: ['./repertoire.component.scss']
+  //styleUrls: ['./repertoire.component.scss']
 })
 export class RepertoireComponent implements OnInit {
   
   displayedColumns: string[] = [/*"idRepertoire",*/"contact","numTel","email","typeContact","priorite","action"] 
 
-  dataSource!: MatTableDataSource<Repertoire>; 
+  dataSource: MatTableDataSource<any>; 
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator , {static : true}) paginator: MatPaginator;
+  //@ViewChild(MatSort) sort!: MatSort;
 
   constructor( private _dialog: MatDialog, private _repertoireService : RepertoireService ,
     private _coreService: CoreService

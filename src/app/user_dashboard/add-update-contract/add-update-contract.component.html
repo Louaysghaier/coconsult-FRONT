@@ -4,11 +4,12 @@
 <form [formGroup]="contractForm" (ngSubmit)="onFormSubmit()">
   <div mat-dialog-content class="content">
       <div class="row">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Repertoire</mat-label>
-          <mat-select formControlName="repertoireId" placeholder="Select repertoire">
-              <mat-option *ngFor="let repertoire of repertoires" [value]="repertoire.idRepertoire">{{ repertoire.contact }}</mat-option>
+          <mat-select formControlName="repertoireId" placeholder="Select repertoire" *ngIf="repertoires && repertoires.length">
+            <mat-option *ngFor="let repertoire of repertoires" [value]="repertoire.idRepertoire">{{ repertoire.contact }}</mat-option>
           </mat-select>
+          <div *ngIf="!repertoires || repertoires.length === 0">Loading repertoires...</div>
         </mat-form-field>
         
         <mat-form-field appearance="outline">

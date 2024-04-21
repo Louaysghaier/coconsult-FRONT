@@ -32,6 +32,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddUpdateRepertoiresComponent } from './add-update-repertoires/add-update-repertoires.component';
 import { AddUpdateProspectComponent } from './add-update-prospect/add-update-prospect.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard',
@@ -74,6 +75,7 @@ const dashboardRoutes: Routes = [
       AddUpdateRepertoiresComponent,
       AddUpdateProspectComponent,
       
+      
     ],
     imports: [
       
@@ -92,6 +94,7 @@ const dashboardRoutes: Routes = [
     MatDialogModule,
     MatTableModule,
     //MatButtonModule,
+    MatPaginatorModule,
 
       
     ],

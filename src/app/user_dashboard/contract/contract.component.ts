@@ -1,55 +1,67 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ContractService } from 'src/app/_services/contract.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { CoreService } from 'src/app/user_dashboard/core.service';
 import { Contract } from 'src/app/_models/Contract';
 import { AddUpdateContractComponent } from '../add-update-contract/add-update-contract.component';
 import { UploadService } from 'src/app/upload.service';
+import { Repertoire } from 'src/app/_models/Repertoire';
+import { Etape } from 'src/app/_models/EtapeContract';
 
-interface Transaction {
-  repertoire: string;
-  montant: number;
-} 
+
 @Component({
   selector: 'app-contract',
   templateUrl: './contract.component.html',
   styleUrls: ['./contract.component.scss'],
 })
-
-
 export class ContractComponent implements OnInit {
-  displayedColumns: string[] = [/*'idContract',*/ 'repertoire', 'description' , 'dateContract' ,'montant' , 'nbreTrnache','etape', 'action']; 
-  dataSource!: MatTableDataSource<any>;
-  footerColumns: string[] = ['repertoire', 'montant'];
-
+  repertoire: Repertoire[] = [];
+  contract: Contract[] = [];
+  searchTerm: string = '';
+  currentPage: number = 0;
+  pageSize: number = 10;
+  pagedContract: Contract[] = [];
+  displayedColumns: string[] = ['repertoire', 'description', 'dateContract', 'montant', 'nbreTranche', 'etape', 'action'];
+  dataSource = new MatTableDataSource<Contract>([]); // Initialize with empty array
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  
 
   constructor(
     private _dialog: MatDialog,
     private _contractService: ContractService,
     private fileUploadService: UploadService,
-
-    private _coreService: CoreService
   ) {}
 
   ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     this.getContractList();
+    this.updatePage(); // Initialize pagination
+  }
+
+  onPageChange(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatePage();
+  }
+
+  updatePage() {
+    const filteredContract = this.filterContracts(this.searchTerm);
+    const startIndex = this.currentPage * this.pageSize;
+    this.pagedContract = filteredContract.slice(startIndex, startIndex + this.pageSize);
   }
 
   openAddUpdateContractForm() {
     const dialogRef = this._dialog.open(AddUpdateContractComponent);
-    dialogRef.afterClosed().subscribe({
-      next: (val) => {
-        if (val) {
-          this.getContractList();
-          console.log('Success');
-        }
-      },
+    dialogRef.afterClosed().subscribe((val) => {
+      if (val) {
+        this.getContractList();
+        console.log('Success');
+      }
     });
   }
 
@@ -58,47 +70,50 @@ export class ContractComponent implements OnInit {
       (pdfData) => {
         const blob = new Blob([pdfData], { type: 'application/pdf' });
         const url = window.URL.createObjectURL(blob);
-        window.open(url, '_blank'); // Open a new tab with the PDF content
+        window.open(url, '_blank');
       },
       (error) => {
         console.error('Failed to fetch PDF:', error);
       }
     );
   }
-  
-  
 
   getContractList() {
     this._contractService.getAllContracts().subscribe({
-      next: (res: Contract[]) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      },
-      error: console.error,
+        next: (res: any[]) => {
+            this.dataSource.data = res.map((contract) => ({
+                ...contract,
+                repertoire: contract.repertoire ? contract.repertoire.contact : '' // Extract repertoire contact or use empty string if repertoire is null
+              }));
+            
+            // Update the paginator length
+            this.dataSource.paginator.length = this.dataSource.data.length;
+        },
+        error: console.error,
     });
-  } 
+}
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  } 
+    // Update the paginator's length
+    this.dataSource.paginator.length = this.dataSource.filteredData.length;
 
-  openEditForm(data: any) {
+    // Reset the paginator to the first page
+    this.dataSource.paginator.firstPage();
+  }
+
+  openEditForm(data: Contract) {
     const dialogRef = this._dialog.open(AddUpdateContractComponent, {
       data,
     });
 
-    dialogRef.afterClosed().subscribe({
-      next: (val) => {
-        if (val) {
-          this.getContractList();
-        }
-      },
+    dialogRef.afterClosed().subscribe((val) => {
+      if (val) {
+        this.getContractList();
+      }
     });
   }
 
@@ -109,11 +124,46 @@ export class ContractComponent implements OnInit {
       },
       error: console.error,
     });
-  } 
+  }
 
   getTotalMontant() {
     if (!this.dataSource) return 0;
     return this.dataSource.data.map((contract: Contract) => contract.montant).reduce((acc, value) => acc + value, 0);
+  }
+
+  filterContracts(searchTerm: string): Contract[] {
+    return this.contract.filter(contract =>
+      contract.idContract.toString().includes(searchTerm) ||
+      contract.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contract.dateContract.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contract.montant.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contract.nbreTranche.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+      this.getEtapeLabel(contract.etape).toLowerCase().includes(searchTerm.toLowerCase()) ||
+      this.getRepertoireLabel(contract.repertoire).toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
+
+  private getEtapeLabel(etape: Etape): string {
+    switch (etape) {
+      case Etape.NOUVEAU:
+        return 'Nouveau';
+      case Etape.DECOUVERTE:
+        return 'Découverte';
+      case Etape.PROPSITION:
+        return 'Proposition';
+      case Etape.NEGOCIATION:
+        return 'Négociation';
+      case Etape.CONCLU:
+        return 'Conclu';
+      case Etape.PERDU:
+        return 'Perdu';
+      default:
+        return '';
+    }
+  }
+
+  private getRepertoireLabel(repertoire: Repertoire): string {
+    return repertoire.contact; // Utilize the contact field directly
   }
 
 }

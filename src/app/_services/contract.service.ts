@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Contract } from '../_models/Contract';
+import { catchError } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +19,15 @@ export class ContractService {
 
   addContract(contract: Contract): Observable<Contract> {
     return this.http.post<Contract>(`${this.baseUrl}/ajouterContract`, contract);
+  }
+
+  addContractAffectReper(contract: Contract, repertoireId: number): Observable<Contract> {
+    const url = `${this.baseUrl}/ajouterContractAffecRepertoire/${repertoireId}`;
+    return this.http.post<Contract>(url, contract).pipe(
+      catchError(error => {
+        throw 'Erreur lors de lajout du contrat : ' + error; 
+      })
+    );
   }
 
   getContract(contractId: number): Observable<Contract> {

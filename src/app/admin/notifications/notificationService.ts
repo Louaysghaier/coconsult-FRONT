@@ -6,7 +6,7 @@ import { Message } from './message';
   providedIn: 'root'
 })
 export class notificationService {
-  private baseURL  ="http://localhost:8081/api/message/list-message";
+  private baseURL  ="http://localhost:8082/api/message/list-message";
 
   constructor(private httpClient: HttpClient) { }
 

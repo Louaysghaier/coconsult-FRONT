@@ -3,11 +3,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ContractService } from 'src/app/_services/contract.service';
 import { CoreService } from '../core.service';
-import { Etape } from 'src/app/_models/EtapeContract';
 import { RepertoireService } from 'src/app/_services/repertoire.service'; // Import RepertoireService
 import { UploadService } from 'src/app/upload.service';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-add-update-contract',
@@ -24,7 +22,7 @@ export class AddUpdateContractComponent implements OnInit {
     private _fb: FormBuilder,
     private _contractService: ContractService,
     private fileUploadService: UploadService,
-    private router: Router , 
+    private router: Router,
     private _dialogRef: MatDialogRef<AddUpdateContractComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _coreService: CoreService,
@@ -37,7 +35,6 @@ export class AddUpdateContractComponent implements OnInit {
       montant: '',
       nbreTranche: '',
       etape: '',
-      //pdfFile: '' // Add a new form control for the PDF file
     });
   }
 
@@ -55,8 +52,8 @@ export class AddUpdateContractComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log('File uploaded successfully:', response);
-  
-          //this.contractForm.reset();
+          // Optionally reset the form after successful upload
+          // this.contractForm.reset();
         },
         (error) => {
           console.error('Failed to upload file:', error);
@@ -78,7 +75,7 @@ export class AddUpdateContractComponent implements OnInit {
         ...formData,
         //pdfFile: pdfFile  // Add PDF file to the contract data
       };
-
+  
       if (this.data) {
         contractData.idContract = this.data.idContract;
         this._contractService.updateContract(contractData).subscribe({
@@ -90,9 +87,10 @@ export class AddUpdateContractComponent implements OnInit {
           }
         });
       } else {
-        this._contractService.addContract(contractData).subscribe({
+        const repertoireId = this.contractForm.get('repertoireId').value; // Get the repertoireId from the form
+        this._contractService.addContractAffectReper(contractData, repertoireId).subscribe({
           next: (val: any) => {
-            this.uploadFile(contractData.idContract , this.selectedFile ) ;  
+            this.uploadFile(val.idContract, this.selectedFile);  
             this._dialogRef.close(true);
           },
           error: (err: any) => {
@@ -102,4 +100,7 @@ export class AddUpdateContractComponent implements OnInit {
       }
     }
   }
+  
+  
+  
 }

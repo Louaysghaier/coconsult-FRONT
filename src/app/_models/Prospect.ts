@@ -3,8 +3,8 @@ import { ProspectStatus } from "./ProspectStatus";
 export class Prospect {
     idProspect !: number ; 
     
-    name!: String ;  
-    email !: String ; 
-    Numtel !: String ;  
+    name!: string ;  
+    email !: string ; 
+    Numtel !: string ;  
     status !: ProspectStatus ; 
 }

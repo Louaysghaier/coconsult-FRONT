@@ -1,20 +1,14 @@
 
-<mat-toolbar color="primary">
-    <span>Repertoire Management</span>
-    <span class="example-spacer"></span>
-    <button mat-raised-button color="warn" (click)="openAddUpdateRepertoireForm()">
-      ADD REPERTOIRE
-    </button>
-</mat-toolbar>
- 
-<div class="main-body ">
-    <mat-form-field>
-        <mat-label class="">Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Search by Repertoire" #input>
-    </mat-form-field>
-
-    <div class="table-container">
-        <table mat-table [dataSource]="dataSource" matSort>
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="cardo">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Liste des répertoires</h4>
+              <p class="card-category">Tous les répertoires</p>
+            </div>
+        <table mat-table [dataSource]="dataSource" class = "mat-elevation-z8">
             
            <!-- <ng-container matColumnDef="idRepertoire">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
@@ -66,7 +60,12 @@
                 <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
             </tr>
         </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of contracts"></mat-paginator>
-    </div>
+   
 </div>
+</div>
+</div>
+</div>
+</div>
+

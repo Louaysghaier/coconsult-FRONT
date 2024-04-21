@@ -1,0 +1,46 @@
+<div mat-dialog-title>
+    <h1>Prospect Form</h1>
+</div>
+<form [formGroup]="prospectForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nom</mat-label>
+                <input matInput formControlName="name" placeholder="Enter name">
+                <mat-error *ngIf="prospectForm.get('name').invalid && prospectForm.get('name').touched">
+                    Nom est requis.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="Enter email">
+                <mat-error *ngIf="prospectForm.get('email').invalid && prospectForm.get('email').touched">
+                    Adresse email valide est requise.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Numéro de Téléphone</mat-label>
+                <input matInput formControlName="NumTel" placeholder="Enter Numéro de Téléphone">
+                <mat-error *ngIf="prospectForm.get('Numtel').invalid && prospectForm.get('Numtel').touched">
+                    Numéro de Téléphone est requis.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status" placeholder="Select Status">
+                    <mat-option *ngFor="let status of prospectStatusOptions" [value]="status">{{ status }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="prospectForm.get('status').invalid && prospectForm.get('status').touched">
+                    Status est requis.
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" (click)="onCancel()">Annuler</button>
+        <button mat-raised-button color="primary" type="submit">{{ data ? 'Modifier' : 'Ajouter' }}</button>
+    </div>
+</form>

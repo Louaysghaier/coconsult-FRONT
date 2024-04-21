@@ -1,5 +1,5 @@
 import { Etape } from "./EtapeContract";
-import { Repertoire } from "./Repertoire"; // Import Repertoire model if it exists
+import { Repertoire } from "./Repertoire";
 
 export class Contract {
     idContract!: number;
@@ -8,7 +8,6 @@ export class Contract {
     montant!: number;
     nbreTranche!: number;
     etape!: Etape;
-    repertoire?: Repertoire; // Add repertoire property
-    //payments?: any[]; 
-    //project?: any; 
+    repertoire!: Repertoire; // Change to Repertoire object instead of String
+     
 }

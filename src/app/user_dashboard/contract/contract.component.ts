@@ -79,19 +79,15 @@ export class ContractComponent implements OnInit {
   }
 
   getContractList() {
-    this._contractService.getAllContracts().subscribe({
-        next: (res: any[]) => {
-            this.dataSource.data = res.map((contract) => ({
-                ...contract,
-                repertoire: contract.repertoire ? contract.repertoire.contact : '' // Extract repertoire contact or use empty string if repertoire is null
-              }));
-            
-            // Update the paginator length
+    this._contractService.getAllContractsWithRepertoireContact().subscribe({
+        next: (contracts: Contract[]) => {
+            this.dataSource.data = contracts;
             this.dataSource.paginator.length = this.dataSource.data.length;
         },
         error: console.error,
     });
 }
+
 
 
   applyFilter(event: Event) {

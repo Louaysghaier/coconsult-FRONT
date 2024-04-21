@@ -34,7 +34,9 @@ export class ContractService {
     return this.http.get<Contract>(`${this.baseUrl}/GetContract/${contractId}`);
   }
 
-  // contract.service.ts
+  getRepertoireContactByContractId(idContract: number): Observable<string> {
+    return this.http.get<string>(`${this.baseUrl}/${idContract}/repertoireContact`);
+  }
 
   updateContract(updatedContract: Contract): Observable<Contract> {
     const id = updatedContract.idContract; // Assuming idContract is the correct property name
@@ -45,5 +47,9 @@ export class ContractService {
 
   removeContract(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/RemoveContract/${id}`);
+  }
+
+  getAllContractsWithRepertoireContact(): Observable<Contract[]> {
+    return this.http.get<Contract[]>(`${this.baseUrl}/allWithRepertoireContact`);
   }
 }

@@ -7,7 +7,16 @@
             <div class="card-header card-header-danger">
               <h4 class="card-title">Liste des répertoires</h4>
               <p class="card-category">Tous les répertoires</p>
+              <button mat-raised-button  (click)="openAddUpdateRepertoireForm()">
+                ADD PROSPECT
+            </button>
             </div>
+
+            <div class="mat-elevation-z8 custom-table">
+                <mat-form-field>
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Search by Prospect" #input>
+                </mat-form-field>
         <table mat-table [dataSource]="dataSource" class = "mat-elevation-z8">
             
            <!-- <ng-container matColumnDef="idRepertoire">
@@ -63,6 +72,7 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 
    
+</div>
 </div>
 </div>
 </div>

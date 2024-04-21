@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddUpdateRepertoiresComponent } from './add-update-repertoires/add-update-repertoires.component';
 import { AddUpdateProspectComponent } from './add-update-prospect/add-update-prospect.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AddUpdateActivitySalesTeamComponent } from './add-update-activity-sales-team/add-update-activity-sales-team.component';
 
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard',
@@ -74,6 +75,7 @@ const dashboardRoutes: Routes = [
       AddUpdateContractComponent,
       AddUpdateRepertoiresComponent,
       AddUpdateProspectComponent,
+      AddUpdateActivitySalesTeamComponent,
       
       
     ],

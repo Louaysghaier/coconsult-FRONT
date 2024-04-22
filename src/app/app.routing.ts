@@ -15,6 +15,7 @@ import { AuthGuard } from './_helpers';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
+import {Assignements} from './_models/assignements';
 const routes: Routes = [
   {
     path: '',

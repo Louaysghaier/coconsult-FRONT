@@ -35,6 +35,7 @@ import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +69,6 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    
     CarouselModule.forRoot(),
     FontAwesomeModule,
     AdminLayoutModule,

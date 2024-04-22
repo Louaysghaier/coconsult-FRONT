@@ -1,67 +1,104 @@
 import { Component, OnInit } from '@angular/core';
-import {Assignements} from '../../_models/assignements';
-import {AssignementsService} from '../../_services/assignements.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Assignements } from '../../_models/assignements';
+import { AssignementsService } from '../../_services/assignements.service';
 
 @Component({
-  selector: 'app-assignements',
-  templateUrl: './assignement.component.html',
-  styleUrls: ['./assignement.component.css']
+    selector: 'app-assignments',
+    templateUrl: './assignement.component.html',
+    styleUrls: ['./assignement.component.css']
 })
-export class AssignementsComponent implements OnInit {
-  assignementsList: Assignements[] = [];
-  newAssignement: Assignements = new Assignements();
-  errorMessage: string = '';
+export class AssignmentsComponent implements OnInit {
+    assignments: Assignements[] = [];
+    newAssignment: Assignements = new Assignements();
+    selectedAssignment: Assignements = new Assignements();
 
-  constructor(private assignementsService: AssignementsService) { }
+    totalAssignments: number = 0;
+    pageSize: number = 10;
+    pageSizeOptions: number[] = [5, 10, 25, 100];
 
-  ngOnInit(): void {
-    this.getAllAssignments();
-  }
+    constructor(private modalService: NgbModal, private assignmentsService: AssignementsService) { }
 
-  getAllAssignments(): void {
-    this.assignementsService.getAllAssigns().subscribe(
-        (assignements: Assignements[]) => {
-          this.assignementsList = assignements;
-          this.errorMessage = '';
-        },
-        (error: any) => {
-          this.errorMessage = 'Une erreur s\'est produite lors du chargement des assignements.';
-          console.error(error);
-        }
-    );
-  }
-
-  addAssignement(): void {
-    if (!this.newAssignement.idAssign || !this.newAssignement.projects || !this.newAssignement.expenses || !this.newAssignement.timeRecording) {
-      this.errorMessage = 'Veuillez remplir tous les champs.';
-      return;
+    ngOnInit(): void {
+        this.getAllAssignments();
     }
 
-    this.assignementsService.addAssign(this.newAssignement).subscribe(
-        () => {
-          this.errorMessage = '';
-          this.getAllAssignments(); // Recharger la liste des assignements après l'ajout
-          this.newAssignement = new Assignements(); // Réinitialiser le nouveau assignement
-        },
-        (error: any) => {
-          this.errorMessage = 'Une erreur s\'est produite lors de l\'ajout de l\'assignement.';
-          console.error(error);
-        }
-    );
-  }
+    getAllAssignments(): void {
+        this.assignmentsService.getAllAssigns().subscribe(
+            (assignments: Assignements[]) => {
+                this.assignments = assignments;
+                this.totalAssignments = this.assignments.length;
+            },
+            (error: any) => {
+                console.error('Error fetching assignments:', error);
+            }
+        );
+    }
 
-  deleteAssignement(id: number): void {
-    this.assignementsService.removeAssign(id).subscribe(
-        () => {
-          this.errorMessage = '';
-          this.getAllAssignments(); // Recharger la liste des assignements après la suppression
-        },
-        (error: any) => {
-          this.errorMessage = 'Une erreur s\'est produite lors de la suppression de l\'assignement.';
-          console.error(error);
-        }
-    );
-  }
+    saveAssignment(): void {
+        this.assignmentsService.addAssign(this.newAssignment).subscribe(
+            (response: Assignements) => {
+                console.log('Assignment saved:', response);
+                this.modalService.dismissAll();
+                this.newAssignment = new Assignements(); // Reset newAssignment object
+                this.getAllAssignments(); // Refresh assignment list
+            },
+            (error: any) => {
+                console.error('Error saving assignment:', error);
+            }
+        );
+    }
+    openEditModal(assignment: Assignements): void {
+        // Implement logic to open the edit modal and pre-fill it with assignment details
+        // For example, you can emit an event or use a service to communicate with the modal component
+        console.log('Opening edit modal for assignment:', assignment);
+        // You might emit an event to trigger the modal opening in the parent component
+        // Alternatively, you can directly manipulate the DOM to show the modal
+    }
+    updateAssignment(): void {
+        // Assuming selectedAssignment has an id property
+        this.assignmentsService.updateAssign(this.selectedAssignment.idAssign, this.selectedAssignment).subscribe(
+            (response: Assignements) => {
+                console.log('Assignment updated:', response);
+                // Optionally, you can dismiss modal and refresh assignment list here
+                // this.modalService.dismissAll();
+                // this.getAllAssignments();
+            },
+            (error: any) => {
+                console.error('Error updating assignment:', error);
+            }
+        );
+    }
 
-    protected readonly Assignements = Assignements;
+    editAssignment(assignment: Assignements, content: any): void {
+        this.selectedAssignment = assignment;
+        this.modalService.open(content, { ariaLabelledBy: 'editAssignmentModalLabel' });
+    }
+
+    deleteAssignment(id: number): void {
+        if (confirm('Are you sure you want to delete this assignment?')) {
+            this.assignmentsService.removeAssign(id).subscribe(
+                () => {
+                    console.log('Assignment deleted:', id);
+                    this.getAllAssignments(); // Refresh assignment list
+                },
+                (error: any) => {
+                    console.error('Error deleting assignment:', error);
+                }
+            );
+        }
+    }
+
+    onPageChange(event: any): void {
+        // Handle pagination change
+        console.log(event);
+    }
+
+    openAddAssignmentModal(content: any): void {
+        this.modalService.open(content, { ariaLabelledBy: 'addAssignmentModalLabel' });
+    }
+
+    openEditAssignmentModal(content: any): void {
+        this.modalService.open(content, { ariaLabelledBy: 'editAssignmentModalLabel' });
+    }
 }

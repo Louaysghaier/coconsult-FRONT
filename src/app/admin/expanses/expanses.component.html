@@ -1,1 +1,123 @@
-<p>expanses works!</p>
+<!-- Expense List Section -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title">Expense List</h4>
+            </div>
+            <div class="card-body">
+                <!-- Button to trigger modal for Add Expense -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addExpenseModal">Add Expense</button>
+
+                <!-- Expense Table Here -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <!-- Table Headers -->
+                        <thead class="text-primary">
+                        <tr>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <!-- Table Body -->
+                        <tbody>
+                        <!-- Expense Rows Here -->
+                        <tr *ngFor="let expense of pagedExpenses">
+                            <td>{{ expense.category }}</td>
+                            <td>{{ expense.montant }}</td>
+                            <td>{{ expense.date }}</td>
+                            <td>{{ expense.description }}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-link" (click)="deleteExpense(expense.idExps)">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-link" (click)="editExpense(expense)" data-toggle="modal" data-target="#editExpenseModal">
+                                    <i class="material-icons">edit</i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <mat-paginator [length]="totalExpenses" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChange($event)">
+            </mat-paginator>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Add Expense -->
+<div class="modal fade" id="addExpenseModal" tabindex="-1" role="dialog" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExpenseModalLabel">Add Expense</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form to add expense -->
+                <form (ngSubmit)="saveExpense()">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <input type="text" class="form-control" id="category" name="category" [(ngModel)]="newExpense.category" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="montant">Amount</label>
+                        <input type="number" class="form-control" id="montant" name="montant" [(ngModel)]="newExpense.montant" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" [(ngModel)]="newExpense.date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" [(ngModel)]="newExpense.description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Expense</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal for Edit Expense -->
+<div class="modal fade" id="editExpenseModal" tabindex="-1" role="dialog" aria-labelledby="editExpenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editExpenseModalLabel">Edit Expense</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form to edit expense -->
+                <form (ngSubmit)="updateExpense()">
+                    <div class="form-group">
+                        <label for="editCategory">Category</label>
+                        <input type="text" class="form-control" id="editCategory" name="editCategory" [(ngModel)]="selectedExpense.category" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editAmount">Amount</label>
+                        <input type="number" class="form-control" id="editAmount" name="editAmount" [(ngModel)]="selectedExpense.montant" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDate">Date</label>
+                        <input type="date" class="form-control" id="editDate" name="editDate" [(ngModel)]="selectedExpense.date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Description</label>
+                        <textarea class="form-control" id="editDescription" name="editDescription" rows="4" [(ngModel)]="selectedExpense.description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

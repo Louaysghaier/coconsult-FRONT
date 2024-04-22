@@ -28,7 +28,7 @@ export class AddUpdateContractComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.contractForm = this.formBuilder.group({
-      repertoireId: ['', Validators.required],
+      repertoire: ['', Validators.required],
       description: ['', Validators.required],
       dateContract: ['', Validators.required],
       montant: ['', Validators.required],
@@ -73,7 +73,7 @@ export class AddUpdateContractComponent implements OnInit {
         });
       } else {
         const repertoireId = this.contractForm.get('repertoireId').value; // Get the repertoireId from the form
-        this.contractService.addContractAffectReper(contractData, repertoireId).subscribe({
+        this.contractService.addContractAffectRep(contractData, repertoireId).subscribe({
           next: (val: any) => {
             this.uploadFile(val.idContract, this.selectedFile);
             this.dialogRef.close(true);

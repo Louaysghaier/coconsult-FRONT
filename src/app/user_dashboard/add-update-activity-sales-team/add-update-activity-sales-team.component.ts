@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SalesActivity } from 'src/app/_models/ActivitySalesTeam';
+import { SalesActivity, Status } from 'src/app/_models/ActivitySalesTeam';
+import { ActivitySalesTeamService } from 'src/app/_services/activity-sales-team.service';
 
 @Component({
   selector: 'app-add-update-activity-sales-team',
@@ -10,7 +11,9 @@ import { SalesActivity } from 'src/app/_models/ActivitySalesTeam';
 })
 export class AddUpdateActivitySalesTeamComponent implements OnInit {
   activityForm: FormGroup;
+  checked = false;
 
+  activityService: ActivitySalesTeamService ; 
   constructor(
     private _fb: FormBuilder,
     private _dialogRef: MatDialogRef<AddUpdateActivitySalesTeamComponent>,
@@ -36,5 +39,12 @@ export class AddUpdateActivitySalesTeamComponent implements OnInit {
       const formData = this.activityForm.value;
       this._dialogRef.close(formData);
     }
+  }
+
+  updateStatus(activity: SalesActivity): void {
+    const newStatus = activity.status === Status.WAITING ? Status.DONE : Status.WAITING;
+    this.activityService.updateActivityStatus(activity.idActSale).subscribe(() => {
+      activity.status = newStatus;
+    });
   }
 }

@@ -21,11 +21,11 @@ export class ContractService {
     return this.http.post<Contract>(`${this.baseUrl}/ajouterContract`, contract);
   }
 
-  addContractAffectReper(contract: Contract, repertoireId: number): Observable<Contract> {
-    const url = `${this.baseUrl}/ajouterContractAffecRepertoire/${repertoireId}`;
+  addContractAffectRep(contract: Contract, repertoireId: number): Observable<Contract> {
+    const url = `${this.baseUrl}/ajouterContract/${repertoireId}`;
     return this.http.post<Contract>(url, contract).pipe(
       catchError(error => {
-        throw 'Erreur lors de lajout du contrat : ' + error; 
+        throw 'Error while adding contract: ' + error; 
       })
     );
   }

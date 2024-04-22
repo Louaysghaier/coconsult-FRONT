@@ -1,3 +1,4 @@
+import { Repertoire } from "./Repertoire";
 
 export class SalesActivity {
     idActSale!: number;
@@ -6,6 +7,7 @@ export class SalesActivity {
     description!: string;
     typeAct!: TypeSalesActivity;
     status!: Status;
+    repertoire!: Repertoire; // Change to Repertoire object instead of String
   
 }
 

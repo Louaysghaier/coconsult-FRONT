@@ -79,14 +79,25 @@ export class ContractComponent implements OnInit {
   }
 
   getContractList() {
-    this._contractService.getAllContractsWithRepertoireContact().subscribe({
+    this._contractService.getAllContracts().subscribe({
         next: (contracts: Contract[]) => {
+            // Modify the description of each contract
+            contracts.forEach(contract => {
+                // Extract filename from description
+                const filename = contract.description.split('\\').pop();
+                // Update contract description
+                contract.description = filename || contract.description;
+            });
+
+            // Assign contracts to dataSource
             this.dataSource.data = contracts;
+            // Update paginator length
             this.dataSource.paginator.length = this.dataSource.data.length;
         },
         error: console.error,
     });
 }
+
 
 
 

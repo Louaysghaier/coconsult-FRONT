@@ -88,9 +88,10 @@ export class AddUpdateContractComponent implements OnInit {
         });
       } else {
         const repertoireId = this.contractForm.get('repertoireId').value; // Get the repertoireId from the form
-        this._contractService.addContractAffectReper(contractData, repertoireId).subscribe({
+        contractData.repertoireContact = null; // Clear repertoireContact field as it will be set automatically
+        this._contractService.addContractAffectRep(contractData, repertoireId).subscribe({
           next: (val: any) => {
-            this.uploadFile(val.idContract, this.selectedFile);  
+            this.uploadFile(val.idContract, pdfFile); // Upload the PDF file
             this._dialogRef.close(true);
           },
           error: (err: any) => {
@@ -100,6 +101,7 @@ export class AddUpdateContractComponent implements OnInit {
       }
     }
   }
+  
   
   
   

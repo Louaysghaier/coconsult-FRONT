@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { SalesActivity } from '../_models/ActivitySalesTeam';
 
 @Injectable({
@@ -33,5 +33,18 @@ export class ActivitySalesTeamService {
 
   getActivitySalesTeamByClass(classSalesTeam: string): Observable<SalesActivity[]> {
     return this.http.get<SalesActivity[]>(`${this.baseUrl}/GetActivitySalesTeamByClass/${classSalesTeam}`);
+  }
+
+  updateActivityStatus(id: number): Observable<SalesActivity> {
+    return this.http.put<SalesActivity>(`${this.baseUrl}/updateStatus/${id}`, {});
+  }
+
+  addActivitySalesTeamAffectRep(activitysalesteam: SalesActivity, repertoireId: number): Observable<SalesActivity> {
+    const url = `${this.baseUrl}/ajouterActivitySalesTeam/${repertoireId}`;
+    return this.http.post<SalesActivity>(url, activitysalesteam).pipe(
+      catchError(error => {
+        throw 'Error while adding contract: ' + error; 
+      })
+    );
   }
 }

@@ -34,10 +34,13 @@
           <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Deal</th>
             <td mat-cell *matCellDef="let row">
-              <div>{{ row.description }}</div>
+              <div>{{ row.description }}
+                
+              </div>
+              
+
               <!-- Add a PDF icon button to open PDF -->
               <button mat-icon-button (click)="openPdf(row.description)">
-                <mat-icon>picture_as_pdf</mat-icon>
               </button>
             </td>
           </ng-container>

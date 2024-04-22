@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { ListeUserAscService } from 'src/app/user_dashboard/settings/liste-user-asc.service';
 import { AddUpdateActivitySalesTeamComponent } from '../add-update-activity-sales-team/add-update-activity-sales-team.component';
-import { SalesActivity } from 'src/app/_models/ActivitySalesTeam';
+import { SalesActivity, Status } from 'src/app/_models/ActivitySalesTeam';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -18,7 +18,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
  
-  displayedColumns: string[] = ['heureStart', 'heureEnd', 'description', 'typeAct', 'status', 'action'];
+  displayedColumns: string[] = ['status' ,'heureStart', 'heureEnd', 'description', 'typeAct', 'action'];
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -133,7 +133,9 @@ export class SettingsComponent implements OnInit {
     });
 }
 
+
   
+
 
 
 

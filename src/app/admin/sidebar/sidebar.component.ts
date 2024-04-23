@@ -15,6 +15,10 @@ export const ROUTES: RouteInfo[] = [
     {path: '/admin/ChatRooms', title: 'ChatRooms',  icon:'forum', class: '' },
     {path: '/admin/assignement', title:'Assignments', icon:'assignment', class:''},
     {path: '/admin/expanses', title:'Expanses', icon:'monetization_on', class:''},
+    {path: '/admin/quote', title:'Quote', icon:'monetization_on', class:''},
+    {path: '/admin/time-record', title:'TimeRecord', icon:'monetization_on', class:''},
+    {path: '/admin/projects', title:'Projects', icon:'monetization_on', class:''},
+    {path: '/admin/proj-feed', title:'ProjectFeed', icon:'monetization_on', class:''},
 
 ];
 
@@ -32,9 +36,7 @@ export class SidebarComponent implements OnInit {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
+      return $(window).width() <= 991;
+
   };
 }

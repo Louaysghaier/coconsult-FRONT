@@ -5,7 +5,7 @@ export class Projects {
     idProjet!: number;
   projetTitle!: string;
   budget: number=0;
-  Mail!: string;
+  mail!: string;
   dateDebut!: Date;
   dateFin!: Date;
   effectif: number=0;
@@ -14,4 +14,3 @@ export class Projects {
   assignement?: Assignements[];
 
   }
-  

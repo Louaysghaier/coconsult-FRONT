@@ -101,4 +101,5 @@ export class AssignmentsComponent implements OnInit {
     openEditAssignmentModal(content: any): void {
         this.modalService.open(content, { ariaLabelledBy: 'editAssignmentModalLabel' });
     }
+
 }

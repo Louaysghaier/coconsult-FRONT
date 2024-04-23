@@ -43,6 +43,10 @@ const AdminLayoutRoutes: Routes = [
             { path: 'ChatRooms', component: GroupChatComponent },
             { path: 'assignement', component: AssignmentsComponent },
             { path: 'expanses', component: ExpansesComponent },
+            { path: 'proj-feed', component: ProjFeedComponent },
+            { path: 'projects', component: ProjectsComponent },
+            { path: 'time-record', component: TimeRecordComponent },
+            { path: 'quote', component: QuoteComponent },
         ],
     },
 ];

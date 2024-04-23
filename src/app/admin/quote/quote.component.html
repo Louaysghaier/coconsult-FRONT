@@ -1,1 +1,130 @@
-<p>quote works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Button to trigger modal for Add Quote -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQuoteModal">Add Quote</button>
+            </div>
+
+        </div>
+        <!-- Quote List Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Quote List</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Quote Table Here -->
+                        <div class="table-responsive">
+                            <table class="table">
+                                <!-- Table Headers -->
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Montant</th>
+                                    <th>Creation Date</th>
+                                    <th>Expire Date</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <!-- Table Body -->
+                                <tbody>
+                                <!-- Quote Rows Here -->
+                                <tr *ngFor="let quote of quotes">
+                                    <td>{{ quote.idQuote }}</td>
+                                    <td>{{ quote.montant }}</td>
+                                    <td>{{ quote.creationDate }}</td>
+                                    <td>{{ quote.expireDate }}</td>
+                                    <td>{{ quote.description }}</td>
+                                    <td>
+                                        <!-- Edit Button -->
+                                        <button type="button" class="btn btn-info" (click)="openEditModal(quote)" data-toggle="modal" data-target="#editQuoteModal">
+                                            Edit
+                                        </button>
+                                        <!-- Delete Button -->
+                                        <button type="button" class="btn btn-danger" (click)="deleteQuote(quote.idQuote)">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for Add Quote -->
+        <div class="modal fade" id="addQuoteModal" tabindex="-1" role="dialog" aria-labelledby="addQuoteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addQuoteModalLabel">Add Quote</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form to add quote -->
+                        <form (ngSubmit)="saveQuote()">
+                            <div class="form-group">
+                                <label for="montant">Montant</label>
+                                <input type="text" class="form-control" id="montant" name="montant" [(ngModel)]="newQuote.montant">
+                            </div>
+                            <div class="form-group">
+                                <label for="creationDate">Creation Date</label>
+                                <input type="date" class="form-control" id="creationDate" name="creationDate" [(ngModel)]="newQuote.creationDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="expireDate">Expire Date</label>
+                                <input type="date" class="form-control" id="expireDate" name="expireDate" [(ngModel)]="newQuote.expireDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" name="description" [(ngModel)]="newQuote.description" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Quote</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for Edit Quote -->
+        <div class="modal fade" id="editQuoteModal" tabindex="-1" role="dialog" aria-labelledby="editQuoteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editQuoteModalLabel">Edit Quote</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form to edit quote -->
+                        <form (ngSubmit)="updateQuote()">
+                            <div class="form-group">
+                                <label for="editMontant">Montant</label>
+                                <input type="text" class="form-control" id="editMontant" name="editMontant" [(ngModel)]="selectedQuote.montant">
+                            </div>
+                            <div class="form-group">
+                                <label for="editCreationDate">Creation Date</label>
+                                <input type="date" class="form-control" id="editCreationDate" name="editCreationDate" [(ngModel)]="selectedQuote.creationDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="editExpireDate">Expire Date</label>
+                                <input type="date" class="form-control" id="editExpireDate" name="editExpireDate" [(ngModel)]="selectedQuote.expireDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="editDescription">Description</label>
+                                <textarea class="form-control" id="editDescription" name="editDescription" [(ngModel)]="selectedQuote.description" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

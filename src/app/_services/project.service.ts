@@ -50,4 +50,7 @@ export class ProjetsService {
   createMeetingForProject(projectId: number, meeting: Meetings): Observable<Meetings> {
     return this.http.post<Meetings>(`${this.baseUrl}/${projectId}/meetings`, meeting);
   }*/
+  validateProject(idProject: number): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/validateProject/${idProject}`, null);
+  }
 }

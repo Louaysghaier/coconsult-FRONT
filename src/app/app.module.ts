@@ -34,6 +34,7 @@ import { environment } from 'src/environments/environment';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -73,10 +74,12 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
     FontAwesomeModule,
     AdminLayoutModule,
     DashboardModule,
+    MatPaginatorModule,
 
   ],
   providers: [
     {
+
       provide: RECAPTCHA_SETTINGS,
       useValue: {
         siteKey: environment.recaptcha.siteKey,

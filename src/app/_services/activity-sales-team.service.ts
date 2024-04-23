@@ -23,9 +23,12 @@ export class ActivitySalesTeamService {
     return this.http.post<SalesActivity>(`${this.baseUrl}/ajouterActSalesTeam`, activity);
   }
 
-  updateActivitySalesTeam(id: number, activity: SalesActivity): Observable<SalesActivity> {
+  updateActivitySalesTeam( activity: SalesActivity): Observable<SalesActivity> {
+    const id = activity.idActSale; 
     return this.http.put<SalesActivity>(`${this.baseUrl}/updateActSalesTeam/${id}`, activity);
   }
+
+ 
 
   deleteActivitySalesTeam(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/RemoveActSales/${id}`);

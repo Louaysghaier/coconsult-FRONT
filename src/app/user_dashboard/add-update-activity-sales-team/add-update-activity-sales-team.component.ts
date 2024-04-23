@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SalesActivity, Status } from 'src/app/_models/ActivitySalesTeam';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SalesActivity, Status, TypeSalesActivity } from 'src/app/_models/ActivitySalesTeam';
+import { Repertoire } from 'src/app/_models/Repertoire';
 import { ActivitySalesTeamService } from 'src/app/_services/activity-sales-team.service';
+import { RepertoireService } from 'src/app/_services/repertoire.service';
 
 @Component({
   selector: 'app-add-update-activity-sales-team',
@@ -11,40 +13,66 @@ import { ActivitySalesTeamService } from 'src/app/_services/activity-sales-team.
 })
 export class AddUpdateActivitySalesTeamComponent implements OnInit {
   activityForm: FormGroup;
-  checked = false;
+  statusOptions = Object.values(Status);
+  typeOptions = Object.values(TypeSalesActivity);
+  repertoires: Repertoire[] = []; // Assuming Repertoire model and service are available
 
-  activityService: ActivitySalesTeamService ; 
   constructor(
-    private _fb: FormBuilder,
-    private _dialogRef: MatDialogRef<AddUpdateActivitySalesTeamComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: SalesActivity
+    private fb: FormBuilder,
+    private salesActivityService: ActivitySalesTeamService ,
+    private dialogRef: MatDialogRef<AddUpdateActivitySalesTeamComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: SalesActivity,
+    private _repertoireService: RepertoireService // Inject RepertoireService
+
   ) {
-    this.activityForm = this._fb.group({
-      heureStart: ['', Validators.required],
-      heureEnd: ['', Validators.required],
-      description: ['', Validators.required],
-      typeAct: ['', Validators.required],
-      status: ['', Validators.required]
+    this.activityForm = this.fb.group({
+      heureStart: '',
+      heureEnd: '',
+      description: '',
+      typeAct: '',
+      status: '',
+      repertoire: ''
     });
   }
 
   ngOnInit(): void {
+    // Assuming you have a service method to fetch repertoires
+    this.loadRepertoires();
     if (this.data) {
       this.activityForm.patchValue(this.data);
     }
   }
 
+  // Assuming you have a service method to load repertoires
+   loadRepertoires() {
+     this._repertoireService.GetAllRepertoire().subscribe(repertoires => {
+      this.repertoires = repertoires;
+     });
+   }
+
   onFormSubmit() {
     if (this.activityForm.valid) {
       const formData = this.activityForm.value;
-      this._dialogRef.close(formData);
+      if (this.data) {
+        formData.idActSale = this.data.idActSale;
+        this.salesActivityService.updateActivitySalesTeam(formData).subscribe({
+          next: () => {
+            this.dialogRef.close(true);
+          },
+          error: (err: any) => {
+            console.error(err);
+          }
+        });
+      } else {
+        this.salesActivityService.addActivitySalesTeam(formData).subscribe({
+          next: () => {
+            this.dialogRef.close(true);
+          },
+          error: (err: any) => {
+            console.error(err);
+          }
+        });
+      }
     }
-  }
-
-  updateStatus(activity: SalesActivity): void {
-    const newStatus = activity.status === Status.WAITING ? Status.DONE : Status.WAITING;
-    this.activityService.updateActivityStatus(activity.idActSale).subscribe(() => {
-      activity.status = newStatus;
-    });
   }
 }

@@ -10,6 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ActivitySalesTeamService } from 'src/app/_services/activity-sales-team.service';
 import { ActivatedRoute } from '@angular/router';
+import { Repertoire } from 'src/app/_models/Repertoire';
 
 @Component({
   selector: 'app-settings',
@@ -17,8 +18,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
+
+  
  
-  displayedColumns: string[] = ['status' ,'heureStart', 'heureEnd', 'description', 'typeAct', 'action'];
+  displayedColumns: string[] = ['repertoire', 'status' ,'heureStart', 'heureEnd', 'description', 'typeAct', 'action'];
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -30,14 +33,12 @@ export class SettingsComponent implements OnInit {
   activitySalesTeamClosing: SalesActivity[] = []; 
   selectedTab: string = '';
   
+  repertoire: Repertoire[] = [];
+  
 
   constructor( private _dialog: MatDialog, private activityService: ActivitySalesTeamService, private listeUserAscService: ListeUserAscService, private route: ActivatedRoute) {}
- emlpoyesAsc:User[];
- entrepriseAsc:User[];
- role: string;
+ 
   ngOnInit(): void {
-    //this.getUserAsc();
-    this.getUsersByRole();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.getAllSalesActivities(); 
@@ -49,35 +50,6 @@ export class SettingsComponent implements OnInit {
 
   }
 
-  private getUsersByRole() {
-    if (this.role === 'ROLE_Entreprise') {
-      this.getEntrepriseAsc();
-    } else if (this.role === 'ROLE_Employee') {
-      this.getEmlpoyesAsc();
-    }
-  }
-  private getEntrepriseAsc(){
-    this.listeUserAscService.getUserByRoles('ROLE_Entreprise').subscribe(data => {
-      this.emlpoyesAsc = data;
-    });
-    }
-    private getEmlpoyesAsc(){
-      this.listeUserAscService.getUserByRoles('ROLE_Employee').subscribe(data => {
-      this.entrepriseAsc = data;
-      });
-      }
-
-  private getUserAsc() {
-    this.listeUserAscService.getListUserAsc().subscribe(
-      (response: any[]) => {
-        console.log('Received data from the API:', response);
-        this.user = response; 
-      },
-      (error) => {
-        console.error('Error fetching data from the API:', error);
-      }
-    );
-  }
   
   openAddUpdateActivitySalesTeamForm() {
     const dialogRef = this._dialog.open(AddUpdateActivitySalesTeamComponent);
@@ -107,10 +79,10 @@ export class SettingsComponent implements OnInit {
   
 
   deleteActivity(id: number): void {
-    // Implement delete functionality using your service
+    
     this.activityService.deleteActivitySalesTeam(id).subscribe(() => {
-      // Optionally perform any actions after successful deletion
-      this.getAllSalesActivities(); // Reload the data after deletion
+      
+      this.getAllSalesActivities(); 
     });
   }
 

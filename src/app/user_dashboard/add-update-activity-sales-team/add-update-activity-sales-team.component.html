@@ -1,50 +1,54 @@
 <div mat-dialog-title>
-  <h1>Sales Activity Form</h1>
+  <h1>Activity Form</h1>
 </div>
-
 <form [formGroup]="activityForm" (ngSubmit)="onFormSubmit()">
   <div mat-dialog-content class="content">
-    <div>
-      <label>Start Time:</label>
-      <input type="datetime-local" formControlName="heureStart">
-    </div>
-    <div>
-      <label>End Time:</label>
-      <input type="datetime-local" formControlName="heureEnd">
-    </div>
-    <div>
-      <label>Description:</label>
-      <input type="text" formControlName="description">
-    </div>
-    <mat-form-field appearance="outline">
-      <mat-label>Type:</mat-label>
-      <mat-select formControlName="typeAct" placeholder="Select type">
-        <mat-option value="REUNION">REUNION</mat-option>
-        <mat-option value="APPEL_TELEPHONIQUE">APPEL TELEPHONIQUE</mat-option>
-        <mat-option value="RESUME_APPEL">RESUME APPEL</mat-option>
-        <mat-option value="MEETING">MEETING</mat-option>
-        <mat-option value="CALL_SUMMARY">CALL SUMMARY</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="row">
 
-    
-        <h2 class="example-h2">Status</h2>
-    
-        <section class="example-section">
-          <mat-checkbox class="example-margin" [(ngModel)]="checked">Checked</mat-checkbox>
-        </section>
-        </div>
-        <section class="example-section">
-          <mat-checkbox
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Repertoire</mat-label>
+        <mat-select formControlName="repertoire" placeholder="Select repertoire">
+          <mat-option *ngFor="let repertoire of repertoires" [value]="repertoire">{{ repertoire.contact }}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-              class="example-margin"
-              [(ngModel)]="checked">
-              
-          </mat-checkbox>
-        </section>
-     
-    
 
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Start Time</mat-label>
+        <input matInput formControlName="heureStart" type="datetime-local" placeholder="Enter start time">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>End Time</mat-label>
+        <input matInput formControlName="heureEnd" type="datetime-local" placeholder="Enter end time">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" placeholder="Enter description">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="typeAct" placeholder="Select type">
+          <mat-option *ngFor="let type of typeOptions" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" placeholder="Select status">
+          <mat-option *ngFor="let status of statusOptions" [value]="status">{{ status }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Assuming you have a list of repertoires to select from -->
+      
+      
+      
+      
+    </div>
+  </div>
   <div mat-dialog-actions class="action">
     <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
     <button mat-raised-button color="primary" type="submit">{{ data ? 'Update' : 'Save' }}</button>

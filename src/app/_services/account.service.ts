@@ -1,12 +1,14 @@
 ﻿import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../_models';
 import { environment } from 'src/environments/environment';
 import { GroupChatservice } from './GroupChat.service';
 import { GroupChat } from '../_models/GroupChat';
+import { TokenDto } from '../_models/TokenDto';
+const headers = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
 
 @Injectable({ providedIn: 'root' })
@@ -17,7 +19,9 @@ export class AccountService {
     public CurrentgroupchatSubject:BehaviorSubject<GroupChat|null>;
     public CurrentGroupChat:Observable<GroupChat|null>;
     public user: Observable<User | null>;
-    isconn: any=false;
+    public isconn: any=false;
+    oauthURL = 'http://localhost:8082/oauth2/';
+    googleurl='http://localhost:8082/google';
 
     constructor(
         private router: Router,
@@ -57,15 +61,38 @@ export class AccountService {
                 return user;
             }));
     }
+    public google(tokenDto: TokenDto): Observable<TokenDto> {
+        return this.http.post<any>(this.googleurl , tokenDto, headers)
+        .pipe(map(user => {
+           // console.info(user);
+            this.userSubject.next(user);
+            this.isconn=true;
+            this.getuserById(user.id).subscribe((data: User) => {
+                localStorage.setItem('myuserinfo', JSON.stringify(data));
+                this.CurrentUserInfoSubject.next(data);
+                
+            });
+            this.GroupChatservice.getGroupChatByUser(user.id).subscribe((data: GroupChat) => {
+                localStorage.setItem('currentGroupChat', JSON.stringify(data));
+                this.CurrentgroupchatSubject.next(data);
+            });
+            
+            return user;
+        }));
+        
+    }
+
     public get userValue() {
         return this.userSubject.value;
     }
-    //est3mlouha bach tgetiw user info koll
+    /**!!!!!!!!!!!!ki thebou tgetiw user hw barcha toro9 **/
+    //1)jarbou zeda login w a3mou objet User:user mb3d fi constructor a3mlou user=localstorage.getitem('myuserinfo') as User;
+    //2)est3mlouha bach tgetiw user info koll
     public getCurrentUserInfoValue() {
         return this.CurrentUserInfoSubject.value;
-    }//emchiw li servicetkom w asn3ou pbjet currentuser:user; mb3d fi constructor a3mlou 
+    }//emchiw li servicetkom w asn3ou  currentuser:user; mb3d fi constructor a3mlou 
     //this.currentuser=this.accountservice.getCurrentUserInfoValue() as User;
-    //e5dmou byh tw yjikom info kol 3lé user
+    //3)e5dmou byh tw yjikom info kol 3lé user
     public getCurrentGroupChatValue() {
         return this.CurrentgroupchatSubject.value;
     }
@@ -74,11 +101,13 @@ export class AccountService {
     }
     logout() {
         // remove user from local storage and set current user to null
+        localStorage.removeItem('socialuser');
+        localStorage.removeItem('currentGroupChat');
         localStorage.removeItem('myuserinfo');
         localStorage.removeItem('email');
         localStorage.removeItem('user');
         sessionStorage.removeItem('user');
-
+        sessionStorage.removeItem('SocialAuthToken');
         sessionStorage.removeItem('accessToken');
         sessionStorage.removeItem('refreshToken');
         // Alternatively, you can use localStorage:
@@ -95,7 +124,7 @@ export class AccountService {
     getAll() {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
-
+    //est3mlouha bch tgetiw user bi id nt3ou
     getuserById(id: number) {
         return this.http.get<User>(`${environment.apiUrl}/api/user/getuserbyid/${id}`);
     }

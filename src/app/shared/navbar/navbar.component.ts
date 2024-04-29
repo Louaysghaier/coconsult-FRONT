@@ -4,6 +4,8 @@ import { Location, PopStateEvent } from '@angular/common';
 import { AuthService } from 'src/app/login/auth.service';
 import { AccountService } from 'src/app/_services';
 import { User } from 'src/app/_models';
+import { SocialUser } from '@abacritt/angularx-social-login';
+import { TokenService } from 'src/app/_services/Token.service';
 
 @Component({
     selector: 'app-navbar',
@@ -15,18 +17,18 @@ export class NavbarComponent implements OnInit {
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
     user?: User | null;
-    isconn:any;
-
-    constructor(public location: Location, private router: Router,private authService  :AccountService) {
+    isconn:Boolean;
+    userLogged: SocialUser;
+    constructor(public location: Location, private router: Router,private authService  :AccountService,private tokenService:TokenService) {
     //    this.isconn= localStorage.getItem('conn')
-    
-    this.isconn=this.authService.getIsConnected()||false;
+    this.isconn=this.authService.getIsConnected()|| this.tokenService.getgoogleToken() ||false;
+
     ///console.error('isconnnnn' +this.isconn)
     this.authService.user.subscribe(x => this.user = x);
     }
 
     ngOnInit() {
-        
+
       this.router.events.subscribe((event) => {
         this.isCollapsed = true;
         if (event instanceof NavigationStart) {

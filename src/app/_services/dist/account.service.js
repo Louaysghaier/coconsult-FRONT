@@ -8,15 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.AccountService = void 0;
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/common/http");
 var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
 var environment_1 = require("src/environments/environment");
+var headers = { headers: new http_1.HttpHeaders({ 'Content-Type': 'application/json' }) };
 var AccountService = /** @class */ (function () {
     function AccountService(router, http, GroupChatservice) {
         this.router = router;
         this.http = http;
         this.GroupChatservice = GroupChatservice;
         this.isconn = false;
+        this.oauthURL = 'http://localhost:8082/oauth2/';
+        this.googleurl = 'http://localhost:8082/google';
         this.userSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
         this.CurrentUserInfoSubject = new rxjs_1.BehaviorSubject(JSON.parse(localStorage.getItem('myuserinfo') || sessionStorage.getItem('myuserinfo')));
@@ -47,6 +51,24 @@ var AccountService = /** @class */ (function () {
             return user;
         }));
     };
+    AccountService.prototype.google = function (tokenDto) {
+        var _this = this;
+        return this.http.post(this.googleurl, tokenDto, headers)
+            .pipe(operators_1.map(function (user) {
+            // console.info(user);
+            _this.userSubject.next(user);
+            _this.isconn = true;
+            _this.getuserById(user.id).subscribe(function (data) {
+                localStorage.setItem('myuserinfo', JSON.stringify(data));
+                _this.CurrentUserInfoSubject.next(data);
+            });
+            _this.GroupChatservice.getGroupChatByUser(user.id).subscribe(function (data) {
+                localStorage.setItem('currentGroupChat', JSON.stringify(data));
+                _this.CurrentgroupchatSubject.next(data);
+            });
+            return user;
+        }));
+    };
     Object.defineProperty(AccountService.prototype, "userValue", {
         get: function () {
             return this.userSubject.value;
@@ -54,12 +76,14 @@ var AccountService = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    //est3mlouha bach tgetiw user info koll
+    /**!!!!!!!!!!!!ki thebou tgetiw user hw barcha toro9 **/
+    //1)jarbou zeda login w a3mou objet User:user mb3d fi constructor a3mlou user=localstorage.getitem('myuserinfo') as User;
+    //2)est3mlouha bach tgetiw user info koll
     AccountService.prototype.getCurrentUserInfoValue = function () {
         return this.CurrentUserInfoSubject.value;
-    }; //emchiw li servicetkom w asn3ou pbjet currentuser:user; mb3d fi constructor a3mlou 
+    }; //emchiw li servicetkom w asn3ou  currentuser:user; mb3d fi constructor a3mlou 
     //this.currentuser=this.accountservice.getCurrentUserInfoValue() as User;
-    //e5dmou byh tw yjikom info kol 3lé user
+    //3)e5dmou byh tw yjikom info kol 3lé user
     AccountService.prototype.getCurrentGroupChatValue = function () {
         return this.CurrentgroupchatSubject.value;
     };
@@ -68,10 +92,13 @@ var AccountService = /** @class */ (function () {
     };
     AccountService.prototype.logout = function () {
         // remove user from local storage and set current user to null
+        localStorage.removeItem('socialuser');
+        localStorage.removeItem('currentGroupChat');
         localStorage.removeItem('myuserinfo');
         localStorage.removeItem('email');
         localStorage.removeItem('user');
         sessionStorage.removeItem('user');
+        sessionStorage.removeItem('SocialAuthToken');
         sessionStorage.removeItem('accessToken');
         sessionStorage.removeItem('refreshToken');
         // Alternatively, you can use localStorage:
@@ -86,6 +113,7 @@ var AccountService = /** @class */ (function () {
     AccountService.prototype.getAll = function () {
         return this.http.get(environment_1.environment.apiUrl + "/users");
     };
+    //est3mlouha bch tgetiw user bi id nt3ou
     AccountService.prototype.getuserById = function (id) {
         return this.http.get(environment_1.environment.apiUrl + "/api/user/getuserbyid/" + id);
     };

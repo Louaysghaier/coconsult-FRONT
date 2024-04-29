@@ -37,6 +37,14 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 //const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
+// social login
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  //FacebookLoginProvider,
+ // AmazonLoginProvider,
+} from '@abacritt/angularx-social-login';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +65,8 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-  imports: [
+  imports: [    SocialLoginModule,
+
     ReactiveFormsModule,
     NgxCaptchaModule,
     RecaptchaModule,
@@ -78,7 +87,22 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 
   ],
-  providers: [
+  providers: [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            '949795246115-prildq4d724cv6tr1a3tc441c1n8csct.apps.googleusercontent.com'
+          ),
+        }
+      ],onError: (err) => {
+        console.error(err);
+      }
+    } as SocialAuthServiceConfig,
+  },
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {

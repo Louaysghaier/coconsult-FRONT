@@ -10,13 +10,14 @@ exports.LandingComponent = void 0;
 var core_1 = require("@angular/core");
 var sweetalert2_1 = require("sweetalert2");
 var LandingComponent = /** @class */ (function () {
-    function LandingComponent(MsgService, authService) {
+    function LandingComponent(MsgService, authService, tokenService) {
         this.MsgService = MsgService;
         this.authService = authService;
+        this.tokenService = tokenService;
     }
     LandingComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.isconn = this.authService.getIsConnected();
+        this.isconn = this.authService.getIsConnected() || this.tokenService.getgoogleToken() || false;
         console.error('isconnnnn' + this.isconn);
         this.authService.user.subscribe(function (x) { return _this.user = x; });
         console.error('user' + this.user);

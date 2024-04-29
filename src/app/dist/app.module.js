@@ -40,6 +40,9 @@ var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
 var loginforgetpassword_component_1 = require("./loginforgetpassword/loginforgetpassword.component");
 var chat_room_component_1 = require("./chat-room/chat-room.component");
 //const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
+// social login
+var angularx_social_login_1 = require("@abacritt/angularx-social-login");
+var angularx_social_login_2 = require("@abacritt/angularx-social-login");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -62,7 +65,7 @@ var AppModule = /** @class */ (function () {
                 chat_room_component_1.ChatRoomComponent,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
-            imports: [
+            imports: [angularx_social_login_1.SocialLoginModule,
                 forms_2.ReactiveFormsModule,
                 ngx_captcha_1.NgxCaptchaModule,
                 ng_recaptcha_1.RecaptchaModule,
@@ -80,17 +83,29 @@ var AppModule = /** @class */ (function () {
                 admin_layout_module_1.AdminLayoutModule,
                 dashboard_module_1.DashboardModule,
             ],
-            providers: [
+            providers: [{
+                    provide: 'SocialAuthServiceConfig',
+                    useValue: {
+                        autoLogin: false,
+                        providers: [
+                            {
+                                id: angularx_social_login_2.GoogleLoginProvider.PROVIDER_ID,
+                                provider: new angularx_social_login_2.GoogleLoginProvider('949795246115-prildq4d724cv6tr1a3tc441c1n8csct.apps.googleusercontent.com')
+                            }
+                        ],
+                        onError: function (err) {
+                            console.error(err);
+                        }
+                    }
+                },
                 {
                     provide: ng_recaptcha_1.RECAPTCHA_SETTINGS,
                     useValue: {
                         siteKey: environment_1.environment.recaptcha.siteKey,
                         size: 'normal'
                     }
-                },
-                { provide: http_1.HTTP_INTERCEPTORS, useClass: _helpers_1.JwtInterceptor, multi: true },
-                { provide: http_1.HTTP_INTERCEPTORS, useClass: _helpers_1.ErrorInterceptor, multi: true },
-            ],
+                }, { provide: http_1.HTTP_INTERCEPTORS, useClass: _helpers_1.JwtInterceptor, multi: true },
+                { provide: http_1.HTTP_INTERCEPTORS, useClass: _helpers_1.ErrorInterceptor, multi: true },],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

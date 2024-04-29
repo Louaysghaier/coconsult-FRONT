@@ -4,6 +4,7 @@ import { Message } from '../admin/notifications/message';
 import { AccountService } from '../_services';
 import { User } from '../_models';
 import Swal from 'sweetalert2';
+import { TokenService } from '../_services/Token.service';
 @Component({
     selector: 'app-landing',
     templateUrl: './landing.component.html',
@@ -16,17 +17,17 @@ export class LandingComponent implements OnInit {
 	//images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
   Message: Message;
-  isconn:Boolean;
+  isconn:boolean;
   user?: User | null;
 
-  constructor(private MsgService :MsgService,private authService  :AccountService) { 
+  constructor(private MsgService :MsgService,private authService  :AccountService,private tokenService:TokenService) { 
     
 
 
   }
 
   ngOnInit() {
-    this.isconn=this.authService.getIsConnected()
+    this.isconn=this.authService.getIsConnected()|| this.tokenService.getgoogleToken() ||false;
     console.error('isconnnnn' +this.isconn)
     this.authService.user.subscribe(x => this.user = x);
     console.error('user' +this.user);

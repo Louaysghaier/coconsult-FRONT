@@ -10,15 +10,16 @@ exports.NavbarComponent = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent(location, router, authService) {
-        //    this.isconn= localStorage.getItem('conn')
+    function NavbarComponent(location, router, authService, tokenService) {
         var _this = this;
         this.location = location;
         this.router = router;
         this.authService = authService;
+        this.tokenService = tokenService;
         this.isCollapsed = true;
         this.yScrollStack = [];
-        this.isconn = this.authService.getIsConnected() || false;
+        //    this.isconn= localStorage.getItem('conn')
+        this.isconn = this.authService.getIsConnected() || this.tokenService.getgoogleToken() || false;
         ///console.error('isconnnnn' +this.isconn)
         this.authService.user.subscribe(function (x) { return _this.user = x; });
     }

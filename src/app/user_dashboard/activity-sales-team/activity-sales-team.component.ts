@@ -18,7 +18,7 @@ export class ActivitySalesTeamComponent {
         window.open(url, '_blank'); // Open PDF in a new tab
       },
       (error) => {
-        console.error('Error generating PDF:', error);
+        console.error('Error generating PDF:', error); 
       }
     );
   }

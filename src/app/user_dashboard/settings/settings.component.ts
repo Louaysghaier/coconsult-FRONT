@@ -36,7 +36,7 @@ export class SettingsComponent implements OnInit {
   repertoire: Repertoire[] = [];
   
 
-  constructor( private _dialog: MatDialog, private activityService: ActivitySalesTeamService, private listeUserAscService: ListeUserAscService, private route: ActivatedRoute) {}
+  constructor( private _dialog: MatDialog, private activityService: ActivitySalesTeamService, private route: ActivatedRoute) {}
  
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -53,10 +53,11 @@ export class SettingsComponent implements OnInit {
   
   openAddUpdateActivitySalesTeamForm() {
     const dialogRef = this._dialog.open(AddUpdateActivitySalesTeamComponent);
-    dialogRef.afterClosed().subscribe((formData) => {
-     if (formData) {
-       // Add your logic here to handle the submitted form data
-        console.log('Form data submitted:', formData);
+    dialogRef.afterClosed().subscribe((val) => {
+      if (val) {
+        
+        //this.loadActivitySalesTeamByClass();
+        console.log('Success');
       }
     });
   }
@@ -105,8 +106,37 @@ export class SettingsComponent implements OnInit {
     });
 }
 
+// Method to return the background color based on typeAct
+getTypeActColor(typeAct: string): string {
+  switch(typeAct) {
+      case 'REUNION':
+          return 'lightblue';
+      case 'APPEL_TELEPHONIQUE':
+          return 'lightgreen';
+      case 'RESUME_APPEL':
+          return 'lightcyan';
+      case 'MEETING':
+          return 'lightcoral';
+      case 'CALL_SUMMARY':
+          return 'lightsalmon'; // Or any other color you prefer
+      default:
+          return 'transparent'; // Default color if typeAct doesn't match any case
+  }
+}
 
   
+
+// Method to return the background color based on status
+getStatusColor(status: string): string {
+  switch(status) {
+      case 'DONE':
+          return 'lightgreen';
+      case 'WAITING':
+          return 'lightsalmon';
+      default:
+          return 'transparent'; // Default color if status doesn't match any case
+  }
+}
 
 
 

@@ -11,16 +11,18 @@
           </mat-select>
           <div *ngIf="!repertoires || repertoires.length === 0">Loading repertoires...</div>
         </mat-form-field>
-        
+        <!--
         <mat-form-field appearance="outline">
           <mat-label>description</mat-label>
           <input matInput formControlName="description" type="file" id="description" (change)="onFileSelected($event)">
-          <mat-hint>Select a PDF file to upload.</mat-hint>
+          <mat-hint>Select a PDF file to upload.</mat-hint> -->
+
           <!-- Affichez un message d'erreur si le formulaire est invalide ou aucun fichier n'est sélectionné -->
-          <mat-error *ngIf="contractForm.get('description').invalid && contractForm.get('description').touched">
+
+         <!-- <mat-error *ngIf="contractForm.get('description').invalid && contractForm.get('description').touched">
               Un fichier PDF est requis.
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
       
 
           <label for="dateContract">Date of Contract</label>

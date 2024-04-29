@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Contract } from '../_models/Contract';
 import { catchError } from 'rxjs/operators';
 
@@ -28,6 +28,19 @@ export class ContractService {
         throw 'Error while adding contract: ' + error; 
       })
     );
+  }
+
+  addContractAffectRepAndGeneratePdf(contract: Contract, repertoireId: number): Observable<Blob> {
+    const url = `${this.baseUrl}/ajouterContractAndGeneratePdf/${repertoireId}`;
+    return this.http.post(url, contract, { responseType: 'blob' }).pipe(
+      catchError(error => {
+        return throwError('Error while adding contract and generating PDF: ' + error);
+      })
+    );
+  }
+
+  updateContractAffectREpo(contractId: number, repertoireId: number, updatedContract: Contract): Observable<Contract> {
+    return this.http.put<Contract>(`${this.baseUrl}/updateContractAffectRepo/${contractId}/repertoire/${repertoireId}`, updatedContract);
   }
 
   getContract(contractId: number): Observable<Contract> {

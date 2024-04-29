@@ -7,6 +7,7 @@ export class SalesActivity {
     description!: string;
     typeAct!: TypeSalesActivity;
     status!: Status;
+    classSalesTeam!:ClassActivity ; 
     repertoire!: Repertoire; // Change to Repertoire object instead of String
   
 }
@@ -23,4 +24,11 @@ export enum TypeSalesActivity {
     RESUME_APPEL ,
     MEETING ,
     CALL_SUMMARY 
+  }
+
+  export enum ClassActivity {
+    Prospecting  ,
+    Negotiation ,
+    Closing ,
+
   }

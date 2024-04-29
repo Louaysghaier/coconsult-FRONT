@@ -50,4 +50,12 @@ export class ActivitySalesTeamService {
       })
     );
   }
+  addActivitySalesTeamAffectRepAndSendSMS(activitysalesteam: SalesActivity, repertoireId: number): Observable<SalesActivity> {
+    const url = `${this.baseUrl}/ajouterActivitySalesTeamSendSMS/${repertoireId}`;
+    return this.http.post<SalesActivity>(url, activitysalesteam).pipe(
+      catchError(error => {
+        throw 'Error while adding contract: ' + error; 
+      })
+    );
+  }
 }

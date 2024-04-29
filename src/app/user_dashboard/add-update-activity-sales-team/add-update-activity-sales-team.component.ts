@@ -31,7 +31,8 @@ export class AddUpdateActivitySalesTeamComponent implements OnInit {
       description: '',
       typeAct: '',
       status: '',
-      repertoire: ''
+      repertoireId: '' , 
+      classSalesTeam: '' 
     });
   }
 
@@ -50,9 +51,11 @@ export class AddUpdateActivitySalesTeamComponent implements OnInit {
      });
    }
 
-  onFormSubmit() {
+   onFormSubmit() {
     if (this.activityForm.valid) {
       const formData = this.activityForm.value;
+      const repertoireId = formData.repertoireId;
+      delete formData.repertoireId; // Remove 'repertoireId' from form data before sending
       if (this.data) {
         formData.idActSale = this.data.idActSale;
         this.salesActivityService.updateActivitySalesTeam(formData).subscribe({
@@ -60,11 +63,11 @@ export class AddUpdateActivitySalesTeamComponent implements OnInit {
             this.dialogRef.close(true);
           },
           error: (err: any) => {
-            console.error(err);
+            console.error(err); 
           }
         });
       } else {
-        this.salesActivityService.addActivitySalesTeam(formData).subscribe({
+        this.salesActivityService.addActivitySalesTeamAffectRepAndSendSMS(formData, repertoireId).subscribe({
           next: () => {
             this.dialogRef.close(true);
           },
@@ -72,7 +75,7 @@ export class AddUpdateActivitySalesTeamComponent implements OnInit {
             console.error(err);
           }
         });
-      }
+      } 
     }
   }
 }

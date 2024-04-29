@@ -89,6 +89,34 @@ export class RepertoireComponent implements OnInit {
     });
   
 }
+
+getTypeContactColor(typeContact: string): string {
+  switch(typeContact) {
+      case 'FORNISSEUR':
+          return 'lightblue';
+      case 'CLIENT':
+          return 'lightgreen';
+      case 'PARTENAIRE':
+          return 'lightyellow';
+      case 'QUALIFIED_LEAD':
+          return 'lightcyan';
+      default:
+          return 'transparent'; // Default color if typeContact doesn't match any case
+  }
+}
+
+getPriorityColor(priority: string): string {
+  switch(priority) {
+      case 'FAIBLE':
+          return 'lightcoral';
+      case 'MOYENNE':
+          return 'lightyellow';
+      case 'ELEVEE':
+          return 'lightgreen';
+      default:
+          return 'transparent'; // Default color if priority doesn't match any case
+  }
+}
   
 
 }

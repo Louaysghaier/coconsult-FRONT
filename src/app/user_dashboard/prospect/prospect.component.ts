@@ -133,4 +133,20 @@ export class ProspectComponent implements OnInit {
     }
   }
 
+  getStatusColor(status: string): string {
+    switch(status) {
+        case 'NEW_PROSPECT':
+            return 'lightsalmon';
+        case 'CONTACTED':
+            return 'lightblue';
+        case 'QUALIFIED':
+            return 'lightgreen';
+        case 'UNQUALIFIED':
+            return 'lightcoral';
+        default:
+            return 'transparent'; // Default color if status doesn't match any case
+    }
+}
+
+
 }

@@ -173,4 +173,25 @@ export class ContractComponent implements OnInit {
     return repertoire.contact; // Utilize the contact field directly
   }
 
+  // Method to return the background color based on étape
+getEtapeColor(etape: string): string {
+  switch(etape) {
+      case 'NOUVEAU':
+          return 'lightblue';
+      case 'DECOUVERTE':
+          return 'lightgreen';
+      case 'PROPSITION':
+          return 'lightyellow';
+      case 'NEGOCIATION':
+          return 'lightcoral';
+      case 'CONCLU':
+          return 'lightsalmon'; // Or any other color you prefer
+      case 'PERDU':
+          return 'lightpink'; // Or any other color you prefer
+      default:
+          return 'transparent'; // Default color if étape doesn't match any case
+  }
+}
+
+
 }

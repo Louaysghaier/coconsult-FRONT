@@ -70,7 +70,7 @@ export class AddUpdateContractComponent implements OnInit {
   onFormSubmit() {
     if (this.contractForm.valid) {
       const formData = this.contractForm.value;
-      const pdfFile = this.contractForm.get('description').value; // Get the PDF file from the form
+      //const pdfFile = this.contractForm.get('description').value; // Get the PDF file from the form
       const contractData = {
         ...formData,
         //pdfFile: pdfFile  // Add PDF file to the contract data
@@ -89,9 +89,10 @@ export class AddUpdateContractComponent implements OnInit {
       } else {
         const repertoireId = this.contractForm.get('repertoireId').value; // Get the repertoireId from the form
         contractData.repertoireContact = null; // Clear repertoireContact field as it will be set automatically
-        this._contractService.addContractAffectRep(contractData, repertoireId).subscribe({
-          next: (val: any) => {
-            this.uploadFile(val.idContract, pdfFile); // Upload the PDF file
+        this._contractService.addContractAffectRepAndGeneratePdf(contractData, repertoireId).subscribe({
+          next: (pdfBlob: Blob) => {
+            const pdfUrl = URL.createObjectURL(pdfBlob);
+            window.open(pdfUrl, '_blank');
             this._dialogRef.close(true);
           },
           error: (err: any) => {

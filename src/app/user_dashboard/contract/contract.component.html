@@ -62,8 +62,9 @@
     
           <ng-container matColumnDef="etape">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Étape </th>
-            <td mat-cell *matCellDef="let row"> {{row.etape}}</td>
+            <td mat-cell *matCellDef="let row" [style.background-color]="getEtapeColor(row.etape)"> {{ row.etape }} </td>
           </ng-container>
+        
     
           <!-- Add other columns based on your contract model -->
           

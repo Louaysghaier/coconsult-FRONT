@@ -19,6 +19,7 @@ import { JobOpportComponent } from './job-opport/job-opport.component';
 import { CandidatemailComponent } from './candidatemail/candidatemail.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { TESTComponent } from './test/test.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -44,7 +45,7 @@ const routes: Routes = [
   { path: 'verification', component: ValidationComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
-
+  { path: 'profil', component: ProfileComponent },
   { path: 'job', component: JobOpportComponent },
   { path: 'email', component: CandidatemailComponent },
   { path: 'reclamation', component: ReclamationComponent },

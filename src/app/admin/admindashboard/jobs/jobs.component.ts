@@ -14,7 +14,7 @@ import { AddjobsComponent } from '../addjobs/addjobs.component';
 export class JobsComponent {
   jobs: JobOpport[] = [];
 
-  
+   
   constructor(private jobopportService: JobopportService,private dialog: MatDialog) {}
 
   ngOnInit(): void {

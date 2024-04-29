@@ -14,18 +14,20 @@ import Swal from 'sweetalert2';
 })
 export class CandidatComponent {
   email: string;
+  prenom:string;
+  nom: string
   selectedFile: File;
-  submittedEmails: string[] = []; // Liste des emails déjà soumis
+  submittedEmails: string[] = []; 
 
   constructor(private candidatService: CandidatService, private router: Router) { }
 
   onSubmit(): void {
-    if (!this.selectedFile || !this.email) {
+    if (!this.selectedFile || !this.email || !this.nom) {
       Swal.fire('Erreur', 'Veuillez sélectionner un fichier et saisir votre e-mail.', 'error');
       return;
     }
   
-    // Vérifier si l'email a déjà été soumis
+   
     if (this.submittedEmails.includes(this.email)) {
       Swal.fire('Erreur', 'Cet email a déjà été soumis.', 'error');
       return;
@@ -42,13 +44,17 @@ export class CandidatComponent {
   
     // Ajouter l'email à la liste des emails soumis
     this.submittedEmails.push(this.email);
+    
+
   
-    this.candidatService.uploadAndExtract(jobOpportId, this.selectedFile, this.email)
+    this.candidatService.uploadAndExtract(jobOpportId, this.selectedFile, this.email, this.nom, this.prenom)
       .subscribe(response => {
         Swal.fire('Réponse du réseau', response, 'success');
-        this.router.navigateByUrl('/myquiz');
+      
       }, response => {
         Swal.fire('Merci', 'Votre demande est en cours de vérification. Veuillez vérifier votre mail pour plus de détails.');
+   
+        this.router.navigate(['#']);
       });
   }
   onFileSelected(event): void {

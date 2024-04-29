@@ -1,0 +1,79 @@
+
+
+<app-navbardorra></app-navbardorra>
+
+
+<div class="game">
+  <div class="rank">2</div>
+<div class="front">
+  <img *ngIf="photoUrl" [src]="photoUrl" alt="Photo du candidat" class="rounded-photo"  alt="game">
+      <span (click)="togglephotoInput()"><i class="fa fa-plus"></i></span>
+      <form *ngIf="showphotoInput" (submit)="onUploadPhoto()">
+        <input type="file" (change)="onFileSelected($event)">
+        <span (click)="onUploadPhoto()"><i class="fa fa-plus"></i></span>
+      </form> 
+  <h3 class="name"><div *ngIf="candidat">
+    <h1>{{ candidat.nom }} {{ candidat.prenom }}</h1>
+   
+  </div></h3>
+  <div class="status">
+    <div *ngIf="candidat">
+      <h1>INFORMATION: <span (click)="toggleInfoInput()"><i class="fa fa-plus" ></i> </span></h1>
+     <h2> {{ candidat.info }}</h2>
+    <div class="streamers">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+      <img src="https://images.unsplash.com/photo-1510227272981-87123e259b17?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=3759e09a5b9fbe53088b23c615b6312e" alt="">
+    </div>
+  </div>
+</div>
+<div class="back">
+  <div class="streaming-info">
+    <div class="streaming-info">
+      <p class="game-stat"><div *ngIf="candidat">
+        <h1>INFORMATION: <span (click)="toggleInfoInput()"><i class="fa fa-plus"></i></span></h1>
+        <h2>{{ candidat.info }}</h2>
+      </div>
+      <p class="game-stat"><div *ngIf="candidat">
+        <h2>Détails du candidat</h2>
+        <p>Compétence: {{ candidat.competence }}</p>
+      </div>
+    </div>
+    
+    <form *ngIf="showInfoInput" (submit)="onSubmitInfo()">
+      <div>
+        <label for="info">Info:</label>
+        <input type="text" id="info" [(ngModel)]="info" name="info" required>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <button (click)="toggleCompetenceInput()">Ajouter Compétence</button>
+    <form *ngIf="showCompetenceInput" (submit)="onSubmitCompetence()">
+      <div>
+        <label for="competence">Compétence:</label>
+        <input type="text" id="competence" [(ngModel)]="competence" name="competence" required>
+      </div>
+      <button type="submit">Submit</button>
+      <div *ngIf="candidat">
+        <h2>Détails du candidat</h2>
+        <p>Compétence: {{ candidat.competence }}</p>
+      </div>
+    </form>
+  </div>
+  <div class="backgroundWrapper"></div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

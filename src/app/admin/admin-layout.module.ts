@@ -31,6 +31,7 @@ import { JobsComponent } from './admindashboard/jobs/jobs.component';
 
 import { UpdatejobdComponent } from './admindashboard/updatejobd/updatejobd.component';
 import { AddjobsComponent } from './admindashboard/addjobs/addjobs.component';
+import { EntretienComponent } from './admindashboard/entretien/entretien.component';
 
 const AdminLayoutRoutes: Routes = [
   {path:'admin',
@@ -88,6 +89,7 @@ children: [
 
     UpdatejobdComponent,
     AddjobsComponent,
+    EntretienComponent,
    
     
   ],

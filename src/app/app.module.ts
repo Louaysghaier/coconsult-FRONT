@@ -37,6 +37,8 @@ import { CandidatemailComponent } from './candidatemail/candidatemail.component'
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { TESTComponent } from './test/test.component';
 import { NavbardorraComponent } from './navbardorra/navbardorra.component';
+import { ProfileComponent } from './profile/profile.component';
+
 
 
 @NgModule({
@@ -62,6 +64,8 @@ AffichagequestionComponent,
     ReclamationComponent,
     TESTComponent,
     NavbardorraComponent,
+    ProfileComponent,
+
 
 
   
@@ -90,7 +94,7 @@ AffichagequestionComponent,
   exports: [CandidatemailComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+   // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
   ],
   bootstrap: [AppComponent]

@@ -18,7 +18,7 @@ export class JobopportService {
   }
   
   createJobOpport(jobOpport: JobOpport): Observable<JobOpport> {
-    return this.http.post<JobOpport>(`${this.baseUrl}/createjobopoort`, jobOpport)
+    return this.http.post<JobOpport>(`${this.baseUrl}/add`, jobOpport)
       .pipe(
         catchError(this.handleError)
       );

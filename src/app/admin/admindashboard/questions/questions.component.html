@@ -6,14 +6,14 @@
       <img [src]="'assets/images/QUESTION.webp'" alt="Question Image">
     </div>
     <div class="content">
-      <p>Le sujet de cette question est {{ question.content }}</p>
-      <p>La pondération est {{ question.ponderation }} questions</p>
-      <p>Réponse 1: {{ question.option1 }}</p>
-      <p>Réponse 2: {{ question.option2 }}</p>
-      <p>Réponse 3: {{ question.option3 }}</p>
-      <p>Réponse 4: {{ question.option4 }}</p>
-      <p>Réponse correcte: {{ question.answer }}</p>
-
+      <p>Sujet:{{ question.content }}
+      pondération{{ question.ponderation }} 
+      Rép1:{{ question.option1 }}
+      Rép2:{{ question.option2 }}
+      Rép3:{{ question.option3 }}
+      Rép4:{{ question.option4 }}
+      Répcorr:{{ question.answer }}
+    </p>
   
       <button (click)="openUpdateDialog(question)" mat-raised-button type="submit" class="btn btn-danger mx-auto mt-3 text-white" style="width: 150px; text-decoration: rgb(244, 240, 240); font-size: 16px; background-color: rgb(232, 125, 125);">Update</button>
       <button (click)="openDeleteConfirmation(question)" mat-raised-button type="submit" class="btn btn-danger mx-auto mt-1 text-white" style="width: 150px; text-decoration: aliceblue; font-size: 16px; background-color: rgb(232, 125, 125);">Delete</button>

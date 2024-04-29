@@ -23,12 +23,14 @@ apiurl1='http://localhost:8082/quizzes/verifyexistedmail/'
 
 
  
- uploadAndExtract(jobOpportId: number, file: File, email: string): Observable<string> {
+ uploadAndExtract(jobOpportId: number, file: File, email: string, nom:string, prenom:string): Observable<string> {
   // Construire les données à envoyer
   const formData = new FormData();
   formData.append('jobOpportId', jobOpportId.toString());
   formData.append('file', file);
   formData.append('email', email);
+  formData.append('nom', nom);
+  formData.append('prenom', prenom);
 
   // Définir les en-têtes pour la requête multipart/form-data
   const headers = new HttpHeaders();
@@ -37,7 +39,10 @@ apiurl1='http://localhost:8082/quizzes/verifyexistedmail/'
   // Envoyer la requête POST au backend
   return this.http.post<string>('http://localhost:8082/uploadAndExtract', formData, { headers });
 }
-
+verifierPassageTest(email: string): Observable<boolean> {
+  const url = `http://localhost:8082/candidat/candidats/${email}/a-passe-test`;
+  return this.http.get<boolean>(url);
+}
 
 
  notifyCandidateByEmail(email: string): Observable<string> {

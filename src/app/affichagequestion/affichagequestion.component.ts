@@ -145,6 +145,9 @@ finishQuiz(): void {
     (error) => {
       console.error('Error occurred while finishing quiz:', error);
       Swal.fire('Check your mail for details');
+      sessionStorage.removeItem('email');
+         
+      this.router.navigate(['#']);
     }
   );
 }

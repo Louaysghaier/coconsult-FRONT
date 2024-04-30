@@ -76,11 +76,61 @@ refreshToken(): void {
       value: user.idToken
     };
     this.authService.google(this.TokenDto).subscribe(
-      res => {
-        Swal.fire({
-          text: "if you are a new user please complete your profile",
+      (res:any) => {
+        if (res.authorities[0].authority === 'ROLE_USER') {
+          Swal.fire({
+            title: "Pick up your role",
+            input: "select", // change it to list rollante 
+            inputOptions: {
+              'Employee': 'Employee',
+              'Manager': 'Manager',
+              'HR': 'HR',
+              'CRM': 'CRM',
+              'Consult': 'Consult',
+              'PM': 'PM',
 
-        });
+            },
+            inputAttributes: {
+              autocapitalize: "off"
+            },
+            showCancelButton: true,
+            confirmButtonText: "Update !",
+            showLoaderOnConfirm: true,
+            preConfirm: async (role) => {
+              try {
+                const backendapiUrl = `http://localhost:8082/api/role/updateuserrole/${role}/${res.id}`;
+                const response = await fetch(backendapiUrl, {
+                  method: 'PUT', // Use PUT method
+                });
+                if (!response.ok) {
+                  throw new Error(await response.text());
+                }
+                return true; // Indicates successful request
+              }
+              catch (error) {
+                Swal.showValidationMessage(`
+                  Request failed: ${error}
+                `);
+              }
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({  
+                icon: "success",
+                html: `
+                  
+                  <a href="#">visit your profile</a>
+                  
+                `,
+              });
+            }
+          });
+          
+      
+      
+      }
+    
         sessionStorage.setItem('user', JSON.stringify(res));
 
         // Otherwise, store tokens in sessionStorage
@@ -90,7 +140,7 @@ refreshToken(): void {
         //this.authService.isconn= true;
         //this.router.navigate(['/']);
       },
-      err => {
+      (err) => {
         console.log(err);
         Swal.fire({
           icon: "error",

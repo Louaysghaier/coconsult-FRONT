@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProjFeed } from '../../_models/projectFeed';
 import { ProjFeedService } from '../../_services/projectfeed.service';
+import {Projects} from '../../_models/projects';
+import {Subscription} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
     selector: 'app-proj-feed',
@@ -12,13 +16,27 @@ export class ProjFeedComponent implements OnInit {
     projFeeds: ProjFeed[] = [];
     newProjFeed: ProjFeed = new ProjFeed();
     selectedProjFeed: ProjFeed = new ProjFeed();
+    searchTerm: string = '';
+    currentPage: number = 0;
+    pagedProjFeed: ProjFeed[] = [];
+    private projFeedSubscription: Subscription;
+    pageSizeOptions: number[] = [5, 10, 25, 100];
+    newProject: ProjFeed = new ProjFeed();
 
     totalProjFeeds: number = 0;
     pageSize: number = 5;
-    pageSizeOptions: number[] = [5, 10, 25, 100];
 
-    constructor(private modalService: NgbModal, private projFeedService: ProjFeedService) { }
+    constructor(private dialog: MatDialog,
+                private modalService: NgbModal,
+                private projFeedService: ProjFeedService)
+                    { }
 
+    gOnDestroy(): void {
+        if (this.projFeedSubscription)
+        {
+            this.projFeedSubscription.unsubscribe();
+        }
+    }
     ngOnInit(): void {
         this.getAllProjFeeds();
     }
@@ -77,10 +95,8 @@ export class ProjFeedComponent implements OnInit {
         this.projFeedService.updateProjFeed(this.selectedProjFeed.idPjtFeed, this.selectedProjFeed).subscribe(
             (response: ProjFeed) => {
                 console.log('Project feed updated:', response);
-                // Rafraîchir les données après la mise à jour
                 this.getAllProjFeeds();
-                // Fermer le modal d'édition
-                this.modalService.dismissAll();
+                this.modalService.dismissAll(); // fermer
             },
             (error: any) => {
                 console.error('Error updating project feed:', error);
@@ -102,12 +118,29 @@ export class ProjFeedComponent implements OnInit {
         }
     }
 
-    onPageChange(event: any): void {
+    /*onPageChange(event: any): void {
         this.pageSize = event.pageSize;
+    }*/
+    updatePage() {
+        const filteredProjects = this.filterProjectsfeed();
+        const startIndex = this.currentPage * this.pageSize;
+        this.pagedProjFeed = filteredProjects.slice(startIndex, startIndex + this.pageSize);
     }
 
+    onPageChange(event: PageEvent) {
+        this.currentPage = event.pageIndex;
+        this.pageSize = event.pageSize;
+        this.updatePage();
+    }
     openAddProjFeedModal(content: any): void {
         this.modalService.open(content, { ariaLabelledBy: 'addProjFeedModalLabel' });
     }
 
+    filterProjectsfeed(): ProjFeed[] {
+        return this.projFeeds.filter(project =>
+            project.idPjtFeed.toString().includes(this.searchTerm) ||
+            project.project.projetTitle.includes(this.searchTerm.toLowerCase()) ||
+            project.content.toLowerCase().includes(this.searchTerm.toLowerCase())
+        );
+    }
 }

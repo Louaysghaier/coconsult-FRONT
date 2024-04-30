@@ -88,7 +88,8 @@
                             </table>
                         </div>
                         <!-- Pagination -->
-                        <mat-paginator [length]="totalProjFeeds" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChange($event)"></mat-paginator>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" [length]="projFeeds.length" (page)="onPageChange($event)">
+                        </mat-paginator>
                     </div>
                 </div>
             </div>

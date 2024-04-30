@@ -2,15 +2,15 @@ import { Assignements } from "./assignements";
 import { Expanses } from "./expanses";
 
 export class Projects {
-    idProjet!: number;
+  idProjet!: number;
   projetTitle!: string;
   budget: number=0;
   mail!: string;
   dateDebut!: Date;
   dateFin!: Date;
   effectif: number=0;
-  description!: string; // Renommez 'description' en 'descriptio'
-  expanses?: Expanses[]; // Si Expanses est un autre modèle
+  description!: string;
+  expanses?: Expanses[];
   assignement?: Assignements[];
 
   }

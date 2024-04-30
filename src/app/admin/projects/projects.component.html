@@ -37,7 +37,7 @@
                                 <!-- Table Body -->
                                 <tbody>
                                 <!-- Project Rows Here -->
-                                <tr *ngFor="let project of projects">
+                                <tr *ngFor="let project of pagedProjects">
                                     <td>{{ project.idProjet }}</td>
                                     <td>{{ project.projetTitle }}</td>
                                     <td>{{ project.budget }}</td>
@@ -65,9 +65,10 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" [length]="projects.length" (page)="onPageChange($event)">
+                            </mat-paginator>
                         </div>
-                        <!-- Pagination -->
-                        <mat-paginator [length]="totalProjects" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChange($event)"></mat-paginator>
                     </div>
                 </div>
             </div>

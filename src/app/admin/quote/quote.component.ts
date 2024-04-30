@@ -11,7 +11,7 @@ import { QuoteService } from '../../_services/quote.service';
 export class QuoteComponent implements OnInit {
    // @ViewChild('addQuoteModal') addQuoteModal: any; // Définir la référence au modèle modal d'ajout de devis
     // @ViewChild('editQuoteModal') editQuoteModal: any;
-
+    //quotes: any[];
     quotes: Quote[] = [];
   newQuote: Quote = new Quote();
   selectedQuote: Quote = new Quote();
@@ -37,6 +37,18 @@ export class QuoteComponent implements OnInit {
         this.selectedQuote = { ...quote };
         this.modalService.open( { ariaLabelledBy: 'editQuoteModalLabel' });
     }
+    toggleQuoteValidity(quote: Quote) {
+        quote.valid = !quote.valid;
+
+        this.quoteService.validateQuote(quote.idQuote, quote.valid).subscribe(
+            () => {
+                console.log('Validation successful');
+            },
+            (error) => {
+                console.error('Validation failed:', error);
+            }
+        );
+    }
 
 
     saveQuote(): void {
@@ -45,7 +57,7 @@ export class QuoteComponent implements OnInit {
                 console.log('Quote saved:', response);
                 this.modalService.dismissAll(); // Fermer le modèle modal d'ajout de devis après sauvegarde réussie
                 this.newQuote = new Quote(); // Réinitialiser le nouvel objet de devis
-                this.getAllQuotes(); // Rafraîchir la liste des devis
+                this.getAllQuotes();
             },
             (error: any) => {
                 console.error('Error saving quote:', error);
@@ -53,6 +65,18 @@ export class QuoteComponent implements OnInit {
         );
     }
 
+    validate(id: number, isValid: boolean): void {
+        this.quoteService.validateQuote(id, isValid).subscribe(
+            () => {
+                console.log('Validation successful');
+                // Mettez à jour l'interface utilisateur ou affichez un message de réussite
+            },
+            (error) => {
+                console.error('Validation failed:', error);
+                // Affichez un message d'erreur à l'utilisateur
+            }
+        );
+    }
 
     updateQuote(): void {
         this.quoteService.updateQuote(this.selectedQuote.idQuote, this.selectedQuote).subscribe(

@@ -22,6 +22,10 @@ export class QuoteService {
     return this.http.post<Quote>(`${this.baseUrl}/ajouterQuote`, quote);
   }
 
+  validateQuote(id: number, isValid: boolean): Observable<void> {
+    const url = `${this.baseUrl}/validateQuote/${id}?isValid=${isValid}`;
+    return this.http.put<void>(url, {});
+  }
   updateQuote(id: number, quote: Quote): Observable<Quote> {
     return this.http.put<Quote>(`${this.baseUrl}/updateQuote/${id}`, quote);
   }

@@ -35,6 +35,8 @@ import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 @NgModule({
@@ -75,6 +77,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     AdminLayoutModule,
     DashboardModule,
     MatPaginatorModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [

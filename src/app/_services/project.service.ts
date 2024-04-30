@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {Projects} from '../_models/projects';
 import {Expanses} from '../_models/expanses';
 import {Assignements} from '../_models/assignements';
+import {catchError, tap} from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 
@@ -13,7 +16,8 @@ import {Assignements} from '../_models/assignements';
 export class ProjetsService {
   private baseUrl = 'http://localhost:8082/projets';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toaster: ToastrService) { }
+
 
   getAllProjets(): Observable<Projects[]> {
     return this.http.get<Projects[]>(`${this.baseUrl}/getAllProjects`);
@@ -50,7 +54,18 @@ export class ProjetsService {
   createMeetingForProject(projectId: number, meeting: Meetings): Observable<Meetings> {
     return this.http.post<Meetings>(`${this.baseUrl}/${projectId}/meetings`, meeting);
   }*/
-  validateProject(idProject: number): Observable<void> {
+ /* validateProject(idProject: number): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/validateProject/${idProject}`, null);
+  }*/
+  validateProject(idProject: number): Observable<any> {
+    return this.http.put<void>(`${this.baseUrl}/validateProject/${idProject}`, null).pipe(
+        tap(value=> {
+          this.toaster.success('Project validated and assigned successfully', 'Success');
+        }),
+        catchError(error => {
+          this.toaster.error('An error occurred while validating the project', 'Error');
+          return throwError(error);
+        })
+    );
   }
 }

@@ -12,6 +12,7 @@ import {ProjFeed} from '../../_models/projectFeed';
 export class ProjectsComponent implements OnInit {
   //@ViewChild('editProjectModal') editProjectModal: any; // Définir la référence au modèle modal d'édition de projet
   //@ViewChild('addProjectModal') addProjectModal: any; // Définir la référence au modèle modal d'ajout de projet
+    @ViewChild('matpaginator ') matpaginator:any;
   projects: Projects[] = [];
   newProject: Projects = new Projects();
   selectedProject: Projects = new Projects();

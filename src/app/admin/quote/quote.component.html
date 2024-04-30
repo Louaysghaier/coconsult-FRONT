@@ -1,17 +1,32 @@
-<div class="main-content">
-    <div class="container-fluid">
+
+<style>
+    .valid-button {
+        color: white;
+        background-color: green;
+        font-weight: bold;
+    }
+
+    .invalid-button {
+        color: white;
+        background-color: red;
+        font-weight: bold;
+        text-decoration: line-through;
+    }
+
+</style>
+
+<div class="main-content" style="background-image: url('https://medias1.prestastore.com/691264-pbig/pdf-quotation.jpg'); background-size: contain ; background-position: right  ">
+<div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <!-- Button to trigger modal for Add Quote -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQuoteModal">Add Quote</button>
             </div>
-
         </div>
         <!-- Quote List Section -->
         <div class="row">
             <div class="col-md-12">
                 <div class="cardo" style="position: absolute">
-                        <img src="src/assets/images/img.png" class="card-img" style="position: absolute; width: 100%; height: 100%;" alt="Image de fond"> <!-- Image de fond -->
                         <div class="card-header card-header-info" style="position: relative; z-index: 1;">
                             <h4 class="card-title">Quote List</h4>
                     </div>
@@ -22,12 +37,15 @@
                                 <!-- Table Headers -->
                                 <thead class="text-primary">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Montant</th>
+                                    <th>ID Quote</th>
+                                    <th>
+                                        <i class="fas fa-dollar"></i> Value
+                                    </th>
                                     <th>Creation Date</th>
                                     <th>Expire Date</th>
                                     <th>Description</th>
                                     <th>Actions</th>
+                                    <th>Status</th>
                                 </tr>
                                 </thead>
                                 <!-- Table Body -->
@@ -36,8 +54,8 @@
                                 <tr *ngFor="let quote of quotes">
                                     <td>{{ quote.idQuote }}</td>
                                     <td>{{ quote.montant }}</td>
-                                    <td>{{ quote.creationDate }}</td>
-                                    <td>{{ quote.expireDate }}</td>
+                                    <td style="background-color: green; color: white; font-weight: bold;">{{ quote.creationDate }}</td>
+                                    <td style="background-color: red; color: white; font-weight: bold;">{{ quote.expireDate }}</td>
                                     <td>{{ quote.description }}</td>
                                     <td>
                                         <!-- Edit Button -->
@@ -47,6 +65,10 @@
                                         <!-- Delete Button -->
                                         <button type="button" class="btn btn-danger" (click)="deleteQuote(quote.idQuote)">
                                             Delete
+                                        </button>
+                                    <td>
+                                        <button class="btn" [ngClass]="quote.valid ? 'valid-button' : 'invalid-button'" (click)="toggleQuoteValidity(quote)">
+                                            {{ quote.valid ? 'Valider' : 'Invalider' }}
                                         </button>
                                     </td>
                                 </tr>

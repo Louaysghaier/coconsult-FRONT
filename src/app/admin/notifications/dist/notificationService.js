@@ -16,8 +16,8 @@ var notificationService = /** @class */ (function () {
         this.baseURL = "http://localhost:8082/Msg/getAll";
         this.env = "http://localhost:8082/Msg/sendNotification";
     }
-    notificationService.prototype.sendNotification = function (message) {
-        return this.httpClient.post(this.env, message);
+    notificationService.prototype.sendNotification = function (adminMsgId, title, message, recipients) {
+        return this.httpClient.post(this.env + "/" + adminMsgId + "/" + title + "/" + message + "/" + recipients, null);
     };
     notificationService.prototype.getListMessage = function () {
         return this.httpClient.get(this.baseURL, headers);

@@ -62,7 +62,7 @@
                                           {{msg.notificationSent}}
                                       </td>
                                         <td>
-                                          <button *ngIf="!msg.notificationSent"(click)="sendnotif(msg)" type="button" class="btn btn-danger" >Send Now!</button>
+                                          <button *ngIf="!msg.notificationSent"(click)="sendNotification(msg)" type="button" class="btn btn-danger" >Send Now!</button>
                                           <button *ngIf="msg.notificationSent" type="button" class="btn btn-primary">already sent</button>
                                         </td>
                                      

@@ -22,6 +22,7 @@ import { GroupChatComponent } from './group-chat/group-chat.component';
 import { CardGPCHATComponent } from './card-gpchat/card-gpchat.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UpdateDialogComponent } from './group-chat/update-dialog/update-dialog.component';
+import { NotifDialogComponent } from './notifications/notif-dialog/notif-dialog.component';
 const AdminLayoutRoutes: Routes = [
   {path:'admin',
 component:AdminLayoutComponent,
@@ -63,6 +64,7 @@ children: [
     GroupChatComponent,
     CardGPCHATComponent,
     UpdateDialogComponent,
+    NotifDialogComponent,
 
     
   ],

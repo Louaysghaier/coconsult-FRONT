@@ -9,7 +9,7 @@
     </div>
         
     
-    <div class="navbar-collapse collapse" id="navbar_global" [ngbCollapse]="isCollapsed"  *ngIf="!isconn ; else inconn">
+    <div class="navbar-collapse collapse" id="navbar_global"  >
       
       <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
         <li class="nav-item dropdown">
@@ -39,7 +39,7 @@
           </div>
         </li>
         <li class="nav-item dropdown" >
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button" routerLinkActive="active" [routerLink]="['/profile']">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" routerLinkActive="active" [routerLink]="['/email']">
             <i class="fa fa-building" aria-hidden="true"></i>
             <span class="nav-link-inner--text text-black">profile </span>
           </a>

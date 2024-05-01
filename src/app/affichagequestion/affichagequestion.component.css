@@ -6,6 +6,94 @@
 }
 
 
+/* Styles for the mat-stepper container */
+.container {
+  max-width: 600px; /* Largeur maximale de la mat-stepper */
+  margin: 0 auto; /* Centrage horizontal de la mat-stepper */
+}
+
+/* Styles for the mat-step content */
+.mat-step-content {
+  padding: 20px; /* Espacement interne du contenu de chaque étape */
+}
+
+/* Styles for the question title */
+h3 {
+  color: #007bff; /* Couleur de la question */
+}
+
+/* Styles for the answer options */
+ul li label {
+  display: block; /* Afficher les options sur une ligne différente */
+  margin-bottom: 8px; /* Marge en bas de chaque option */
+  color: #28a745; /* Couleur des réponses */
+}
+
+/* Styles for the Next and Back buttons */
+.mat-stepper-horizontal .mat-horizontal-stepper-header-container .mat-step-header:not(:last-child) .mat-step-icon,
+.mat-stepper-horizontal .mat-horizontal-stepper-header-container .mat-step-header:not(:first-child) .mat-step-icon {
+  background-color: #007bff; /* Couleur de fond des icônes Next et Back */
+}
+
+/* Styles for the Submit Answer button */
+.mat-stepper-horizontal .mat-horizontal-stepper-header-container .mat-step-header:not(:last-child) .mat-step-icon,
+.mat-stepper-horizontal .mat-horizontal-stepper-header-container .mat-step-header:not(:first-child) .mat-step-icon {
+  background-color: #28a745; /* Couleur de fond du bouton Submit Answer */
+}
+
+/* Styles for the End of the quiz button */
+.mat-stepper-horizontal .mat-horizontal-stepper-header-container .mat-step-header:last-child .mat-step-icon {
+  background-color: #dc3545; /* Couleur de fond du bouton de fin de quiz */
+}
+/* Styles for the Next and Back buttons */
+button.mat-button.matStepperNext,
+button.mat-button.matStepperPrevious {
+  background-color: #007bff; /* Couleur de fond des boutons Next et Back */
+  color: #fff; /* Couleur du texte */
+  padding: 10px 20px; /* Espacement interne */
+  border: none; /* Suppression de la bordure */
+  border-radius: 5px; /* Arrondi des coins */
+  cursor: pointer; /* Curseur au survol */
+  transition: background-color 0.3s ease; /* Animation de transition */
+}
+
+button.mat-button.matStepperNext:hover,
+button.mat-button.matStepperPrevious:hover {
+  background-color: #0056b3; /* Couleur de fond des boutons Next et Back au survol */
+}
+
+/* Styles for the Submit Answer button */
+button.mat-button.submit-answer {
+  background-color: #28a745; /* Couleur de fond du bouton Submit Answer */
+  color: #fff; /* Couleur du texte */
+  padding: 10px 20px; /* Espacement interne */
+  border: none; /* Suppression de la bordure */
+  border-radius: 5px; /* Arrondi des coins */
+  cursor: pointer; /* Curseur au survol */
+  transition: background-color 0.3s ease; /* Animation de transition */
+}
+
+button.mat-button.submit-answer:hover {
+  background-color: #218838; /* Couleur de fond du bouton Submit Answer au survol */
+}
+.button-container {
+  display: flex; /* Utiliser un affichage flex */
+  justify-content: space-between; /* Espacement égal entre les boutons */
+}
+/* Styles for the End of the quiz button */
+button.mat-button.end-quiz {
+  background-color: #dc3545; /* Couleur de fond du bouton de fin de quiz */
+  color: #fff; /* Couleur du texte */
+  padding: 10px 20px; /* Espacement interne */
+  border: none; /* Suppression de la bordure */
+  border-radius: 5px; /* Arrondi des coins */
+  cursor: pointer; /* Curseur au survol */
+  transition: background-color 0.3s ease; /* Animation de transition */
+}
+
+button.mat-button.end-quiz:hover {
+  background-color: #c82333; /* Couleur de fond du bouton de fin de quiz au survol */
+}
 
 
 .card1 {
@@ -79,6 +167,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  margin-right: 50px;
 }
 
 button:hover {

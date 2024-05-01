@@ -59,7 +59,8 @@ export class ReclamationComponent implements OnInit {
 
   soumettreReclamation(mailcandidat) {
     if (!mailcandidat) {
-      throw new Error('Email de l\'utilisateur non trouvé');
+    
+      Swal.fire("warning","you can't do a reclamation","warning");
     }
 
     this.reclamationService.ajouterReclamation(this.contenuReclamation, mailcandidat)

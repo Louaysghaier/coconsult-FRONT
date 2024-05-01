@@ -31,15 +31,22 @@
     <span></span>
   </div>
 
+  <video width="640" height="360" controls>
+    <source src="assets/video/2 Minute General Knowledge Quiz.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
-
-        <div class="card1">
-         
-            <input type="email" [(ngModel)]="email" placeholder="Entrez votre e-mail">
-            <button (click)="onSubmit()">Passer le quiz</button>
-          </div>
-      
-        
+  <div class="container">
+    <h2>Formulaire de candidature</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Soumettre</button>
+    </form>
+  </div>
+  
 
 
 

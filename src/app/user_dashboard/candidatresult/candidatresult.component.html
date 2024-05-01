@@ -1,9 +1,33 @@
-<mat-card *ngFor="let candidat of candidatDetails" class="candidat-card">
-  <mat-card-content>
-    <p><strong>Email:</strong> {{ candidat.candidatEmail }}</p>
-    <p><strong>Job Opportunity:</strong> {{ candidat.jobOpportTitle }}</p>
-    <p><strong>Final Mark:</strong> {{ candidat.finalMark }}</p>
-  
-  </mat-card-content>
-</mat-card>
+<!-- main-content.component.html -->
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+            
 
+      <!-- Section pour afficher les détails des candidats dans des mat-cards -->
+      <div class="row mt-4">
+          <div class="col-md-12">
+              <div class="cardo">
+                  <div class="card-header card-header-primary">
+                      <h4 class="card-title">Détails des candidats</h4>
+                      <p class="card-category">Tous les détails des candidats </p>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-md-4" *ngFor="let candidat of candidatDetails">
+                              <mat-card class="candidat-card">
+                                  <mat-card-content>
+                                      <p><strong>Email:</strong> {{ candidat.candidatEmail }}</p>
+                                      <p><strong>Opportunité d'emploi:</strong> {{ candidat.jobOpportTitle }}</p>
+                                      <p><strong>Note finale:</strong> {{ candidat.finalMark }}</p>
+                                  </mat-card-content>
+                              </mat-card>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

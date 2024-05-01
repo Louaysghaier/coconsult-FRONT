@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { QuizService } from '../_services/quiz.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CandidatService } from '../_services/candidat.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Quiz } from '../_models/quiz';
@@ -13,11 +13,19 @@ import Swal from 'sweetalert2'; // Importez SweetAlert2
 export class MyquizComponent {
   quizzes: Quiz[]=[];
   quizInProgress = false;
-  constructor(private quizService: QuizService, private router: Router,private candidatservice:CandidatService) {}
-  mailcandidat:any=  sessionStorage.getItem('email');
+  email: string;
+  constructor(private route:ActivatedRoute,private quizService: QuizService, private router: Router,private candidatservice:CandidatService) {}
+ 
  
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.email = params['email'];
+      // Stocker l'e-mail dans la session s'il est disponible dans l'URL
+      if (this.email) {
+        sessionStorage.setItem('email', this.email);
+      }
+    });
     this.loadQuiz();
   }
 
@@ -47,20 +55,31 @@ export class MyquizComponent {
         text: 'connecter vous svp!',
       });
     } else {
-      // Marquer un quiz en cours et naviguer vers les questions du quiz
+      // Vérifier si le candidat a déjà passé le test
+      this.candidatservice.verifierPassageTest(this.email).subscribe(
+        (result: boolean) => {
+          if (!result) {
       this.quizInProgress = true;
     this.quizService.getQuestionsForQuiz(quizId)
       .subscribe(
         (questions) => {
           console.log("mes question sont",questions);
-         this.router.navigate(['Affichagequestion', quizId,this.mailcandidat]);
+         this.router.navigate(['Affichagequestion', quizId,this.email]);
           
         },
         (error) => {
           console.error('Erreur lors du chargement des questions du quiz :', error);
         }
       );
+    } else {
+      // Si le candidat a déjà passé le test, afficher un message d'erreur
+      Swal.fire('Error', 'Vous avez déjà passé le test', 'error');
+    }
+  },
+  (error) => {
+    console.error('Erreur lors de la vérification du passage du test:', error);
   }
-
-  
-  }}
+);
+}
+}
+}

@@ -65,7 +65,9 @@ verifierPassageTest(email: string): Observable<boolean> {
 
 
 
-
+getCandidatByEmail(email: string): Observable<any> {
+  return this.http.get<any>(`http://localhost:8082/candidat/email/${email}`);
+}
 
 
   ajoutercandidat(candidat: Candidat): Observable<Candidat> {

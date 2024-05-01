@@ -38,7 +38,7 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import { TESTComponent } from './test/test.component';
 import { NavbardorraComponent } from './navbardorra/navbardorra.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -86,6 +86,7 @@ AffichagequestionComponent,
     CarouselModule.forRoot(),
     FontAwesomeModule,
     DashboardModule,
+    MatStepperModule,
     ReactiveFormsModule,
    
     

@@ -36,7 +36,7 @@ const routes: Routes = [
     loadChildren: () => import('./user_dashboard/dashboard.module').then(m => m.DashboardModule),
 
   }, 
-  { path:'myquiz',component:MyquizComponent },
+  { path:'myquiz/:email',component: MyquizComponent },
   { path: 'Affichagequestion/:quizId/:mailcandidat', component: AffichagequestionComponent },
 
   { path: 'signin', component: LoginComponent },
@@ -49,7 +49,6 @@ const routes: Routes = [
   { path: 'job', component: JobOpportComponent },
   { path: 'email', component: CandidatemailComponent },
   { path: 'reclamation', component: ReclamationComponent },
-
 
  
   

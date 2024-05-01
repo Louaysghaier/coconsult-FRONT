@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { event } from 'jquery';
 import { Profil } from '../_models/profil';
@@ -20,13 +20,18 @@ export class ProfileComponent {
   competence: string;
   info: string;
   candidat: Candidat;
-  candidatId: number = 11;
+  candidatId: number ;
   showInfoInput: boolean = false;
   showCompetenceInput: boolean = false;
   showphotoInput: boolean = false;
   photoUrl: string | ArrayBuffer | null = null;
-  constructor(private candidatService: ProfileService,  private route: ActivatedRoute,) { }
-  ngOnInit(): void {
+  constructor(private candidatService: ProfileService,  private route: ActivatedRoute,) {
+
+
+   }
+  ngOnInit(): void {// Dans ProfileComponent ngOnInit
+    this.candidatId = parseInt(sessionStorage.getItem('id')); 
+    
     this.loadCandidatPhoto();
     this.getCandidatById(this.candidatId);
    
@@ -51,7 +56,7 @@ export class ProfileComponent {
 
   onUploadPhoto(): void {
     if (this.selectedPhoto) {
-      this.candidatService.uploadPhoto(11, this.selectedPhoto)
+      this.candidatService.uploadPhoto(this.candidatId, this.selectedPhoto)
         .subscribe(
           response => {
             console.log('Photo uploaded successfully:', response);
@@ -65,7 +70,7 @@ export class ProfileComponent {
     }
   }
     loadCandidatPhoto() {
-    this.candidatService.getCandidatPhoto(11)
+    this.candidatService.getCandidatPhoto(this.candidatId)
       .subscribe(
         (response) => {
           const reader = new FileReader();
@@ -83,7 +88,7 @@ export class ProfileComponent {
 
   
   onSubmitt(): void {
-    this.candidatService.createCompetence(11, this.competence)
+    this.candidatService.createCompetence(this.candidatId, this.competence)
       .subscribe(
         response => {
           console.log('Candidat created successfully:', response);
@@ -97,7 +102,7 @@ export class ProfileComponent {
   }
 
   onSubmit(): void {
-    this.candidatService.createCandidat(11, this.info)
+    this.candidatService.createCandidat(this.candidatId, this.info)
       .subscribe(
         response => {
           console.log('Candidat created successfully:', response);
@@ -110,7 +115,7 @@ export class ProfileComponent {
       );
   }
   updateJobs(): void {
-    this.candidatService.updateJob(11, this.competence).subscribe(
+    this.candidatService.updateJob(this.candidatId, this.competence).subscribe(
       (response) => {
         // Handle success, if needed
         console.log('job updated successfully:', response);
@@ -121,6 +126,8 @@ export class ProfileComponent {
       }
     );
   }
-
+  ngOnDestroy(): void {
+    sessionStorage.removeItem('candidatId');
+  }
 
 }

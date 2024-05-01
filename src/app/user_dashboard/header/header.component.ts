@@ -2,6 +2,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from 'src/app/admin/sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import { notificationService } from 'src/app/admin/notifications/notificationService';
+import { AccountService } from 'src/app/_services';
+import { User } from 'src/app/_models';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +18,16 @@ export class HeaderComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
-
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+    User:User;
+    notifications :Notification[];
+    constructor(location: Location,  private element: ElementRef, private router: Router,private notificationservice:notificationService,private accountservice:AccountService) {
       this.location = location;
           this.sidebarVisible = false;
+          this.User = this.accountservice.userValue ;
+
     }
 
-    ngOnInit(){
+    ngOnInit(){ this.getallnotification();
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -123,5 +129,16 @@ export class HeaderComponent implements OnInit {
       }
       return '';
     }
-
+    getallnotification(){
+        this.notificationservice.getNotificationByuser(this.User.id).subscribe(
+            (response:[]) => {
+                this.notifications = response;
+              //  console.log('notification get successfully!');
+                console.log(response);
+            },
+            (error) => {
+                console.error('Error during get notification.', error);
+            }
+        );
+    }
 }

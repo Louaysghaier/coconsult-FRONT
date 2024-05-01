@@ -13,7 +13,7 @@ const headers = { headers: new HttpHeaders({ 'Content-Type': 'application/json' 
 export class notificationService {
   private baseURL  ="http://localhost:8082/Msg/getAll";
   private env = "http://localhost:8082/Msg/sendNotification";
-
+  private url = "http://localhost:8082/Notification/getNotificationByuser";
   sendNotification(adminMsgId: number, title: string, message: string, recipients: string[]): Observable<any> {
     return this.httpClient.post<any>(`${this.env}/${adminMsgId}/${title}/${message}/${recipients}`, null);
   }
@@ -22,6 +22,9 @@ export class notificationService {
 
   getListMessage(): Observable<Message[]>{
     return this.httpClient.get<Message[]>(this.baseURL, headers);
+  }
+  getNotificationByuser(userId: number): Observable<Notification[]>{
+    return this.httpClient.get<Notification[]>(`${this.url}/${userId}`, headers);
   }
   
 }

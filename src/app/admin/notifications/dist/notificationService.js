@@ -15,12 +15,16 @@ var notificationService = /** @class */ (function () {
         this.httpClient = httpClient;
         this.baseURL = "http://localhost:8082/Msg/getAll";
         this.env = "http://localhost:8082/Msg/sendNotification";
+        this.url = "http://localhost:8082/Notification/getNotificationByuser";
     }
     notificationService.prototype.sendNotification = function (adminMsgId, title, message, recipients) {
         return this.httpClient.post(this.env + "/" + adminMsgId + "/" + title + "/" + message + "/" + recipients, null);
     };
     notificationService.prototype.getListMessage = function () {
         return this.httpClient.get(this.baseURL, headers);
+    };
+    notificationService.prototype.getNotificationByuser = function (userId) {
+        return this.httpClient.get(this.url + "/" + userId, headers);
     };
     notificationService = __decorate([
         core_1.Injectable({

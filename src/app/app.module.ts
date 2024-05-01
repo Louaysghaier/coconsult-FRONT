@@ -42,7 +42,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-s
 import {
   GoogleLoginProvider,
   //FacebookLoginProvider,
- // AmazonLoginProvider,
+  // AmazonLoginProvider,
 } from '@abacritt/angularx-social-login';
 
 @NgModule({
@@ -65,7 +65,7 @@ import {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-  imports: [    SocialLoginModule,
+  imports: [SocialLoginModule,
 
     ReactiveFormsModule,
     NgxCaptchaModule,
@@ -98,20 +98,20 @@ import {
             '949795246115-prildq4d724cv6tr1a3tc441c1n8csct.apps.googleusercontent.com'
           ),
         }
-      ],onError: (err) => {
+      ], onError: (err) => {
         console.error(err);
       }
     } as SocialAuthServiceConfig,
   },
-    {
-      provide: RECAPTCHA_SETTINGS,
-      useValue: {
-        siteKey: environment.recaptcha.siteKey,
-        size: 'normal'
-      } as RecaptchaSettings,
-    },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  {
+    provide: RECAPTCHA_SETTINGS,
+    useValue: {
+      siteKey: environment.recaptcha.siteKey,
+      size: 'normal'
+    } as RecaptchaSettings,
+  },
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
   ],
   bootstrap: [AppComponent]

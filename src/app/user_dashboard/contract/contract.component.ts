@@ -23,7 +23,8 @@ export class ContractComponent implements OnInit {
   currentPage: number = 0;
   pageSize: number = 10;
   pagedContract: Contract[] = [];
-  displayedColumns: string[] = ['repertoire', 'description', 'dateContract', 'montant', 'nbreTranche', 'etape', 'action'];
+  displayedColumns: string[] = ['referenceContract','repertoire', 'description', 'dateContract', 'montant', 'nbreTranche', 'etape', 'action'];
+  
   dataSource = new MatTableDataSource<Contract>([]); // Initialize with empty array
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

@@ -3,6 +3,7 @@ import { Repertoire } from "./Repertoire";
 
 export class Contract {
     idContract!: number;
+    referenceContract! : string ; 
     description!: string;
     dateContract!: Date; 
     montant!: number;

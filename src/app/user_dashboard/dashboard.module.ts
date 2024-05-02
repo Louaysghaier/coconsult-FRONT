@@ -21,10 +21,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 
 import { CardComponent } from './solution/card/card.component';
-import { ActivitySalesTeamComponent } from './activity-sales-team/activity-sales-team.component';
 import { ContractComponent } from './contract/contract.component';
 import { ProspectComponent } from './prospect/prospect.component';
-import { PayementComponent } from './payement/payement.component';
 import { RepertoireComponent } from './repertoire/repertoire.component';
 
 import { AddUpdateContractComponent } from './add-update-contract/add-update-contract.component';
@@ -34,6 +32,8 @@ import { AddUpdateRepertoiresComponent } from './add-update-repertoires/add-upda
 import { AddUpdateProspectComponent } from './add-update-prospect/add-update-prospect.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AddUpdateActivitySalesTeamComponent } from './add-update-activity-sales-team/add-update-activity-sales-team.component';
+import { PaymentsComponent } from './payments/payments.component';
+import { RevenueComponent } from './revenue/revenue.component';
 
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard',
@@ -47,9 +47,9 @@ const dashboardRoutes: Routes = [
     {path:'repertoire', component:RepertoireComponent},
     {path:'prospect', component:ProspectComponent},
     {path:'contract', component:ContractComponent},
-    {path:'activity-sales-team', component:ActivitySalesTeamComponent},
-    {path:'payement', component:PayementComponent},
-    
+    {path:'payments', component:PaymentsComponent },
+
+   
 
 
   ],
@@ -69,13 +69,13 @@ const dashboardRoutes: Routes = [
       CardComponent,
       ContractComponent,
       ProspectComponent,
-      PayementComponent,
       RepertoireComponent,
-      ActivitySalesTeamComponent,
       AddUpdateContractComponent,
       AddUpdateRepertoiresComponent,
       AddUpdateProspectComponent,
       AddUpdateActivitySalesTeamComponent,
+      PaymentsComponent,
+      RevenueComponent,
       
       
     ],

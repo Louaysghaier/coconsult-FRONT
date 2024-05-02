@@ -61,7 +61,8 @@
                     <button mat-raised-button color="warn" (click)="deleteProspect(row.idProspect)" class="delete-button">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <button mat-raised-button color="primary" (click)="createRepertoireFromProspect(row)">Create Repertoire</button>
+                   <!-- <button mat-raised-button color="green" (click)="createRepertoireFromProspect(row)">Create Repertoire</button> -->
+                    <button type="button" class="btn btn-success" (click)="createRepertoireFromProspect(row)">Create Repertoire</button>
 
                 </td>
             </ng-container>

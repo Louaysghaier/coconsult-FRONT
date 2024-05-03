@@ -18,7 +18,6 @@ var signupentreprise_component_1 = require("./signupentreprise/signupentreprise.
 var validation_component_1 = require("./validation/validation.component");
 var aboutus_component_1 = require("./shared/aboutus/aboutus.component");
 var contact_component_1 = require("./shared/contact/contact.component");
-var _helpers_1 = require("./_helpers");
 var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
 var loginforgetpassword_component_1 = require("./loginforgetpassword/loginforgetpassword.component");
 var chat_room_component_1 = require("./chat-room/chat-room.component");
@@ -29,8 +28,7 @@ var routes = [
     },
     {
         path: '',
-        loadChildren: function () { return Promise.resolve().then(function () { return require('./user_dashboard/dashboard.module'); }).then(function (m) { return m.DashboardModule; }); },
-        canActivate: [_helpers_1.AuthGuard]
+        loadChildren: function () { return Promise.resolve().then(function () { return require('./user_dashboard/dashboard.module'); }).then(function (m) { return m.DashboardModule; }); }
     },
     { path: 'signin', component: login_component_1.LoginComponent },
     { path: 'register', component: signup_component_1.SignupComponent },

@@ -1,0 +1,16 @@
+<div class="profile-container">
+    <h2>User Profile</h2>
+    <div *ngIf="userProfile">
+      <p><strong>Name:</strong> {{ userProfile.name }} <span class="availability-dot" [ngClass]="{ 'green-dot': userProfile.availability, 'red-dot': !userProfile.availability }"></span></p>
+      <p><strong>Email:</strong> {{ userProfile.email }}</p>
+      <p><strong>Solde Conge:</strong> {{ userProfile.soldeConge }}</p>
+      <p><strong>Session Duration:</strong> {{ convertToHours(userProfile.sessionDuration) }}</p>
+      <app-star-rating [rating]="averageRating"></app-star-rating>
+      <!-- Add more profile details as needed -->
+    </div>
+   
+    <div *ngIf="!userProfile">
+      <p>Loading user profile...</p>
+    </div>
+  </div>
+  

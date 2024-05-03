@@ -19,7 +19,24 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { CardComponent } from './solution/card/card.component';
+import { SalaryComponent } from './salary/salary.component';
+import { DisplaySalariesComponent } from './salary/display-salaries.component';
+import { CongeCalendarComponent } from './conge/conge-calendar.component';
+import { UsersComponent } from './users/users.component';
+import { UserProfileComponent } from './users/user-profile.component';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { EvaluationManagerComponent } from './evaluation/evaluation.manager.component';
+import { CameraComponent } from './pointage/camera.component';
+import { AddAskComponent } from './demandeConge/add-demande.component';
+import { DemandeCongeComponent } from './demandeConge/table-demande-component';
+import {MatIconModule} from '@angular/material/icon';
+import { RappelPointageComponent } from './pointage/rappel.pointage.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { EditSalaryModalComponent } from './salary/edit.salary.component';
+import { StarRatingComponent } from './users/star-rating.component';
 const dashboardRoutes: Routes = [
+  
  { path: 'user_dashboard',
   component: DashboardComponent,
   children: [
@@ -28,6 +45,17 @@ const dashboardRoutes: Routes = [
     { path: 'vertical-nav-bar', component: VerticalNavBarComponent },
     {path: 'settings',component:SettingsComponent},
     {path:'solutions', component:SolutionComponent},
+    { path: 'display-salaries', component: DisplaySalariesComponent },
+    { path: 'Conge', component: CongeCalendarComponent },
+    { path: 'users', component: UsersComponent },
+    { path: 'user/:id', component: UserProfileComponent },
+    { path: 'evaluation-manager', component: EvaluationManagerComponent },
+    { path: 'pointage', component: CameraComponent },
+    { path: 'pointage/verification', component: RappelPointageComponent },
+
+    { path: 'demande-conge', component: AddAskComponent },
+    { path: 'table-conge', component: DemandeCongeComponent },
+   
   ],
   },
   ];
@@ -43,6 +71,9 @@ const dashboardRoutes: Routes = [
       VerticalNavBarComponent,
       MonprofilComponent,
       CardComponent,
+      UserProfileComponent,DisplaySalariesComponent,EditSalaryModalComponent,
+      StarRatingComponent
+      
     ],
     imports: [
       
@@ -55,9 +86,12 @@ const dashboardRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatTableModule,
+    MatPaginatorModule,
       CommonModule,
       FontAwesomeModule,
       // Import other modules you need
+      MatIconModule,
 
       // Configure child routes
     ],

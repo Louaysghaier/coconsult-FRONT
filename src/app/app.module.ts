@@ -5,7 +5,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-
+import { FullCalendarModule } from '@fullcalendar/angular'; // Import FullCalendar module
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
@@ -21,7 +21,7 @@ import { AppRoutingModule } from './app.routing';
 import { ValidationComponent } from './validation/validation.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 
-
+import dayGridPlugin from '@fullcalendar/daygrid';
 import { AboutusComponent } from './shared/aboutus/aboutus.component';
 import { ContactComponent } from './shared/contact/contact.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -34,6 +34,23 @@ import { environment } from 'src/environments/environment';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { SalaryComponent } from './user_dashboard/salary/salary.component';
+import { DisplaySalariesComponent } from './user_dashboard/salary/display-salaries.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddCongeModalComponent } from './user_dashboard/conge/add-conge-modal.component';
+import { UsersComponent } from './user_dashboard/users/users.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { UserProfileComponent } from './user_dashboard/users/user-profile.component';
+import { EvaluationComponent } from './user_dashboard/evaluation/evaluation.component';
+import { EvaluationManagerComponent } from './user_dashboard/evaluation/evaluation.manager.component';
+import { CameraComponent } from './user_dashboard/pointage/camera.component';
+import { AddAskComponent } from './user_dashboard/demandeConge/add-demande.component';
+import { DemandeCongeComponent } from './user_dashboard/demandeConge/table-demande-component';
+import { MatIconModule } from '@angular/material/icon';
+import { RappelPointageComponent } from './user_dashboard/pointage/rappel.pointage.component';
+import { CongeDetailsModalComponent } from './user_dashboard/conge/conge-details-modal.component';
+import { AdminListSalaire } from './admin/salaire/admin-list-salaire';
 
 @NgModule({
   declarations: [
@@ -51,7 +68,17 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
     ForgetpassComponent,
     LoginforgetpasswordComponent,
     ChatRoomComponent,
-
+    SalaryComponent,
+    AddCongeModalComponent,
+    UsersComponent,
+    EvaluationComponent,
+    EvaluationManagerComponent,
+    CameraComponent,
+    AddAskComponent,
+    DemandeCongeComponent,
+    RappelPointageComponent,
+    CongeDetailsModalComponent,
+    AdminListSalaire
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -73,6 +100,12 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
     FontAwesomeModule,
     AdminLayoutModule,
     DashboardModule,
+    FullCalendarModule,
+    MatDialogModule,
+    FormsModule ,
+    MatTableModule, 
+    MatPaginatorModule,
+    MatIconModule,
 
   ],
   providers: [

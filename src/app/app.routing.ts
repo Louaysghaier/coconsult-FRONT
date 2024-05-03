@@ -15,6 +15,7 @@ import { AuthGuard } from './_helpers';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { AddAskComponent } from './user_dashboard/demandeConge/add-demande.component';
 const routes: Routes = [
   {
     path: '',
@@ -32,12 +33,14 @@ const routes: Routes = [
   
   { path: 'signin', component: LoginComponent },
   { path: 'register', component: SignupComponent },
+
   { path: 'signupentrprise', component: SignupEntrpriseComponent },
   { path: 'verification', component: ValidationComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'resetpassword', component:     ForgetpassComponent
 },
+
 { path: 'forgetpassword', component: LoginforgetpasswordComponent},
 {path:'chatroom',component:ChatRoomComponent },
 { path: '**', redirectTo: '',component: LandingComponent},

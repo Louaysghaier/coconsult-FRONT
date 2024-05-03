@@ -1,0 +1,129 @@
+/* evaluation.manager.component.css */
+@keyframes backgroundFade {
+    0% {
+      background-color: #fff3e0;
+    }
+    50% {
+      background-color: #fffaf1;
+    }
+    100% {
+      background-color: #fff3e0;
+    }
+  }
+  
+  .evaluation-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff3e0;
+    border: 1px solid #ff9800;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    animation: backgroundFade 5s infinite alternate ease-in-out;
+  }
+  
+  .evaluation-form:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+  }
+  
+  /* Rest of the styles remain the same */
+  
+  /* New styles for input fields */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea {
+    /* existing styles */
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+  
+  input[type="text"]:hover,
+  input[type="email"]:hover,
+  input[type="number"]:hover,
+  select:hover,
+  textarea:hover {
+    background-color: #fffbea;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  select:focus,
+  textarea:focus {
+    /* existing styles */
+    border-color: #ff9800;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.5);
+  }
+  input[type="range"] {
+    -webkit-appearance: none; /* Override pour les navigateurs WebKit */
+    width: calc(100% - 10px);
+    margin-top: 5px;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ff9800; /* Orange */
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ff9800; /* Orange */
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .range-value {
+    display: inline-block;
+    margin-left: 5px;
+    color: #388e3c; /* Vert */
+  }
+  
+  /* Styles for the submit button */
+  input[type="submit"] {
+    /* existing styles */
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #2e7d32;
+    transform: scale(1.05);
+  }
+  /* evaluation.component.css */
+  /* Autres styles... */
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #388e3c; /* Vert */
+    font-weight: bold;
+    position: relative;
+    padding-left: 5px;
+  }
+  
+  label::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: #ff9800; /* Orange */
+    transition: width 0.3s;
+  }
+  
+  label:hover::after {
+    width: 0; /* This will create an animation of the line retracting on hover */
+  }
+  
+  /* Reste de votre CSS... */
+  

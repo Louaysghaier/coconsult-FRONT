@@ -51,7 +51,7 @@
         <li class="nav-item dropdown">
           
           <a class="nav-link no-caret" data-toggle="dropdown" role="button">
-            <i class="ni ni-collection d-lg-none"></i>
+            <i class="ni ni-collection d-lg-none fa fa-person" ></i>
             <span class="nav-link-inner--text text-black">Navigation</span>
           </a>
           <div class="dropdown-menu">
@@ -70,10 +70,11 @@
 
           </div>
         </li>
+      
         <li class="nav-item dropdown">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button">
             <i class="fa fa-question" aria-hidden="true"></i>
-            <span class="nav-link-inner--text text-black">About us  </span>
+            <span class="nav-link-inner--text text-black">About us</span>
           </a>
           <div class="dropdown-menu-xl dropdown-menu" >
             <div class="dropdown-menu-inner">
@@ -131,6 +132,12 @@
             <span  class="btn-inner--text">Réservez un RdV maintenant </span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/user_dashboard/pointage']">
+            <i class="fa fa-camera" aria-hidden="true"></i>
+            <span class="nav-link-inner--text">pointage</span>
+          </a>
+        </li>
         
       </ul>
        
@@ -149,7 +156,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button">
-            <i class="ni ni-collection d-lg-none"></i>
+            <i class="fa fa-compass"></i>
             <span class="nav-link-inner--text text-black">Navigation </span>
           </a>
           <div class="dropdown-menu">
@@ -168,10 +175,16 @@
 
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/user_dashboard/pointage']">
+            <i class="fa fa-camera" aria-hidden="true"></i>
+            <span class="nav-link-inner--text">pointage</span>
+          </a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button">
             <i class="fa fa-question" aria-hidden="true"></i>
-            <span class="nav-link-inner--text text-black">About us ? </span>
+            <span class="nav-link-inner--text text-black">About</span>
           </a>
           <div class="dropdown-menu-xl dropdown-menu" >
             <div class="dropdown-menu-inner">
@@ -195,6 +208,12 @@
               </a>
             </div>
           </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/user_dashboard/demande-conge']">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span class="nav-link-inner--text">Demande Conge</span>
+          </a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">

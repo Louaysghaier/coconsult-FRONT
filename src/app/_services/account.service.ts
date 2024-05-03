@@ -44,17 +44,25 @@ export class AccountService {
     getIsConnected() {
         return this.userValue != null ;
     }
+
+    updateUserAvailability(userId: number): Observable<any> {
+        return this.http.put(`http://localhost:8082/api/auth/signOut/`, userId);
+      }
+
     logout() {
         // remove user from local storage and set current user to null
+        const userId = JSON.parse(localStorage.getItem('user')).id;
+        this.updateUserAvailability(userId).subscribe((response: any) => {
+          console.log('User availability updated successfully:', response);
+        });
+       
         localStorage.removeItem('user');
-        sessionStorage.removeItem('accessToken');
-        sessionStorage.removeItem('refreshToken');
-        // Alternatively, you can use localStorage:
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
         this.userSubject.next(null);
         this.router.navigate(['/account/login']);
+        
+        
     }
+    
 
     register(user: User, roleName: string) {
         return this.http.post(`${environment.apiUrl}/api/auth/signup/employee/${roleName}`, user);

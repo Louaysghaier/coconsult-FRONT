@@ -7,10 +7,10 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserlistService {
-  private baseURL  ="http://localhost:8081/api/user/list-Userco2/ASC";
-  private baseURLactive  ="http://localhost:8081/api/user/validate-user/";
-  private baseUserRole  ="http://localhost:8081/api/user/list-RolesName/";
-  private baseBlockedUser="http://localhost:8081/api/user/bloque-user/"
+  private baseURL  ="http://localhost:8082/api/user/list-user";
+  private baseURLactive  ="http://localhost:8082/api/user/validate-user/";
+  private baseUserRole  ="http://localhost:8082/api/user/list-RolesName/";
+  private baseBlockedUser="http://localhost:8082/api/user/bloque-user/"
 
 
 

@@ -6,6 +6,8 @@ import {
   callOutline,
   settingsOutline,
 } from 'ionicons/icons';
+//import './vertical-nav-bar.component.css'; 
+
 
 declare const $: any;
 declare interface RouteInfo {
@@ -15,13 +17,12 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/user_dashboard/monprofil', title: 'mon-profile',  icon: 'person', class: '' },
-    { path: '/user_dashboard/solutions', title: 'solutions',  icon:'dashboard', class: '' },
-    { path: '/user_dashboard/settings', title: 'Sales Team Activity',  icon:'settingsOutline', class: '' },
-    { path: '/user_dashboard/repertoire', title: 'Repertoires',  icon: 'group', class: '' },
-    { path: '/user_dashboard/prospect', title: 'Prospect',  icon: 'person', class: '' },
-    { path: '/user_dashboard/contract', title: 'Contracts',  icon: 'person', class: '' },
-    { path: '/user_dashboard/payments', title: 'payments',  icon: 'dashboard', class: '' },
+    { path: '/user_dashboard_CRM/monprofil', title: 'mon-profile',  icon: 'notifications', class: '' },
+    { path: '/user_dashboard_CRM/payments', title: 'payments',  icon: 'dashboard', class: '' },
+    { path: '/user_dashboard_CRM/settings', title: 'Sales Team Activity',  icon:'content_paste', class: '' },
+    { path: '/user_dashboard_CRM/prospect', title: 'Prospects',  icon: 'person', class: '' },
+    { path: '/user_dashboard_CRM/repertoire', title: 'Directories',  icon: 'group', class: '' },
+    { path: '/user_dashboard_CRM/contract', title: 'Contracts',  icon: 'content_paste', class: '' },
 
 
 

@@ -21,8 +21,8 @@ const routes: Routes = [
   
   {
     path: '',
-    loadChildren: () => import('./user_dashboard/dashboard.module').then(m => m.DashboardModule),
-
+    loadChildren: () => import('./user_dashboard_CRM/dashboardCRM.module').then(m => m.DashboardModuleCRM),
+    
   }, 
   
   { path: 'signin', component: LoginComponent },

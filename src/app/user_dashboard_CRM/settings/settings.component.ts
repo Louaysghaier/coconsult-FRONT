@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
  import {User} from 'src/app/admin/table-list/user';
 
-import { ListeUserAscService } from 'src/app/user_dashboard/settings/liste-user-asc.service';
+import { ListeUserAscService } from 'src/app/user_dashboard_CRM/settings/liste-user-asc.service';
+
 import { AddUpdateActivitySalesTeamComponent } from '../add-update-activity-sales-team/add-update-activity-sales-team.component';
 import { SalesActivity, Status } from 'src/app/_models/ActivitySalesTeam';
 import { MatDialog } from '@angular/material/dialog';

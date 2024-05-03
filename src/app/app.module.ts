@@ -13,7 +13,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { DashboardModule } from './user_dashboard/dashboard.module';
+import { DashboardModuleCRM } from './user_dashboard_CRM/dashboardCRM.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminLayoutModule } from './admin/admin-layout.module';
 import { SignupEntrpriseComponent } from './signupentreprise/signupentreprise.component';
@@ -62,7 +62,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     CarouselModule.forRoot(),
     FontAwesomeModule,
     AdminLayoutModule,
-    DashboardModule
+    DashboardModuleCRM
     
 
   ],

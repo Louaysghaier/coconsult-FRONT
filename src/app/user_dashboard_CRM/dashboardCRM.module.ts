@@ -36,7 +36,7 @@ import { PaymentsComponent } from './payments/payments.component';
 import { RevenueComponent } from './revenue/revenue.component';
 
 const dashboardRoutes: Routes = [
- { path: 'user_dashboard',
+ { path: 'user_dashboard_CRM',
   component: DashboardComponent,
   children: [
     {path:'monprofil',component:MonprofilComponent},
@@ -108,5 +108,5 @@ const dashboardRoutes: Routes = [
     ],
     exports: [RouterModule]
   })
-  export class DashboardModule { }
+  export class DashboardModuleCRM { }
   

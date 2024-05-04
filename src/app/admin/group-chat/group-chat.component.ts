@@ -68,6 +68,7 @@ export class GroupChatComponent {
       this.ManagerGPCHAT = this.GPCHAT.filter(chat => chat.role.name === 'Manager');
       this.ConsultGPCHAT = this.GPCHAT.filter(chat =>chat.role.name === 'Consult');
       this.EmployeeGPCHAT = this.GPCHAT.filter(chat => chat.role.name === 'Employee');
+      this.CRMGPCHAT= this.GPCHAT.filter(chat => chat.role.name === 'CRM');
     });
   }
 

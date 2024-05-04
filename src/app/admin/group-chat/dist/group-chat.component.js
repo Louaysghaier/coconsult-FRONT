@@ -69,6 +69,7 @@ var GroupChatComponent = /** @class */ (function () {
             _this.ManagerGPCHAT = _this.GPCHAT.filter(function (chat) { return chat.role.name === 'Manager'; });
             _this.ConsultGPCHAT = _this.GPCHAT.filter(function (chat) { return chat.role.name === 'Consult'; });
             _this.EmployeeGPCHAT = _this.GPCHAT.filter(function (chat) { return chat.role.name === 'Employee'; });
+            _this.CRMGPCHAT = _this.GPCHAT.filter(function (chat) { return chat.role.name === 'CRM'; });
         });
     };
     GroupChatComponent.prototype.refreshData = function () {

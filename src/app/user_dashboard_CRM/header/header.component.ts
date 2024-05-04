@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { notificationService } from 'src/app/admin/notifications/notificationService';
 import { AccountService } from 'src/app/_services';
 import { User } from 'src/app/_models';
+import { Notification } from 'src/app/_models/Notification';
+import { DetailNotifDiagComponent } from './detail-notif-diag/detail-notif-diag.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -19,8 +22,9 @@ export class HeaderComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     User:User;
+    notif:Notification;
     notifications :Notification[];
-    constructor(location: Location,  private element: ElementRef, private router: Router,private notificationservice:notificationService,private accountservice:AccountService) {
+    constructor(private dialog: MatDialog,location: Location,  private element: ElementRef, private router: Router,private notificationservice:notificationService,private accountservice:AccountService) {
       this.location = location;
           this.sidebarVisible = false;
           this.User = this.accountservice.userValue ;
@@ -141,4 +145,17 @@ export class HeaderComponent implements OnInit {
             }
         );
     }
+    showNotification(notification:Notification): void {
+        //console.log('Sending notification:', notification);
+        const dialogRef = this.dialog.open(DetailNotifDiagComponent, {
+          width: '500px',
+          data: notification
+          
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          // Handle dialog close if needed
+          console.log('The dialog was closed');
+        });
+      }
 }

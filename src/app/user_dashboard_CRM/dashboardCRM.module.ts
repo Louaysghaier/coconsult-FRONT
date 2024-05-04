@@ -34,7 +34,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AddUpdateActivitySalesTeamComponent } from './add-update-activity-sales-team/add-update-activity-sales-team.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { RevenueComponent } from './revenue/revenue.component';
-
+import { DatePipe } from '@angular/common'; // Import DatePipe from @angular/common
+import { DetailNotifDiagComponent } from './header/detail-notif-diag/detail-notif-diag.component';
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard_CRM',
   component: DashboardComponent,
@@ -76,6 +77,7 @@ const dashboardRoutes: Routes = [
       AddUpdateActivitySalesTeamComponent,
       PaymentsComponent,
       RevenueComponent,
+      DetailNotifDiagComponent,
       
       
     ],
@@ -90,8 +92,7 @@ const dashboardRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    CommonModule,
-    FontAwesomeModule,
+    CommonModule,    FontAwesomeModule,
     MatDatepickerModule,
     MatDialogModule,
     MatTableModule,
@@ -102,9 +103,9 @@ const dashboardRoutes: Routes = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-    providers: [
-      { provide: MAT_DATE_LOCALE, useValue: 'en-US' } ,
-
+  providers: [
+     // { provide: MAT_DATE_LOCALE, useValue: 'en-US' } ,
+        { provide: DatePipe}  
     ],
     exports: [RouterModule]
   })

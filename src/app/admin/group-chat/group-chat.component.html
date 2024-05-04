@@ -74,6 +74,9 @@
                                     <div *ngFor="let GroupChat of ConsultGPCHAT" class="parent card2">
                                         <app-card-gpchat [GroupChat]="GroupChat" [idGPCHAT]="GroupChat.id" [cardContent]="GroupChat.rules" [cardTitle]="GroupChat.groupTitle"[cardrole]="GroupChat.role.name"></app-card-gpchat>
                                     </div>
+                                    <div *ngFor="let GroupChat of CRMGPCHAT" class="parent card2">
+                                        <app-card-gpchat [GroupChat]="GroupChat" [idGPCHAT]="GroupChat.id" [cardContent]="GroupChat.rules" [cardTitle]="GroupChat.groupTitle"[cardrole]="GroupChat.role.name"></app-card-gpchat>
+                                    </div>
                                 </div>
                </div>         
         </div>

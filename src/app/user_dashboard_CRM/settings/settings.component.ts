@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
- import {User} from 'src/app/admin/table-list/user';
 
 import { ListeUserAscService } from 'src/app/user_dashboard_CRM/settings/liste-user-asc.service';
 

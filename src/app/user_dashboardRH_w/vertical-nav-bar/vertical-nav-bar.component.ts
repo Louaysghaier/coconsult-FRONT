@@ -7,6 +7,8 @@ import {
   settingsOutline,
 } from 'ionicons/icons';
 import { AccountService } from 'src/app/_services';
+import { PointageService } from '../pointage/pointage.service';
+import { Subscription } from 'rxjs';
 
 declare const $: any;
 
@@ -35,19 +37,25 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./vertical-nav-bar.component.css']
 })
 export class VerticalNavBarComponent implements OnInit {
-  isconn:any;
-
+  ispointed:Boolean;
+  
   barChartOutline = barChartOutline;
   appsOutline = appsOutline;
   bulbOutline = bulbOutline;
   callOutline = callOutline;
   settingsOutline = settingsOutline;
+  private subscription: Subscription;
 
   menuItems: any[];
 
-  constructor(private authService  :AccountService) { 
-    this.isconn=this.authService.getIsConnected();
-    console.log("this.isconn",this.isconn);
+  constructor(private authService  :AccountService,private pointageservice:PointageService) { 
+    this.subscription=this.pointageservice.isPointed.subscribe((value)=>{
+      this.ispointed=value;
+    }
+     
+    
+    );
+    //console.log("this pointage",this.ispointed);
 
   }
 

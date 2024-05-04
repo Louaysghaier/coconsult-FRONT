@@ -14,6 +14,7 @@ export class CameraComponent implements OnInit {
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
 
   isCameraOn = false;
+  //public ispointed:any;
   stream: MediaStream;
   selectedUser: number;
   users: any[] = []; // Initialize as empty array
@@ -90,9 +91,10 @@ export class CameraComponent implements OnInit {
     {                                  
       alert(response )
      
-    this.pointageService.addPointageForUser(response).subscribe(
-      (response) => {
-        console.log("hhhhhhhhhhhhh")
+    this.pointageService.addUserPointage(response).subscribe(
+      (response) => { 
+        //console.log(this.ispointed);
+       // console.log("hhhhhhhhhhhhh")
         console.log('Pointage recorded successfully:', response);
         alert('Pointage recorded successfully');
         // Optionally, perform any additional actions after recording the pointage

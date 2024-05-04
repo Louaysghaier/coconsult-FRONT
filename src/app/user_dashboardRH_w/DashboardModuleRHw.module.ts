@@ -100,5 +100,5 @@ const dashboardRoutes: Routes = [
     providers: [],
     exports: [RouterModule]
   })
-  export class DashboardModule { }
+  export class DashboardModuleRHw { }
   

@@ -27,7 +27,7 @@ const routes: Routes = [
   
   {
     path: '',
-    loadChildren: () => import('./user_dashboardRH_w/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('./user_dashboardRH_w/DashboardModuleRHw.module').then(m => m.DashboardModuleRHw)
 
   }, 
   

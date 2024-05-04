@@ -13,7 +13,6 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { DashboardModule } from './user_dashboardRH_w/dashboard.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminLayoutModule } from './admin/admin-layout.module';
 import { SignupEntrpriseComponent } from './signupentreprise/signupentreprise.component';
@@ -51,6 +50,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RappelPointageComponent } from './user_dashboardRH_w/pointage/rappel.pointage.component';
 import { CongeDetailsModalComponent } from './user_dashboardRH_w/conge/conge-details-modal.component';
 import { AdminListSalaire } from './admin/salaire/admin-list-salaire';
+import { DashboardModuleRHw } from './user_dashboardRH_w/DashboardModuleRHw.module';
 
 @NgModule({
   declarations: [
@@ -99,7 +99,7 @@ import { AdminListSalaire } from './admin/salaire/admin-list-salaire';
     CarouselModule.forRoot(),
     FontAwesomeModule,
     AdminLayoutModule,
-    DashboardModule,
+    DashboardModuleRHw,
     FullCalendarModule,
     MatDialogModule,
     FormsModule ,

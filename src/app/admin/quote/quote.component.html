@@ -13,6 +13,67 @@
         text-decoration: line-through;
     }
 
+    .table100-head th {
+        font-family: OpenSans-Regular;
+        font-size: 18px;
+        color: #fff;
+        line-height: 1.2;
+        font-weight: unset
+    }
+    .column1 {
+        width: 260px;
+        padding-left: 40px
+    }
+
+    .column2 {
+        width: 160px
+    }
+
+    .column3 {
+        width: 245px
+    }
+
+    .column4 {
+        width: 110px;
+        text-align: right
+    }
+
+    .column5 {
+        width: 170px;
+        text-align: right
+    }
+
+    .column6 {
+        width: 222px;
+        text-align: right;
+        padding-right: 62px
+    }
+    .wrap-table100 {
+        width: 1170px
+    }
+    .limiter {
+        width: 100%;
+        margin: 0 auto
+    }
+
+    .container-table100 {
+        width: 100%;
+        min-height: 100vh;
+        background: #c850c0;
+        background: -webkit-linear-gradient(45deg,#4158d0,#c850c0);
+        background: -o-linear-gradient(45deg,#4158d0,#c850c0);
+        background: -moz-linear-gradient(45deg,#4158d0,#c850c0);
+        background: linear-gradient(45deg,#4158d0,#c850c0);
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 33px 30px
+    }
 </style>
 
 <div class="main-content" style="background-image: url('https://medias1.prestastore.com/691264-pbig/pdf-quotation.jpg'); background-size: contain ; background-position: right  ">
@@ -24,39 +85,44 @@
             </div>
         </div>
         <!-- Quote List Section -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="cardo" style="position: absolute">
+        <div class="limiter">
+            <div class="container-table100">
+                <div class="wrap-table100" style="position: absolute">
                         <div class="card-header card-header-info" style="position: relative; z-index: 1;">
                             <h4 class="card-title">Quote List</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="wrap-table100">
                         <!-- Quote Table Here -->
-                        <div class="table-responsive">
-                            <table class="table">
+                        <div class="table100">
+                            <table>
                                 <!-- Table Headers -->
-                                <thead class="text-primary">
-                                <tr>
-                                    <th>ID Quote</th>
+                                <thead>
+                                <tr class="table100-head">
+                                    <th class="column1">ID Quote</th>
                                     <th>
                                         <i class="fas fa-dollar"></i> Value
                                     </th>
-                                    <th>Creation Date</th>
-                                    <th>Expire Date</th>
-                                    <th>Description</th>
-                                    <th>Actions</th>
+                                    <th> <i class ="fas fa-calendar-check-o"></i> Creation Date</th>
+                                    <th><i class ="fas fa-calendar-times-o"></i> Expire Date</th>
+                                    <th> <i class ="fas fa-note-sticky"></i> Description</th>
                                     <th>Status</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <!-- Table Body -->
                                 <tbody>
                                 <!-- Quote Rows Here -->
                                 <tr *ngFor="let quote of quotes">
-                                    <td>{{ quote.idQuote }}</td>
+                                    <td class="column1"> {{ quote.idQuote }}</td>
                                     <td>{{ quote.montant }}</td>
-                                    <td style="background-color: green; color: white; font-weight: bold;">{{ quote.creationDate }}</td>
-                                    <td style="background-color: red; color: white; font-weight: bold;">{{ quote.expireDate }}</td>
+                                    <td style="background-color: mediumspringgreen; color: black   ; font-weight: bold;">{{ quote.creationDate }}</td>
+                                    <td style="background-color: indianred; color: black    ; font-weight: bold;">{{ quote.expireDate }}</td>
                                     <td>{{ quote.description }}</td>
+                                    <td>
+                                        <button class="btn" [ngClass]="quote.valid ? 'valid-button' : 'invalid-button'" (click)="toggleQuoteValidity(quote)">
+                                            {{ quote.valid ? 'Valider' : 'Invalider' }}
+                                        </button>
+                                    </td>
                                     <td>
                                         <!-- Edit Button -->
                                         <button type="button" class="btn btn-info" (click)="openEditModal(quote)" data-toggle="modal" data-target="#editQuoteModal">
@@ -66,11 +132,8 @@
                                         <button type="button" class="btn btn-danger" (click)="deleteQuote(quote.idQuote)">
                                             Delete
                                         </button>
-                                    <td>
-                                        <button class="btn" [ngClass]="quote.valid ? 'valid-button' : 'invalid-button'" (click)="toggleQuoteValidity(quote)">
-                                            {{ quote.valid ? 'Valider' : 'Invalider' }}
-                                        </button>
                                     </td>
+
                                 </tr>
                                 </tbody>
                             </table>

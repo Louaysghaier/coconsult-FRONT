@@ -1,0 +1,6 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+.table-responsive {
+    height: 400px; /* Définissez une hauteur maximale pour la zone de défilement */
+    overflow-y: scroll; /* Ajoutez le défilement vertical */
+}

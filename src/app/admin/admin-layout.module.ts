@@ -28,6 +28,7 @@ import { QuoteComponent } from './quote/quote.component';
 import { TimeRecordComponent } from './time-record/time-record.component';
 import { AssignmentsComponent } from './assignement/assignement.component';
 import { Assignements } from '../_models/assignements';
+import { CalenderComponent } from './calender/calender.component';
 
 const AdminLayoutRoutes: Routes = [
     {
@@ -83,6 +84,7 @@ const AdminLayoutRoutes: Routes = [
         ProjFeedComponent,
         QuoteComponent,
         TimeRecordComponent,
+        CalenderComponent,
     ],
     exports: [RouterModule],
 })

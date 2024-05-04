@@ -11,27 +11,30 @@
         <!-- Project List Section -->
         <div class="row">
             <div class="col-md-12">
-                <div class="cardo">
-                    <div class="card-header card-header-danger">
+                <div class="cardo" style="position: absolute">
+                    <div class="card-header card-header-danger" style ="position: relative; z-index: 1;">
                         <h4 class="card-title">Project List</h4>
                     </div>
                     <div class="card-body">
                         <!-- Project Table Here -->
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="height: 600px; overflow-y: scroll;">
+                       <!-- <div class="table-responsive" >-->
                             <table class="table">
                                 <!-- Table Headers -->
                                 <thead class="text-primary">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Project Title</th>
-                                    <th>Budget</th>
-                                    <th>Mail</th>
-                                    <th>Date Debut</th>
-                                    <th>Date Fin</th>
-                                    <th>Effectif</th>
-                                    <th>Description</th>
+                                    <th><i class="fas fa-id-card" > </i> ID</th>
+                                    <th><i class="fas fa-project-diagram" > </i>Project Title</th>
+                                    <th><i class="fas fa-money-bill-1-wave" > </i>Budget</th>
+                                    <th><i class="fas fa-mail-reply" > </i> Mail</th>
+                                    <th> <i class ="fas fa-calendar-check-o"></i> Start Date </th>
+                                    <th><i class ="fas fa-calendar-times-o"></i> Finish Date </th>
+                                    <th><i class="fas fa-people-group" > </i>Staff </th>
+                                    <th><i class ="fas fa-note-sticky"></i> Description</th>
                                     <!-- Add more headers as needed -->
+                                    <th>Validate </th>
                                     <th>Actions</th>
+
                                 </tr>
                                 </thead>
                                 <!-- Table Body -->
@@ -46,7 +49,12 @@
                                     <td>{{ project.dateFin }}</td>
                                     <td>{{ project.effectif }}</td>
                                     <td>{{ project.description }}</td>
-                                    <!-- Add more columns as needed -->
+                                    <td>
+                                        <!-- Validate Project Button -->
+                                        <button type="button" class="btn btn-success" (click)="validerProjet(project.idProjet)">
+                                            Validate Project
+                                        </button>
+                                    </td>
                                     <td>
                                         <!-- Edit Button -->
                                         <button type="button" class="btn btn-info" (click)="openEditModal(project)" data-toggle="modal" data-target="#editProjectModal">
@@ -57,11 +65,8 @@
                                         <button type="button" class="btn btn-danger" (click)="deleteProject(project.idProjet)">
                                             Delete
                                         </button>
-                                        <!-- Validate Project Button -->
-                                        <button type="button" class="btn btn-success" (click)="validerProjet(project.idProjet)">
-                                            Validate Project
-                                        </button>
-                                    </td>
+                                        </td>
+
                                 </tr>
                                 </tbody>
                             </table>

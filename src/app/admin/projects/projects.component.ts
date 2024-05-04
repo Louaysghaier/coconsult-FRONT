@@ -19,7 +19,7 @@ export class ProjectsComponent implements OnInit {
     projects: Projects[] = [];
     totalProjects: number = 5;
     searchTerm: string = '';
-    pageSize: number = 10;
+    pageSize: number = 5;
     currentPage: number = 0;
     pagedProjects: Projects[] = [];
     private projectSubscription: Subscription;
@@ -37,6 +37,7 @@ export class ProjectsComponent implements OnInit {
 
     ngOnDestroy(): void {
         if (this.projectSubscription) {
+
             this.projectSubscription.unsubscribe();
         }
     }

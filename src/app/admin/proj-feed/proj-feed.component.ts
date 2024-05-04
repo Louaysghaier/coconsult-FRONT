@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProjFeed } from '../../_models/projectFeed';
 import { ProjFeedService } from '../../_services/projectfeed.service';
-import {Projects} from '../../_models/projects';
 import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
-import {PageEvent} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 
 @Component({
     selector: 'app-proj-feed',
@@ -13,6 +12,7 @@ import {PageEvent} from '@angular/material/paginator';
     styleUrls: ['./proj-feed.component.css']
 })
 export class ProjFeedComponent implements OnInit {
+    @ViewChild(MatPaginator) paginator: MatPaginator;
     projFeeds: ProjFeed[] = [];
     newProjFeed: ProjFeed = new ProjFeed();
     selectedProjFeed: ProjFeed = new ProjFeed();
@@ -21,9 +21,7 @@ export class ProjFeedComponent implements OnInit {
     pagedProjFeed: ProjFeed[] = [];
     private projFeedSubscription: Subscription;
     pageSizeOptions: number[] = [5, 10, 25, 100];
-    newProject: ProjFeed = new ProjFeed();
-
-    totalProjFeeds: number = 0;
+    totalProjFeeds: number = 5;
     pageSize: number = 5;
 
     constructor(private dialog: MatDialog,
@@ -41,15 +39,20 @@ export class ProjFeedComponent implements OnInit {
         this.getAllProjFeeds();
     }
 
-    getAllProjFeeds(): void {
-        this.projFeedService.getAllProjFeeds().subscribe(
+    /*getAllProjFeeds(): void {
+        this.projFeedSubscription=this.projFeedService.getAllProjFeeds().subscribe(observableOrNext :this.projFeeds
             (data: ProjFeed[]) => {
-                this.projFeeds = data;
-            },
-            (error: any) => {
-                console.error('Error fetching project feeds:', error);
-            }
-        );
+
+                this.projFeeds = this.projFeeds;
+
+                });
+        )
+    }*/
+    getAllProjFeeds() {
+        this.projFeedSubscription = this.projFeedService.getAllProjFeeds().subscribe(projFeed => {
+            this.projFeeds = projFeed;
+            this.updatePage();
+        });
     }
 
     saveProjFeed(): void {

@@ -1,7 +1,5 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
 <style>
-    .chat-room {
+    /*.chat-room {
         max-width: 600px;
         margin: 0 auto;
         margin-top: 80px;
@@ -32,11 +30,11 @@
         line-height: 50px;
         font-size: 20px;
         margin-right: 10px;
-    }
+    }*/
 </style>
 
-<div class="main-content">
-    <div class="container-fluid">
+<div class="main-content" style="background-image: url('./assets/images/projectfeed.png');background-size:contain; background-position: left ">
+    <div class="container-fluid" >
         <div class="row">
             <div class="col-md-12">
                 <!-- Button to trigger modal for Add Project Feed -->
@@ -44,16 +42,16 @@
             </div>
         </div>
         <!-- Project Feed List Section -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="cardo">
+        <div class="row" >
+            <div class="col-md-12" >
+                <div class="cardo" >
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">Project Feed List</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" >
                         <!-- Project Feed Table Here -->
-                        <div class="table-responsive">
-                            <table class="table">
+                        <div class="table-responsive" >
+                            <table class="table" style="background-color: rgba(255,255,255,0.8)" >
                                 <!-- Table Headers -->
                                 <thead class="text-primary">
                                 <tr>
@@ -67,7 +65,7 @@
                                 <!-- Table Body -->
                                 <tbody>
                                 <!-- Project Feed Rows Here -->
-                                <tr *ngFor="let projFeed of projFeeds">
+                                <tr *ngFor="let projFeed of pagedProjFeed">
                                     <td>{{ projFeed.idPjtFeed }}</td>
                                     <td>{{ projFeed.content }}</td>
                                     <td>{{ projFeed.timeUpd }}</td>
@@ -86,10 +84,11 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" [length]="projFeeds.length" (page)="onPageChange($event)">
+                            </mat-paginator>
                         </div>
-                        <!-- Pagination -->
-                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" [length]="projFeeds.length" (page)="onPageChange($event)">
-                        </mat-paginator>
+                        <!--Dayspedia.com widget--><iframe width='210' height='295' style='padding:0!important;margin:0!important;border:none!important;background:none!important;background:transparent!important' marginheight='0' marginwidth='0' frameborder='0' scrolling='no' comment='/*defined*/' src='https://dayspedia.com/if/analog/?v=1&iframe=eyJ3LTExIjp0cnVlLCJ3LTEzIjp0cnVlLCJ3LTE1Ijp0cnVlLCJ3LTExMCI6ZmFsc2UsInctd2lkdGgtMCI6dHJ1ZSwidy13aWR0aC0xIjpmYWxzZSwidy13aWR0aC0yIjpmYWxzZSwidy0xNiI6IjI0cHgiLCJ3LTE3IjoiMTYiLCJ3LTIxIjp0cnVlLCJiZ2ltYWdlIjotMSwiYmdpbWFnZVNldCI6ZmFsc2UsInctMjFjMCI6IiNmZmZmZmYiLCJ3LTAiOnRydWUsInctMyI6dHJ1ZSwidy0zYzAiOiIjMzQzNDM0Iiwidy0zYjAiOiIxIiwidy0yMCI6dHJ1ZSwidy00IjoiIzAwN2RiZiIsInctMTgiOmZhbHNlLCJ3LXdpZHRoLTJjLTAiOiIzMDAiLCJ3LTExNSI6ZmFsc2UsInctMjMiOnRydWUsInctMjNjMCI6IiNlY2VmZjEiLCJ3LTI2IjpmYWxzZSwidy0yNmIwIjoiMSIsInctMjciOnRydWUsInctMjdjMCI6IiMzNDM0MzQiLCJ3LTI0IjoiIzM0MzQzNCIsInctMTNjMCI6IiNmZjAwNTEiLCJ3LTIyIjoiIzM0MzQzNCIsInctMjUiOiIxNjAifQ==&lang=fr&cityid=8971'></iframe><!--Dayspedia.com widget ENDS-->
                     </div>
                 </div>
             </div>
@@ -113,11 +112,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="timeUpd">Last Update Time</label>
-                                <input type="text" class="form-control" id="timeUpd" name="timeUpd" [(ngModel)]="newProjFeed.timeUpd">
+                                <input type="datetime-local" class="form-control" id="timeUpd" name="timeUpd" [(ngModel)]="newProjFeed.timeUpd">
                             </div>
                             <div class="form-group">
                                 <label for="fctsUpd">Last Update Function</label>
-                                <input type="text" class="form-control" id="fctsUpd" name="fctsUpd" [(ngModel)]="newProjFeed.fctsUpd">
+                                <input type="datetime-local" class="form-control" id="fctsUpd" name="fctsUpd" [(ngModel)]="newProjFeed.fctsUpd">
                             </div>
                             <button type="submit" class="btn btn-primary">Save Project Feed</button>
                         </form>

@@ -1,0 +1,62 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="cardo">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Liste des prospects</h4>
+              <p class="card-category">Tous les prospects</p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <!-- Search field -->
+                <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher...">
+
+                <button mat-raised-button color="primary" (click)="openAddUpdateProspectForm()">Ajouter Prospect</button>
+
+                <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+                <button mat-raised-button color="accent" (click)="fileInput.click()">IMPORT PROSPECTS</button>
+  
+                <!-- Prospects table -->
+                <table class="table">
+                  <thead class="text-primary">
+                    <tr>
+                      <th>ID Prospect</th>
+                      <th>Nom</th>
+                      <th>Email</th>
+                      <th>Numéro de Téléphone</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let prospect of pagedProspects">
+                      <td>{{ prospect.idProspect }}</td>
+                      <td>{{ prospect.name }}</td>
+                      <td>{{ prospect.email }}</td>
+                      <td>{{ prospect.numTel }}</td>
+                      <td>{{ prospect.status }}</td>
+                      <td>
+                        <button mat-raised-button color="primary" (click)="openEditForm(prospect)">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <button (click)="deleteProspect(prospect.idProspect)" class="btn btn-danger delete-button">Supprimer</button>
+                        <td>
+                          <button mat-raised-button color="primary" (click)="createRepertoireFromProspect(row)">Create Repertoire</button>
+                       </td>
+                      
+                     
+                    </tr>
+                  </tbody>
+                </table>
+  
+                <!-- Pagination -->
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" [length]="prospects.length" (page)="onPageChange($event)">
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

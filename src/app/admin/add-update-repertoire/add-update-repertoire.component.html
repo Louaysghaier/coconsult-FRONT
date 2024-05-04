@@ -1,0 +1,62 @@
+<div mat-dialog-title>
+    <h1>Repertoire Form</h1>
+</div>
+<form [formGroup]="repertoireForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Contact</mat-label>
+                <input matInput formControlName="contact" placeholder="Enter contact">
+                <mat-error *ngIf="repertoireForm.get('contact').invalid && repertoireForm.get('contact').touched">
+                    Contact is required.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Numéro de Téléphone</mat-label>
+                <input matInput formControlName="numTel" placeholder="Enter numTel">
+                <mat-error *ngIf="repertoireForm.get('numTel').invalid && repertoireForm.get('numTel').touched">
+                    Numéro de Téléphone is required.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="Enter email">
+                <mat-error *ngIf="repertoireForm.get('email').invalid && repertoireForm.get('email').touched">
+                    Valid email is required.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Type de Contact</mat-label>
+                <mat-select formControlName="typeContact" placeholder="Select typeContact">
+                    <mat-option value="FORNISSEUR">FORNISSEUR</mat-option>
+                    <mat-option value="CLIENT">CLIENT</mat-option>
+                    <mat-option value="PARTENAIRE">PARTENAIRE</mat-option>
+                    <mat-option value="QUALIFIED_LEAD">QUALIFIED_LEAD</mat-option>
+                </mat-select>
+                <mat-error *ngIf="repertoireForm.get('typeContact').invalid && repertoireForm.get('typeContact').touched">
+                    Type de Contact is required.
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Priorité</mat-label>
+                <mat-select formControlName="priorite" placeholder="Select priorite">
+                    <mat-option value="FAIBLE">FAIBLE</mat-option>
+                    <mat-option value="MOYENNE">MOYENNE</mat-option>
+                    <mat-option value="ELEVEE">ELEVEE</mat-option>
+                </mat-select>
+                <mat-error *ngIf="repertoireForm.get('priorite').invalid && repertoireForm.get('priorite').touched">
+                    Priorité is required.
+                </mat-error>
+            </mat-form-field>
+            
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{ data ? 'Update' : 'Save' }}</button>
+    </div>
+</form>

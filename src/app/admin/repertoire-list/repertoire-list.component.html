@@ -1,0 +1,61 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="cardo">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Liste des répertoires</h4>
+              <p class="card-category">Tous les répertoires</p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <!-- Search field -->
+                <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher...">
+  
+                <!-- Add Repertoire button -->
+                <button mat-raised-button color="primary" (click)="openAddUpdateRepertoireForm()">Ajouter Répertoire</button>
+  
+                <!-- Repertoires table -->
+                <table class="table">
+                  <thead class="text-primary">
+                    <tr>
+                      <th>ID Répertoire</th>
+                      <th>Contact</th>
+                      <th>Email</th>
+                      <th>Numéro de Téléphone</th>
+                      <th>Type de Contact</th>
+                      <th>Priorité</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let repertoire of pagedRepertoires">
+                      <td>{{ repertoire.idRepertoire }}</td>
+                      <td>{{ repertoire.contact }}</td>
+                      <td>{{ repertoire.email }}</td>
+                      <td>{{ repertoire.numTel }}</td>
+                      <td>{{ repertoire.typeContact }}</td>
+                      <td>{{ repertoire.priorite }}</td>
+                      <td>
+                        <!-- Edit button -->
+                        <button mat-raised-button color="primary" (click)="openEditForm(repertoire)">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <!-- Delete button -->
+                        <button (click)="deleteRepertoire(repertoire.idRepertoire)" class="btn btn-danger delete-button">Supprimer</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+  
+                <!-- Pagination -->
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" [length]="repertoires.length" (page)="onPageChange($event)">
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

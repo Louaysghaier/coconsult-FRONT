@@ -21,7 +21,7 @@ var navbar_component_1 = require("./shared/navbar/navbar.component");
 var footer_component_1 = require("./shared/footer/footer.component");
 var login_component_1 = require("./login/login.component");
 var carousel_1 = require("ngx-bootstrap/carousel");
-var dashboard_module_1 = require("./user_dashboard/dashboard.module");
+var dashboardCRM_module_1 = require("./user_dashboard_CRM/dashboardCRM.module");
 var angular_fontawesome_1 = require("@fortawesome/angular-fontawesome");
 var admin_layout_module_1 = require("./admin/admin-layout.module");
 var signupentreprise_component_1 = require("./signupentreprise/signupentreprise.component");
@@ -39,6 +39,7 @@ var environment_1 = require("src/environments/environment");
 var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
 var loginforgetpassword_component_1 = require("./loginforgetpassword/loginforgetpassword.component");
 var chat_room_component_1 = require("./chat-room/chat-room.component");
+var dashboard_module_1 = require("./user_dashboard/dashboard.module");
 //const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
 // social login
 var angularx_social_login_1 = require("@abacritt/angularx-social-login");
@@ -82,6 +83,7 @@ var AppModule = /** @class */ (function () {
                 angular_fontawesome_1.FontAwesomeModule,
                 admin_layout_module_1.AdminLayoutModule,
                 dashboard_module_1.DashboardModule,
+                dashboardCRM_module_1.DashboardModuleCRM,
             ],
             providers: [{
                     provide: 'SocialAuthServiceConfig',

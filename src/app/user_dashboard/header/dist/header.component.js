@@ -9,8 +9,10 @@ exports.__esModule = true;
 exports.HeaderComponent = void 0;
 var core_1 = require("@angular/core");
 var sidebar_component_1 = require("src/app/admin/sidebar/sidebar.component");
+var detail_notif_diag_component_1 = require("./detail-notif-diag/detail-notif-diag.component");
 var HeaderComponent = /** @class */ (function () {
-    function HeaderComponent(location, element, router, notificationservice, accountservice) {
+    function HeaderComponent(dialog, location, element, router, notificationservice, accountservice) {
+        this.dialog = dialog;
         this.element = element;
         this.router = router;
         this.notificationservice = notificationservice;
@@ -123,6 +125,17 @@ var HeaderComponent = /** @class */ (function () {
             console.log(response);
         }, function (error) {
             console.error('Error during get notification.', error);
+        });
+    };
+    HeaderComponent.prototype.showNotification = function (notification) {
+        //console.log('Sending notification:', notification);
+        var dialogRef = this.dialog.open(detail_notif_diag_component_1.DetailNotifDiagComponent, {
+            width: '500px',
+            data: notification
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            // Handle dialog close if needed
+            console.log('The dialog was closed');
         });
     };
     HeaderComponent = __decorate([

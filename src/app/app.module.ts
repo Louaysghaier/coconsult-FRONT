@@ -35,7 +35,7 @@ import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-
+import { DashboardModule } from './user_dashboard/dashboard.module';
 //const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
 // social login
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
@@ -83,6 +83,7 @@ import {
     CarouselModule.forRoot(),
     FontAwesomeModule,
     AdminLayoutModule,
+   DashboardModule,
     DashboardModuleCRM,
 
 

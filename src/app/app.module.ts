@@ -39,6 +39,7 @@ import { TESTComponent } from './test/test.component';
 import { NavbardorraComponent } from './navbardorra/navbardorra.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -55,16 +56,17 @@ import {MatStepperModule} from '@angular/material/stepper';
     ContactComponent,
 CandidatComponent,
 AffichagequestionComponent,
-
+TESTComponent,
 
     AboutDirective,
     MyquizComponent,
     JobOpportComponent,
     CandidatemailComponent,
     ReclamationComponent,
-    TESTComponent,
+  
     NavbardorraComponent,
     ProfileComponent,
+    ChatComponent,
 
 
 

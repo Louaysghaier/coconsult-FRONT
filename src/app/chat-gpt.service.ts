@@ -12,97 +12,24 @@ export class Message {
   providedIn: 'root'
 })
 export class ChatGptService {
-  conservation = new Subject<Message[]>();
 
   constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://localhost:8082/jobopports'; 
-
-  messageMap = {
-    "hi": "hello",
-    "hello": "hi",
-    "who are you": "my name is testcode ai",
-    "what is angular": "angular is the best framework",
-    "tell me about job opportunities": "Here are some available job opportunities:",
-    "job opportunities": "you can just click on the button for detail Here are some available job opportunities:",
-    "job": "Here are some available job opportunities:",
-    "quiz":"Here Some quiz that we have ",
-    "je t'aime":"jaime que dorra",
-    "can you help me ":"yes of course "
-
-  };
-
-  async getBostAnswer(msg: string): Promise<void> {
-    const userMessage = new Message('user', msg);
-    this.conservation.next([userMessage]);
-
-    const botMessageContent = await this.getBotMessage(msg);
-    const botMessage = new Message('bot', botMessageContent);
-    setTimeout(() => {
-      this.conservation.next([botMessage]);
-    }, 1500);
+   knowledgeBaseUrl= 'http://127.0.0.1:5000/knowledge-base'; // Changer l'URL en fonction de votre API Python
+  // Charger la base de connaissances depuis l'API
+  loadKnowledgeBase(): Observable<any> {
+    return this.http.get<any>(this.knowledgeBaseUrl);
   }
 
-  private async getBotMessage(question: string): Promise<string> {
-    let answer = this.messageMap[question];
-    if (!answer) {
-      if (question.toLowerCase().includes('job opportunities')||question.toLowerCase().includes('job ')) {
-        try {
-          const jobOpportunities = await this.getAllJobOpports().toPromise();
-          answer = this.formatJobOpportunities(jobOpportunities);
-        } catch (error) {
-          console.error("Error fetching job opportunities:", error);
-          answer = "Sorry, there was an error fetching job opportunities.";
-        }
-      } else if(question.toLowerCase().includes('quiz')) {
-        try{
-          const quiz=await this.getAllQuizzes().toPromise();
-          answer = this.formatquiz(quiz);
-        } catch (error) {
-          console.error("Error fetching job opportunities:", error);
-          answer = "Sorry, there was an error fetching job opportunities.";
-        }
- 
-      } else {
-        answer = "Sorry, I didn't understand that.";
-      }
-    }
-    return answer;
-  }
-private formatquiz (quiz:any[]):string{
-  let formattedString = "Here Some quiz that we have:\n";
-  quiz.forEach(opport => {
-    formattedString += `Title: ${opport.titre}\n`;
-    formattedString += `numberOfQuestions: ${opport.numberOfQuestions}\n`;
-   
-  
-  });
-  return formattedString;
-}
-
-  private formatJobOpportunities(jobOpportunities: any[]): string {
-    let formattedString = "Here are some available job opportunities:\n";
-    jobOpportunities.forEach(opport => {
-      formattedString += `Title: ${opport.titre}\n`;
-      formattedString += `Description: ${opport.description}\n`;
-      formattedString += `Qualifications: ${opport.qualifications}\n`;
-      formattedString += `Location: ${opport.lieu}\n`;
-      formattedString += `Deadline: ${opport.dateLimite}\n\n`;
-    });
-    return formattedString;
+  // Mettre à jour la base de connaissances via l'API
+  updateKnowledgeBase(data: any): Observable<any> {
+    return this.http.post<any>(this.knowledgeBaseUrl, data);
   }
 
-  private getAllJobOpports(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/getalljob`).pipe(
-      catchError(error => {
-        throw 'Error in retrieving job opportunities';
-      })
-    );
-  }
-  apiUrl = 'http://localhost:8082/quizzes/'; 
+  private apiUrl = 'http://localhost:5000/ask';
 
-  getAllQuizzes(): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(this.apiUrl + 'getallquizzes');
-  }
 
+  askQuestion(question: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl, { question });
+  }
 }

@@ -18,8 +18,10 @@ import { AffichagequestionComponent } from './affichagequestion/affichagequestio
 import { JobOpportComponent } from './job-opport/job-opport.component';
 import { CandidatemailComponent } from './candidatemail/candidatemail.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
-import { TESTComponent } from './test/test.component';
+//import { TESTComponent } from './test/test.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ChatComponent } from './chat/chat.component';
+import { TESTComponent } from './test/test.component';
 
 
 const routes: Routes = [
@@ -49,12 +51,14 @@ const routes: Routes = [
   { path: 'job', component: JobOpportComponent },
   { path: 'email', component: CandidatemailComponent },
   { path: 'reclamation', component: ReclamationComponent },
+  { path: 'chatc', component: ChatComponent },
+  { path: 'test', component: TESTComponent },
 
  
   
 
 
-  { path:'chat',component:TESTComponent },
+  //{ path:'chat',component:TESTComponent },
 
 
 { path:'candidature',component:CandidatComponent },

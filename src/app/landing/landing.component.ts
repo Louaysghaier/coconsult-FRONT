@@ -40,6 +40,6 @@ export class LandingComponent implements OnInit {
 
     }
     openJobOpportModal() {
-      this.router.navigate(['/chat']);
+      this.router.navigate(['/test']);
 }
 }

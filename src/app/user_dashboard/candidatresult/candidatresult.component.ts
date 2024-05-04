@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { ReclamationDTO } from 'src/app/_models/ReclamationDTO';
+import { Candidat } from 'src/app/_models/candidat';
 import { CandidatDetailsDTO } from 'src/app/_models/candidatDetail';
+import { Reclamation } from 'src/app/_models/reclamation';
 import { CandidatService } from 'src/app/_services/candidat.service';
+import { ReclamationService } from 'src/app/reclamation.service';
 
 @Component({
   selector: 'app-candidatresult',
@@ -9,11 +13,17 @@ import { CandidatService } from 'src/app/_services/candidat.service';
 })
 export class CandidatresultComponent {
   candidatDetails: CandidatDetailsDTO[];
+  reclamations: ReclamationDTO[];
+  candidats: Candidat[];
+ 
 
-  constructor(private candidatService: CandidatService) { }
+  constructor(private candidatService: CandidatService,private reclamationService:ReclamationService) { }
 
   ngOnInit(): void {
     this.getCandidatDetails();
+    
+    this.loadReclamations();
+
   }
 
   getCandidatDetails(): void {
@@ -25,6 +35,28 @@ export class CandidatresultComponent {
       });
   }
 
-
+  loadReclamations(): void {
+    this.reclamationService.getAllReclamationsWithCandidatNames().subscribe(
+      reclamations => {
+        this.reclamations = reclamations;
+       
+      },
+      error => {
+        console.error('Error fetching reclamations:', error);
+      }
+    );
+  }
+  deleteReclamation(id: number): void {
+    this.reclamationService.deleteReclamationById(id).subscribe(
+      () => {
+        console.log('Réclamation supprimée avec succès');
+  
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression de la réclamation', error);
+        this.loadReclamations()
+      }
+    );
+  }
   
 }

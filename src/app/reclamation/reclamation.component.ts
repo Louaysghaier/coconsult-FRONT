@@ -67,8 +67,9 @@ export class ReclamationComponent implements OnInit {
       .subscribe(
         () => {
           console.log('Réclamation soumise avec succès');
-        
+          Swal.fire("Réclamation soumise avec succès","thank you");
           this.contenuReclamation = '';
+
         },
         error => {
           console.error('Erreur lors de la soumission de la réclamation : ', error);

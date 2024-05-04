@@ -34,7 +34,7 @@ export class CandidatemailComponent {
       (error) => {
         console.error('Erreur lors de la récupération de l\'ID du candidat:', error);
         // Gérer l'erreur
-        Swal.fire('ERROR', 'Failed to retrieve candidate ID', 'error');
+        Swal.fire('ERROR', 'you cant ', 'error');
       }
     );
   }

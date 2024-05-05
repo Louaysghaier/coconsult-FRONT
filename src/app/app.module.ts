@@ -31,7 +31,7 @@ import { CandidatComponent } from './candidat/candidat.component';
 import { AffichagequestionComponent } from './affichagequestion/affichagequestion.component';
 
 import { MyquizComponent } from './myquiz/myquiz.component';
-import { MatDialogModule } from '@angular/material/dialog';
+//import { MatDialogModule } from '@angular/material/dialog';
 import { JobOpportComponent } from './job-opport/job-opport.component';
 import { CandidatemailComponent } from './candidatemail/candidatemail.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';

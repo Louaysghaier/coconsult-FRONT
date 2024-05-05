@@ -35,11 +35,10 @@ export class AccountService {
         this.CurrentgroupchatSubject=new BehaviorSubject<GroupChat | null>(JSON.parse(localStorage.getItem('currentGroupChat') || 'null'));
         this.CurrentGroupChat=this.CurrentgroupchatSubject.asObservable();
     }
-
     public get userValue() {
         return this.userSubject.value;
     }
-
+   
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/api/auth/signIn`, { email, password })
             .pipe(map(user => {
@@ -86,15 +85,13 @@ export class AccountService {
 
     }
 
-    public get userValue() {
-        return this.userSubject.value;
-    }
+
     /**!!!!!!!!!!!!ki thebou tgetiw user hw barcha toro9 **/
     //1)jarbou zeda login w a3mou objet User:user mb3d fi constructor a3mlou user=localstorage.getitem('myuserinfo') as User;
     //2)est3mlouha bach tgetiw user info koll
     public getCurrentUserInfoValue() {
         return this.CurrentUserInfoSubject.value;
-    }//emchiw li servicetkom w asn3ou  currentuser:user; mb3d fi constructor a3mlou
+    }//emchiw li servicetkom w asn3ou  currentuser:user; mb3d fi constructor a3mlou 
     //this.currentuser=this.accountservice.getCurrentUserInfoValue() as User;
     //3)e5dmou byh tw yjikom info kol 3lé user
     public getCurrentGroupChatValue() {

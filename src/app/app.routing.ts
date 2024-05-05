@@ -35,12 +35,17 @@ const routes: Routes = [
     
       loadChildren: () => import('./admin/admin-layout.module').then(m => m.AdminLayoutModule)
 
-  }, 
- 
-  
+  },
+
   {
     path: '',
     loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd),
+    //loadChildren: () => import('./user_dashboardRH_w/DashboardModuleRHw.module').then(m => m.DashboardModuleRHw)
+
+  },
+  {
+    path: '',
+    //loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd),
     loadChildren: () => import('./user_dashboardRH_w/DashboardModuleRHw.module').then(m => m.DashboardModuleRHw)
 
   },

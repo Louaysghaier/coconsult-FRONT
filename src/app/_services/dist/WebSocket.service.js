@@ -22,21 +22,10 @@ var WebSocketService = /** @class */ (function () {
         this.groupChatid = this.GroupChat.id;
         console.info('groupchatid:', this.groupChatid);
     }
-    /*findgroupchat() {
-      this.GroupChatservice.getGroupChatByUser(this.currentuser.id).subscribe((data: GroupChat) => {
-        this.GroupChat = data;
-        this.groupChatid = data.id;
-       // console.log('groupchatid:', this.groupChatid);
-       
-       // console.log(data);
-      }, error => {
-        console.error('An error occurred while loading available users:', error);
-      });
-    }*/
-    WebSocketService.prototype.connect = function (url) {
+    WebSocketService.prototype.connect = function () {
         var _this = this;
         this.stompClient = new stompjs_1.Client({
-            webSocketFactory: function () { return new WebSocket(url); }
+            webSocketFactory: function () { return new WebSocket('ws://localhost:8082/ws'); }
         });
         this.stompClient.onConnect = function () {
             console.log('Connected to WebSocket server');

@@ -51,9 +51,9 @@ export class ContractComponent implements OnInit {
   }
 
   updatePage() {
-    const filteredContract = this.filterContracts(this.searchTerm);
+    //const filteredContract = this.filterContracts(this.searchTerm);
     const startIndex = this.currentPage * this.pageSize;
-    this.pagedContract = filteredContract.slice(startIndex, startIndex + this.pageSize);
+ //   this.pagedContract = filteredContract.slice(startIndex, startIndex + this.pageSize);
   }
 
   openAddUpdateContractForm() {
@@ -139,7 +139,7 @@ export class ContractComponent implements OnInit {
     return this.dataSource.data.map((contract: Contract) => contract.montant).reduce((acc, value) => acc + value, 0);
   }
 
-  filterContracts(searchTerm: string): Contract[] {
+ /* filterContracts(searchTerm: string): Contract[] {
     return this.contract.filter(contract =>
       contract.idContract.toString().includes(searchTerm) ||
       contract.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -149,7 +149,7 @@ export class ContractComponent implements OnInit {
       this.getEtapeLabel(contract.etape).toLowerCase().includes(searchTerm.toLowerCase()) ||
       this.getRepertoireLabel(contract.repertoire).toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }
+  }*/
 
   private getEtapeLabel(etape: Etape): string {
     switch (etape) {

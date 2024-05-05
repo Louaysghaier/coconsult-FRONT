@@ -28,20 +28,10 @@ export class WebSocketService {
         console.info('groupchatid:', this.groupChatid);
       
     }
-    /*findgroupchat() {
-      this.GroupChatservice.getGroupChatByUser(this.currentuser.id).subscribe((data: GroupChat) => {
-        this.GroupChat = data;
-        this.groupChatid = data.id;
-       // console.log('groupchatid:', this.groupChatid);
-       
-       // console.log(data);
-      }, error => {
-        console.error('An error occurred while loading available users:', error);
-      });
-    }*/
-    connect(url: string): void {
+    
+    connect(): void {
       this.stompClient = new Client({
-        webSocketFactory: () => new WebSocket(url)
+        webSocketFactory: () => new WebSocket('ws://localhost:8082/ws')
       });
   
       this.stompClient.onConnect = () => {

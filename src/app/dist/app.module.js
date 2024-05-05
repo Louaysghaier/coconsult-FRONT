@@ -40,7 +40,7 @@ var forgetpass_component_1 = require("./forgetpass/forgetpass.component");
 var loginforgetpassword_component_1 = require("./loginforgetpassword/loginforgetpassword.component");
 var chat_room_component_1 = require("./chat-room/chat-room.component");
 var dashboard_module_1 = require("./user_dashboard/dashboard.module");
-//const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
+var config = { url: 'ws://localhost:8082/ws', options: {} };
 // social login
 var angularx_social_login_1 = require("@abacritt/angularx-social-login");
 var angularx_social_login_2 = require("@abacritt/angularx-social-login");

@@ -27,7 +27,8 @@ export class NavbarComponent implements OnInit {
         this.User = this.accountservice.userValue ;
     }
 
-    ngOnInit(){ this.getallnotification();
+    ngOnInit(){ 
+        // this.getallnotification();
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -129,19 +130,19 @@ export class NavbarComponent implements OnInit {
       }
       return 'Dashboard';
     }
-
-getallnotification(){
-    this.notificationservice.getNotificationByuser(this.User.id).subscribe(
-        (response:[]) => {
-            this.notifications = response;
-          //  console.log('notification get successfully!');
-            console.log(response);
-        },
-        (error) => {
-            console.error('Error during get notification.', error);
-        }
-    );
 }
+// getallnotification(){
+//     this.notificationservice.getNotificationByuser(this.User.id).subscribe(
+//         (response:[]) => {
+//             this.notifications = response;
+//           //  console.log('notification get successfully!');
+//             console.log(response);
+//         },
+//         (error) => {
+//             console.error('Error during get notification.', error);
+//         }
+//     );
+// }
 
 
-}
+

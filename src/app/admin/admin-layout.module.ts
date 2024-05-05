@@ -24,7 +24,6 @@ import { AjouterquizComponent } from './admindashboard/ajouterquiz/ajouterquiz.c
 import { UpdatequizComponent } from './admindashboard/updatequiz/updatequiz.component';
 import { QuizComponent } from './admindashboard/quiz/quiz.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
 import { QuestionsComponent } from './admindashboard/questions/questions.component';
 import { UpdatequestionComponent } from './admindashboard/updatequestion/updatequestion.component';
 import { JobsComponent } from './admindashboard/jobs/jobs.component';
@@ -75,7 +74,7 @@ children: [
     MatTableModule ,
     MatDialogModule
  
-    MatDialogModule,
+   
 
   ],
   declarations: [

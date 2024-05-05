@@ -20,9 +20,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { CardComponent } from './solution/card/card.component';
 import { CandidatresultComponent } from './candidatresult/candidatresult.component';
 import { SettingsComponent } from './settings/settings.component';
-
-
 import { DetailNotifDiagComponent } from './header/detail-notif-diag/detail-notif-diag.component';
+
+
 const dashboardRoutes: Routes = [
  { path: 'user_dashboardRH_d',
   component: DashboardComponent,
@@ -79,5 +79,5 @@ const dashboardRoutes: Routes = [
     providers: [],
     exports: [RouterModule]
   })
-  export class DashboardModule { }
+  export class DashboardModuleRHd { }
   

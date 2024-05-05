@@ -38,7 +38,7 @@ const routes: Routes = [
   
   {
     path: '',
-    loadChildren: () => import('./user_dashboardRH_d/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd),
 
   }, 
   { path:'myquiz/:email',component: MyquizComponent },
@@ -69,7 +69,6 @@ const routes: Routes = [
 
 
 { path:'candidature',component:CandidatComponent },
- { path: '**', redirectTo: '',component: LandingComponent}
   { path: 'resetpassword', component:     ForgetpassComponent
 },
 { path: 'forgetpassword', component: LoginforgetpasswordComponent},

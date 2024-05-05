@@ -40,17 +40,14 @@ import { NavbardorraComponent } from './navbardorra/navbardorra.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ChatComponent } from './chat/chat.component';
-import { DashboardModule } from './user_dashboardRH_d/dashboard.module';
 
 import { NgxCaptchaModule } from 'ngx-captcha';
-import { ReactiveFormsModule } from '@angular/forms';
 import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { DashboardModule } from './user_dashboard/dashboard.module';
 const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
 // social login
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
@@ -59,6 +56,7 @@ import {
   //FacebookLoginProvider,
   // AmazonLoginProvider,
 } from '@abacritt/angularx-social-login';
+import { DashboardModuleRHd } from './user_dashboardRH_d/DashboardModuleRHd.module';
 
 @NgModule({
   declarations: [
@@ -72,8 +70,8 @@ import {
     ValidationComponent,
     AboutusComponent,
     ContactComponent,
-CandidatComponent,
-AffichagequestionComponent,
+  CandidatComponent,
+  AffichagequestionComponent,
 TESTComponent,
 
     AboutDirective,
@@ -114,7 +112,7 @@ TESTComponent,
     MatDialogModule,
     CarouselModule.forRoot(),
     FontAwesomeModule,
-    DashboardModule,
+    DashboardModuleRHd,
     MatStepperModule,
     ReactiveFormsModule,
    
@@ -122,18 +120,7 @@ TESTComponent,
 
   ],
   exports: [CandidatemailComponent],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-   // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    CarouselModule.forRoot(),
-    FontAwesomeModule,
-    AdminLayoutModule,
-   DashboardModule,
-    DashboardModuleCRM,
-
-
-  ],
+  
   providers: [{
     provide: 'SocialAuthServiceConfig',
     useValue: {

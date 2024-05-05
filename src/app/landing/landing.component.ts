@@ -5,6 +5,7 @@ import { AccountService } from '../_services';
 import { User } from '../_models';
 import Swal from 'sweetalert2';
 import { TokenService } from '../_services/Token.service';
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-landing',
     templateUrl: './landing.component.html',
@@ -20,7 +21,7 @@ export class LandingComponent implements OnInit {
   isconn:boolean;
   user?: User | null;
 
-  constructor(private MsgService :MsgService,private authService  :AccountService,private tokenService:TokenService) { 
+  constructor(private MsgService :MsgService,private authService  :AccountService,private tokenService:TokenService,private router :Router) { 
     
 
 

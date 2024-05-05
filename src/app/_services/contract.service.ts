@@ -31,7 +31,7 @@ export class ContractService {
   }
 
   addContractAffectRepAndGeneratePdf(contract: Contract, repertoireId: number): Observable<Blob> {
-    const url = `${this.baseUrl}/ajouterContractAndGeneratePdf/${repertoireId}`;
+    const url = `${this.baseUrl}/addContractAndGeneratePdf/${repertoireId}`;
     return this.http.post(url, contract, { responseType: 'blob' }).pipe(
       catchError(error => {
         return throwError('Error while adding contract and generating PDF: ' + error);
@@ -62,7 +62,5 @@ export class ContractService {
     return this.http.delete<void>(`${this.baseUrl}/RemoveContract/${id}`);
   }
 
-  getAllContractsWithRepertoireContact(): Observable<Contract[]> {
-    return this.http.get<Contract[]>(`${this.baseUrl}/allWithRepertoireContact`);
-  }
+  
 }

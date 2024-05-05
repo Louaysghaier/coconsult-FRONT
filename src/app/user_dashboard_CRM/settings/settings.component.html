@@ -88,10 +88,7 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let activity; columns: displayedColumns;"></tr>
             
-              <!-- Display a message if there is no data -->
-              <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="{{ displayedColumns.length }}">No data matching the filter "{{ input.value }}"</td>
-              </tr>
+             
             
             
           </table>
@@ -150,10 +147,7 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let activity; columns: displayedColumns;"></tr>
             
-              <!-- Display a message if there is no data -->
-              <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="{{ displayedColumns.length }}">No data matching the filter "{{ input.value }}"</td>
-              </tr>
+            
             
             
           </table>
@@ -207,10 +201,7 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let activity; columns: displayedColumns;"></tr>
             
-              <!-- Display a message if there is no data -->
-              <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="{{ displayedColumns.length }}">No data matching the filter "{{ input.value }}"</td>
-              </tr>
+            
             </table>
 
           <!-- Paginator for pagination -->

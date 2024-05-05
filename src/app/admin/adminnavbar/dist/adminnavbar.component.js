@@ -10,6 +10,7 @@ exports.NavbarComponent = void 0;
 var core_1 = require("@angular/core");
 var sidebar_component_1 = require("../sidebar/sidebar.component");
 var NavbarComponent = /** @class */ (function () {
+    //notifications :Notification[];
     function NavbarComponent(location, element, router, notificationservice, accountservice) {
         this.element = element;
         this.router = router;
@@ -23,7 +24,7 @@ var NavbarComponent = /** @class */ (function () {
     }
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.getallnotification();
+        //this.getallnotification();
         this.listTitles = sidebar_component_1.ROUTES.filter(function (listTitle) { return listTitle; });
         var navbar = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -115,16 +116,6 @@ var NavbarComponent = /** @class */ (function () {
             }
         }
         return 'Dashboard';
-    };
-    NavbarComponent.prototype.getallnotification = function () {
-        var _this = this;
-        this.notificationservice.getNotificationByuser(this.User.id).subscribe(function (response) {
-            _this.notifications = response;
-            //  console.log('notification get successfully!');
-            console.log(response);
-        }, function (error) {
-            console.error('Error during get notification.', error);
-        });
     };
     NavbarComponent = __decorate([
         core_1.Component({

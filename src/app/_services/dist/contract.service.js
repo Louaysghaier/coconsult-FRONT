@@ -28,7 +28,7 @@ var ContractService = /** @class */ (function () {
         }));
     };
     ContractService.prototype.addContractAffectRepAndGeneratePdf = function (contract, repertoireId) {
-        var url = this.baseUrl + "/ajouterContractAndGeneratePdf/" + repertoireId;
+        var url = this.baseUrl + "/addContractAndGeneratePdf/" + repertoireId;
         return this.http.post(url, contract, { responseType: 'blob' }).pipe(operators_1.catchError(function (error) {
             return rxjs_1.throwError('Error while adding contract and generating PDF: ' + error);
         }));
@@ -48,9 +48,6 @@ var ContractService = /** @class */ (function () {
     };
     ContractService.prototype.removeContract = function (id) {
         return this.http["delete"](this.baseUrl + "/RemoveContract/" + id);
-    };
-    ContractService.prototype.getAllContractsWithRepertoireContact = function () {
-        return this.http.get(this.baseUrl + "/allWithRepertoireContact");
     };
     ContractService = __decorate([
         core_1.Injectable({

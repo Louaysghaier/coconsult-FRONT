@@ -1,5 +1,5 @@
 <div class="main-content" style="background-image: url('https://th.bing.com/th/id/R.caafc6386858edeaef38e0cddb4df823?rik=UC7DHZO3ebFMNw&riu=http%3a%2f%2fwww.meseconomies.fr%2fwp-content%2fuploads%2f2017%2f08%2fNous-sommes-tous-chef-de-projet-mais-tout-le-monde-ne-sait-pas-gerer-un-projet.jpg&ehk=RJrwKqXgdKApUiSEaKDgW0Jd1b2Xox30Q0kkhbzut9Q%3d&risl=&pid=ImgRaw&r=0'); background-size: contain ; background-position: right  ">
-<div class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <!-- Button to trigger modal for Add Project -->
@@ -18,42 +18,52 @@
                     <div class="card-body">
                         <!-- Project Table Here -->
                         <div class="table-responsive" style="height: 600px; overflow-y: scroll;">
-                       <!-- <div class="table-responsive" >-->
-                            <table class="table">
+                            <!-- <div class="table-responsive" >-->
+                            <table class="table100">
                                 <!-- Table Headers -->
                                 <thead class="text-primary">
-                                <tr>
-                                    <th><i class="fas fa-id-card" > </i> ID</th>
-                                    <th><i class="fas fa-project-diagram" > </i>Project Title</th>
-                                    <th><i class="fas fa-money-bill-1-wave" > </i>Budget</th>
-                                    <th><i class="fas fa-mail-reply" > </i> Mail</th>
-                                    <th> <i class ="fas fa-calendar-check-o"></i> Start Date </th>
-                                    <th><i class ="fas fa-calendar-times-o"></i> Finish Date </th>
-                                    <th><i class="fas fa-people-group" > </i>Staff </th>
-                                    <th><i class ="fas fa-note-sticky"></i> Description</th>
-                                    <!-- Add more headers as needed -->
-                                    <th>Validate </th>
-                                    <th>Actions</th>
-
+                                <tr class="table100-head">
+                                    <th><i class="fas fa-id-card" > </i>
+                                        ID</th>
+                                    <th><i class="fas fa-project-diagram"></i>
+                                        Project Title</th>
+                                    <th><i class="fas fa-money-bill-1-wave"></i>
+                                        Budget</th>
+                                    <th><i class="fas fa-mail-reply"></i>
+                                        Mail</th>
+                                    <th><i class ="fas fa-calendar-check-o"></i>
+                                        Start Date </th>
+                                    <th><i class ="fas fa-calendar-times-o"></i>
+                                        Finish Date </th>
+                                    <th><i class="fas fa-people-group"></i>
+                                        Staff </th>
+                                    <th><i class="fas fa-note-sticky"></i>
+                                        Description</th>
+                                    <th><i class="fa-solid fa-check"></i>
+                                        Validate </th>
+                                    <th> <i class="fa-solid fa-tasks-alt"></i>
+                                        Actions</th>
                                 </tr>
                                 </thead>
                                 <!-- Table Body -->
                                 <tbody>
                                 <!-- Project Rows Here -->
                                 <tr *ngFor="let project of pagedProjects">
-                                    <td>{{ project.idProjet }}</td>
-                                    <td>{{ project.projetTitle }}</td>
-                                    <td>{{ project.budget }}</td>
-                                    <td>{{ project.mail }}</td>
-                                    <td>{{ project.dateDebut }}</td>
-                                    <td>{{ project.dateFin }}</td>
-                                    <td>{{ project.effectif }}</td>
-                                    <td>{{ project.description }}</td>
-                                    <td>
-                                        <!-- Validate Project Button -->
-                                        <button type="button" class="btn btn-success" (click)="validerProjet(project.idProjet)">
-                                            Validate Project
+                                    <td (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.idProjet }}</td>
+                                    <td  [ngClass]="project.isvalid ? 'valid-cell' : 'invalid-cell'" (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.projetTitle }}</td>
+                                    <td (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.budget }}</td>
+                                    <td (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.mail }}</td>
+                                    <td style="background-color: mediumspringgreen; color: black; font-weight: bold; cursor: pointer;" (click)="showProjectDetails(project.idProjet)">{{ project.dateDebut }}
+                                    </td>
+                                    <td style="background-color: indianred; color: black; font-weight: bold; cursor: pointer;" (click)="showProjectDetails(project.idProjet)">{{ project.dateFin }}
+                                    </td>
+                                    <td (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.effectif }}</td>
+                                    <td (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.description }}</td>
+                                    <td [ngClass]="project.isvalid ? 'valid-cell' : 'invalid-cell'" >
+                                        <button class="btn" (click)="toggleProjectValidity(project)">
+                                            {{ project.isvalid ? 'Invalider' : 'Valider' }}
                                         </button>
+
                                     </td>
                                     <td>
                                         <!-- Edit Button -->
@@ -65,9 +75,10 @@
                                         <button type="button" class="btn btn-danger" (click)="deleteProject(project.idProjet)">
                                             Delete
                                         </button>
-                                        </td>
 
-                                </tr>
+                                    </td>
+
+
                                 </tbody>
                             </table>
                             <!-- Pagination -->

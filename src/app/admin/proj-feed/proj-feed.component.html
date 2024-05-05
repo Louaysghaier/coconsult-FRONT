@@ -1,37 +1,4 @@
-<style>
-    /*.chat-room {
-        max-width: 600px;
-        margin: 0 auto;
-        margin-top: 80px;
-        margin-bottom: 80px;
-    }
-    .chat-header {
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-    }
-    .chat-messages {
-        height: 400px;
-        overflow-y: scroll;
-        padding: 10px;
-        border: 1px solid #ccc;
-        margin-bottom: 10px;
-    }
-    .chat-input {
-        padding: 10px;
-    }
-    .user-icon {
-        height: 50px;
-        width: 50px;
-        background-color: #007bff;
-        color: white;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 50px;
-        font-size: 20px;
-        margin-right: 10px;
-    }*/
-</style>
+
 
 <div class="main-content" style="background-image: url('./assets/images/projectfeed.png');background-size:contain; background-position: left ">
     <div class="container-fluid" >
@@ -48,18 +15,18 @@
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">Project Feed List</h4>
                     </div>
-                    <div class="card-body" >
+                    <div class="card-body">
                         <!-- Project Feed Table Here -->
-                        <div class="table-responsive" >
-                            <table class="table" style="background-color: rgba(255,255,255,0.8)" >
+                        <div class="table-responsive">
+                            <table class="table table100">
                                 <!-- Table Headers -->
-                                <thead class="text-primary">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Content</th>
-                                    <th>Last Update Time</th>
-                                    <th>Last Update Function</th>
-                                    <th>Actions</th>
+                                <thead class="custom-header">
+                                <tr class="table100-head">
+                                    <th><i class="fas fa-id-card"></i> ID</th>
+                                    <th><i class="fas fa-project-diagram"></i> Content</th>
+                                    <th><i class="fas fa-clock"></i> Last Update Time</th>
+                                    <th><i class="fas fa-cogs"></i> Last Update Function</th>
+                                    <th><i class="fas fa-tasks"></i> Actions</th>
                                 </tr>
                                 </thead>
                                 <!-- Table Body -->
@@ -73,13 +40,12 @@
                                     <td>
                                         <!-- Edit Button -->
                                         <button type="button" class="btn btn-info" (click)="openEditModal(projFeed)" data-toggle="modal" data-target="#editProjFeedModal">
-                                            Edit
+                                            <i class="fas fa-edit"></i> Edit
                                         </button>
 
                                         <button type="button" class="btn btn-danger" (click)="deleteProjFeed(projFeed.idPjtFeed)">
-                                            Delete
+                                            <i class="fas fa-trash-alt"></i> Delete
                                         </button>
-
                                     </td>
                                 </tr>
                                 </tbody>
@@ -88,7 +54,6 @@
                             <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" [length]="projFeeds.length" (page)="onPageChange($event)">
                             </mat-paginator>
                         </div>
-                        <!--Dayspedia.com widget--><iframe width='210' height='295' style='padding:0!important;margin:0!important;border:none!important;background:none!important;background:transparent!important' marginheight='0' marginwidth='0' frameborder='0' scrolling='no' comment='/*defined*/' src='https://dayspedia.com/if/analog/?v=1&iframe=eyJ3LTExIjp0cnVlLCJ3LTEzIjp0cnVlLCJ3LTE1Ijp0cnVlLCJ3LTExMCI6ZmFsc2UsInctd2lkdGgtMCI6dHJ1ZSwidy13aWR0aC0xIjpmYWxzZSwidy13aWR0aC0yIjpmYWxzZSwidy0xNiI6IjI0cHgiLCJ3LTE3IjoiMTYiLCJ3LTIxIjp0cnVlLCJiZ2ltYWdlIjotMSwiYmdpbWFnZVNldCI6ZmFsc2UsInctMjFjMCI6IiNmZmZmZmYiLCJ3LTAiOnRydWUsInctMyI6dHJ1ZSwidy0zYzAiOiIjMzQzNDM0Iiwidy0zYjAiOiIxIiwidy0yMCI6dHJ1ZSwidy00IjoiIzAwN2RiZiIsInctMTgiOmZhbHNlLCJ3LXdpZHRoLTJjLTAiOiIzMDAiLCJ3LTExNSI6ZmFsc2UsInctMjMiOnRydWUsInctMjNjMCI6IiNlY2VmZjEiLCJ3LTI2IjpmYWxzZSwidy0yNmIwIjoiMSIsInctMjciOnRydWUsInctMjdjMCI6IiMzNDM0MzQiLCJ3LTI0IjoiIzM0MzQzNCIsInctMTNjMCI6IiNmZjAwNTEiLCJ3LTIyIjoiIzM0MzQzNCIsInctMjUiOiIxNjAifQ==&lang=fr&cityid=8971'></iframe><!--Dayspedia.com widget ENDS-->
                     </div>
                 </div>
             </div>

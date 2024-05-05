@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Projects} from '../_models/projects';
 import {Expanses} from '../_models/expanses';
 import {Assignements} from '../_models/assignements';
-import {catchError, tap} from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -16,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProjetsService {
   private baseUrl = 'http://localhost:8082/projets';
 
-  constructor(private http: HttpClient, private toaster: ToastrService) { }
+  constructor(private http: HttpClient) { }
 
 
   getAllProjets(): Observable<Projects[]> {
@@ -57,7 +55,7 @@ export class ProjetsService {
  /* validateProject(idProject: number): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/validateProject/${idProject}`, null);
   }*/
-  validateProject(idProject: number): Observable<any> {
+  /*validateProject(idProject: number, isvalid:boolean): Observable<any> {
     return this.http.put<void>(`${this.baseUrl}/validateProject/${idProject}`, null).pipe(
         tap(value=> {
           this.toaster.success('Project validated and assigned successfully', 'Success');
@@ -67,5 +65,21 @@ export class ProjetsService {
           return throwError(error);
         })
     );
+  }*/
+
+ /* validateProject(idProject: number, valid: boolean): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/validateProject/${idProject}?isValid=${valid}`, null).pipe (
+        tap(value=> {
+          console.log('Project validated and assigned successfully', 'Success');
+        }),
+        catchError(error => {
+          console.log('An error occurred while validating the project', 'Error');
+          return throwError(error);
+        })
+    );
+  }*/
+  validateProject(id: number, isValid: boolean): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/validateProject/${id}?isValid=${isValid}`, null);
   }
+
 }

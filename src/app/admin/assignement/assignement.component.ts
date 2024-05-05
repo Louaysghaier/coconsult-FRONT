@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Assignements } from '../../_models/assignements';
 import { AssignementsService } from '../../_services/assignements.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
     selector: 'app-assignments',
@@ -12,9 +13,11 @@ export class AssignmentsComponent implements OnInit {
     assignments: Assignements[] = [];
     newAssignment: Assignements = new Assignements();
     selectedAssignment: Assignements = new Assignements();
-
-    totalAssignments: number = 0;
-    pageSize: number = 10;
+    currentPage: number = 0;
+    pagedAssignments: Assignements[] = [];
+    searchTerm: string = '';
+    totalAssignments: number = 5;
+    pageSize: number = 5;
     pageSizeOptions: number[] = [5, 10, 25, 100];
 
     constructor(private modalService: NgbModal, private assignmentsService: AssignementsService) { }
@@ -28,6 +31,7 @@ export class AssignmentsComponent implements OnInit {
             (assignments: Assignements[]) => {
                 this.assignments = assignments;
                 this.totalAssignments = this.assignments.length;
+                this.updatePage();
             },
             (error: any) => {
                 console.error('Error fetching assignments:', error);
@@ -48,19 +52,17 @@ export class AssignmentsComponent implements OnInit {
             }
         );
     }
+
     openEditModal(assignment: Assignements): void {
-        // Implement logic to open the edit modal and pre-fill it with assignment details
-        // For example, you can emit an event or use a service to communicate with the modal component
-        console.log('Opening edit modal for assignment:', assignment);
-        // You might emit an event to trigger the modal opening in the parent component
-        // Alternatively, you can directly manipulate the DOM to show the modal
+        this.selectedAssignment = assignment;
+        // Open the edit modal here
     }
+
     updateAssignment(): void {
-        // Assuming selectedAssignment has an id property
         this.assignmentsService.updateAssign(this.selectedAssignment.idAssign, this.selectedAssignment).subscribe(
             (response: Assignements) => {
                 console.log('Assignment updated:', response);
-                // Optionally, you can dismiss modal and refresh assignment list here
+                // Optionally, dismiss modal and refresh assignment list here
                 // this.modalService.dismissAll();
                 // this.getAllAssignments();
             },
@@ -68,11 +70,6 @@ export class AssignmentsComponent implements OnInit {
                 console.error('Error updating assignment:', error);
             }
         );
-    }
-
-    editAssignment(assignment: Assignements, content: any): void {
-        this.selectedAssignment = assignment;
-        this.modalService.open(content, { ariaLabelledBy: 'editAssignmentModalLabel' });
     }
 
     deleteAssignment(id: number): void {
@@ -89,9 +86,23 @@ export class AssignmentsComponent implements OnInit {
         }
     }
 
-    onPageChange(event: any): void {
-        // Handle pagination change
-        console.log(event);
+    onPageChange(event: PageEvent): void {
+        this.currentPage = event.pageIndex;
+        this.pageSize = event.pageSize;
+        this.updatePage();
+    }
+
+    updatePage(): void {
+        const startIndex = this.currentPage * this.pageSize;
+        this.pagedAssignments = this.assignments.slice(startIndex, startIndex + this.pageSize);
+    }
+
+    filterAssignments(): Assignements[] {
+        return this.assignments.filter(assignment =>
+            assignment.idAssign.toString().includes(this.searchTerm) ||
+            assignment.timeRecording.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+            assignment.expenses.toString().includes(this.searchTerm.toLowerCase())
+        );
     }
 
     openAddAssignmentModal(content: any): void {
@@ -101,5 +112,4 @@ export class AssignmentsComponent implements OnInit {
     openEditAssignmentModal(content: any): void {
         this.modalService.open(content, { ariaLabelledBy: 'editAssignmentModalLabel' });
     }
-
 }

@@ -28,13 +28,11 @@ import { QuoteComponent } from './quote/quote.component';
 import { TimeRecordComponent } from './time-record/time-record.component';
 import { AssignmentsComponent } from './assignement/assignement.component';
 import { Assignements } from '../_models/assignements';
-import { CalenderComponent } from './calender/calender.component';
+import {ProjectDetailsComponent} from '../project-details/project-details.component';
 
 const AdminLayoutRoutes: Routes = [
     {
-        path: 'admin',
-        component: AdminLayoutComponent,
-        children: [
+        path: 'admin', component: AdminLayoutComponent, children: [
             { path: 'admindashboard', component: DashboardComponent },
             { path: 'user-profile', component: UserProfileComponent },
             { path: 'table-list', component: TableListComponent },
@@ -48,6 +46,8 @@ const AdminLayoutRoutes: Routes = [
             { path: 'projects', component: ProjectsComponent },
             { path: 'time-record', component: TimeRecordComponent },
             { path: 'quote', component: QuoteComponent },
+            { path: 'project-details/:projectId', component: ProjectDetailsComponent },
+
         ],
     },
 ];
@@ -84,7 +84,6 @@ const AdminLayoutRoutes: Routes = [
         ProjFeedComponent,
         QuoteComponent,
         TimeRecordComponent,
-        CalenderComponent,
     ],
     exports: [RouterModule],
 })

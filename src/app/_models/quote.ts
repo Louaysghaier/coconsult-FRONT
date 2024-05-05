@@ -8,7 +8,7 @@ export class Quote {
   description!: string;
   projects?: Projects; // Assuming Projets is another entity
   //userClient: User;
-  valid: boolean = false; // Propriété pour indiquer si la citation est valide ou non
+  valid: boolean = false;
 
 
   /*constructor(

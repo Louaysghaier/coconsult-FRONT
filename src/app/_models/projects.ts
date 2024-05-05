@@ -10,6 +10,7 @@ export class Projects {
   dateFin!: Date;
   effectif: number=0;
   description!: string;
+  isvalid!: boolean;
   expanses?: Expanses[];
   assignement?: Assignements[];
 

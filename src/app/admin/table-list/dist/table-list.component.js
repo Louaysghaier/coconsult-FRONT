@@ -9,12 +9,21 @@ exports.__esModule = true;
 exports.TableListComponent = void 0;
 var core_1 = require("@angular/core");
 var TableListComponent = /** @class */ (function () {
-    function TableListComponent(UserlistService) {
+    function TableListComponent(UserlistService, GroupChatservice) {
         this.UserlistService = UserlistService;
+        this.GroupChatservice = GroupChatservice;
     }
     TableListComponent.prototype.ngOnInit = function () {
         //this.getUser();
-        this.getEmlpoyes();
+        // this.getEmlpoyes();
+        // this.getEntreprise();
+        this.getAllUsers();
+    };
+    TableListComponent.prototype.getAllUsers = function () {
+        var _this = this;
+        this.UserlistService.getUserList().subscribe(function (data) {
+            _this.users = data;
+        });
     };
     TableListComponent.prototype.getUser = function () {
         var _this = this;
@@ -28,17 +37,18 @@ var TableListComponent = /** @class */ (function () {
             _this.emlpoyes = data;
         });
     };
-    TableListComponent.prototype.getAdmins = function () {
+    TableListComponent.prototype.getEntreprise = function () {
         var _this = this;
-        this.UserlistService.getUserByRoles('ROLE_ADMIN').subscribe(function (data) {
+        this.UserlistService.getUserByRoles('ROLE_Entreprise').subscribe(function (data) {
             _this.admins = data;
         });
     };
     TableListComponent.prototype.activateUser = function (user) {
+        var _this = this;
         this.UserlistService.activateUser(user.id).subscribe(function () {
             console.log('Utilisateur activé avec succès.');
-            // window.location.reload();
-            user.valid = true;
+            _this.getAllUsers();
+            // user.valid=true;
             // Faire quelque chose après l'activation réussie
         }, function (error) {
             console.error('Une erreur s\'est produite lors de l\'activation :', error);
@@ -46,10 +56,35 @@ var TableListComponent = /** @class */ (function () {
         });
     };
     TableListComponent.prototype.bloqueUser = function (user) {
+        var _this = this;
         this.UserlistService.bloquerUser(user.id).subscribe(function () {
             console.log('Utilisateur activé avec succès.');
-            // window.location.reload();
-            user.valid = true;
+            _this.getAllUsers();
+            // user.valid=true;
+            // Faire quelque chose après l'activation réussie
+        }, function (error) {
+            console.error('Une erreur s\'est produite lors de l\'activation :', error);
+            // Gérer l'erreur d'activation
+        });
+    };
+    TableListComponent.prototype.Ban = function (user) {
+        var _this = this;
+        this.GroupChatservice.bannedUser(user.id).subscribe(function () {
+            console.log('Utilisateur activé avec succès.');
+            _this.getAllUsers();
+            // user.valid=true;
+            // Faire quelque chose après l'activation réussie
+        }, function (error) {
+            console.error('Une erreur s\'est produite lors de l\'activation :', error);
+            // Gérer l'erreur d'activation
+        });
+    };
+    TableListComponent.prototype.removeBan = function (user) {
+        var _this = this;
+        this.GroupChatservice.removeBan(user.id).subscribe(function () {
+            console.log('Utilisateur activé avec succès.');
+            _this.getAllUsers();
+            // user.valid=true;
             // Faire quelque chose après l'activation réussie
         }, function (error) {
             console.error('Une erreur s\'est produite lors de l\'activation :', error);

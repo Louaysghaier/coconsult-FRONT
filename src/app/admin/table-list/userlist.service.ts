@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/_models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserlistService {
-  private baseURL  ="http://localhost:8081/api/user/list-Userco2/ASC";
-  private baseURLactive  ="http://localhost:8081/api/user/validate-user/";
-  private baseUserRole  ="http://localhost:8081/api/user/list-RolesName/";
-  private baseBlockedUser="http://localhost:8081/api/user/bloque-user/"
+  private baseURL  ="http://localhost:8082/api/user/list-user";
+  private baseURLactive  ="http://localhost:8082/api/user/validate-user/";
+  private baseUserRole  ="http://localhost:8082/api/user/list-RolesName/";
+  private baseBlockedUser="http://localhost:8082/api/user/bloque-user/"
+  private basedebloquerBlockedUser="http://localhost:8082/api/user/debloque-user/"
 
 
 
@@ -21,7 +22,7 @@ export class UserlistService {
   }
   
   activateUser(id:Number): Observable<any> {
-    return this.httpClient.put(this.baseURLactive+id, id);
+    return this.httpClient.put(this.basedebloquerBlockedUser+id, id);
     }
 
   getUserByRoles(RolesName:String):Observable<any>{
@@ -32,6 +33,7 @@ export class UserlistService {
   bloquerUser(id:Number):Observable<any>{
     return this.httpClient.put(this.baseBlockedUser+id, id);
   }
-
+  debloqueruser(id:Number):Observable<any>{
+    return this.httpClient.put(this.basedebloquerBlockedUser+id, id);}
 
 }

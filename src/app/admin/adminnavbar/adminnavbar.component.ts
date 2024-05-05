@@ -2,6 +2,10 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import { notificationService } from '../notifications/notificationService';
+import { User } from 'src/app/_models';
+import { Notification } from 'src/app/_models/Notification';
+import { AccountService } from 'src/app/_services';
 
 @Component({
   selector: 'app-adminnavbar',
@@ -14,13 +18,16 @@ export class NavbarComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
-
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
-      this.location = location;
-          this.sidebarVisible = false;
+    User:User;
+    notifications :Notification[];
+    constructor(location: Location,  private element: ElementRef, private router: Router,private notificationservice:notificationService,private accountservice:AccountService) {
+        this.location = location;
+        this.sidebarVisible = false;
+        //sessionStorage.setItem('USER', '');
+        this.User = this.accountservice.userValue ;
     }
 
-    ngOnInit(){
+    ngOnInit(){ this.getallnotification();
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -122,4 +129,19 @@ export class NavbarComponent implements OnInit {
       }
       return 'Dashboard';
     }
+
+getallnotification(){
+    this.notificationservice.getNotificationByuser(this.User.id).subscribe(
+        (response:[]) => {
+            this.notifications = response;
+          //  console.log('notification get successfully!');
+            console.log(response);
+        },
+        (error) => {
+            console.error('Error during get notification.', error);
+        }
+    );
+}
+
+
 }

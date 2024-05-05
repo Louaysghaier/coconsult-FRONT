@@ -7,7 +7,6 @@ import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { SignupEntrpriseComponent } from './signupentreprise/signupentreprise.component';
-import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { ValidationComponent } from './validation/validation.component';
 import { AboutusComponent } from './shared/aboutus/aboutus.component';
 import { ContactComponent } from './shared/contact/contact.component';
@@ -24,11 +23,15 @@ import { ChatComponent } from './chat/chat.component';
 import { TESTComponent } from './test/test.component';
 
 
+import { AuthGuard } from './_helpers';
+import { ForgetpassComponent } from './forgetpass/forgetpass.component';
+import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 const routes: Routes = [
   {
     path: '',
     
-      loadChildren: () => import('./admin/admin-layout.module').then(m => m.AdminLayoutModule),
+      loadChildren: () => import('./admin/admin-layout.module').then(m => m.AdminLayoutModule)
 
   }, 
  
@@ -41,10 +44,14 @@ const routes: Routes = [
   { path:'myquiz/:email',component: MyquizComponent },
   { path: 'Affichagequestion/:quizId/:mailcandidat', component: AffichagequestionComponent },
 
+  {
+    path: '',
+    loadChildren: () => import('./user_dashboard_CRM/dashboardCRM.module').then(m => m.DashboardModuleCRM),
+    
+  }, 
   { path: 'signin', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   { path: 'signupentrprise', component: SignupEntrpriseComponent },
-  { path: 'verification', component: ValidationComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'profil', component: ProfileComponent },
@@ -63,6 +70,13 @@ const routes: Routes = [
 
 { path:'candidature',component:CandidatComponent },
  { path: '**', redirectTo: '',component: LandingComponent}
+  { path: 'resetpassword', component:     ForgetpassComponent
+},
+{ path: 'forgetpassword', component: LoginforgetpasswordComponent},
+{path:'chatroom',component:ChatRoomComponent },
+{ path: 'verification', component: ValidationComponent },
+
+{ path: '**', redirectTo: '',component: LandingComponent},
 
 ];
 
@@ -74,6 +88,6 @@ const routes: Routes = [
       useHash: true,
     }),
   ],
-  exports: [RouterModule], // Export RouterModule for use in other modules
+  exports: [RouterModule], 
 })
 export class AppRoutingModule {}

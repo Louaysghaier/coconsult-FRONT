@@ -27,7 +27,7 @@
 
 
               <div class="btn-wrapper col-lg-6 ">
-                <a routerLinkActive="active" [routerLink]="['/login']" class="btn btn-info btn-icon mb-3 mb-sm-0">
+                <a routerLinkActive="active" [routerLink]="['/signin']" class="btn btn-info btn-icon mb-3 mb-sm-0">
                   <span class="btn-inner--icon"><i class="fa fa-connect"></i></span>
                   <span class="btn-inner--text">AGIR MAINTENANT AVEC NOUS !</span>
                 </a>
@@ -471,19 +471,29 @@
               <div class="form-group" [ngClass]="{'focused':focus1===true}">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    <span class="input-group-text"><i class="fa fa-envelope -circle-o" aria-hidden="true"></i>
                     
                     </span>
                   </div>
                   <input class="form-control" placeholder=" votre addresse email" type="email" (focus)="focus1=true" (blur)="focus1=false"[(ngModel)]="Message.email">
                 </div>
               </div>
+              <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-phone -circle-o" aria-hidden="true"></i>
+                    
+                    </span>
+                  </div>
+                  <input class="form-control" placeholder=" votre numéro de téléphone" type="number" (focus)="focus1=true" (blur)="focus1=false"[(ngModel)]="Message.tel">
+                </div>
+              </div>
               <div class="form-group mb-4">
-                <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80" placeholder="votre message..."  [(ngModel)]="Message.msg"></textarea>
+                <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80" placeholder="votre message..."  [(ngModel)]="Message.message"></textarea>
               </div>
            
               <div>
-                <button type="submit" class="btn btn-default btn-round btn-block btn-lg">Envoyez  Message</button>
+                <button type="submit" class="btn btn-default btn-round btn-block btn-lg"> Envoyez  Message</button>
               </div>
             
           </form>

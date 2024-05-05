@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
- import {User} from 'src/app/admin/table-list/user';
+import { User } from 'src/app/_models';
 
 
 import { ListeUserAscService } from 'src/app/user_dashboardRH_d/settings/liste-user-asc.service';

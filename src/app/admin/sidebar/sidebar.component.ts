@@ -13,6 +13,10 @@ export const ROUTES: RouteInfo[] = [
     { path: '/admin/quiz', title: 'quiz',  icon:'dashboard', class: '' },
     { path: '/admin/questions', title: 'question',  icon:'dashboard', class: '' },
     { path: '/admin/jobs', title: 'jobs',  icon:'dashboard', class: '' },
+    { path: '/admin/table-list', title: 'Liste user',  icon:'content_paste', class: '' },
+    { path: '/admin/notifications', title: 'Notifications',  icon:'notifications', class: '' },
+    {path: '/admin/ChatRooms', title: 'ChatRooms',  icon:'library_books', class: '' },
+
 ];
 
 @Component({

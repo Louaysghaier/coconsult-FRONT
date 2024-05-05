@@ -12,9 +12,7 @@
                             <table class="table">
                                 <thead class=" text-primary">
   
-                                    <th>
-                                        ID
-                                    </th>
+                                    
                                     <th>
                                         name
                                     </th>
@@ -25,28 +23,32 @@
                                         Email
                                     </th>
                                     <th>
-                                      number telephone
+                                       PhoneNumber
                                     </th>
                                   
                                     <th>
-                                      Adress
+                                      localisation
                                     </th>
                                     <th>
-                                      Blocked ?
+                                        Blocked From ChatRoom?
+                                      </th>
+                                    <th>
+                                      Blocked?
                                     </th>
                                     <th>
-                                      active\decactive(user)
+                                      active\desactive(user)
                                   </th>
+                                  <th>
+                                    Ban from GPCHAT
+                                </th>
                                 </thead>
                                
-                                <tbody *ngFor="let user of emlpoyes">
+                                <tbody *ngFor="let user of users">
                                   <!-- *ngIf="user.roles.name=='ROLE_Employee'"  -->
                                     <tr >
+                                        
                                         <td>
-                                            {{user.id}}
-                                        </td>
-                                        <td>
-                                          {{user.Name}}
+                                          {{user.name}}
                                       </td>
                                         <td>
                                           {{user.username}}
@@ -61,14 +63,20 @@
                                       <td>
                                           {{user.address}}
                                       </td>
+                                        <td>
+                                            {{user.bannedchatGP}}
+                                        </td>
                                       <td>
                                           {{user.blocked}}
                                       </td>
                                         <td>
-                                          <button *ngIf="!user.valid"(click)="activateUser(user)" type="button" class="btn btn-danger" >Active</button>
-                                          <button *ngIf="user.valid"(click)="bloqueUser(user)" type="button" class="btn btn-primary">Bloque</button>
+                                          <button *ngIf="user.blocked"(click)="activateUser(user)" type="button" class="btn btn-primary" >Active</button>
+                                          <button *ngIf="!user.blocked"(click)="bloqueUser(user)" type="button" class="btn btn-danger">Bloque</button>
                                         </td>
-                                     
+                                        <td>
+                                          <button *ngIf="user.bannedchatGP"(click)="removeBan(user)" type="button" class="btn btn-primary" >removeBan</button>
+                                          <button *ngIf="!user.bannedchatGP"(click)="Ban(user)" type="button" class="btn btn-danger">Ban</button>
+                                        </td>
                                     </tr>
                                
                                 </tbody>

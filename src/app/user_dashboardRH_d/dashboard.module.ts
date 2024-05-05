@@ -22,6 +22,7 @@ import { CandidatresultComponent } from './candidatresult/candidatresult.compone
 import { SettingsComponent } from './settings/settings.component';
 
 
+import { DetailNotifDiagComponent } from './header/detail-notif-diag/detail-notif-diag.component';
 const dashboardRoutes: Routes = [
  { path: 'user_dashboardRH_d',
   component: DashboardComponent,
@@ -54,6 +55,7 @@ const dashboardRoutes: Routes = [
       CandidatresultComponent,
    
 
+      DetailNotifDiagComponent,
     ],
     imports: [
       

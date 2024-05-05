@@ -1,5 +1,89 @@
 <div class="main-content">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cardo">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Liste Des Notification</h4>
+                        <p class="card-category"> Envoyez De puis le Forum contact us </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+  
+                                    
+                                    <th>
+                                        name
+                                    </th>
+                                    
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                       Phone Number
+                                    </th>
+                                    <th>
+                                         Message
+                                     </th>
+                                    <th>
+                                      date 
+                                    </th>
+                                    
+                                    <th>
+                                      Sent as Notif ?
+                                    </th>
+                                    
+                                </thead>
+                               
+                                <tbody *ngFor="let msg of message">
+                                  <!-- *ngIf="user.roles.name=='ROLE_Employee'"  -->
+                                    <tr >
+                                        
+                                        <td>
+                                          {{msg.nom}}
+                                      </td>
+                                        <td>
+                                          {{msg.email}}
+                                      </td>
+                                        <td>
+                                          {{msg.tel}}
+                                      </td>
+                                      <td>
+                                          {{msg.message}}
+                                      </td>
+                                     <td>
+                                        {{ formatDate(msg.date) }}
+
+                                     </td>    
+                                      
+                                        
+                                      <td>
+                                          {{msg.notificationSent}}
+                                      </td>
+                                        <td>
+                                          <button *ngIf="!msg.notificationSent"(click)="sendNotification(msg)" type="button" class="btn btn-danger" >Send Now!</button>
+                                          <button *ngIf="msg.notificationSent" type="button" class="btn btn-primary">already sent</button>
+                                        </td>
+                                     
+                                    </tr>
+                               
+                                </tbody>
+                             
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+  </div>
+  
+<!--<div class="main-content">
+
+    <div class="container-fluid">
         <div class="cardo">
             <div class="card-header card-header-danger">
                 <h3 class="card-title">Notifications</h3>
@@ -12,7 +96,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h4 class="card-title">Notifications Message</h4>
-                    <!-- <div *ngFor="let messages of message"> -->
+                     <div *ngFor="let messages of message"> 
                         <div *ngFor="let messages of message" class="alert alert-info alert-with-icon" data-notify="container" >
                           <i class="material-icons" data-notify="icon">add_alert</i>
                           <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -24,10 +108,9 @@
 
                           <span data-notify="message">{{messages.email}} a envoyé email==> {{messages.msg}}</span>
 
-                      <!-- </div> -->
                   </div>
                     </div>
-                    <!-- <div class="col-md-6">
+                   <div class="col-md-6">
                         <h4 class="card-title">Notification states</h4>
                         <div class="alert alert-info">
                             <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -64,7 +147,7 @@
                             <span>
                                 <b> Primary - </b> This is a regular notification made with ".alert-primary"</span>
                         </div>
-                    </div> -->
+                    </div> 
                 </div>
             </div>
             <div class="col-md-12">
@@ -111,4 +194,5 @@
             </div>
         </div>
     </div>
-  </div>
+  </div>-->
+

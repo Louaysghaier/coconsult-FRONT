@@ -37,6 +37,7 @@ import { CardGPCHATComponent } from './card-gpchat/card-gpchat.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UpdateDialogComponent } from './group-chat/update-dialog/update-dialog.component';
 import { NotifDialogComponent } from './notifications/notif-dialog/notif-dialog.component';
+import { AdminListSalaire } from './salaire/admin-list-salaire';
 const AdminLayoutRoutes: Routes = [
   {path:'admin',
 component:AdminLayoutComponent,
@@ -55,6 +56,8 @@ children: [
 
 
    { path: 'ChatRooms',  component: GroupChatComponent },
+    { path: 'listesalaire', component: AdminListSalaire },
+
 
 ]},
   
@@ -73,12 +76,11 @@ children: [
     MatTooltipModule,
     MatTableModule ,
     MatDialogModule
- 
-   
+
+
 
   ],
   declarations: [
-
     AdminLayoutComponent,
     DashboardComponent,
     UserProfileComponent,
@@ -97,13 +99,13 @@ children: [
     UpdatejobdComponent,
     AddjobsComponent,
     EntretienComponent,
-   
+
     GroupChatComponent,
     CardGPCHATComponent,
     UpdateDialogComponent,
     NotifDialogComponent,
 
-    
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

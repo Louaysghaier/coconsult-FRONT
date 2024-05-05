@@ -24,60 +24,60 @@ import { DetailNotifDiagComponent } from './header/detail-notif-diag/detail-noti
 
 
 const dashboardRoutes: Routes = [
- { path: 'user_dashboardRH_d',
-  component: DashboardComponent,
-  children: [
-    {path:'monprofil',component:MonprofilComponent},
-    {path:'header', component:HeaderComponent},
-    { path: 'vertical-nav-bar', component: VerticalNavBarComponent },
-    {path: 'settings',component:SettingsComponent},
-    {path:'solutions', component:SolutionComponent},
-    {path:'result', component:CandidatresultComponent}
+    { path: 'user_dashboardRH_d',
+        component: DashboardComponent,
+        children: [
+            {path:'monprofil',component:MonprofilComponent},
+            {path:'header', component:HeaderComponent},
+            { path: 'vertical-nav-bar', component: VerticalNavBarComponent },
+            {path: 'settings',component:SettingsComponent},
+            {path:'solutions', component:SolutionComponent},
+            {path:'result', component:CandidatresultComponent}
 
 
 
 
-  ],
-  },
-  ];
-    
-  
-  
-  @NgModule({
+        ],
+    },
+];
+
+
+
+@NgModule({
     declarations: [
-      HeaderComponent,
-      DashboardComponent,
-      SettingsComponent,
-      SolutionComponent,
-      VerticalNavBarComponent,
-      MonprofilComponent,
-      CardComponent,
-      CandidatresultComponent,
-   
+        HeaderComponent,
+        DashboardComponent,
+        SettingsComponent,
+        SolutionComponent,
+        VerticalNavBarComponent,
+        MonprofilComponent,
+        CardComponent,
+        CandidatresultComponent,
 
-      DetailNotifDiagComponent,
+
+        DetailNotifDiagComponent,
     ],
     imports: [
-      
-    RouterModule.forChild(dashboardRoutes),
-    FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTooltipModule,
-      CommonModule,
-      FontAwesomeModule,
-      // Import other modules you need
 
-      // Configure child routes
+        RouterModule.forChild(dashboardRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatTooltipModule,
+        CommonModule,
+        FontAwesomeModule,
+        // Import other modules you need
+
+        // Configure child routes
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
     providers: [],
     exports: [RouterModule]
-  })
-  export class DashboardModuleRHd { }
+})
+export class DashboardModuleRHd { }
   

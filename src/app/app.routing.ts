@@ -7,6 +7,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { SignupEntrpriseComponent } from './signupentreprise/signupentreprise.component';
+import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { ValidationComponent } from './validation/validation.component';
 import { AboutusComponent } from './shared/aboutus/aboutus.component';
 import { ContactComponent } from './shared/contact/contact.component';
@@ -27,6 +28,7 @@ import { AuthGuard } from './_helpers';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { AddAskComponent } from './user_dashboardRH_w/demandeConge/add-demande.component';
 const routes: Routes = [
   {
     path: '',
@@ -39,19 +41,22 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd),
+    loadChildren: () => import('./user_dashboardRH_w/DashboardModuleRHw.module').then(m => m.DashboardModuleRHw)
 
-  }, 
+  },
   { path:'myquiz/:email',component: MyquizComponent },
   { path: 'Affichagequestion/:quizId/:mailcandidat', component: AffichagequestionComponent },
 
   {
     path: '',
     loadChildren: () => import('./user_dashboard_CRM/dashboardCRM.module').then(m => m.DashboardModuleCRM),
-    
-  }, 
+
+  },
+  
   { path: 'signin', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   { path: 'signupentrprise', component: SignupEntrpriseComponent },
+  { path: 'verification', component: ValidationComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'profil', component: ProfileComponent },
@@ -61,8 +66,8 @@ const routes: Routes = [
   { path: 'chatc', component: ChatComponent },
   { path: 'test', component: TESTComponent },
 
- 
-  
+
+
 
 
   //{ path:'chat',component:TESTComponent },

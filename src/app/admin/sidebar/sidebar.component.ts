@@ -17,6 +17,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/admin/notifications', title: 'Notifications',  icon:'notifications', class: '' },
     {path: '/admin/ChatRooms', title: 'ChatRooms',  icon:'library_books', class: '' },
 
+    { path: '/admin/listesalaire', title: 'Liste Salaire',  icon: 'content_paste', class: '' },
 ];
 
 @Component({

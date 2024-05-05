@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Expanses } from '../../_models/expanses';
 import { ExpansesService } from '../../_services/expanses.service';
+import { Subscription } from 'rxjs';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
     selector: 'app-expanses',
@@ -8,34 +11,41 @@ import { ExpansesService } from '../../_services/expanses.service';
     styleUrls: ['./expanses.component.css']
 })
 export class ExpansesComponent implements OnInit {
+    @ViewChild(MatPaginator) paginator: MatPaginator;
     expansesList: Expanses[] = [];
-    selectedExpense: Expanses | null = null;
-    searchCategory: string = '';
-    newExpense: Expanses = new Expanses(); // Déclarer et initialiser newExpense avec une nouvelle instance de Expense
-    errorMessage: string = '';
-    totalExpenses: number = 0; // Nombre total de dépenses
-    pageSizeOptions: number[] = [5, 10, 25, 100]; // Options de taille de page
-    showExpensesTable: boolean = true; // Afficher le tableau par défaut
-    isAddExpenseModalOpen: boolean = true;
-
-    // Pagination
+    newExpense: Expanses = new Expanses();
+    selectedExpense: Expanses = new Expanses();
+    searchTerm: string = '';
+    currentPage: number = 0;
     pagedExpenses: Expanses[] = [];
+    private expansesSubscription: Subscription;
+    pageSizeOptions: number[] = [5, 10, 25, 100];
+    totalExpenses: number = 0;
     pageSize: number = 5;
-    currentPage: number = 1;
 
-    constructor(private expansesService: ExpansesService) { }
+    constructor(private modalService: NgbModal, private expansesService: ExpansesService) { }
 
     ngOnInit(): void {
         this.getAllExpenses();
     }
 
-saveExpense(): void {
+
+
+    getAllExpenses(): void {
+        this.expansesSubscription = this.expansesService.getAllExpanses().subscribe(expenses => {
+            this.expansesList = expenses;
+            this.totalExpenses = this.expansesList.length;
+            this.updatePage();
+        });
+    }
+
+    saveExpense(): void {
         this.expansesService.addExpanse(this.newExpense).subscribe(
-            (response: any) => {
+            (response: Expanses) => {
                 console.log('Expense saved:', response);
-                //this.closeAddExpenseModal();
+                this.modalService.dismissAll();
+                this.newExpense = new Expanses();
                 this.getAllExpenses();
-                this.newExpense = new Expanses(); // Réinitialiser le formulaire après l'ajout
             },
             (error: any) => {
                 console.error('Error saving expense:', error);
@@ -43,83 +53,57 @@ saveExpense(): void {
         );
     }
 
-    getAllExpenses(): void {
-        this.expansesService.getAllExpanses().subscribe(
-            (expanses: Expanses[]) => {
-                this.expansesList = expanses;
-                this.updatePagedExpenses();
-            },
-            (error: any) => {
-                this.errorMessage = 'Une erreur s\'est produite lors de la récupération des dépenses.';
-                console.error(error);
-            }
-        );
+    editExpense(expense: Expanses): void {
+        this.selectedExpense = expense;
+        // Open edit modal if needed
     }
 
     updateExpense(): void {
-        if (!this.selectedExpense) {
-            return;
-        }
-
         this.expansesService.updateExpanse(this.selectedExpense.idExps, this.selectedExpense).subscribe(
             () => {
-                this.errorMessage = '';
-                this.getAllExpenses(); // Recharger la liste des dépenses après la mise à jour
-                this.selectedExpense = null; // Réinitialiser la dépense sélectionnée
+                console.log('Expense updated successfully.');
+                this.getAllExpenses();
+                this.modalService.dismissAll();
             },
             (error: any) => {
-                this.errorMessage = 'Une erreur s\'est produite lors de la mise à jour de la dépense.';
-                console.error(error);
+                console.error('Error updating expense:', error);
             }
         );
-    }
-
-    onPageChange(event: any): void {
-        // Calculer l'index de la première dépense sur la page actuelle
-        const startIndex = event.pageIndex * event.pageSize;
-        // Extraire les dépenses de la liste complète en fonction de l'index de départ et de la taille de la page
-        this.pagedExpenses = this.expansesList.slice(startIndex, startIndex + event.pageSize);
-    }
-
-    updatePagedExpenses(): void {
-        const startIndex = (this.currentPage - 1) * this.pageSize;
-        const endIndex = startIndex + this.pageSize;
-        // Vérifier que l'index de fin n'excède pas la taille totale de la liste des dépenses
-        if (endIndex <= this.expansesList.length) {
-            this.pagedExpenses = this.expansesList.slice(startIndex, endIndex);
-        } else {
-            // Si l'index de fin est supérieur à la taille de la liste, mettre à jour la liste avec les éléments restants
-            this.pagedExpenses = this.expansesList.slice(startIndex);
-        }
     }
 
     deleteExpense(id: number): void {
-        this.expansesService.deleteExpanse(id).subscribe(
-            () => {
-                this.errorMessage = '';
-                this.getAllExpenses(); // Recharger la liste des dépenses après la suppression
-            },
-            (error: any) => {
-                this.errorMessage = 'Une erreur s\'est produite lors de la suppression de la dépense.';
-                console.error(error);
-            }
+        if (confirm('Are you sure you want to delete this expense?')) {
+            this.expansesService.deleteExpanse(id).subscribe(
+                () => {
+                    console.log('Expense deleted successfully.');
+                    this.getAllExpenses();
+                },
+                (error: any) => {
+                    console.error('Error deleting expense:', error);
+                }
+            );
+        }
+    }
+
+    onPageChange(event: PageEvent): void {
+        this.currentPage = event.pageIndex;
+        this.pageSize = event.pageSize;
+        this.updatePage();
+    }
+
+    updatePage(): void {
+        const startIndex = this.currentPage * this.pageSize;
+        this.pagedExpenses = this.expansesList.slice(startIndex, startIndex + this.pageSize);
+    }
+
+    openAddExpenseModal(content: any): void {
+        this.modalService.open(content, { ariaLabelledBy: 'addExpenseModalLabel' });
+    }
+
+    filterExpenses(): Expanses[] {
+        return this.expansesList.filter(expense =>
+            expense.category.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+            expense.description.toLowerCase().includes(this.searchTerm.toLowerCase())
         );
     }
-
-    editExpense(expense: Expanses): void {
-        this.selectedExpense = expense;
-        //this.showExpensesTable = true; // Afficher le tableau lors de l'édition
-    }
-
-    /*cancelEdit(): void {
-        this.selectedExpense = null;
-    }*/
-
-    /*openAddExpenseModal(): void {
-        this.isAddExpenseModalOpen = true;
-    }*/
-
-    /*closeAddExpenseModal(): void {
-        this.isAddExpenseModalOpen = false;
-    }*/
 }

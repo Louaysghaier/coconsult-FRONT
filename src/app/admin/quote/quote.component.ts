@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Quote } from '../../_models/quote';
 import { QuoteService } from '../../_services/quote.service';
+import {MatDialog} from '@angular/material/dialog';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-quote',
@@ -15,23 +17,46 @@ export class QuoteComponent implements OnInit {
     quotes: Quote[] = [];
   newQuote: Quote = new Quote();
   selectedQuote: Quote = new Quote();
+    currentPage: number = 0;
+    pageSize: number = 5;
+    pagedQuotes: Quote[] = [];
+    isValid: boolean = true;
+    year: number = 2024;
 
-  constructor(private modalService: NgbModal, private quoteService: QuoteService) { }
+
+
+    constructor(private dialog: MatDialog, private modalService: NgbModal, private quoteService: QuoteService) { }
 
   ngOnInit(): void {
     this.getAllQuotes();
   }
 
-  getAllQuotes(): void {
-    this.quoteService.getAllQuotes().subscribe(
-        (data: Quote[]) => {
-          this.quotes = data;
-        },
-        (error: any) => {
-          console.error('Error fetching quotes:', error);
-        }
-    );
-  }
+    getQuotes(): void {
+        this.quoteService.getQuotesByValidationAndYear(this.isValid, this.year)
+            .subscribe(quotes => this.quotes = quotes);
+    }
+    getAllQuotes(): void {
+        this.quoteService.getAllQuotes().subscribe(
+            (data: Quote[]) => {
+                this.quotes = data;
+                this.updatePage(); // Appel de la méthode pour mettre à jour les citations paginées
+            },
+            (error: any) => {
+                console.error('Error fetching quotes:', error);
+            }
+        );
+    }
+
+    onPageChange(event: PageEvent) {
+        this.currentPage = event.pageIndex;
+        this.pageSize = event.pageSize;
+        this.updatePage();
+    }
+
+    updatePage() {
+        const startIndex = this.currentPage * this.pageSize;
+        this.pagedQuotes = this.quotes.slice(startIndex, startIndex + this.pageSize);
+    }
 
     openEditModal(quote: Quote): void {
         this.selectedQuote = { ...quote };

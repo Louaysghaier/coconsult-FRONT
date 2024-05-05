@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Projects} from '../_models/projects';
 import {Expanses} from '../_models/expanses';
@@ -81,5 +81,18 @@ export class ProjetsService {
   validateProject(id: number, isValid: boolean): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/validateProject/${id}?isValid=${isValid}`, null);
   }
+  getProjectCountsByTitle() {
+    return this.http.get<any>(`${this.baseUrl}/counts-by-title`);
 
+  }
+  getProjectDurations(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/durations`);
+  }
+  getProjetsByDateRange(startDate: Date, endDate: Date): Observable<Projects[]> {
+    const params = new HttpParams()
+        .set('start', startDate.toISOString().slice(0, 10))
+        .set('end', endDate.toISOString().slice(0, 10));
+
+    return this.http.get<Projects[]>(this.baseUrl, { params });
+  }
 }

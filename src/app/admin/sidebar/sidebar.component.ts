@@ -28,12 +28,15 @@ export const ROUTES: RouteInfo[] = [
     { path: '/admin/expanses', title: 'Expanses', icon: 'monetization_on', class: '' },
     { path: '/admin/quote', title: 'Quote', icon: 'monetization_on', class: '' },
     { path: '/admin/time-record', title: 'TimeRecord', icon: 'monetization_on', class: '' },
-    { path: '/admin/projects', title: 'Projects', icon: 'projets', class: '',
+    { path: '/admin/projects', title: 'Projects', icon: 'projects', class: '',
         children: [
             { path: 'project-details', title: 'Project Details', component: ProjectDetailsComponent }
         ]
     },
     { path: '/admin/proj-feed', title: 'ProjectFeed', icon: 'feedbacks', class: '' },
+    { path: '/admin/charts-proj', title: 'ChartsProjects', icon: 'fa-chart-bar', class: '' },
+    { path: '/admin/charts-quotes', title: 'ChartsQuotes', icon: 'fa-chart-bar', class: '' },
+
 ];
 
 @Component({

@@ -31,7 +31,7 @@
                                 <!-- Assignment Rows Here -->
                                 <tr *ngFor="let assignment of pagedAssignments">
                                     <td>{{ assignment.idAssign }}</td>
-                                    <td>{{ assignment.timeRecording }}</td>git
+                                    <td>{{ assignment.timeRecording }}</td>
                                     <td>{{ assignment.expenses }}</td>
                                     <td>
                                         <!-- Edit Button -->
@@ -76,6 +76,7 @@
                                 <label for="expenses">Expenses</label>
                                 <input type="number" class="form-control" id="expenses" name="expenses" [(ngModel)]="newAssignment.expenses" required>
                             </div>
+                            <!-- Add more fields as needed -->
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Save Assignment</button>
@@ -107,6 +108,7 @@
                                 <label for="editExpenses">Expenses</label>
                                 <input type="number" class="form-control" id="editExpenses" name="editExpenses" [(ngModel)]="selectedAssignment.expenses" required>
                             </div>
+                            <!-- Add more fields as needed -->
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Save Changes</button>

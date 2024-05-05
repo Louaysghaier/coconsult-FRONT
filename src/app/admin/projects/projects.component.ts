@@ -8,6 +8,10 @@ import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import {Quote} from '../../_models/quote';
+import { single } from 'rxjs/operators';
+import * as Chart from 'chart.js';
+
+
 
 
 @Component({
@@ -44,6 +48,7 @@ export class ProjectsComponent implements OnInit {
 
     }
 
+
     openAddUpdateProjectForm() {
         const dialogRef = this.dialog.open(ProjectsComponent);
         dialogRef.afterClosed().subscribe((val) => {
@@ -51,6 +56,18 @@ export class ProjectsComponent implements OnInit {
                 this.getAllProjects();
             }
         });
+    }
+    fetchProjets(startDate: Date, endDate: Date): void {
+       this.projectService.getProjetsByDateRange(startDate, endDate)
+            .subscribe(
+                (data) => {
+                    this.projects = data;
+                    console.log('Projects:', this.projects);
+                },
+                (error) => {
+                    console.error('Error fetching projects:', error);
+                }
+            );
     }
 
     saveProject(): void {

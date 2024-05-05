@@ -27,8 +27,12 @@ import { ProjFeedComponent } from './proj-feed/proj-feed.component';
 import { QuoteComponent } from './quote/quote.component';
 import { TimeRecordComponent } from './time-record/time-record.component';
 import { AssignmentsComponent } from './assignement/assignement.component';
-import { Assignements } from '../_models/assignements';
 import {ProjectDetailsComponent} from '../project-details/project-details.component';
+import {ChartsProjComponent} from './charts-proj/charts-proj.component';
+import { ChartsQuotesComponent } from './charts-quotes/charts-quotes.component';
+import {BaseChartDirective} from 'ng2-charts';
+import {PieChartModule} from '@swimlane/ngx-charts';
+//import { CalenderComponent } from './calender/calender.component';
 
 const AdminLayoutRoutes: Routes = [
     {
@@ -47,6 +51,8 @@ const AdminLayoutRoutes: Routes = [
             { path: 'time-record', component: TimeRecordComponent },
             { path: 'quote', component: QuoteComponent },
             { path: 'project-details/:projectId', component: ProjectDetailsComponent },
+            { path: 'charts-proj', component: ChartsProjComponent },
+            { path: 'charts-quotes', component: ChartsQuotesComponent },
 
         ],
     },
@@ -66,6 +72,8 @@ const AdminLayoutRoutes: Routes = [
         MatTooltipModule,
         MatDialogModule,
         MatPaginatorModule,
+        BaseChartDirective,
+        PieChartModule,
     ],
     declarations: [
         AdminLayoutComponent,
@@ -84,6 +92,9 @@ const AdminLayoutRoutes: Routes = [
         ProjFeedComponent,
         QuoteComponent,
         TimeRecordComponent,
+        ChartsProjComponent,
+        ChartsQuotesComponent,
+
     ],
     exports: [RouterModule],
 })

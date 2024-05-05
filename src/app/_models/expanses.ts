@@ -6,6 +6,5 @@ export class Expanses {
   montant!: number;
   date!: Date;
   description!: string;
-  projects?: Projects; // Si Projects est un autre modèle
+  projects?: Projects;
 }
-  

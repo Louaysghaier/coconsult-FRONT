@@ -22,6 +22,7 @@ export class QuoteService {
     return this.http.post<Quote>(`${this.baseUrl}/ajouterQuote`, quote);
   }
 
+
   validateQuote(id: number, isValid: boolean): Observable<void> {
     const url = `${this.baseUrl}/validateQuote/${id}?isValid=${isValid}`;
     return this.http.put<void>(url, {});
@@ -49,8 +50,7 @@ export class QuoteService {
     return this.http.get<number>(`${this.baseUrl}/getTotalQuoteAmountForProject/${projectId}`);
   }
 
-  // Valider les devis
-/*validateQuotes(quotes: Quote[]): Observable<boolean> {
-    // Implémentez la logique de validation ici
-  }*/
+  getQuotesByValidationAndYear(isValid: boolean, year: number): Observable<Quote[]> {
+    return this.http.get<Quote[]>(`${this.baseUrl}/quotes?isValid=${isValid}&year=${year}`);
+  }
 }

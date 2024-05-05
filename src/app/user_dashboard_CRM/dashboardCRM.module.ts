@@ -4,7 +4,6 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { MonprofilComponent } from './monprofil/monprofil.component';
 import { SettingsComponent } from './settings/settings.component';
-import { SolutionComponent } from './solution/solution.component';
 import { VerticalNavBarComponent } from './vertical-nav-bar/vertical-nav-bar.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from '../app.routing';
@@ -20,7 +19,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 
-import { CardComponent } from './solution/card/card.component';
 import { ContractComponent } from './contract/contract.component';
 import { ProspectComponent } from './prospect/prospect.component';
 import { RepertoireComponent } from './repertoire/repertoire.component';
@@ -44,7 +42,6 @@ const dashboardRoutes: Routes = [
     {path:'header', component:HeaderComponent},
     {path: 'vertical-nav-bar', component: VerticalNavBarComponent },
     {path: 'settings',component:SettingsComponent},
-    {path:'solutions', component:SolutionComponent},
     {path:'repertoire', component:RepertoireComponent},
     {path:'prospect', component:ProspectComponent},
     {path:'contract', component:ContractComponent},
@@ -64,10 +61,8 @@ const dashboardRoutes: Routes = [
       HeaderComponent,
       DashboardComponent,
       SettingsComponent,
-      SolutionComponent,
       VerticalNavBarComponent,
       MonprofilComponent,
-      CardComponent,
       ContractComponent,
       ProspectComponent,
       RepertoireComponent,

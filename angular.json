@@ -25,6 +25,10 @@
               "ng2-nouislider",
               "jquery",
               "chartist"
+              
+              
+
+              
 
             ],
             "assets": [
@@ -36,7 +40,14 @@
               "src/styles.scss",
               "src/assets/scss/argon.scss",
               "src/assets/scss/material-dashboard.scss",
+              
+               
+              
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+
+              "src/app/user_dashboardRH_d/vertical-nav-bar/vertical-nav-bar.component.css",
+
               "src/app/user_dashboard_CRM/vertical-nav-bar/vertical-nav-bar.component.css" ,
               "src/styles.scss" 
             ],
@@ -204,4 +215,5 @@
 
     "analytics": false
   }
+  
 }

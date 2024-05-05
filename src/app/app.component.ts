@@ -62,6 +62,8 @@ export class AppComponent implements OnInit {
           
               this.router.events.subscribe((event: RouterEvent) => {
                 if (event instanceof NavigationEnd) {
+                  this.isDashboardRoute = event.url.includes('admin')|| event.url.includes('user') || event.url.includes('verification')||event.url.includes('chat')||event.url.includes('chatroom')||event.url.includes('job')||event.url.includes('profil')||event.url.includes('chatc')
+                  ||event.url.includes('aboutus')||event.url.includes('candidature')||event.url.includes('Affichagequestion')||event.url.includes('myquiz')||event.url.includes('email')||event.url.includes('reclamation')||event.url.includes('question')||event.url.includes('test');;
                   this.isDashboardRoute = event.url.includes('admin')|| event.url.includes('user') || event.url.includes('verification')||event.url.includes('calcul')||event.url.includes('contact')||event.url.includes('aboutus')
                   ||event.url.includes('password')||event.url.includes('chat');
                 }
@@ -69,7 +71,8 @@ export class AppComponent implements OnInit {
             
               this.router.events.subscribe((event: RouterEvent) => {
                 if (event instanceof NavigationEnd) {
-                  this.iscalcul = event.url.includes('admin')|| event.url.includes('user') || event.url.includes('verification')||event.url.includes('aboutus');
+                  this.iscalcul = event.url.includes('admin')|| event.url.includes('user') || event.url.includes('verification')||event.url.includes('aboutus')||event.url.includes('job');
+                  ;
                 }
               });
           

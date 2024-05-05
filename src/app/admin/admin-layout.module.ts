@@ -18,6 +18,20 @@ import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+
+import { QuestionComponent } from './admindashboard/question/question.component';
+import { AjouterquizComponent } from './admindashboard/ajouterquiz/ajouterquiz.component';
+import { UpdatequizComponent } from './admindashboard/updatequiz/updatequiz.component';
+import { QuizComponent } from './admindashboard/quiz/quiz.component';
+import { MatTableModule } from '@angular/material/table';
+import { QuestionsComponent } from './admindashboard/questions/questions.component';
+import { UpdatequestionComponent } from './admindashboard/updatequestion/updatequestion.component';
+import { JobsComponent } from './admindashboard/jobs/jobs.component';
+
+import { UpdatejobdComponent } from './admindashboard/updatejobd/updatejobd.component';
+import { AddjobsComponent } from './admindashboard/addjobs/addjobs.component';
+import { EntretienComponent } from './admindashboard/entretien/entretien.component';
+
 import { GroupChatComponent } from './group-chat/group-chat.component';
 import { CardGPCHATComponent } from './card-gpchat/card-gpchat.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -33,6 +47,13 @@ children: [
    { path: 'notifications',  component: NotificationsComponent },
    { path: 'navbar',  component: NavbarComponent },
    { path: 'sidenavbar',  component: SidebarComponent },
+   { path: 'ajouterquiz',  component: AjouterquizComponent },
+   { path: 'questions',  component: QuestionsComponent },
+   { path: 'updatequiz',  component: UpdatequizComponent },
+   { path: 'quiz',  component: QuizComponent },
+   { path: 'jobs',  component: JobsComponent },
+
+
    { path: 'ChatRooms',  component: GroupChatComponent },
 
 ]},
@@ -50,10 +71,14 @@ children: [
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MatDialogModule,
+    MatTableModule ,
+    MatDialogModule
+ 
+   
 
   ],
   declarations: [
+
     AdminLayoutComponent,
     DashboardComponent,
     UserProfileComponent,
@@ -61,6 +86,18 @@ children: [
     NavbarComponent,
     SidebarComponent,
     NotificationsComponent,
+    QuestionComponent,
+    AjouterquizComponent,
+    UpdatequizComponent,
+    QuizComponent,
+    QuestionsComponent,
+    UpdatequestionComponent,
+    JobsComponent,
+
+    UpdatejobdComponent,
+    AddjobsComponent,
+    EntretienComponent,
+   
     GroupChatComponent,
     CardGPCHATComponent,
     UpdateDialogComponent,

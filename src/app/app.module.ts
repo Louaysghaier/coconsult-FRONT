@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -27,15 +27,27 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AboutDirective } from './shared/aboutus/about.directive';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
+import { CandidatComponent } from './candidat/candidat.component';
+import { AffichagequestionComponent } from './affichagequestion/affichagequestion.component';
+
+import { MyquizComponent } from './myquiz/myquiz.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { JobOpportComponent } from './job-opport/job-opport.component';
+import { CandidatemailComponent } from './candidatemail/candidatemail.component';
+import { ReclamationComponent } from './reclamation/reclamation.component';
+import { TESTComponent } from './test/test.component';
+import { NavbardorraComponent } from './navbardorra/navbardorra.component';
+import { ProfileComponent } from './profile/profile.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import { ChatComponent } from './chat/chat.component';
+
 import { NgxCaptchaModule } from 'ngx-captcha';
-import { ReactiveFormsModule } from '@angular/forms';
 import { RECAPTCHA_SETTINGS, RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { DashboardModule } from './user_dashboard/dashboard.module';
 const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
 // social login
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
@@ -44,6 +56,7 @@ import {
   //FacebookLoginProvider,
   // AmazonLoginProvider,
 } from '@abacritt/angularx-social-login';
+import { DashboardModuleRHd } from './user_dashboardRH_d/DashboardModuleRHd.module';
 
 @NgModule({
   declarations: [
@@ -57,7 +70,24 @@ import {
     ValidationComponent,
     AboutusComponent,
     ContactComponent,
+  CandidatComponent,
+  AffichagequestionComponent,
+TESTComponent,
+
     AboutDirective,
+    MyquizComponent,
+    JobOpportComponent,
+    CandidatemailComponent,
+    ReclamationComponent,
+  
+    NavbardorraComponent,
+    ProfileComponent,
+    ChatComponent,
+
+
+
+  
+    
     ForgetpassComponent,
     LoginforgetpasswordComponent,
     ChatRoomComponent,
@@ -79,15 +109,18 @@ import {
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-
+    MatDialogModule,
     CarouselModule.forRoot(),
     FontAwesomeModule,
-    AdminLayoutModule,
-   DashboardModule,
-    DashboardModuleCRM,
-
+    DashboardModuleRHd,
+    MatStepperModule,
+    ReactiveFormsModule,
+   
+    
 
   ],
+  exports: [CandidatemailComponent],
+  
   providers: [{
     provide: 'SocialAuthServiceConfig',
     useValue: {

@@ -10,6 +10,19 @@ import { SignupEntrpriseComponent } from './signupentreprise/signupentreprise.co
 import { ValidationComponent } from './validation/validation.component';
 import { AboutusComponent } from './shared/aboutus/aboutus.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { CandidatComponent } from './candidat/candidat.component';
+
+import { MyquizComponent } from './myquiz/myquiz.component';
+import { AffichagequestionComponent } from './affichagequestion/affichagequestion.component';
+import { JobOpportComponent } from './job-opport/job-opport.component';
+import { CandidatemailComponent } from './candidatemail/candidatemail.component';
+import { ReclamationComponent } from './reclamation/reclamation.component';
+//import { TESTComponent } from './test/test.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChatComponent } from './chat/chat.component';
+import { TESTComponent } from './test/test.component';
+
+
 import { AuthGuard } from './_helpers';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
@@ -25,9 +38,12 @@ const routes: Routes = [
   
   {
     path: '',
-    loadChildren: () => import('./user_dashboard/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd),
 
   }, 
+  { path:'myquiz/:email',component: MyquizComponent },
+  { path: 'Affichagequestion/:quizId/:mailcandidat', component: AffichagequestionComponent },
+
   {
     path: '',
     loadChildren: () => import('./user_dashboard_CRM/dashboardCRM.module').then(m => m.DashboardModuleCRM),
@@ -38,6 +54,21 @@ const routes: Routes = [
   { path: 'signupentrprise', component: SignupEntrpriseComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'profil', component: ProfileComponent },
+  { path: 'job', component: JobOpportComponent },
+  { path: 'email', component: CandidatemailComponent },
+  { path: 'reclamation', component: ReclamationComponent },
+  { path: 'chatc', component: ChatComponent },
+  { path: 'test', component: TESTComponent },
+
+ 
+  
+
+
+  //{ path:'chat',component:TESTComponent },
+
+
+{ path:'candidature',component:CandidatComponent },
   { path: 'resetpassword', component:     ForgetpassComponent
 },
 { path: 'forgetpassword', component: LoginforgetpasswordComponent},

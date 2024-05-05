@@ -9,7 +9,7 @@ import { CandidatService } from '../_services/candidat.service';
 import { QuizService } from '../_services/quiz.service';
 import { MatDialog } from '@angular/material/dialog';
 import { QuizRulesDialogComponent } from '../quiz-rules-dialog/quiz-rules-dialog.component';
-import { SpeechServiceService } from '../speech-service.service';
+import { SpeechServiceService } from '../_services/speech-service.service';
 import { MatStepper } from '@angular/material/stepper';
 
 @Component({

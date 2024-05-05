@@ -15,10 +15,10 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/user_dashboard/monprofil', title: 'mon-profile',  icon: 'person', class: '' },
-    { path: '/user_dashboard/solutions', title: 'solutions',  icon:'dashboard', class: '' },
-    { path: '/user_dashboard/settings', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
-    { path: '/user_dashboard/result', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
+    { path: '/user_dashboardRH_d/monprofil', title: 'mon-profile',  icon: 'person', class: '' },
+    { path: '/user_dashboardRH_d/solutions', title: 'solutions',  icon:'dashboard', class: '' },
+    { path: '/user_dashboardRH_d/settings', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
+    { path: '/user_dashboardRH_d/result', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
 ];
 
 @Component({

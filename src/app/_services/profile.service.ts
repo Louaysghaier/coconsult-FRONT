@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Profil } from './_models/profil';
-import { Candidat } from './_models/candidat';
+import { Profil } from '../_models/profil';
+import { Candidat } from '../_models/candidat';
 
 @Injectable({
   providedIn: 'root'

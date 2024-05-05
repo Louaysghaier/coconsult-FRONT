@@ -35,7 +35,7 @@ const routes: Routes = [
   
   {
     path: '',
-    loadChildren: () => import('./user_dashboard/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () => import('./user_dashboardRH_d/dashboard.module').then(m => m.DashboardModule),
 
   }, 
   { path:'myquiz/:email',component: MyquizComponent },

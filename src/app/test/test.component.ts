@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatGptService, Message } from '../chat-gpt.service';
+import { ChatGptService, Message } from '../_services/chat-gpt.service';
 import { MatDialog } from '@angular/material/dialog';
 import { JobOpportComponent } from '../job-opport/job-opport.component';
 import { Router } from '@angular/router';

@@ -1,22 +1,47 @@
-<section>
-<button mat-raised-button color="primary" (click)="ouvrirPopupAjoutQuestion()"style="width: 150px; text-decoration: aliceblue; font-size: 16px; background-color: rgb(104, 104, 151);">Add Jobs</button>
-</section>
-<div class="container">
- 
-  <div class="card" *ngFor="let job of jobs"style=" text-decoration: aliceblue; background-color:  rgb(82, 87, 92);">
-    <div class="image">
-      <img [src]="'assets/images/istockphoto-1173054931-612x612.jpg'" alt="Job Image">
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cardo">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Ajouter solution</h4>
+            <p class="card-category">Complete your solution</p>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead class="text-primary">
+                <tr>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Qualifications</th>
+                  <th>Location</th>
+                  <th>Deadline</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let job of jobs">
+                  <td>{{ job.titre }}</td>
+                  <td>{{ job.description }}</td>
+                  <td>{{ job.qualifications }}</td>
+                  <td>{{ job.lieu }}</td>
+                  <td>{{ job.dateLimite }}</td>
+                  <td>
+                    <!-- Bouton Update -->
+                    <button (click)="openUpdateDialog(job)" mat-raised-button class="btn btn-danger mx-auto text-white orange-btn" style="width: 100px;">
+                      <i class="fas fa-edit"></i> Update
+                    </button>
+                    <!-- Bouton Delete -->
+                    <button (click)="openDeleteConfirmation(job)" mat-raised-button class="btn btn-danger mx-auto mt-1 text-white orange-btn" style="width: 100px;">
+                      <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="content" style="text-decoration: rgb(251, 252, 253)">
-      <h3>{{ job.titre }}</h3>
-      <p>L'offre de cette job ce concerne {{ job.description }} </p>
-      <p>et l'qualification de ce job est {{ job.qualifications }}</p>
-      <p>le lieu est {{ job.lieu }}</p>
-      <p>la date limite {{ job.dateLimite }}</p>
-      <button (click)="openUpdateDialog(job)" mat-raised-button type="submit" class="btn btn-danger mx-auto mt-3 text-white" style="width: 150px; text-decoration: rgb(251, 252, 253); font-size: 16px; background-color: rgb(104, 104, 151);">Update</button>
-      <button (click)="openDeleteConfirmation(job)" mat-raised-button type="submit" class="btn btn-danger mx-auto mt-1 text-white" style="width: 150px; text-decoration: aliceblue; font-size: 16px; background-color: rgb(104, 104, 151);">Delete</button>
-    </div>
-  
   </div>
 </div>
-

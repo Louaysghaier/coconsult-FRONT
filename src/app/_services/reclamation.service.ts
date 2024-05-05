@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Reclamation } from './_models/reclamation';
+import { Reclamation } from '../_models/reclamation';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { ReclamationDTO } from './_models/ReclamationDTO';
-import { Candidat } from './_models/candidat';
+import { ReclamationDTO } from '../_models/ReclamationDTO';
+import { Candidat } from '../_models/candidat';
 
 @Injectable({
   providedIn: 'root'

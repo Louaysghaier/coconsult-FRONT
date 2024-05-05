@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { ProfileService } from '../profile.service';
+import { ProfileService } from '../_services/profile.service';
 import { event } from 'jquery';
 import { Profil } from '../_models/profil';
 import { response } from 'express';

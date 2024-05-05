@@ -1,10 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ReclamationDTO } from 'src/app/_models/ReclamationDTO';
 import { Candidat } from 'src/app/_models/candidat';
 import { CandidatDetailsDTO } from 'src/app/_models/candidatDetail';
 import { Reclamation } from 'src/app/_models/reclamation';
 import { CandidatService } from 'src/app/_services/candidat.service';
-import { ReclamationService } from 'src/app/reclamation.service';
+import { ReclamationService } from 'src/app/_services/reclamation.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-candidatresult',
@@ -17,7 +20,7 @@ export class CandidatresultComponent {
   candidats: Candidat[];
  
 
-  constructor(private candidatService: CandidatService,private reclamationService:ReclamationService) { }
+  constructor(private candidatService: CandidatService,private reclamationService:ReclamationService,private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getCandidatDetails();
@@ -58,5 +61,17 @@ export class CandidatresultComponent {
       }
     );
   }
-  
+  deleteCandidatDetails(candidatId: number): void {
+    this.http.delete<any>(`http://localhost:8082/candidat/candidat-details/${candidatId}`)
+      .subscribe(
+        () => {
+          console.log('Candidat details deleted successfully');
+        },
+        error => {
+          console.error('Error deleting candidat details:', error);
+          Swal.fire("done","thank you");
+          this.getCandidatDetails();
+        }
+      );
+  } 
 }

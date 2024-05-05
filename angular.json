@@ -44,7 +44,7 @@
               
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
 
-              "src/app/user_dashboard/vertical-nav-bar/vertical-nav-bar.component.css"
+              "src/app/user_dashboardRH_d/vertical-nav-bar/vertical-nav-bar.component.css"
 
             ],
             "scripts": [

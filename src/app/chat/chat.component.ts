@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChatGptService, Message } from '../chat-gpt.service';
+import { ChatGptService, Message } from '../_services/chat-gpt.service';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 

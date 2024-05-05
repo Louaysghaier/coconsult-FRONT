@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Quiz } from './_models/quiz';
+import { Quiz } from '../_models/quiz';
 
 export class Message {
   constructor(public author: string, public content: string) {}

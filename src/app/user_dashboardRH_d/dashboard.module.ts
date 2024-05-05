@@ -3,7 +3,6 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { MonprofilComponent } from './monprofil/monprofil.component';
-import { SettingsComponent } from './settings/settings.component';
 import { SolutionComponent } from './solution/solution.component';
 import { VerticalNavBarComponent } from './vertical-nav-bar/vertical-nav-bar.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -20,10 +19,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { CardComponent } from './solution/card/card.component';
 import { CandidatresultComponent } from './candidatresult/candidatresult.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 const dashboardRoutes: Routes = [
- { path: 'user_dashboard',
+ { path: 'user_dashboardRH_d',
   component: DashboardComponent,
   children: [
     {path:'monprofil',component:MonprofilComponent},

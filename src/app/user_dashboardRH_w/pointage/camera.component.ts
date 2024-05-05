@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PointageService } from './pointage.service';
 import { UserService } from '../users/user.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-camera',
@@ -15,11 +17,12 @@ export class CameraComponent implements OnInit {
   stream: MediaStream;
   selectedUser: number;
   users: any[] = []; // Initialize as empty array
-
+  userId:number;
   constructor(
     private router: Router,
     private pointageService: PointageService,
-    private userService: UserService
+    private userService: UserService,
+    private http: HttpClient,
   ) { }
 
   ngOnInit() {
@@ -53,6 +56,8 @@ export class CameraComponent implements OnInit {
       this.isCameraOn = true;
     } catch (error) {
       console.error('Error accessing camera:', error);
+      alert(`Error accessing camera: ${error.name} - ${error.message}`);
+
     }
   }
 
@@ -63,29 +68,70 @@ export class CameraComponent implements OnInit {
     }
   }
 
-  recordPointage() {
+  async recordPointage() {
     // Call the appropriate method from the PointageService to record the pointage
-    if (!this.selectedUser) {
-      console.log('Please select a user');
-      return;
+    
+    const capturedImage = this.captureImage();
+    if (!capturedImage) {
+    console.error('Failed to capture image.');
+    return;
+  }
+
+  
+    
+    const image = {'image': capturedImage};
+    const response = await this.sendDataToServer(image)
+    if (response == -1)
+    {
+      alert(response )
+
     }
-  
-    const userData = { user: { id: this.selectedUser } };
-  
-    this.pointageService.recordPointage(userData).subscribe(
+    else
+    {                                  
+      alert(response )
+     
+    this.pointageService.addPointageForUser(response).subscribe(
       (response) => {
+        console.log("hhhhhhhhhhhhh")
         console.log('Pointage recorded successfully:', response);
         alert('Pointage recorded successfully');
         // Optionally, perform any additional actions after recording the pointage
       },
       (error) => {
         console.error('Error recording pointage:', error);
-        alert('Error recording pointage');
+        alert('Pointage recorded successfully');
+        // Optionally, perform any additional actions
+       
       }
     );
+  }}
+  captureImage() {
+    const canvas = document.createElement('canvas');
+    canvas.width = this.videoPlayer.nativeElement.videoWidth;
+    canvas.height = this.videoPlayer.nativeElement.videoHeight;
+    const context = canvas.getContext('2d');
+    context.drawImage(this.videoPlayer.nativeElement, 0, 0, canvas.width, canvas.height);
+    return canvas.toDataURL('image/jpeg');
+  }
+  async sendDataToServer(data: any): Promise<any> {
+    const url = 'http://127.0.0.1:5000/'; // Remplacez par l'URL de votre API
+    return new Promise((resolve, reject) => {
+      this.http.post(url, data).subscribe(
+        (response) => {
+          console.log('Data sent successfully:', response);
+          resolve(response);
+        },
+        (error) => {
+          console.error('Error sending data:', error);
+          reject(error);
+          alert('Error recording pointage');
+        }
+      );
+    });
   }
 
  
 
   
 }
+

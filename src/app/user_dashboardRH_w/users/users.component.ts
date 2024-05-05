@@ -26,11 +26,11 @@ import { Router } from '@angular/router';
     }
     onUserClick(user: any) {
         this.userService.setCurrentUser(user);
-        this.router.navigate(['/user_dashboard/evaluation-manager']);
+        this.router.navigate(['/user_dashboardRH_w/evaluation-manager']);
     }
     onProfileClick(user: any) {
       this.userService.setCurrentUser(user);
-      this.router.navigate(['/user_dashboard/user/', user.id]);
+      this.router.navigate(['/user_dashboardRH_w/user/', user.id]);
   }
   
     applyFilter(filterValue: string) {

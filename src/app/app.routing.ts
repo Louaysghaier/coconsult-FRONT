@@ -15,7 +15,7 @@ import { AuthGuard } from './_helpers';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { AddAskComponent } from './user_dashboard/demandeConge/add-demande.component';
+import { AddAskComponent } from './user_dashboardRH_w/demandeConge/add-demande.component';
 const routes: Routes = [
   {
     path: '',
@@ -27,7 +27,7 @@ const routes: Routes = [
   
   {
     path: '',
-    loadChildren: () => import('./user_dashboard/dashboard.module').then(m => m.DashboardModule),canActivate:[ AuthGuard]
+    loadChildren: () => import('./user_dashboardRH_w/dashboard.module').then(m => m.DashboardModule)
 
   }, 
   

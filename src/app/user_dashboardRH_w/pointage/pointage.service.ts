@@ -2,7 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,14 @@ export class PointageService {
   recordPointage(userData: { user: { id: number } }): Observable<any> {
     return this.http.post(`${this.baseURL}/add-pointage`, userData);
   }
-
+  addPointageForUser(userId: number): Observable<any> {
+    if (!userId) {
+      console.error('Invalid user ID');
+      return throwError(() => new Error('Invalid user ID'));
+    }
+    return this.http.post(`${this.baseURL}/users/${userId}/pointage/add`, { userId });
+  }
+  
 
 verifyReminder(userId: number, code: string) {
     const url = `${this.baseURL}/verify-reminder/${userId}/${code}`;

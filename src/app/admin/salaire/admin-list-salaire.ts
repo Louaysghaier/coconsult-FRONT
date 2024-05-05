@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SalaryService } from 'src/app/user_dashboard/salary/salary.service';
+import { SalaryService } from 'src/app/user_dashboardRH_w/salary/salary.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';

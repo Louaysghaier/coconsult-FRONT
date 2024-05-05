@@ -6,8 +6,10 @@ import {
   callOutline,
   settingsOutline,
 } from 'ionicons/icons';
+import { AccountService } from 'src/app/_services';
 
 declare const $: any;
+
 declare interface RouteInfo {
     path: string;
     title: string;
@@ -15,13 +17,13 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/user_dashboard/monprofil', title: 'mon-profile',  icon: 'person', class: '' },
-    { path: '/user_dashboard/Conge', title: 'Conge',  icon:'event', class: '' },
-    { path: '/user_dashboard/table-conge', title: 'demande-conge',  icon:'event', class: '' },
-    { path: '/user_dashboard/users', title: 'Users',  icon:'person', class: '' },
-     { path: '/user_dashboard/evaluation-manager', title: 'evaluation-manager',  icon:'assessment', class: '' },
-    { path: '/user_dashboard/solutions', title: 'solutions',  icon:'dashboard', class: '' },
-    { path: '/user_dashboard/settings', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
+    { path: '/user_dashboardRH_w/monprofil', title: 'mon-profile',  icon: 'person', class: '' },
+    { path: '/user_dashboardRH_w/Conge', title: 'Conge',  icon:'event', class: '' },
+    { path: '/user_dashboardRH_w/table-conge', title: 'demande-conge',  icon:'event', class: '' },
+    { path: '/user_dashboardRH_w/users', title: 'Users',  icon:'person', class: '' },
+     { path: '/user_dashboardRH_w/evaluation-manager', title: 'evaluation-manager',  icon:'assessment', class: '' },
+    { path: '/user_dashboardRH_w/solutions', title: 'solutions',  icon:'dashboard', class: '' },
+    { path: '/user_dashboardRH_w/settings', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
 
 
 
@@ -33,6 +35,8 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./vertical-nav-bar.component.css']
 })
 export class VerticalNavBarComponent implements OnInit {
+  isconn:any;
+
   barChartOutline = barChartOutline;
   appsOutline = appsOutline;
   bulbOutline = bulbOutline;
@@ -41,7 +45,11 @@ export class VerticalNavBarComponent implements OnInit {
 
   menuItems: any[];
 
-  constructor() { }
+  constructor(private authService  :AccountService) { 
+    this.isconn=this.authService.getIsConnected();
+    console.log("this.isconn",this.isconn);
+
+  }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);

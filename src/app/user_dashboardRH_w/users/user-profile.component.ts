@@ -17,7 +17,7 @@ import { HttpClient } from '@angular/common/http';
   description: string;
   evaluatorType: string;
   averageRating: number;
-  
+  photoUrl:any;
     constructor(private route: ActivatedRoute, private userService: UserService,
       private evaluationService: EvaluationService,
       private http: HttpClient
@@ -77,5 +77,19 @@ import { HttpClient } from '@angular/common/http';
       const hours = Math.floor(durationMs / 3600000); // Convert milliseconds to hours
       const minutes = Math.floor((durationMs % 3600000) / 60000); // Calculate remaining minutes
       return `${hours} hours ${minutes} minutes`;
+    }
+    loadCandidatPhoto(id: number): void {
+      this.userService.getCandidatPhoto(id).subscribe(data => {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          this.photoUrl = reader.result;
+        }, false);
+  
+        if (data) {
+          reader.readAsDataURL(data);
+        }
+      }, error => {
+        console.log('Erreur lors de la récupération de l\'image:', error);
+      });
     }
   }

@@ -37,7 +37,7 @@ import { EditSalaryModalComponent } from './salary/edit.salary.component';
 import { StarRatingComponent } from './users/star-rating.component';
 const dashboardRoutes: Routes = [
   
- { path: 'user_dashboard',
+ { path: 'user_dashboardRH_w',
   component: DashboardComponent,
   children: [
     {path:'monprofil',component:MonprofilComponent},

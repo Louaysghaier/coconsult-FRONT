@@ -1,12 +1,7 @@
 <!-- camera.component.html -->
 <div class="camera-container">
     <h2>Camera</h2>
-    <div>
-        <label for="userSelect">Select User:</label>
-        <select id="userSelect" name="userSelect" [(ngModel)]="selectedUser">
-            <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
-        </select>
-    </div>
+    
     <video #videoPlayer autoplay></video>
     <button (click)="toggleCamera()">Toggle Camera</button>
     <button (click)="recordPointage()" [disabled]="!isCameraOn">Pointage</button>

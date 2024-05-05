@@ -25,4 +25,9 @@ export class UserService {
   getUserProfile(userId: number): Observable<any> {
     return this.http.get<any>(`http://localhost:8082/api/user/getUserById/${userId}`);
   }
+  getCandidatPhoto(id: number): Observable<Blob> {
+    // URL de l'API
+    let url = `http://localhost:8082/candidats/${id}/photo`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
 }

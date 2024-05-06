@@ -18,6 +18,10 @@ export const ROUTES: RouteInfo[] = [
     {path: '/admin/ChatRooms', title: 'ChatRooms',  icon:'library_books', class: '' },
 
     { path: '/admin/listesalaire', title: 'Liste Salaire',  icon: 'content_paste', class: '' },
+    { path: '/admin/activity', title: 'Activity',  icon:'notifications', class: '' },
+    { path: '/admin/ticketlist', title: 'ticketlist',  icon:'notifications', class: '' },
+    { path: '/admin/Meeting', title: 'Meeting',  icon:'notifications', class: '' },
+    { path: '/admin/Team', title: 'Team',  icon:'notifications', class: '' },
 ];
 
 @Component({

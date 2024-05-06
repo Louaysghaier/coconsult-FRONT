@@ -46,6 +46,8 @@
               "src/app/user_dashboardRH_w/vertical-nav-bar/vertical-nav-bar.component.css"
 
               "src/app/user_dashboard_CRM/vertical-nav-bar/vertical-nav-bar.component.css" ,
+              "src/app/user_dashboard_employe/vertical-nav-bar/vertical-nav-bar.component.css",
+
               "src/styles.scss"
             ],
             "stylePreprocessorOptions": {

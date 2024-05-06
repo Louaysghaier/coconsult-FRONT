@@ -39,6 +39,8 @@
   "@popperjs/core": "^2.11.4",
   "@stomp/stompjs": "^7.0.0",
   "@types/gsap": "^3.0.0",
+  "@zegocloud/zego-uikit-prebuilt": "^2.0.1",
+
   "ajv": "8.11.0",
   "arrive": "2.4.1",
   "axios": "^1.6.8",

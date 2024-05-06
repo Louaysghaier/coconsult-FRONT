@@ -66,6 +66,9 @@ import { CongeDetailsModalComponent } from './user_dashboardRH_w/conge/conge-det
 import { AdminListSalaire } from './admin/salaire/admin-list-salaire';
 import { DashboardModuleRHw } from './user_dashboardRH_w/DashboardModuleRHw.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import{DashboardModule} from '/user_dashboard_employe/dashboard.module';
+import { DashboardModuleRHd } from './user_dashboardRH_d/DashboardModuleRHd.module';
+
 const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
 // social login
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
@@ -74,8 +77,6 @@ import {
   //FacebookLoginProvider,
   // AmazonLoginProvider,
 } from '@abacritt/angularx-social-login';
-import { DashboardModuleRHd } from './user_dashboardRH_d/DashboardModuleRHd.module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -123,7 +124,12 @@ TESTComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-  imports: [SocialLoginModule,
+  imports: [
+    DashboardModule,
+
+    DashboardModuleRHd,
+
+    SocialLoginModule,
 
     ReactiveFormsModule,
     NgxCaptchaModule,
@@ -140,11 +146,9 @@ TESTComponent,
     MatDialogModule,
     CarouselModule.forRoot(),
     FontAwesomeModule,
-    DashboardModuleRHd,
+    DashboardModuleCRM,
     MatStepperModule,
     ReactiveFormsModule,
-
-
     AdminLayoutModule,
     DashboardModuleRHw,
     FullCalendarModule,

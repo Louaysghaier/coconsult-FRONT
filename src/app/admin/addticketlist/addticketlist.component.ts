@@ -34,38 +34,35 @@ export class AddTicketlistComponent implements OnInit {
       ticketPriority: ['', Validators.required],
       ticketContent: ['', Validators.required],
       tickettitle: ['', Validators.required],
-      dateAssigned: [new Date(), Validators.required], // Générer automatiquement la date courante
-      ticketStatus: ['', Validators.required],
+      dateAssigned: [new Date(), Validators.required], // Assigner automatiquement la date actuelle
+      ticketStatus: [{ value: 'Open', disabled: true }, Validators.required], // Statut par défaut "Open" et désactivé
       username: ['', Validators.required]
     });
 
     this.loadUsers();
   }
 
-  // Méthode pour charger la liste des utilisateurs
   loadUsers() {
     this.userService.getUserList().subscribe(users => {
       this.users = users;
     });
   }
 
-  // Méthode pour ajouter un ticket
   addTicket() {
     const ticketPriority = this.ticketForm.value.ticketPriority;
     const ticketContent = this.ticketForm.value.ticketContent;
     const tickettitle = this.ticketForm.value.tickettitle;
-    const dateAssigned = this.ticketForm.value.dateAssigned;
-    const ticketStatus = this.ticketForm.value.ticketStatus;
+    const dateAssigned = new Date(); // Utiliser la date actuelle
+    const ticketStatus = 'Open'; // Définir le statut du ticket sur "Open"
     const username = this.ticketForm.value.username;
-
+  
     const newTicket = new Tickets();
     newTicket.ticketPriority = ticketPriority;
     newTicket.ticketContent = ticketContent;
     newTicket.tickettitle = tickettitle;
-    newTicket.dateAssigned = dateAssigned; // Utiliser la date assignée générée automatiquement
-    newTicket.ticketStatus = ticketStatus;
-
-    // Appeler le service pour ajouter le ticket
+    newTicket.dateAssigned = dateAssigned; 
+    newTicket.ticketStatus = ticketStatus; // Assurez-vous que le statut est défini sur "Open"
+  
     this.ticketService.addTicketAndAssignUser(newTicket, username).subscribe(ticket => {
         this.ticketis.push(ticket);
         this.router.navigate(['//admin/ticketlist']);
@@ -75,7 +72,6 @@ export class AddTicketlistComponent implements OnInit {
   }
   
 
-  // Méthode pour annuler l'ajout de ticket
   onCancel() {
     this.dialogRef.close();
   }

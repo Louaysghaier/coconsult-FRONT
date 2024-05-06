@@ -15,7 +15,6 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { DashboardModule } from './user_dashboard/dashboard.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminLayoutModule } from './admin/admin-layout.module';
 import { SignupEntrpriseComponent } from './signupentreprise/signupentreprise.component';
@@ -37,6 +36,8 @@ import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AddRoomConfigurationComponent } from './admin/add-room-configuration/add-room-configuration.component';
+import { DashboardModule } from './user_dashboard_employe/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { MatDialog } from '@angular/material/dialog';
     ForgetpassComponent,
     LoginforgetpasswordComponent,
     ChatRoomComponent,
+    AddRoomConfigurationComponent,
     
 
   ],

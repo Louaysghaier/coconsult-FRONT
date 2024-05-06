@@ -5,7 +5,7 @@ export class Tickets {
     ticketPriority: string;
     ticketContent: string;
     dateAssigned: Date;
-    ticketStatus: string;
+    ticketStatus: string = 'Open'; // Initialiser le statut à "Open"
     tickettitle: string;
     
     user!: User; // Mettez à jour pour stocker le nom de l'utilisateur affecté

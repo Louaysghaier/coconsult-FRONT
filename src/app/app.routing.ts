@@ -15,6 +15,7 @@ import { AuthGuard } from './_helpers';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { MeetinfRoomComponent } from './user_dashboard_employe/meetinf-room/meetinf-room.component';
 const routes: Routes = [
   {
     path: '',
@@ -26,11 +27,13 @@ const routes: Routes = [
   
   {
     path: '',
-    loadChildren: () => import('./user_dashboard/dashboard.module').then(m => m.DashboardModule),canActivate:[ AuthGuard]
+    loadChildren: () => import('./user_dashboard_employe/dashboard.module').then(m => m.DashboardModule),canActivate:[ AuthGuard]
 
   }, 
   
   { path: 'signin', component: LoginComponent },
+  //{ path: 'meet/:id', component: MeetinfRoomComponent },
+  
   { path: 'register', component: SignupComponent },
   { path: 'signupentrprise', component: SignupEntrpriseComponent },
   { path: 'verification', component: ValidationComponent },

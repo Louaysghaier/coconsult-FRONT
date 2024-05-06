@@ -24,7 +24,22 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TicketlistComponent } from './ticketlist/ticketlist.component';
 import { AddTicketlistComponent } from './addticketlist/addticketlist.component';
 import { EditticketlistComponent } from './editticketlist/editticketlist.component';
-import { TicketdetailsComponent } from './ticketdetails/ticketdetails.component'; // Import AddTicketlistComponent
+import { TicketdetailsComponent } from './ticketdetails/ticketdetails.component';
+import { MeetingComponent } from './meeting/meeting.component';
+import { EditMeetingComponent } from './edit-meeting/edit-meeting.component';
+import { AddMeetingComponent } from './add-meeting/add-meeting.component';
+import { TeamComponent } from './team/team.component';
+import { EditTeamComponent } from './edit-team/edit-team.component';
+import { AddTeamComponent } from './add-team/add-team.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { RoomComponent } from './room/room.component';
+import { HomemeetComponent } from './homemeet/homemeet.component';
+import { MeetingAffectuserComponent } from './meeting-affectuser/meeting-affectuser.component';
+import { RoomConfigurationComponent } from './room-configuration/room-configuration.component';
+import { ListesUsersMeetComponent } from './listes-users-meet/listes-users-meet.component';
+import { MeetingDetailsComponent } from './meeting-details/meeting-details.component';
+import { AffecterUserAteamComponent } from './affecter-user-ateam/affecter-user-ateam.component';
+
 
 const AdminLayoutRoutes: Routes = [
   {
@@ -41,7 +56,21 @@ const AdminLayoutRoutes: Routes = [
       { path: 'navbar', component: NavbarComponent },
       { path: 'sidenavbar', component: SidebarComponent },
       { path: 'ticketlist', component: TicketlistComponent },
-      { path: 'addticketlist', component: AddTicketlistComponent } // Add route for AddTicketlistComponent
+      { path: 'addticketlist', component: AddTicketlistComponent }, 
+      { path: 'Meeting', component: MeetingComponent },
+      { path: 'Team', component: TeamComponent },
+      { path: 'room', component: RoomComponent },
+      { path: 'homemeet', component: HomemeetComponent },
+      { path: 'useraffecttomeet', component: MeetingAffectuserComponent },
+      { path: 'RoomConfiguration', component: RoomConfigurationComponent },
+
+
+
+
+
+
+
+      
     ],
   },
 ];
@@ -57,10 +86,12 @@ const AdminLayoutRoutes: Routes = [
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule, // Import ReactiveFormsModule
+    ReactiveFormsModule, 
     MatSelectModule,
     MatTooltipModule,
     MatPaginatorModule,
+    MatStepperModule,
+
   ],
   declarations: [
     AdminLayoutComponent,
@@ -76,7 +107,20 @@ const AdminLayoutRoutes: Routes = [
     TicketlistComponent,
     AddTicketlistComponent,
     EditticketlistComponent,
-    TicketdetailsComponent // Add AddTicketlistComponent to declarations
+    TicketdetailsComponent,
+    MeetingComponent,
+    EditMeetingComponent,
+    AddMeetingComponent,
+    TeamComponent,
+    EditTeamComponent,
+    AddTeamComponent,
+    RoomComponent,
+    HomemeetComponent,
+    MeetingAffectuserComponent,
+    RoomConfigurationComponent,
+    ListesUsersMeetComponent,
+    MeetingDetailsComponent,
+    AffecterUserAteamComponent,
   ],
   providers: [],
   exports: [RouterModule],

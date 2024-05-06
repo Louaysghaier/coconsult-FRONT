@@ -37,7 +37,7 @@
               "src/assets/scss/argon.scss",
               "src/assets/scss/material-dashboard.scss",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-              "src/app/user_dashboard/vertical-nav-bar/vertical-nav-bar.component.css"
+              "src/app/user_dashboard_employe/vertical-nav-bar/vertical-nav-bar.component.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",

@@ -14,6 +14,13 @@ export const ROUTES: RouteInfo[] = [
     { path: '/admin/notifications', title: 'Notifications',  icon:'notifications', class: '' },
     { path: '/admin/activity', title: 'Activity',  icon:'notifications', class: '' },
     { path: '/admin/ticketlist', title: 'ticketlist',  icon:'notifications', class: '' },
+    { path: '/admin/Meeting', title: 'Meeting',  icon:'notifications', class: '' },
+    { path: '/admin/Team', title: 'Team',  icon:'notifications', class: '' },
+
+
+
+
+
 
     
 

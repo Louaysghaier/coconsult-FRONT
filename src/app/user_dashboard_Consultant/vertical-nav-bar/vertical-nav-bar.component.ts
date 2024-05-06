@@ -6,7 +6,7 @@ import {
   callOutline,
   settingsOutline,
 } from 'ionicons/icons';
-import {ProjectDetailsComponent} from '../../project-details/project-details.component';
+import {ProjectDetailsComponent} from '../project-details/project-details.component';
 interface RouteWithComponent {
     path: string;
     title: string;

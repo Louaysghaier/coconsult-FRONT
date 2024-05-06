@@ -27,7 +27,7 @@ import { ProjFeedComponent } from './proj-feed/proj-feed.component';
 import { QuoteComponent } from './quote/quote.component';
 import { TimeRecordComponent } from './time-record/time-record.component';
 import { AssignmentsComponent } from './assignement/assignement.component';*/
-import {ProjectDetailsComponent} from '../project-details/project-details.component';
+import {ProjectDetailsComponent} from '../user_dashboard_Consultant/project-details/project-details.component';
 /*import {ChartsProjComponent} from './charts-proj/charts-proj.component';
 import {BaseChartDirective} from 'ng2-charts';
 import {PieChartModule} from '@swimlane/ngx-charts';*/

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectDetailsComponent } from '../../project-details/project-details.component';
+import { ProjectDetailsComponent } from '../../user_dashboard_Consultant/project-details/project-details.component';
 
 declare const $: any;
 

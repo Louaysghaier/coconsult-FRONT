@@ -35,10 +35,7 @@ import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetpassword.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { ProjectFeedDetailsComponent } from './project-feed-details/project-feed-details.component';
-import { ExpansesDetailsComponent } from './expanses-details/expanses-details.component';
-import { TimerecordDetailsComponent } from './timerecord-details/timerecord-details.component';
+import { ProjectDetailsComponent } from './user_dashboard_Consultant/project-details/project-details.component';
 
 
 
@@ -59,9 +56,6 @@ import { TimerecordDetailsComponent } from './timerecord-details/timerecord-deta
     LoginforgetpasswordComponent,
     ChatRoomComponent,
     ProjectDetailsComponent,
-    ProjectFeedDetailsComponent,
-    ExpansesDetailsComponent,
-    TimerecordDetailsComponent,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -110,6 +110,9 @@ var SettingsComponent = /** @class */ (function () {
                 return 'transparent'; // Default color if status doesn't match any case
         }
     };
+    SettingsComponent.prototype.openMail = function () {
+        window.location.href = 'mailto:louay.sghaier@esprit.tn';
+    };
     __decorate([
         core_1.ViewChild(paginator_1.MatPaginator)
     ], SettingsComponent.prototype, "paginator");

@@ -6,7 +6,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8082/api/user/list-RolesName/Employee'; 
+  private apiUrl = 'http://localhost:8082/api/user/list-user'; 
 
   constructor(private http: HttpClient) { }
   private currentUserSubject = new BehaviorSubject<any>(null);
@@ -23,7 +23,7 @@ export class UserService {
     return this.http.get<any[]>(this.apiUrl);
   }
   getUserProfile(userId: number): Observable<any> {
-    return this.http.get<any>(`http://localhost:8082/api/user/getUserById/${userId}`);
+    return this.http.get<any>(`http://localhost:8082/api/user/getuserbyid/${userId}`);
   }
   getCandidatPhoto(id: number): Observable<Blob> {
     // URL de l'API

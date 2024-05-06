@@ -13,7 +13,7 @@ import { saveAs } from 'file-saver';
 export class DemandeCongeComponent implements OnInit {
   displayedColumns: string[] = ['user', 'duration', 'startDate', 'type', 'certificate','actions'];
   demandes: MatTableDataSource<any>;
-
+  
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(private demandeCongeService: DemandeService) { }

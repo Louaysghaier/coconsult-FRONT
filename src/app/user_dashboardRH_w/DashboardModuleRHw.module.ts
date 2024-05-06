@@ -3,8 +3,6 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { MonprofilComponent } from './monprofil/monprofil.component';
-import { SettingsComponent } from './settings/settings.component';
-import { SolutionComponent } from './solution/solution.component';
 import { VerticalNavBarComponent } from './vertical-nav-bar/vertical-nav-bar.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from '../app.routing';
@@ -18,7 +16,6 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
-import { CardComponent } from './solution/card/card.component';
 import { SalaryComponent } from './salary/salary.component';
 import { DisplaySalariesComponent } from './salary/display-salaries.component';
 import { CongeCalendarComponent } from './conge/conge-calendar.component';
@@ -43,8 +40,6 @@ const dashboardRoutes: Routes = [
             {path:'monprofil',component:MonprofilComponent},
             {path:'header', component:HeaderComponent},
             { path: 'vertical-nav-bar', component: VerticalNavBarComponent },
-            {path: 'settings',component:SettingsComponent},
-            {path:'solutions', component:SolutionComponent},
             { path: 'display-salaries', component: DisplaySalariesComponent },
             { path: 'Conge', component: CongeCalendarComponent },
             { path: 'users', component: UsersComponent },
@@ -66,11 +61,11 @@ const dashboardRoutes: Routes = [
     declarations: [
         HeaderComponent,
         DashboardComponent,
-        SettingsComponent,
-        SolutionComponent,
+        //SettingsComponent,
+        //SolutionComponent,
         VerticalNavBarComponent,
         MonprofilComponent,
-        CardComponent,
+        //CardComponent,
         UserProfileComponent,DisplaySalariesComponent,EditSalaryModalComponent,
         StarRatingComponent
 

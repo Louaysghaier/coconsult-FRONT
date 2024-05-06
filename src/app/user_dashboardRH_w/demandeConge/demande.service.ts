@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DemandeService {
+export class  DemandeService {
   private apiUrl = "http://localhost:8082/api"; 
 
   constructor(private http: HttpClient) { }
 
-  addAsk(formData: FormData): Observable<any> {
+  addAsk(formData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/demande-conge/add-demande-conge`, formData);
   }
 

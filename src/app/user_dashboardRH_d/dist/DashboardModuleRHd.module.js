@@ -6,12 +6,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.DashboardModuleCRM = void 0;
-// import { NgModule } from '@angular/core';
+exports.DashboardModuleRHd = void 0;
+//import { NgModule } from '@angular/core';
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var monprofil_component_1 = require("./monprofil/monprofil.component");
-var settings_component_1 = require("./settings/settings.component");
 var vertical_nav_bar_component_1 = require("./vertical-nav-bar/vertical-nav-bar.component");
 var core_1 = require("@angular/core");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
@@ -24,59 +23,36 @@ var core_2 = require("@angular/material/core");
 var form_field_1 = require("@angular/material/form-field");
 var tooltip_1 = require("@angular/material/tooltip");
 var select_1 = require("@angular/material/select");
-var table_1 = require("@angular/material/table");
-var contract_component_1 = require("./contract/contract.component");
-var prospect_component_1 = require("./prospect/prospect.component");
-var repertoire_component_1 = require("./repertoire/repertoire.component");
-var add_update_contract_component_1 = require("./add-update-contract/add-update-contract.component");
-var datepicker_1 = require("@angular/material/datepicker");
-var dialog_1 = require("@angular/material/dialog");
-var add_update_repertoires_component_1 = require("./add-update-repertoires/add-update-repertoires.component");
-var add_update_prospect_component_1 = require("./add-update-prospect/add-update-prospect.component");
-var paginator_1 = require("@angular/material/paginator");
-var add_update_activity_sales_team_component_1 = require("./add-update-activity-sales-team/add-update-activity-sales-team.component");
-var payments_component_1 = require("./payments/payments.component");
-var revenue_component_1 = require("./revenue/revenue.component");
-var common_2 = require("@angular/common"); // Import DatePipe from @angular/common
+var candidatresult_component_1 = require("./candidatresult/candidatresult.component");
+var settings_component_1 = require("./settings/settings.component");
 var detail_notif_diag_component_1 = require("./header/detail-notif-diag/detail-notif-diag.component");
 var card_component_1 = require("./solution/card/card.component");
 var dashboardRoutes = [
-    { path: 'user_dashboard_CRM',
+    { path: 'user_dashboardRH_d',
         component: dashboard_component_1.DashboardComponent,
         children: [
             { path: 'monprofil', component: monprofil_component_1.MonprofilComponent },
             { path: 'header', component: header_component_1.HeaderComponent },
             { path: 'vertical-nav-bar', component: vertical_nav_bar_component_1.VerticalNavBarComponent },
             { path: 'settings', component: settings_component_1.SettingsComponent },
-            { path: 'repertoire', component: repertoire_component_1.RepertoireComponent },
-            { path: 'prospect', component: prospect_component_1.ProspectComponent },
-            { path: 'contract', component: contract_component_1.ContractComponent },
-            { path: 'payments', component: payments_component_1.PaymentsComponent },
+            { path: 'result', component: candidatresult_component_1.CandidatresultComponent }
         ]
     },
 ];
-var DashboardModuleCRM = /** @class */ (function () {
-    function DashboardModuleCRM() {
+var DashboardModuleRHd = /** @class */ (function () {
+    function DashboardModuleRHd() {
     }
-    DashboardModuleCRM = __decorate([
+    DashboardModuleRHd = __decorate([
         core_1.NgModule({
             declarations: [
                 header_component_1.HeaderComponent,
                 dashboard_component_1.DashboardComponent,
                 settings_component_1.SettingsComponent,
+                card_component_1.CardComponent,
                 vertical_nav_bar_component_1.VerticalNavBarComponent,
                 monprofil_component_1.MonprofilComponent,
-                contract_component_1.ContractComponent,
-                prospect_component_1.ProspectComponent,
-                repertoire_component_1.RepertoireComponent,
-                add_update_contract_component_1.AddUpdateContractComponent,
-                add_update_repertoires_component_1.AddUpdateRepertoiresComponent,
-                add_update_prospect_component_1.AddUpdateProspectComponent,
-                add_update_activity_sales_team_component_1.AddUpdateActivitySalesTeamComponent,
-                payments_component_1.PaymentsComponent,
-                revenue_component_1.RevenueComponent,
+                candidatresult_component_1.CandidatresultComponent,
                 detail_notif_diag_component_1.DetailNotifDiagComponent,
-                card_component_1.CardComponent,
             ],
             imports: [
                 router_1.RouterModule.forChild(dashboardRoutes),
@@ -88,21 +64,14 @@ var DashboardModuleCRM = /** @class */ (function () {
                 input_1.MatInputModule,
                 select_1.MatSelectModule,
                 tooltip_1.MatTooltipModule,
-                common_1.CommonModule, angular_fontawesome_1.FontAwesomeModule,
-                datepicker_1.MatDatepickerModule,
-                dialog_1.MatDialogModule,
-                table_1.MatTableModule,
-                //MatButtonModule,
-                paginator_1.MatPaginatorModule,
+                common_1.CommonModule,
+                angular_fontawesome_1.FontAwesomeModule,
             ],
             schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA],
-            providers: [
-                // { provide: MAT_DATE_LOCALE, useValue: 'en-US' } ,
-                { provide: common_2.DatePipe }
-            ],
+            providers: [],
             exports: [router_1.RouterModule]
         })
-    ], DashboardModuleCRM);
-    return DashboardModuleCRM;
+    ], DashboardModuleRHd);
+    return DashboardModuleRHd;
 }());
-exports.DashboardModuleCRM = DashboardModuleCRM;
+exports.DashboardModuleRHd = DashboardModuleRHd;

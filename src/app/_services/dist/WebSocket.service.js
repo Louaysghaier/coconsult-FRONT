@@ -25,7 +25,7 @@ var WebSocketService = /** @class */ (function () {
     WebSocketService.prototype.connect = function () {
         var _this = this;
         this.stompClient = new stompjs_1.Client({
-            webSocketFactory: function () { return new WebSocket('ws://localhost:8082/ws'); }
+            webSocketFactory: function () { return new WebSocket('ws://localhost:8080/ws'); }
         });
         this.stompClient.onConnect = function () {
             console.log('Connected to WebSocket server');

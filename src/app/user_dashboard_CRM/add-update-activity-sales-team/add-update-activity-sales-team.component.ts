@@ -67,7 +67,7 @@ export class AddUpdateActivitySalesTeamComponent implements OnInit {
           }
         });
       } else {
-        this.salesActivityService.addActivitySalesTeamAffectRepAndSendSMS(formData, repertoireId).subscribe({
+        this.salesActivityService.addActivitySalesTeamAffectRep(formData, repertoireId).subscribe({
           next: () => {
             this.dialogRef.close(true);
           },
@@ -77,5 +77,7 @@ export class AddUpdateActivitySalesTeamComponent implements OnInit {
         });
       } 
     }
-  }
+  } 
+
+  
 }

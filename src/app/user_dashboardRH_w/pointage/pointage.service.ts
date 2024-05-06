@@ -10,7 +10,7 @@ import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 export class PointageService {
 
   private baseURL = 'http://localhost:8082/api/pointage'; // Adjust the URL as per your API
-  public isPointed = new BehaviorSubject<boolean>(false);
+  public isPointed = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient) { }
 

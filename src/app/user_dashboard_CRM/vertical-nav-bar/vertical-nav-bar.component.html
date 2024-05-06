@@ -54,13 +54,13 @@
   </ul>
 </div>
 
-  <ul class="nav" *ngIf="ispointed" >
+  <!--<ul class="nav" *ngIf="ispointed" >-->
       <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
           <a class="nav-link" [routerLink]="[menuItem.path]">
               <i class="material-icons">{{menuItem.icon}}</i>
               <p>{{menuItem.title}}</p>
           </a>
       </li>
-  </ul>
+  
 
 </div>

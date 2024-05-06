@@ -19,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { CandidatresultComponent } from './candidatresult/candidatresult.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DetailNotifDiagComponent } from './header/detail-notif-diag/detail-notif-diag.component';
+import { CardComponent } from './solution/card/card.component';
 
 
 const dashboardRoutes: Routes = [
@@ -45,7 +46,7 @@ const dashboardRoutes: Routes = [
         HeaderComponent,
         DashboardComponent,
         SettingsComponent,
-
+        CardComponent,
         VerticalNavBarComponent,
         MonprofilComponent,
         CandidatresultComponent,

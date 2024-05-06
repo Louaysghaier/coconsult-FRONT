@@ -34,6 +34,7 @@ import { PaymentsComponent } from './payments/payments.component';
 import { RevenueComponent } from './revenue/revenue.component';
 import { DatePipe } from '@angular/common'; // Import DatePipe from @angular/common
 import { DetailNotifDiagComponent } from './header/detail-notif-diag/detail-notif-diag.component';
+import { CardComponent } from './solution/card/card.component';
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard_CRM',
   component: DashboardComponent,
@@ -73,6 +74,7 @@ const dashboardRoutes: Routes = [
       PaymentsComponent,
       RevenueComponent,
       DetailNotifDiagComponent,
+      CardComponent,
       
       
     ],

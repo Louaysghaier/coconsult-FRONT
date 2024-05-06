@@ -139,6 +139,8 @@ getStatusColor(status: string): string {
 }
 
 
-
+openMail() {
+  window.location.href = 'mailto:louay.sghaier@esprit.tn';
+}
 
 }

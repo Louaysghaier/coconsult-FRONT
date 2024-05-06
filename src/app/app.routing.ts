@@ -30,6 +30,7 @@ import { LoginforgetpasswordComponent } from './loginforgetpassword/loginforgetp
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { AddAskComponent } from './user_dashboardRH_w/demandeConge/add-demande.component';
 import { MeetinfRoomComponent } from './user_dashboard_employe/meetinf-room/meetinf-room.component';
+import {Assignements} from './_models/assignements';
 const routes: Routes = [
   {
     path: '',
@@ -65,7 +66,7 @@ const routes: Routes = [
   
   { path: 'signin', component: LoginComponent },
   //{ path: 'meet/:id', component: MeetinfRoomComponent },
-  
+
   { path: 'register', component: SignupComponent },
   { path: 'signupentrprise', component: SignupEntrpriseComponent },
   { path: 'verification', component: ValidationComponent },

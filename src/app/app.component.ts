@@ -33,8 +33,6 @@ export class AppComponent implements OnInit {
 
         var navbar = document.getElementsByTagName('nav')[0];
 
-        // If they scrolled down and are past the navbar, add class .headroom--unpinned.
-        // This is necessary so you never see what is "behind" the navbar.
         if (st > lastScrollTop && st > navbarHeight){
             // Scroll Down
             if (navbar.classList.contains('headroom--pinned')) {

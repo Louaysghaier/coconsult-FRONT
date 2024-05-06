@@ -10,21 +10,21 @@ exports.VerticalNavBarComponent = exports.ROUTES = void 0;
 var core_1 = require("@angular/core");
 var icons_1 = require("ionicons/icons");
 exports.ROUTES = [
-    { path: '/user_dashboard/monprofil', title: 'mon-profile', icon: 'person', "class": '' },
-    { path: '/user_dashboard/solutions', title: 'solutions', icon: 'dashboard', "class": '' },
-    { path: '/user_dashboard/settings', title: 'settings&Infos', icon: 'settingsOutline', "class": '' },
-    { path: '/user_dashboard/Meeting', title: 'Meeting', icon: 'settingsOutline', "class": '' },
-
+    { path: '/user_dashboard_employe/monprofil', title: 'mon-profile', icon: 'person', "class": '' },
+    { path: '/user_dashboard_employe/solutions', title: 'solutions', icon: 'dashboard', "class": '' },
+    { path: '/user_dashboard_employe/settings', title: 'settings&Infos', icon: 'dashboard', "class": '' },
+    { path: '/user_dashboard_employe/ticketlist', title: 'ticketlist', icon: 'dashboard', "class": '' },
+    { path: '/user_dashboard_employe/MeetingsListe', title: 'MeetingsListe', icon: 'dashboard', "class": '' },
+    { path: '/user_dashboard_employe/Activityuse', title: 'Activity', icon: 'dashboard', "class": '' },
 ];
 var VerticalNavBarComponent = /** @class */ (function () {
-    
     function VerticalNavBarComponent() {
         this.barChartOutline = icons_1.barChartOutline;
         this.appsOutline = icons_1.appsOutline;
         this.bulbOutline = icons_1.bulbOutline;
         this.callOutline = icons_1.callOutline;
         this.settingsOutline = icons_1.settingsOutline;
-        this.settingsOutline = icons_1.videocam;
+        this.videocam = icons_1.videocam;
     }
     VerticalNavBarComponent.prototype.ngOnInit = function () {
         this.menuItems = exports.ROUTES.filter(function (menuItem) { return menuItem; });

@@ -16,12 +16,7 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-<<<<<<<< HEAD:src/app/user_dashboardRH_d/vertical-nav-bar/vertical-nav-bar.component.ts
-    { path: '/user_dashboardRH_d/monprofil', title: 'mon-profile',  icon: 'person', class: '' },
-    { path: '/user_dashboardRH_d/solutions', title: 'solutions',  icon:'dashboard', class: '' },
-    { path: '/user_dashboardRH_d/settings', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
-    { path: '/user_dashboardRH_d/result', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
-========
+
     { path: '/user_dashboard_employe/monprofil', title: 'mon-profile',  icon: 'person', class: '' },
     { path: '/user_dashboard_employe/solutions', title: 'solutions',  icon:'dashboard', class: '' },
     { path: '/user_dashboard_employe/settings', title: 'settings&Infos',  icon:'dashboard', class: '' },
@@ -37,7 +32,6 @@ export const ROUTES: RouteInfo[] = [
 
 
 
->>>>>>>> origin/achref:src/app/user_dashboard_employe/vertical-nav-bar/vertical-nav-bar.component.ts
 ];
 
 @Component({

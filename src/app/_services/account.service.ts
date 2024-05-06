@@ -111,7 +111,7 @@ export class AccountService {
         localStorage.removeItem('currentGroupChat');
         localStorage.removeItem('myuserinfo');
         localStorage.removeItem('email');
-        const userId = JSON.parse(localStorage.getItem('user')).id;
+        const userId = JSON.parse(localStorage.getItem('user')||sessionStorage.getItem("user")!).id;
         this.updateUserAvailability(userId).subscribe((response: any) => {
           console.log('User availability updated successfully:', response);
         });

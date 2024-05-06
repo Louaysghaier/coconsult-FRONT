@@ -46,7 +46,7 @@ const routes: Routes = [
   {
     path: '',
    // loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd),
-    loadChildren: () => import('./user_dashboard_employe/dashboard.module').then(m => m.DashboardModule),canActivate:[ AuthGuard]
+    loadChildren: () => import('./user_dashboard_employe/DashboardModuleRH_Employee').then(m => m.DashboardModuleRH_Employee),
 
   },
   {

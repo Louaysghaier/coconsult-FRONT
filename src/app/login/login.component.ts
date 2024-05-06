@@ -54,7 +54,7 @@ refreshToken(): void {
   this.socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
 }
   ngOnInit() {
-   this.loginAlert();
+  // this.loginAlert();
     this.signInWithGoogle();
 
   }

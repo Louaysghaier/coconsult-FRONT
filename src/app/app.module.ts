@@ -66,7 +66,6 @@ import { CongeDetailsModalComponent } from './user_dashboardRH_w/conge/conge-det
 import { AdminListSalaire } from './admin/salaire/admin-list-salaire';
 import { DashboardModuleRHw } from './user_dashboardRH_w/DashboardModuleRHw.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import{DashboardModule} from '/user_dashboard_employe/dashboard.module';
 import { DashboardModuleRHd } from './user_dashboardRH_d/DashboardModuleRHd.module';
 
 const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
@@ -77,6 +76,7 @@ import {
   //FacebookLoginProvider,
   // AmazonLoginProvider,
 } from '@abacritt/angularx-social-login';
+import {DashboardModuleRH_Employee} from "./user_dashboard_employe/DashboardModuleRH_Employee";
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,7 +125,7 @@ TESTComponent,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
   imports: [
-    DashboardModule,
+      DashboardModuleRH_Employee,
 
     DashboardModuleRHd,
 

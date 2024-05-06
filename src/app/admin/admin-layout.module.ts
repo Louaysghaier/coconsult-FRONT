@@ -56,7 +56,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { RoomComponent } from './room/room.component';
 import { HomemeetComponent } from './homemeet/homemeet.component';
 import { MeetingAffectuserComponent } from './meeting-affectuser/meeting-affectuser.component';
-import { RoomConfigurationComponent } from './room-configuration/room-configuration.component';
+//import { RoomConfigurationComponent } from './room-configuration/room-configuration.component';
 import { ListesUsersMeetComponent } from './listes-users-meet/listes-users-meet.component';
 import { MeetingDetailsComponent } from './meeting-details/meeting-details.component';
 import { AffecterUserAteamComponent } from './affecter-user-ateam/affecter-user-ateam.component';
@@ -82,7 +82,7 @@ children: [
     { path: 'room', component: RoomComponent },
     { path: 'homemeet', component: HomemeetComponent },
     { path: 'useraffecttomeet', component: MeetingAffectuserComponent },
-    { path: 'RoomConfiguration', component: RoomConfigurationComponent },
+    //{ path: 'RoomConfiguration', component: RoomConfigurationComponent },
 
    { path: 'ChatRooms',  component: GroupChatComponent },
     { path: 'listesalaire', component: AdminListSalaire },
@@ -112,7 +112,7 @@ children: [
     MatTooltipModule,
     MatTableModule ,
     MatDialogModule,
-
+   MatPaginatorModule,
 
     MatStepperModule,
 
@@ -157,7 +157,7 @@ children: [
     RoomComponent,
     HomemeetComponent,
     MeetingAffectuserComponent,
-    RoomConfigurationComponent,
+   // RoomConfigurationComponent,
     ListesUsersMeetComponent,
     MeetingDetailsComponent,
     AffecterUserAteamComponent,

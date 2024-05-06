@@ -94,6 +94,6 @@ export class ActivityComponent implements OnInit, OnDestroy {
   }
 
   getProjectTitle(activity: Activity): string {
-    return activity.projet && activity.projet.projectTitle ? activity.projet.projectTitle : 'Unknown Project';
+    return activity.projet && activity.projet.projetTitle ? activity.projet.projetTitle : 'Unknown Project';
   }
 }

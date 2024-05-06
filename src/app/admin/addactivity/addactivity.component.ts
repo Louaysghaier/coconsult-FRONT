@@ -31,7 +31,7 @@ export class AddactivityComponent implements OnInit {
   ngOnInit(): void {
     this.activityForm = this.formBuilder.group({
       nbreOfTask: ['', [Validators.required, Validators.min(1)]],
-      projectTitle: ['', Validators.required],
+      projetTitle: ['', Validators.required],
       tasks: this.formBuilder.array([])
     });
 
@@ -46,7 +46,7 @@ export class AddactivityComponent implements OnInit {
   }
 
   addActivity() {
-    const projectTitle = this.activityForm.value.projectTitle;
+    const projetTitle = this.activityForm.value.projetTitle;
     const tasks = this.activityForm.get('tasks') as FormArray;
     
     if (tasks && tasks.controls) { // Vérifiez si 'tasks' et 'controls' existent
@@ -55,12 +55,12 @@ export class AddactivityComponent implements OnInit {
         newActivity.nbreOfTask = this.activityForm.value.nbreOfTask;
         newActivity.activityContent = task.value.activityContent;
         newActivity.taskType = task.value.taskType;
-        const selectedProject = this.projects.find(project => project.projectTitle === projectTitle);
+        const selectedProject = this.projects.find(project => project.projetTitle === projetTitle);
         if (selectedProject) {
           newActivity.projet = selectedProject;
         }
     
-        this.activityService.addActivity(newActivity, projectTitle).subscribe(activity => {
+        this.activityService.addActivity(newActivity, projetTitle).subscribe(activity => {
           this.activities.push(activity);
           this.router.navigate(['/admin/activity']);
           this.dialogRef.close(activity);

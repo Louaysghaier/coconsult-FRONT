@@ -8,7 +8,6 @@ export class Quote {
   expireDate!: Date;
   description!: string;
   projects?: Projects; // Assuming Projets is another entity
-  //userClient: User;
   valid: boolean = false;
 
 

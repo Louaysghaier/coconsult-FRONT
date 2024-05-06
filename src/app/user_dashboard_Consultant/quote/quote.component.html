@@ -35,8 +35,8 @@
                                 <tr *ngFor="let quote of pagedQuotes">
                                     <td>{{ quote.idQuote }}</td>
                                     <td>{{ quote.montant }}</td>
-                                    <td style="background-color: mediumspringgreen; color: black   ; font-weight: bold;">{{ quote.creationDate }}</td>
-                                    <td style="background-color: indianred; color: black    ; font-weight: bold;">{{ quote.expireDate }}</td>
+                                    <td style="background-color: mediumspringgreen; color: black   ; font-weight: bold;">{{ quote.creationDate | date:'dd/MM/yyyy' }}</td>
+                                    <td style="background-color: indianred; color: black    ; font-weight: bold;">{{ quote.expireDate| date:'dd/MM/yyyy' }}</td>
                                     <td>{{ quote.description }}</td>
                                     <td>
                                         <button class="btn" [ngClass]="quote.valid ? 'valid-button' : 'invalid-button'" (click)="toggleQuoteValidity(quote)">
@@ -66,10 +66,10 @@
         </div>
         <!-- Modal for Add Quote -->
         <div class="modal fade" id="addQuoteModal" tabindex="-1" role="dialog" aria-labelledby="addQuoteModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addQuoteModalLabel">Add Quote</h5>
+                        <h2 class="modal-title" id="addQuoteModalLabel">Add Quote</h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -78,40 +78,20 @@
                         <!-- Form to add quote -->
                         <form (ngSubmit)="saveQuote()">
                             <div class="form-group">
-                                <label for="montant" class="blue-bold">Montant</label>
-                                <div class="input-group"> <!-- Added input-group for icon -->
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="bi bi-cash"></i></span> <!-- Added icon -->
-                                    </div>
-                                    <input type="text" class="form-control" id="montant" name="montant" placeholder="Montant" [(ngModel)]="newQuote.montant">
-                                </div>
+                                <label for="montant">Montant</label>
+                                <input type="text" class="form-control" id="montant" name="montant" [(ngModel)]="newQuote.montant">
                             </div>
                             <div class="form-group">
-                                <label for="creationDate" class="blue-bold">Creation Date</label>
-                                <div class="input-group"> <!-- Added input-group for icon -->
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="bi bi-calendar-plus"></i></span> <!-- Added icon -->
-                                    </div>
-                                    <input type="date" class="form-control" id="creationDate" name="creationDate" placeholder="Creation Date" [(ngModel)]="newQuote.creationDate">
-                                </div>
+                                <label for="creationDate">Creation Date</label>
+                                <input type="date" class="form-control" id="creationDate" name="creationDate" [(ngModel)]="newQuote.creationDate">
                             </div>
                             <div class="form-group">
-                                <label for="expireDate" class="blue-bold">Expire Date</label>
-                                <div class="input-group"> <!-- Added input-group for icon -->
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="bi bi-calendar-x"></i></span> <!-- Added icon -->
-                                    </div>
-                                    <input type="date" class="form-control" id="expireDate" name="expireDate" placeholder="Expire Date" [(ngModel)]="newQuote.expireDate">
-                                </div>
+                                <label for="expireDate">Expire Date</label>
+                                <input type="date" class="form-control" id="expireDate" name="expireDate" [(ngModel)]="newQuote.expireDate">
                             </div>
                             <div class="form-group">
-                                <label for="description" class="blue-bold">Description</label>
-                                <div class="input-group"> <!-- Added input-group for icon -->
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="bi bi-file-text"></i></span> <!-- Added icon -->
-                                    </div>
-                                    <textarea class="form-control" id="description" name="description" placeholder="Description" [(ngModel)]="newQuote.description" rows="3"></textarea>
-                                </div>
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" name="description" [(ngModel)]="newQuote.description" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Save Quote</button>
                         </form>
@@ -124,7 +104,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editQuoteModalLabel">Edit Quote</h5>
+                        <h2 class="modal-title" id="editQuoteModalLabel">Edit Quote</h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

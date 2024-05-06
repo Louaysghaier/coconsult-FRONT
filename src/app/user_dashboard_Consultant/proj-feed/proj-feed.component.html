@@ -35,8 +35,8 @@
                                 <tr *ngFor="let projFeed of pagedProjFeed">
                                     <td>{{ projFeed.idPjtFeed }}</td>
                                     <td>{{ projFeed.content }}</td>
-                                    <td>{{ projFeed.timeUpd }}</td>
-                                    <td>{{ projFeed.fctsUpd }}</td>
+                                    <td>{{ projFeed.timeUpd | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{ projFeed.fctsUpd | date:'dd/MM/yyyy'}}</td>
                                     <td>
                                         <!-- Edit Button -->
                                         <button type="button" class="btn btn-info" (click)="openEditModal(projFeed)" data-toggle="modal" data-target="#editProjFeedModal">
@@ -77,11 +77,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="timeUpd">Last Update Time</label>
-                                <input type="datetime-local" class="form-control" id="timeUpd" name="timeUpd" [(ngModel)]="newProjFeed.timeUpd">
+                                <input type="date" class="form-control" id="timeUpd" name="timeUpd" [(ngModel)]="newProjFeed.timeUpd">
                             </div>
                             <div class="form-group">
                                 <label for="fctsUpd">Last Update Function</label>
-                                <input type="datetime-local" class="form-control" id="fctsUpd" name="fctsUpd" [(ngModel)]="newProjFeed.fctsUpd">
+                                <input type="date" class="form-control" id="fctsUpd" name="fctsUpd" [(ngModel)]="newProjFeed.fctsUpd">
                             </div>
                             <button type="submit" class="btn btn-primary">Save Project Feed</button>
                         </form>
@@ -108,11 +108,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="editTimeUpd">Last Update Time</label>
-                                <input type="text" class="form-control" id="editTimeUpd" name="editTimeUpd" [(ngModel)]="selectedProjFeed.timeUpd">
+                                <input type="date" class="form-control" id="editTimeUpd" name="editTimeUpd" [(ngModel)]="selectedProjFeed.timeUpd">
                             </div>
                             <div class="form-group">
                                 <label for="editFctsUpd">Last Update Function</label>
-                                <input type="text" class="form-control" id="editFctsUpd" name="editFctsUpd" [(ngModel)]="selectedProjFeed.fctsUpd">
+                                <input type="date" class="form-control" id="editFctsUpd" name="editFctsUpd" [(ngModel)]="selectedProjFeed.fctsUpd">
                             </div>
                             <button type="submit" class="btn btn-primary">Save Changes</button>
                         </form>

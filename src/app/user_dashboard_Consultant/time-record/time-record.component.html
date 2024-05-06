@@ -34,7 +34,7 @@
                                 <tr *ngFor="let timeRecord of pagedTimeRecords">
                                     <td>{{ timeRecord.idTimeRec }}</td>
                                     <td>{{ timeRecord.budget }}</td>
-                                    <td>{{ timeRecord.date }}</td>
+                                    <td>{{ timeRecord.date | date:'dd/MM/yyyy' }}</td>
                                     <td>{{ timeRecord.duration }}</td>
                                     <td>{{ timeRecord.description }}</td>
                                     <td>

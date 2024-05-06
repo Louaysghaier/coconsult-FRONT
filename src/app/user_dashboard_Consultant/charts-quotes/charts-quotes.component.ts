@@ -1,4 +1,4 @@
-import {Component,  OnInit} from '@angular/core';
+/*import {Component,  OnInit} from '@angular/core';
 import { QuoteService } from '../../_services/quote.service';
 import { Quote } from '../../_models/quote';
 import Chart from 'chart.js/auto';
@@ -143,4 +143,4 @@ export class ChartsQuotesComponent implements OnInit {
             }
         );
     }
-}
+}*/

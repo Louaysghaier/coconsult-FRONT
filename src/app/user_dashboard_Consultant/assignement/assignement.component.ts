@@ -3,6 +3,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Assignements } from '../../_models/assignements';
 import { AssignementsService } from '../../_services/assignements.service';
 import { PageEvent } from '@angular/material/paginator';
+import { Projects } from '../../_models/projects';
+import {Router} from '@angular/router';
+
 
 @Component({
     selector: 'app-assignments',
@@ -19,11 +22,40 @@ export class AssignmentsComponent implements OnInit {
     totalAssignments: number = 5;
     pageSize: number = 5;
     pageSizeOptions: number[] = [5, 10, 25, 100];
+    projects: Projects[] = []; // Déclaration de la propriété projects
+    selectedProjectId: number | null = null; // Déclaration de la propriété selectedProjectId
 
-    constructor(private modalService: NgbModal, private assignmentsService: AssignementsService) { }
+
+
+    constructor(private modalService: NgbModal,
+                private assignmentsService: AssignementsService,
+                private router: Router
+) { }
 
     ngOnInit(): void {
-        this.getAllAssignments();
+        this.getAllProjects();
+        this.loadAssignements();
+    }
+    loadAssignements() {
+        // Appel au service pour récupérer la liste des assignements
+        this.assignmentsService.getAllAssigns()
+            .subscribe((assignements) => {
+                this.assignments = assignements;
+            }, (error) => {
+                console.error('Erreur lors du chargement des assignements : ', error);
+            });
+    }
+    createAssignmentsForProjects() {
+        if (this.selectedProjectId) {
+            this.assignmentsService.createAssignement(this.selectedProjectId, this.newAssignment)
+                .subscribe(response => {
+                    console.log(`Assignement créé avec succès pour le projet ${this.selectedProjectId}: `, response);
+                }, error => {
+                    console.error(`Erreur lors de la création de l'assignement pour le projet ${this.selectedProjectId}: `, error);
+                });
+        } else {
+            console.error('Aucun projet sélectionné.');
+        }
     }
 
     getAllAssignments(): void {
@@ -35,6 +67,16 @@ export class AssignmentsComponent implements OnInit {
             },
             (error: any) => {
                 console.error('Error fetching assignments:', error);
+            }
+        );
+    }
+    getAllProjects(): void {
+        this.assignmentsService.getAllProjects().subscribe(
+            (projects: Projects[]) => {
+                this.projects = projects;
+            },
+            (error: any) => {
+                console.error('Error fetching projects:', error);
             }
         );
     }
@@ -100,7 +142,7 @@ export class AssignmentsComponent implements OnInit {
     filterAssignments(): Assignements[] {
         return this.assignments.filter(assignment =>
             assignment.idAssign.toString().includes(this.searchTerm) ||
-            assignment.timeRecording.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+            assignment.timeRecording ||
             assignment.expenses.toString().includes(this.searchTerm.toLowerCase())
         );
     }
@@ -111,5 +153,8 @@ export class AssignmentsComponent implements OnInit {
 
     openEditAssignmentModal(content: any): void {
         this.modalService.open(content, { ariaLabelledBy: 'editAssignmentModalLabel' });
+    }
+    redirectToProjectDetails(projectId: number) {
+        this.router.navigate(['/admin/projects/project-details', projectId]);
     }
 }

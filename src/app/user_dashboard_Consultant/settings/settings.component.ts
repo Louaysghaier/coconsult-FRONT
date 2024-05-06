@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/_models';
 
 
-import { ListeUserAscService } from 'src/app/user_dashboard/settings/liste-user-asc.service';
+import { ListeUserAscService } from 'src/app/user_dashboard_Consultant/settings/liste-user-asc.service';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',

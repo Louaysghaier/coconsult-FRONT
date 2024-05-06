@@ -2,20 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Assignements} from '../_models/assignements';
+import {Projects} from '../_models/projects';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssignementsService {
-  private baseUrl = 'http://localhost:8082/assignements'; // Remplacez cela par l'URL de votre API backend
+  private baseUrl = 'http://localhost:8082/assignements';
 
   constructor(private http: HttpClient) { }
 
+  getAllProjects(): Observable<Projects[]> {
+    return this.http.get<Projects[]>(`http://localhost:8082/projets/getAllProjects`);
+  }
   getAllAssigns(): Observable<Assignements[]> {
     return this.http.get<Assignements[]>(`${this.baseUrl}/getAllAssigns`);
   }
-
+  createAssignementForProject(projectId: number, assignements: Assignements): Observable<Assignements> {
+    return this.http.post<Assignements>(`${this.baseUrl}/projets/${projectId}/assignements`, assignements);
+  }
   getAssign(id: number): Observable<Assignements> {
     return this.http.get<Assignements>(`${this.baseUrl}/getAssign/${id}`);
   }
@@ -43,4 +49,8 @@ export class AssignementsService {
   getLastAssignments(projectId: number, limit: number): Observable<Assignements[]> {
     return this.http.get<Assignements[]>(`${this.baseUrl}/${projectId}/getLastAssignments?limit=${limit}`);
   }
+  createAssignement(projectId: number, assignement: Assignements): Observable<Assignements> {
+    return this.http.post<Assignements>(`${this.baseUrl}/${projectId}/ajouterbyproject`, assignement);
+  }
+  
 }

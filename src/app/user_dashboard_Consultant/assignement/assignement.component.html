@@ -23,7 +23,9 @@
                                     <th><i class="fas fa-id-card"></i> ID</th>
                                     <th><i class="fas fa-clock"></i> Time Recording</th>
                                     <th><i class="fas fa-money-bill-alt"></i> Expenses</th>
+                                    <th><i class="fas fa-project-diagram"></i>Projet Affecté</th>
                                     <th><i class="fas fa-tasks"></i> Actions</th>
+
                                 </tr>
                                 </thead>
                                 <!-- Table Body -->
@@ -31,8 +33,12 @@
                                 <!-- Assignment Rows Here -->
                                 <tr *ngFor="let assignment of pagedAssignments">
                                     <td>{{ assignment.idAssign }}</td>
-                                    <td>{{ assignment.timeRecording }}</td>
+                                    <td>{{ assignment.timeRecording | date:'dd/MM/yyyy' }}</td>
                                     <td>{{ assignment.expenses }}</td>
+                                    <td (click)="redirectToProjectDetails(assignment.projects.idProjet)">
+                                        {{ assignment.projects.idProjet }}
+                                    </td>
+
                                     <td>
                                         <!-- Edit Button -->
                                         <button type="button" class="btn btn-info" (click)="openEditModal(assignment)" data-toggle="modal" data-target="#editAssignmentModal">
@@ -55,9 +61,10 @@
             </div>
         </div>
         <!-- Modal for Add Assignment -->
+        <!-- Modal for Add Assignment -->
         <div class="modal fade" id="addAssignmentModal" tabindex="-1" role="dialog" aria-labelledby="addAssignmentModalLabel" aria-hidden="true">
             <!-- Content of Add Assignment Modal -->
-            <form (ngSubmit)="saveAssignment()">
+            <form (ngSubmit)="createAssignmentsForProjects()">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -69,8 +76,14 @@
                         <div class="modal-body">
                             <!-- Form to add assignment -->
                             <div class="form-group">
+                                <label for="projectId">Project</label>
+                                <select class="form-control" id="projectId" name="projectId" [(ngModel)]="selectedProjectId" required>
+                                    <option *ngFor="let project of projects" [value]="project.idProjet">{{ project.projetTitle }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="timeRecording">Time Recording</label>
-                                <input type="text" class="form-control" id="timeRecording" name="timeRecording" [(ngModel)]="newAssignment.timeRecording" required>
+                                <input type="date" class="form-control" id="timeRecording" name="timeRecording" [(ngModel)]="newAssignment.timeRecording" required>
                             </div>
                             <div class="form-group">
                                 <label for="expenses">Expenses</label>
@@ -85,6 +98,7 @@
                 </div>
             </form>
         </div>
+
 
         <!-- Modal for Edit Assignment -->
         <div class="modal fade" id="editAssignmentModal" tabindex="-1" role="dialog" aria-labelledby="editAssignmentModalLabel" aria-hidden="true">
@@ -102,7 +116,7 @@
                             <!-- Form to edit assignment -->
                             <div class="form-group">
                                 <label for="editTimeRecording">Time Recording</label>
-                                <input type="text" class="form-control" id="editTimeRecording" name="editTimeRecording" [(ngModel)]="selectedAssignment.timeRecording" required>
+                                <input type="date" class="form-control" id="editTimeRecording" name="editTimeRecording" [(ngModel)]="selectedAssignment.timeRecording" required>
                             </div>
                             <div class="form-group">
                                 <label for="editExpenses">Expenses</label>

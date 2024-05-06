@@ -8,6 +8,13 @@
                 </button>
             </div>
         </div>
+        <!-- Search Bar -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search...">
+            </div>
+        </div>
+
         <!-- Project List Section -->
         <div class="row">
             <div class="col-md-12">
@@ -53,10 +60,13 @@
                                     <td  [ngClass]="project.isvalid ? 'valid-cell' : 'invalid-cell'" (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.projetTitle }}</td>
                                     <td (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.budget }}</td>
                                     <td (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.mail }}</td>
-                                    <td style="background-color: mediumspringgreen; color: black; font-weight: bold; cursor: pointer;" (click)="showProjectDetails(project.idProjet)">{{ project.dateDebut }}
+                                    <td style="background-color: mediumspringgreen; color: black; font-weight: bold; cursor: pointer;" (click)="showProjectDetails(project.idProjet)">
+                                        {{ project.dateDebut| date:'dd/MM/yyyy' }}
                                     </td>
-                                    <td style="background-color: indianred; color: black; font-weight: bold; cursor: pointer;" (click)="showProjectDetails(project.idProjet)">{{ project.dateFin }}
+                                    <td style="background-color: indianred; color: black; font-weight: bold; cursor: pointer;" (click)="showProjectDetails(project.idProjet)">
+                                        {{ project.dateFin| date:'dd/MM/yyyy' }}
                                     </td>
+
                                     <td (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.effectif }}</td>
                                     <td (click)="showProjectDetails(project.idProjet)" style="cursor: pointer;">{{ project.description }}</td>
                                     <td [ngClass]="project.isvalid ? 'valid-cell' : 'invalid-cell'" >
@@ -70,15 +80,12 @@
                                         <button type="button" class="btn btn-info" (click)="openEditModal(project)" data-toggle="modal" data-target="#editProjectModal">
                                             Edit
                                         </button>
-
                                         <!-- Delete Button -->
                                         <button type="button" class="btn btn-danger" (click)="deleteProject(project.idProjet)">
                                             Delete
                                         </button>
-
+                                        <button (click)="createAssignementForProject()">Créer un nouvel assignement</button>
                                     </td>
-
-
                                 </tbody>
                             </table>
                             <!-- Pagination -->

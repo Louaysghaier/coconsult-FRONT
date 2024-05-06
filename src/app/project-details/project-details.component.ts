@@ -1,49 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {ProjetsService} from '../_services/project.service';
+import { ProjetsService } from '../_services/project.service';
 
 @Component({
-  selector: 'app-project-details',
-  templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.css']
+    selector: 'app-project-details',
+    templateUrl: './project-details.component.html',
+    styleUrls: ['./project-details.component.css']
 })
 export class ProjectDetailsComponent implements OnInit {
-  projectId: number;
-  projectDetails: any;
+    projectId: number;
+    projectDetails: any;
 
+    constructor(
+        private route: ActivatedRoute,
+        private projetService: ProjetsService
+    ) { }
 
-  constructor(
-      private route: ActivatedRoute,
-      private projetService: ProjetsService
-  ) { }
+    ngOnInit(): void {
+        this.route.paramMap.subscribe(params => {
+            this.projectId = +params.get('projectId'); // Convertir l'identifiant en nombre
+            this.getProjectDetails(this.projectId);
+        });
+    }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.projectId = +params.get('projectId'); // Convertir l'identifiant en nombre
-      this.getProjectDetails(this.projectId);
-    });
-  }
-
- /* getProjectDetails(): void {
-    this.projetService.getProjetsById(this.projectId).subscribe(
-        (data: any) => {
-          this.projectDetails = data;
-        },
-        (error) => {
-          console.error('Error fetching project details:', error);
+    toggleProjectValidity(valid: boolean) {
+        if (this.projectDetails) {
+            this.projetService.validateProject(this.projectDetails.idProjet, valid)
+                .subscribe(
+                    () => {
+                        console.log('Project validation toggled successfully');
+                        this.getProjectDetails(this.projectDetails.idProjet); // Rafraîchir les détails du projet après validation
+                        location.reload(); // Recharger la page pour afficher les changements
+                    },
+                    error => {
+                        console.error('Error toggling project validation:', error);
+                    }
+                );
+        } else {
+            console.error('Project details is not available');
         }
-    );
-  }*/
-  getProjectDetails(idProjet: number): void {
-    this.projetService.getProjetsById(idProjet).subscribe(
-        (data: any) => {
-          this.projectDetails = data;
-          // Vous pouvez accéder à la propriété 'valid' du projet ici pour afficher son état de validation
-        },
-        (error) => {
-          console.error('Error fetching project details:', error);
-        }
-    );
-  }
+    }
+
+    getProjectDetails(idProjet: number): void {
+        this.projetService.getProjetsById(idProjet).subscribe(
+            (data: any) => {
+                this.projectDetails = data;
+                // Mettre à jour les détails du projet dans l'interface utilisateur
+            },
+            (error) => {
+                console.error('Error fetching project details:', error);
+            }
+        );
+    }
 
 }

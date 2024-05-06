@@ -10,9 +10,9 @@ exports.VerticalNavBarComponent = exports.ROUTES = void 0;
 var core_1 = require("@angular/core");
 var icons_1 = require("ionicons/icons");
 exports.ROUTES = [
-    { path: '/user_dashboard/monprofil', title: 'mon-profile', icon: 'person', "class": '' },
-    { path: '/user_dashboard/solutions', title: 'solutions', icon: 'dashboard', "class": '' },
-    { path: '/user_dashboard/settings', title: 'settings&Infos', icon: 'settingsOutline', "class": '' },
+    { path: '/user_dashboard_Consultant/monprofil', title: 'mon-profile', icon: 'person', "class": '' },
+    { path: '/user_dashboard_Consultant/solutions', title: 'solutions', icon: 'dashboard', "class": '' },
+    { path: '/user_dashboard_Consultant/settings', title: 'settings&Infos', icon: 'settingsOutline', "class": '' },
 ];
 var VerticalNavBarComponent = /** @class */ (function () {
     function VerticalNavBarComponent() {

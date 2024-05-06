@@ -13,7 +13,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { DashboardModule } from './user_dashboard/dashboard.module';
+import { DashboardConsultantModule } from './user_dashboard_Consultant/dashboardConsultant.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminLayoutModule } from './admin/admin-layout.module';
 import { SignupEntrpriseComponent } from './signupentreprise/signupentreprise.component';
@@ -82,7 +82,7 @@ import { TimerecordDetailsComponent } from './timerecord-details/timerecord-deta
     CarouselModule.forRoot(),
     FontAwesomeModule,
     AdminLayoutModule,
-    DashboardModule,
+    DashboardConsultantModule,
     MatPaginatorModule,
 
   ],

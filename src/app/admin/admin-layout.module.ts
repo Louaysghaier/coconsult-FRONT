@@ -21,17 +21,16 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { GroupChatComponent } from './group-chat/group-chat.component';
 import { CardGPCHATComponent } from './card-gpchat/card-gpchat.component';
 import { UpdateDialogComponent } from './group-chat/update-dialog/update-dialog.component';
-import { ExpansesComponent } from './expanses/expanses.component';
+/*import { ExpansesComponent } from './expanses/expanses.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjFeedComponent } from './proj-feed/proj-feed.component';
 import { QuoteComponent } from './quote/quote.component';
 import { TimeRecordComponent } from './time-record/time-record.component';
-import { AssignmentsComponent } from './assignement/assignement.component';
+import { AssignmentsComponent } from './assignement/assignement.component';*/
 import {ProjectDetailsComponent} from '../project-details/project-details.component';
-import {ChartsProjComponent} from './charts-proj/charts-proj.component';
-import { ChartsQuotesComponent } from './charts-quotes/charts-quotes.component';
+/*import {ChartsProjComponent} from './charts-proj/charts-proj.component';
 import {BaseChartDirective} from 'ng2-charts';
-import {PieChartModule} from '@swimlane/ngx-charts';
+import {PieChartModule} from '@swimlane/ngx-charts';*/
 //import { CalenderComponent } from './calender/calender.component';
 
 const AdminLayoutRoutes: Routes = [
@@ -44,15 +43,15 @@ const AdminLayoutRoutes: Routes = [
             { path: 'navbar', component: NavbarComponent },
             { path: 'sidenavbar', component: SidebarComponent },
             { path: 'ChatRooms', component: GroupChatComponent },
-            { path: 'assignement', component: AssignmentsComponent },
+           /* { path: 'assignement', component: AssignmentsComponent },
             { path: 'expanses', component: ExpansesComponent },
             { path: 'proj-feed', component: ProjFeedComponent },
             { path: 'projects', component: ProjectsComponent },
             { path: 'time-record', component: TimeRecordComponent },
             { path: 'quote', component: QuoteComponent },
             { path: 'project-details/:projectId', component: ProjectDetailsComponent },
-            { path: 'charts-proj', component: ChartsProjComponent },
-            { path: 'charts-quotes', component: ChartsQuotesComponent },
+            { path: 'charts-proj', component: ChartsProjComponent },*/
+            //{ path: 'charts-quotes', component: ChartsQuotesComponent },
 
         ],
     },
@@ -72,8 +71,8 @@ const AdminLayoutRoutes: Routes = [
         MatTooltipModule,
         MatDialogModule,
         MatPaginatorModule,
-        BaseChartDirective,
-        PieChartModule,
+       //BaseChartDirective,
+        //PieChartModule,
     ],
     declarations: [
         AdminLayoutComponent,
@@ -86,14 +85,13 @@ const AdminLayoutRoutes: Routes = [
         GroupChatComponent,
         CardGPCHATComponent,
         UpdateDialogComponent,
-        AssignmentsComponent,
+      /*  AssignmentsComponent,
         ExpansesComponent,
         ProjectsComponent,
         ProjFeedComponent,
         QuoteComponent,
         TimeRecordComponent,
-        ChartsProjComponent,
-        ChartsQuotesComponent,
+        ChartsProjComponent,*/
 
     ],
     exports: [RouterModule],

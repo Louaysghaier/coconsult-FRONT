@@ -2,7 +2,10 @@
     <div class="project-detail">
         <div class="project-header">
             <h3>Project Title: {{ projectDetails.projetTitle }}</h3>
-            <button (click)="toggleProjectValidity(!projectDetails.valid)" class="toggle-validity-btn" [ngClass]="{'valid-btn': projectDetails.valid, 'invalid-btn': !projectDetails.valid}">
+            <button
+                    (click)="toggleProjectValidity(!projectDetails.valid)"
+                    class="toggle-validity-btn"
+                    [ngClass]="{'valid-btn': projectDetails.valid, 'invalid-btn': !projectDetails.valid}">
                 {{ projectDetails.valid ? 'Invalidate Project' : 'Validate Project' }}
             </button>
         </div>

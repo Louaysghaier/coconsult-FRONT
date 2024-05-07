@@ -1,9 +1,11 @@
-
-
-.project-details {
-    display: flex;
-    flex-direction: column;
+.toggle-validity-btn.valid-btn:hover {
+    background-color: green;
 }
+
+.toggle-validity-btn.invalid-btn:hover {
+    background-color: red;
+}
+
 
 .project-detail {
     background-color: whitesmoke;
@@ -144,10 +146,3 @@
     opacity: 0.8; /* Opacité réduite au survol */
 }
 
-.valid-btn {
-    background-color: #4caf50; /* Couleur de fond lorsque le projet est validé */
-}
-
-.invalid-btn {
-    background-color: #f44336; /* Couleur de fond lorsque le projet n'est pas validé */
-}

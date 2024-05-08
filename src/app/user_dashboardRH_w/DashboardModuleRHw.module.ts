@@ -32,10 +32,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { EditSalaryModalComponent } from './salary/edit.salary.component';
 import { StarRatingComponent } from './users/star-rating.component';
+import {CandidatresultComponent} from "./candidatresult/candidatresult.component";
+import {AuthGuard} from "../_helpers";
 const dashboardRoutes: Routes = [
 
     { path: 'user_dashboardRH_w',
         component: DashboardComponent,
+        canActivate:[ AuthGuard] ,data: { requiredRole: 'HR' },
         children: [
             {path:'monprofil',component:MonprofilComponent},
             {path:'header', component:HeaderComponent},
@@ -50,6 +53,8 @@ const dashboardRoutes: Routes = [
 
             { path: 'demande-conge', component: AddAskComponent },
             { path: 'table-conge', component: DemandeCongeComponent },
+            {path:'result', component:CandidatresultComponent},
+
 
         ],
     },
@@ -59,6 +64,7 @@ const dashboardRoutes: Routes = [
 
 @NgModule({
     declarations: [
+        CandidatresultComponent,
         HeaderComponent,
         DashboardComponent,
         //SettingsComponent,

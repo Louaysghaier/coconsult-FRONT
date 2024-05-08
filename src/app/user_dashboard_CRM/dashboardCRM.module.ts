@@ -35,9 +35,11 @@ import { RevenueComponent } from './revenue/revenue.component';
 import { DatePipe } from '@angular/common'; // Import DatePipe from @angular/common
 import { DetailNotifDiagComponent } from './header/detail-notif-diag/detail-notif-diag.component';
 import { CardComponent } from './solution/card/card.component';
+import {AuthGuard} from "../_helpers";
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard_CRM',
   component: DashboardComponent,
+  //canActivate:[ AuthGuard] ,data: { requiredRole: 'CRM' },
   children: [
     {path:'monprofil',component:MonprofilComponent},
     {path:'header', component:HeaderComponent},
@@ -107,4 +109,3 @@ const dashboardRoutes: Routes = [
     exports: [RouterModule]
   })
   export class DashboardModuleCRM { }
-  

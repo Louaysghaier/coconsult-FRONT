@@ -35,6 +35,7 @@ export class CandidatComponent {
   
     // Récupérer l'ID de l'opportunité d'emploi à partir de la session
     const jobOpportIdFromSession = sessionStorage.getItem('jobOpportId');
+    console.log(jobOpportIdFromSession);
     if (!jobOpportIdFromSession) {
       Swal.fire('Erreur', 'Impossible de récupérer l\'ID de l\'opportunité d\'emploi à partir de la session.', 'error');
       return;

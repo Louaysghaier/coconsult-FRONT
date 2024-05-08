@@ -14,9 +14,9 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
 
-  private listTitles: any[];
+ /* private listTitles: any[];
     location: Location;
       mobile_menu_visible: any = 0;
     private toggleButton: any;
@@ -157,5 +157,5 @@ export class HeaderComponent implements OnInit {
           // Handle dialog close if needed
           console.log('The dialog was closed');
         });
-      }
+      }*/
 }

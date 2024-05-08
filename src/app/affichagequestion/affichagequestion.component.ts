@@ -26,7 +26,7 @@ export class AffichagequestionComponent {
   mailcandidat: any = sessionStorage.getItem('email');
   currentQuestionIndex: number = 0;
   listofcurrentQuest: any[] = [];
-  remainingTime: number = 100; // Set the initial time for each question (in seconds)
+  remainingTime: number = 30; // Set the initial time for each question (in seconds)
   timer: any; 
   id_candidat: any;
   warningCount=0;

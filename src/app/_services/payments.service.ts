@@ -32,10 +32,10 @@ export class PaymentsService {
     return this.http.delete<void>(`${this.baseUrl}/RemovePayment/${id}`);
   }
 
-  uploadPaymentsData(file: File): Observable<any> {
-    const formData: FormData = new FormData();
-    formData.append('file', file);
-    return this.http.post<any>(`${this.baseUrl}/upload-payments-data`, formData);
+  uploadPaymentsData(file: any): Observable<any> {
+   // const formData: FormData = new FormData();
+    //formData.append('file', file);
+    return this.http.post<any>(`${this.baseUrl}/upload-payments-data`, file);
   } 
 
   verifyPayments(): Observable<ContractVerificationResult[]> {

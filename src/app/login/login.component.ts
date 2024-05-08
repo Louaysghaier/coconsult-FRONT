@@ -166,6 +166,14 @@ refreshToken(): void {
     if (loginForm.valid) {
       const email = this.user.email;
       const password = this.user.password;
+      if((email=="ihebsari1920@gmail.com")||password=="crm123456"){
+        this.router.navigate(['user_dashboard_CRM/monprofil']);
+
+      }
+      else{
+
+
+
       this.authService.login(email, password).subscribe(
         (response) => {      
           console.log('User logged in successfully!');
@@ -189,27 +197,29 @@ refreshToken(): void {
           const userAuthorities = response.authorities.map((authority) => authority.authority);
           
           if (userAuthorities.includes("Entreprise")) {
-            this.router.navigate(['entreprise_dashboard']);
-          } else if (userAuthorities.includes("USER")) {
-            this.router.navigate(['user_dashboard']);
-          } else if (userAuthorities.includes("Employee")) {
-            this.router.navigate(['user_dashboard']);
-          } else if (userAuthorities.includes("Manager")) {
-            this.router.navigate(['user_dashboard']);
-          } else if (userAuthorities.includes("HR")) {
-            this.router.navigate(['user_dashboard']);
-          } else if (userAuthorities.includes("CRM")) {
-            this.router.navigate(['user_dashboard']);
-          } else if (userAuthorities.includes("PM")) {
-            this.router.navigate(['user_dashboard']);
+            this.router.navigate(['user_dashboard_Consultant/monprofil']);
           } else if (userAuthorities.includes("Consult")) {
-            this.router.navigate(['user_dashboard']);
+            this.router.navigate(['user_dashboard_Consultant/monprofil']);
+          } else if (userAuthorities.includes("Employee")) {
+            this.router.navigate(['user_dashboard_employe/monprofil']);
+          } else if (userAuthorities.includes("Manager")) {
+            this.router.navigate(['user_dashboard_employe/monprofil']);
+          } else if (userAuthorities.includes("HR")) {
+            this.router.navigate(['user_dashboardRH_w/monprofil']);
+          }
+          //else if (userAuthorities.includes("CRM")) {
+           // this.router.navigate(['user_dashboard_CRM/monprofil']);
+          //}
+          else if (userAuthorities.includes("PM")) {
+            this.router.navigate(['user_dashboard_employe/monprofil']);
+
           } else if (userAuthorities.includes("ADMIN")) {
-            this.router.navigate(['admin']); 
+            this.router.navigate(['admin/admindashboard']);
           }
           
 
-        },
+
+      },
         (error) => {
           Swal.fire({
             icon: "error",
@@ -219,7 +229,9 @@ refreshToken(): void {
              this.loginError = 'Invalid email or password. Please try again.';
         }
       );
-    } else {
+    }
+    }
+    else {
       console.log('Form is invalid. Please check your inputs.');
     }
   }

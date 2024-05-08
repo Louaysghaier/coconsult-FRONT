@@ -60,9 +60,11 @@ import { MeetingAffectuserComponent } from './meeting-affectuser/meeting-affectu
 import { ListesUsersMeetComponent } from './listes-users-meet/listes-users-meet.component';
 import { MeetingDetailsComponent } from './meeting-details/meeting-details.component';
 import { AffecterUserAteamComponent } from './affecter-user-ateam/affecter-user-ateam.component';
+import {AuthGuard} from "../_helpers";
 const AdminLayoutRoutes: Routes = [
   {path:'admin',
-component:AdminLayoutComponent,
+component:AdminLayoutComponent,canActivate:[ AuthGuard] ,data: { requiredRole: 'ADMIN' },
+
 children: [
    { path: 'admindashboard',      component: DashboardComponent },
    { path: 'user-profile',   component: UserProfileComponent },

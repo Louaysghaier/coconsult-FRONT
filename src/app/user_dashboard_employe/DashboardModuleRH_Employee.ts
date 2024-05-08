@@ -24,13 +24,16 @@ import { ActivityuseComponent } from './activityuse/activityuse.component';
 
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
 import {VerticalNavBarComponent} from "./vertical-nav-bar/vertical-nav-bar.component";
+import {AuthGuard} from "../_helpers";
 
 
 
 const dashboardRoutes: Routes = [
  { path: 'user_dashboard_employe',
   component: DashboardComponent,
-  children: [
+     canActivate:[ AuthGuard] ,data: { requiredRole: 'PM' },
+
+     children: [
     {path:'monprofil',component:MonprofilComponent},
     {path:'header', component:HeaderComponent},
     {path: 'vertical-nav-bar', component: VerticalNavBarComponent },

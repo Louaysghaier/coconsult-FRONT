@@ -16,5 +16,9 @@ export class PayementService {
     formData.append('file', file);
     return this.http.post<any>(`${this.baseUrl}/upload-payments-data`, formData);
   }
+
+  getDailySales(): Observable<Map<string, number>> {
+    return this.http.get<Map<string, number>>(`${this.baseUrl}/daily`);
+  }
  
 }

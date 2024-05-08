@@ -26,6 +26,7 @@ export const ROUTES: RouteInfo[] = [
      { path: '/user_dashboardRH_w/evaluation-manager', title: 'evaluation-manager',  icon:'assessment', class: '' },
     { path: '/user_dashboardRH_w/solutions', title: 'solutions',  icon:'dashboard', class: '' },
     { path: '/user_dashboardRH_w/settings', title: 'settings&Infos',  icon:'settingsOutline', class: '' },
+    { path: '/user_dashboardRH_w/result', title: 'result',  icon:'person', class: '' },
 
 
 

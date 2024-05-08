@@ -49,7 +49,10 @@ var routes = [
     {
         path: '',
         loadChildren: function () { return Promise.resolve().then(function () { return require('./user_dashboard_CRM/dashboardCRM.module'); }).then(function (m) { return m.DashboardModuleCRM; }); }
+
     },
+    { loadChildren: function () { return Promise.resolve().then(function () { return require('./user_dashboard_Consultant/dashboard.module'); }).then(function (m) { return m.DashboardModule; }); },
+        canActivate: [_helpers_1.AuthGuard]},
     { path: 'signin', component: login_component_1.LoginComponent },
     { path: 'register', component: signup_component_1.SignupComponent },
     { path: 'signupentrprise', component: signupentreprise_component_1.SignupEntrpriseComponent },

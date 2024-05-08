@@ -22,6 +22,7 @@ var navbar_component_1 = require("./shared/navbar/navbar.component");
 var footer_component_1 = require("./shared/footer/footer.component");
 var login_component_1 = require("./login/login.component");
 var carousel_1 = require("ngx-bootstrap/carousel");
+var dashboard_module_1 = require("./user_dashboard_Consultant/dashboard.module");
 var angular_fontawesome_1 = require("@fortawesome/angular-fontawesome");
 var admin_layout_module_1 = require("./admin/admin-layout.module");
 var signupentreprise_component_1 = require("./signupentreprise/signupentreprise.component");

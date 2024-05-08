@@ -41,18 +41,21 @@ export class PaymentsComponent implements OnInit {
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-      this.paymentsService.uploadPaymentsData(file).subscribe(
-        response => {
-          console.log('Prospects data uploaded successfully:', response);
-          // Handle success message or any other action
-        },
-        error => {
-          console.error('Error uploading prospects data:', error);
-          // Handle error message or any other action
-        }
+      const formData = new FormData();
+      formData.append('file', file);
+      this.paymentsService.uploadPaymentsData(formData).subscribe(
+          response => {
+            console.log('payment data uploaded successfully:', response);
+            // Handle success message or any other action
+          },
+          error => {
+            console.error('Error uploading payment data:', error);
+            // Handle error message or any other action
+          }
       );
     }
   }
+
 
   PaymentsList() {
     this.paymentsService.verifyPayments().subscribe(

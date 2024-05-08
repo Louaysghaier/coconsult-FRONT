@@ -14,6 +14,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { DashboardModuleCRM } from './user_dashboard_CRM/dashboardCRM.module';
+import { DashboardConsultantModule } from './user_dashboard_Consultant/dashboardConsultant.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminLayoutModule } from './admin/admin-layout.module';
 import { SignupEntrpriseComponent } from './signupentreprise/signupentreprise.component';
@@ -67,6 +68,7 @@ import { AdminListSalaire } from './admin/salaire/admin-list-salaire';
 import { DashboardModuleRHw } from './user_dashboardRH_w/DashboardModuleRHw.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { DashboardModuleRHd } from './user_dashboardRH_d/DashboardModuleRHd.module';
+import { ProjectDetailsComponent } from './user_dashboard_Consultant/project-details/project-details.component';
 
 const config: SocketIoConfig = { url: 'ws://localhost:8082/ws', options: {} };
 // social login
@@ -120,7 +122,9 @@ TESTComponent,
     DemandeCongeComponent,
     RappelPointageComponent,
     CongeDetailsModalComponent,
-    AdminListSalaire
+    AdminListSalaire,
+    ProjectDetailsComponent,
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -155,6 +159,7 @@ TESTComponent,
     MatDialogModule,
     FormsModule ,
     MatTableModule,
+    DashboardConsultantModule,
     MatPaginatorModule,
     MatIconModule,
 

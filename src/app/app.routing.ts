@@ -32,40 +32,6 @@ import { AddAskComponent } from './user_dashboardRH_w/demandeConge/add-demande.c
 import { MeetinfRoomComponent } from './user_dashboard_employe/meetinf-room/meetinf-room.component';
 import {Assignements} from './_models/assignements';
 const routes: Routes = [
-  {
-    path: '',
-    
-      loadChildren: () => import('./admin/admin-layout.module').then(m => m.AdminLayoutModule)
-
-  },
-  {
-    path: '',
-    loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd),
-    //loadChildren: () => import('./user_dashboard_employe/dashboard.module').then(m => m.DashboardModule),canActivate:[ AuthGuard]
-
-  },
-  {
-    path: '',
-   // loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd),
-    loadChildren: () => import('./user_dashboard_employe/DashboardModuleRH_Employee').then(m => m.DashboardModuleRH_Employee),
-
-  },
-  {
-    path: '',
-    loadChildren: () => import('./user_dashboardRH_w/DashboardModuleRHw.module').then(m => m.DashboardModuleRHw)
-
-  },
-  { path:'myquiz/:email',component: MyquizComponent },
-  { path: 'Affichagequestion/:quizId/:mailcandidat', component: AffichagequestionComponent },
-
-  {
-    path: '',
-    loadChildren: () => import('./user_dashboard_CRM/dashboardCRM.module').then(m => m.DashboardModuleCRM),
-
-  },
-  
-  { path: 'signin', component: LoginComponent },
-  //{ path: 'meet/:id', component: MeetinfRoomComponent },
 
   { path: 'register', component: SignupComponent },
   { path: 'signupentrprise', component: SignupEntrpriseComponent },
@@ -92,6 +58,51 @@ const routes: Routes = [
 { path: 'forgetpassword', component: LoginforgetpasswordComponent},
 {path:'chatroom',component:ChatRoomComponent },
 { path: 'verification', component: ValidationComponent },
+  {
+    path: '',
+
+    loadChildren: () => import('./admin/admin-layout.module').then(m => m.AdminLayoutModule),
+   // canActivate:[ AuthGuard], data: { requiredRole: 'ADMIN' }
+
+  },
+  {
+    path: '',
+    loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd) ,
+   // canActivate:[ AuthGuard], data: { requiredRole: 'HR' }
+    //loadChildren: () => import('./user_dashboard_employe/dashboard.module').then(m => m.DashboardModule),canActivate:[ AuthGuard]
+
+  },
+  {
+    path: '',
+    // loadChildren: () => import('./user_dashboardRH_d/DashboardModuleRHd.module').then(m => m.DashboardModuleRHd),
+    loadChildren: () => import('./user_dashboard_employe/DashboardModuleRH_Employee').then(m => m.DashboardModuleRH_Employee),
+    //canActivate:[ AuthGuard] , data: { requiredRole: 'PM' }
+
+  },
+  {
+    path: '',
+    loadChildren: () => import('./user_dashboardRH_w/DashboardModuleRHw.module').then(m => m.DashboardModuleRHw),
+  //  canActivate:[ AuthGuard] ,data: { requiredRole: 'HR' }
+
+  },
+  { path:'myquiz/:email',component: MyquizComponent },
+  { path: 'Affichagequestion/:quizId/:mailcandidat', component: AffichagequestionComponent },
+
+  {
+    path: '',
+      loadChildren: () => import('./user_dashboard_CRM/dashboardCRM.module').then(m => m.DashboardModuleCRM),
+    //canActivate:[ AuthGuard] ,data: { requiredRole: 'CRM' }
+    //loadChildren: () => import('./user_dashboard_CRM/dashboardCRM.module').then(m => m.DashboardModuleCRM)
+  },
+  {
+    path: '',
+    //loadChildren: () => import('./user_dashboard_CRM/dashboardCRM.module').then(m => m.DashboardModuleCRM),
+    loadChildren: () => import('./user_dashboard_Consultant/dashboardConsultant.module').then(m => m.DashboardConsultantModule),
+  //  canActivate:[ AuthGuard], data: { requiredRole: 'Consult' }
+
+  },
+  { path: 'signin', component: LoginComponent },
+  //{ path: 'meet/:id', component: MeetinfRoomComponent },
 
 { path: '**', redirectTo: '',component: LandingComponent},
 

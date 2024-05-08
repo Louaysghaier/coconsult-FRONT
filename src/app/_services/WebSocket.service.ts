@@ -31,7 +31,7 @@ export class WebSocketService {
     
     connect(): void {
       this.stompClient = new Client({
-        webSocketFactory: () => new WebSocket('ws://localhost:8080/ws')
+        webSocketFactory: () => new WebSocket('ws://localhost:8081/ws')
       });
   
       this.stompClient.onConnect = () => {

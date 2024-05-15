@@ -33,7 +33,7 @@
                     <img src="./assets/images/offre1.jpg" alt="Random first slide" class="carousel-img" />
                   </div>
                   <div class="carousel-caption">
-                    <p>votre opportunité pour s'améliorer</p>
+                    <p>Your opportunity to improve</p>
                   </div>
                 </ng-template>
                 <ng-template ngbSlide>
@@ -41,7 +41,7 @@
                     <img src="./assets/images/offre2.jpg" alt="Random second slide" class="carousel-img" />
                   </div>
                   <div class="carousel-caption">
-                    <p>Qu-attendez vous pour reagir comme étand un entreprise innovante de ce domaine.</p>
+                    <p>"What are you waiting for to react like an innovative company in this field?".</p>
                   </div>
                 </ng-template>
                 <ng-template ngbSlide>
@@ -49,7 +49,8 @@
                     <img src="./assets/images/offre3.jpg" alt="Random third slide" class="carousel-img"  />
                   </div>
                   <div class="carousel-caption">
-                    <p>Agir maintenant pour un avenir euphorique .</p>
+                    <p>
+                        "Act now for a euphoric future." .</p>
                   </div>
                 </ng-template>
                 
@@ -64,11 +65,11 @@
             <h2 class="card-title">Ajouter un Candidat</h2>
             <form (submit)="onSubmit()">
               <div class="mb-3">
-                <label for="nom" class="form-label">Nom :</label>
+                <label for="nom" class="form-label">Name :</label>
                 <input type="nom" id="email" name="nom" [(ngModel)]="nom" class="form-control" required>
               </div>
               <div class="mb-3">
-                <label for="prenom" class="form-label">prenom :</label>
+                <label for="prenom" class="form-label">FirstName :</label>
                 <input type="prenom" id="prenom" name="prenom" [(ngModel)]="prenom" class="form-control" required>
               </div>
               <div class="mb-3">
@@ -77,10 +78,10 @@
               </div>
               
               <div class="mb-3">
-                <label for="pdfFile" class="form-label">Fichier PDF :</label>
+                <label for="pdfFile" class="form-label">CV :</label>
                 <input type="file" id="pdfFile" name="pdfFile" (change)="onFileSelected($event)" class="form-control" accept=".pdf" required>
               </div>
-              <button type="submit" class="btn btn-primary">Ajouter Candidat</button>
+              <button type="submit" class="btn btn-primary">APPLY</button>
             </form>
           </div>
         </div>

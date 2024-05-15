@@ -13,16 +13,16 @@
               <input type="text" class="form-control" placeholder="Rechercher une réunion..." [(ngModel)]="searchTerm">
               
               <!-- Bouton "Ajouter" -->
-              <button (click)="openAddMeeting()" mat-raised-button color="primary" class="mt-3">Ajouter</button>
+              <button (click)="openAddMeeting()" mat-raised-button color="primary" class="mt-3">ADD</button>
 
               <!-- Tableau de réunions -->
               <table class="table">
                 <thead class="text-primary">
                   <tr>
-                    <th>ID Réunion</th>
-                    <th>Date de la réunion</th>
-                    <th>Type de réunion</th>
-                    <th>Actions</th>
+                      <th>Meeting ID</th>
+                      <th>Meeting Date</th>
+                      <th>Meeting Type</th>
+                      <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -31,9 +31,9 @@
                     <td>{{ meeting.dateMeeting | date:'dd/MM/yyyy HH:mm' }}</td>
                     <td>{{ meeting.typeMeet }}</td>
                     <td>
-                      <button (click)="openMeetingDetails(meeting.idMeeting)" class="btn btn-primary">Détails du meeting</button>
-                      <button (click)="openAffectationPopup(meeting.idMeeting)" class="btn btn-info">Affecter les utilisateurs</button>
-                      <button (click)="deleteMeeting(meeting.idMeeting)" class="btn btn-danger delete-button">Supprimer</button>
+                      <button (click)="openMeetingDetails(meeting.idMeeting)" class="btn btn-primary">Meeting Details</button>
+                      <button (click)="openAffectationPopup(meeting.idMeeting)" class="btn btn-info">AAssign Users</button>
+                      <button (click)="deleteMeeting(meeting.idMeeting)" class="btn btn-danger delete-button">Delete</button>
                     </td>
                   </tr>
                 </tbody>

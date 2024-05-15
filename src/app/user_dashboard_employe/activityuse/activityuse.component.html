@@ -13,17 +13,17 @@
                 <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher..." class="form-control mb-3">
   
                 <!-- Bouton "Ajouter" -->
-                <button (click)="openAddActivity('1000ms','500ms','')" mat-raised-button color="primary" class="mt-3">Ajouter</button>
+                <button (click)="openAddActivity('1000ms','500ms','')" mat-raised-button color="primary" class="mt-3">ADD</button>
   
                 <!-- Tableau des activités -->
                 <table class="table">
                   <thead class="text-primary">
                     <tr>
-                      <th>ID de l'activité</th>
-                      <th>Nombre de tâches</th>
-                      <th>Type de tâche</th>
-                      <th>Projet</th>
-                      <th>Actions</th>
+                        <th>Activity ID</th>
+                        <th>Number of Tasks</th>
+                        <th>Task Type</th>
+                        <th>Project</th>
+                        <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -50,4 +50,3 @@
       </div>
     </div>
   </div>
-  
